@@ -6,15 +6,15 @@ import gift from '../../images/header/gift.svg'
 export default function Navigation() {
   return (<>
     <BrowserRouter>
-      <Link>
+      <NavLink to='/'>
         <img src={pin} alt="pin" />
         Звички i задачi
-    </Link>
-      <Link>
+    </NavLink>
+      <NavLink to='/'>
         <img src={gift} alt="gift" />
 
         Подарунки
-    </Link>
+    </NavLink>
     </BrowserRouter>
   </>
   )
