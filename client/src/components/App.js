@@ -5,19 +5,28 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import NotFound from '../components/NotFound/NotFound';
 import { CustomLoader } from './UIcomponents/CustomLoader/CustomLoader';
+import Header from './Header/Header'
+import Logo from './Logo/Logo';
+import UserInfo from './UserInfo/UserInfo';
+import Navigation from './Navigation/Navigation';
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <Header>
+          <Logo />
+          <Navigation />
+          <UserInfo />
+        </Header>
         <Suspense fallback={<CustomLoader />}>
           <Switch>
             {routes.map(route =>
               route.private ? (
                 <PrivateRoute key={route.label} {...route} />
               ) : (
-                <PublicRoute key={route.label} {...route} />
-              ),
+                  <PublicRoute key={route.label} {...route} />
+                ),
             )}
             <Route component={NotFound} />
           </Switch>
