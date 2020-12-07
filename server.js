@@ -22,6 +22,14 @@ exports.CrudServer = class {
 
   initServer() {
     this.server = express();
+    this.server.use(
+      "/",
+      express.static(path.join(__dirname, "client", "build"))
+    );
+
+    this.server.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    });
   }
 
   async initDatabase() {
