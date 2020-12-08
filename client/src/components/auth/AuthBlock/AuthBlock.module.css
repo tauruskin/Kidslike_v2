@@ -1,0 +1,28 @@
+.container {
+  padding: 50px 118px 50px 117px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  background-color: #fff;
+  height: 100%;
+}
+
+.title {
+  margin: 0;
+  font-weight: 900;
+  font-size: 26px;
+  line-height: 31px;
+  text-align: center;
+}
+
+.authText {
+  margin: 30px auto 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #828282;
+  text-align: center;
+}
+
+.authLink {
+  color: #828282;
+}

@@ -6,8 +6,8 @@
   height: 4px;
   cursor: pointer;
   border: none;
-  background-image: url(../../../images/svg/dots-grey.svg),
-    url(../../../images/svg/dots-black.svg);
+  background-image: url(../../../img/svg/dots-grey.svg),
+    url(../../../img/svg/dots-black.svg);
   background-size: auto, 0;
 }
 
