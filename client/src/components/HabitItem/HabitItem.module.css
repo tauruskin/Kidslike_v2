@@ -1,17 +1,7 @@
-/* .habitItem {
+.habitItemFolder {
   position: relative;
-  box-sizing: border-box;
-  justify-content: center;
-  width: 280px;
-  height: 197px;
-  padding: 20px 15px;
-  border-radius: 20px;
-  background-color: #fff;
+  display: flex;
 }
-
-.habitItem:not(:last-child) {
-  margin-bottom: 10px;
-} */
 
 .avatar {
   position: absolute;
@@ -19,13 +9,17 @@
   width: 75px;
   height: 75px;
   margin-right: 20px;
-  /* vertical-align: middle; */
+  top: 0;
+  left: 0;
+}
+
+.habitContentWrapper {
+  position: relative;
 }
 
 .habitTitle {
   display: inline-block;
   margin-left: 95px;
-  /* margin-bottom: 17px; */
   vertical-align: middle;
   color: #333333;
   font-family: Rubik;
@@ -41,24 +35,20 @@
   padding: 0;
   margin: 0;
   margin-left: 95px;
-  margin-top: 17px;
+  margin-top: 13px;
   width: 409px;
 }
 
 .daysItem {
   display: inline-block;
   box-sizing: border-box;
-  /* width: calc((100% - 9px) / 10); */
   width: 40px;
   height: 40px;
   padding: 10px;
+  border: 1px solid #ffffff;
   background-color: #f6f7f9;
   text-align: center;
   vertical-align: middle;
-}
-
-.daysItem:not(:last-child) {
-  margin-right: 1px;
 }
 
 .daysItem:first-child {
@@ -78,31 +68,24 @@
 }
 
 .text {
+  position: absolute;
+  right: 10px;
+  bottom: -20px;
   width: 28px;
   height: 20px;
   font-family: Rubik;
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
-  margin: 3px 0 0 470px;
   color: #828282;
 }
 
 @media (max-width: 768px) {
-  /* .habitItem {
-    position: relative;
-    box-sizing: border-box;
+  .habitItemFolder {
+    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
-    width: 280px;
-    height: 197px;
-    padding: 20px 15px;
-    border-radius: 20px;
-    background-color: #fff;
   }
-
-  .habitItem:not(:last-child) {
-    margin-bottom: 10px;
-  } */
 
   .avatar {
     display: inline-block;
@@ -137,15 +120,12 @@
   .daysItem {
     display: inline-block;
     padding: 6px;
-    /* width: calc((100% - 9px) / 10); */
     width: 25.86px;
     height: 25.86px;
+    border: 1px solid #ffffff;
     background-color: #f6f7f9;
     text-align: center;
-  }
-
-  .daysItem:not(:last-child) {
-    margin-right: 1px;
+    vertical-align: middle;
   }
 
   .daysItem:first-child {
@@ -157,21 +137,21 @@
   }
 
   .points {
-    display: inline-block;
-    vertical-align: middle;
+    display: block;
     font-size: 12px;
     color: #828282;
     font-family: Rubik;
   }
 
   .text {
+    right: -5px;
+    bottom: -26px;
     width: 28px;
     height: 20px;
     font-family: Rubik;
     font-weight: normal;
     font-size: 12px;
     line-height: 14px;
-    margin: 3px 0 0 auto;
     color: #828282;
   }
 }
