@@ -1,0 +1,32 @@
+body {
+  background-color: #e5e5e5;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+/* 
+/* a {
+  text-decoration: none;
+  color: rgba(139, 0, 0, 1);
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+a:hover {
+  color: brown;
+  background-color: burlywood;
+} */
+button {
+  display: inline-block;
+}
+
+h1 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+}
+
+img{
+  display: block;
+}
