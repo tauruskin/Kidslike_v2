@@ -1,0 +1,33 @@
+.HabitList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  max-width: 690px;
+}
+
+.HabitItem {
+  position: relative;
+  box-sizing: border-box;
+  justify-content: center;
+  width: 690px;
+  height: 142px;
+  padding: 30px 30px 37px 30px;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.HabitItem:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .HabitList {
+    max-width: 280px;
+  }
+
+  .HabitItem {
+    width: 280px;
+    height: 197px;
+    padding: 20px 15px;
+  }
+}
