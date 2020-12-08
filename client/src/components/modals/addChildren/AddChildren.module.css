@@ -132,7 +132,7 @@
 }
 
 .customLabel > input[type='radio']:checked + span {
-  background-image: url('../../../images/Star.svg');
+  background-image: url('../../../images/star.svg');
   background-size: 20px;
   background-position: center;
   background-repeat: no-repeat;
