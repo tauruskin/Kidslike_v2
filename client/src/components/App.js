@@ -9,7 +9,7 @@ import Header from './Header/Header'
 import Logo from './Logo/Logo';
 import UserInfo from './UserInfo/UserInfo';
 import Navigation from './Navigation/Navigation';
-const privatePage = false
+const privatePage = true
 
 class App extends Component {
   render() {
