@@ -1,11 +1,13 @@
 const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, ".env") });
 const swaggerUi = require("swagger-ui-express"),
-swaggerDocument = require("./swagger.json");
+  swaggerDocument = require("./swagger.json");
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const { testsRouter } = require("./test/tests.router");
+
+const IMAGES_PATH = path.join(__dirname, "public/images");
 
 exports.CrudServer = class {
   constructor() {
@@ -23,6 +25,7 @@ exports.CrudServer = class {
 
   initServer() {
     this.server = express();
+    this.server.use("/images", express.static(IMAGES_PATH));
   }
 
   async initDatabase() {
@@ -46,7 +49,11 @@ exports.CrudServer = class {
   initRoutes() {
     this.server.use("/api/test", testsRouter);
 
-    this.server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    this.server.use(
+      "/api-docs",
+      swaggerUi.serve,
+      swaggerUi.setup(swaggerDocument)
+    );
 
     //put your route here
     // start
@@ -68,8 +75,6 @@ exports.CrudServer = class {
         res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
       });
     }
-
-    
   }
 
   initErrorHandling() {
