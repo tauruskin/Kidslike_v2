@@ -5,19 +5,18 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import NotFound from '../components/NotFound/NotFound';
 import { CustomLoader } from './UIcomponents/CustomLoader/CustomLoader';
-import Header from './Header/Header'
+
+import Header from './Header/Header';
 import Logo from './Logo/Logo';
 import UserInfo from './UserInfo/UserInfo';
 import Navigation from './Navigation/Navigation';
 import { ModalTest } from './ModalTest';
 import Layout from './Layout/Layout';
 
-
 /*
-*temporary variable for test.
-*/
-const privatePage = true
-
+ *temporary variable for test.
+ */
+const privatePage = true;
 
 class App extends Component {
   render() {
@@ -35,8 +34,8 @@ class App extends Component {
                 route.private ? (
                   <PrivateRoute key={route.label} {...route} />
                 ) : (
-                    <PublicRoute key={route.label} {...route} />
-                  ),
+                  <PublicRoute key={route.label} {...route} />
+                ),
               )}
               <Route component={NotFound} />
               <Redirect to="/home" />
