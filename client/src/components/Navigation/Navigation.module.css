@@ -45,3 +45,26 @@ background-color: tomato;
   height: 20px;
   display: inline-block;
 }
+
+
+@media  screen and  (min-width: 768px) and (max-width: 1199px)  {
+.listItem{
+  width: 160px;
+  height: 44px;
+}
+.navLink{
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 14px;
+letter-spacing: 0em;
+text-align: left;
+}
+}
+
+/* @media  screen and  (max-width: ) {
+
+.navLink{
+
+}
+} */
