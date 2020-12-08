@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react';
-import { Switch, BrowserRouter, Route } from 'react-router-dom';
+import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 import routes from '../routes';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
@@ -11,6 +11,7 @@ import UserInfo from './UserInfo/UserInfo';
 import Navigation from './Navigation/Navigation';
 const privatePage = true
 
+import { ModalTest } from './ModalTest';
 class App extends Component {
   render() {
     return (
@@ -29,8 +30,10 @@ class App extends Component {
                   <PublicRoute key={route.label} {...route} />
                 ),
             )}
-            <Route component={NotFound} />
+            {/* <Route component={NotFound} /> */}
+            <Redirect to="/home" />
           </Switch>
+          <ModalTest />
         </Suspense>
       </BrowserRouter>
     );
