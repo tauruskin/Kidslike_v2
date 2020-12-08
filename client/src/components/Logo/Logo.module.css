@@ -9,6 +9,20 @@ text-align: left;
 display: flex;
 
 }
+.logoTextLogin{
+font-family: Montserrat;
+font-size: 22px;
+font-style: normal;
+font-weight: 400;
+line-height: 27px;
+letter-spacing: 0em;
+text-align: left;
+display: flex;
+
+}
+ .boldLogin{
+  font-weight: 600;
+ }
 .siteLogo {
   width: 50px;
   height: 50px;
@@ -33,4 +47,11 @@ display: flex;
  .bold{
    display: none;
  }
+}
+@media  screen and  (max-width: 767px) {
+  .logoContainer{
+  margin: 0;
+  margin-right: auto;
+  }
+
 }

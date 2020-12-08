@@ -10,31 +10,40 @@ import Logo from './Logo/Logo';
 import UserInfo from './UserInfo/UserInfo';
 import Navigation from './Navigation/Navigation';
 import { ModalTest } from './ModalTest';
+import Layout from './Layout/Layout';
+
+
+/*
+*temporary variable for test.
+*/
 const privatePage = true
+
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Header>
-          <Logo />
-          {privatePage && <Navigation />}
-          {privatePage && <UserInfo />}
-        </Header>
-        <Suspense fallback={<CustomLoader />}>
-          <Switch>
-            {routes.map(route =>
-              route.private ? (
-                <PrivateRoute key={route.label} {...route} />
-              ) : (
-                  <PublicRoute key={route.label} {...route} />
-                ),
-            )}
-            {/* <Route component={NotFound} /> */}
-            <Redirect to="/home" />
-          </Switch>
-          <ModalTest />
-        </Suspense>
+        <Layout>
+          <Header privatePage={privatePage}>
+            <Logo privatePage={privatePage} />
+            {privatePage && <Navigation />}
+            {privatePage && <UserInfo />}
+          </Header>
+          <Suspense fallback={<CustomLoader />}>
+            <Switch>
+              {routes.map(route =>
+                route.private ? (
+                  <PrivateRoute key={route.label} {...route} />
+                ) : (
+                    <PublicRoute key={route.label} {...route} />
+                  ),
+              )}
+              <Route component={NotFound} />
+              <Redirect to="/home" />
+            </Switch>
+            <ModalTest />
+          </Suspense>
+        </Layout>
       </BrowserRouter>
     );
   }

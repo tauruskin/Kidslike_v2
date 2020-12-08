@@ -20,12 +20,17 @@ color: #333333;
   width: 194px;
   height: 50px;
   border-radius: 20px;
-  /* background-color: #fff; */
-background-color: tomato;
+  background-color: #fff;
   border: 1px solid transparent;
   display: flex;
     align-items: center;
     justify-content: center;
+}
+.listItem.family{
+  /* display: none; */
+}
+.listItem:first-child{
+  display: none;
 }
 .listItem:not(:last-child){
   margin-right: 40px;
@@ -63,7 +68,10 @@ text-align: left;
 }
 
 @media  screen and  (max-width: 767px) {
-
+.navList{
+ width: 100%;
+ order: 2;
+}
 .navLink{
 display: none;
 }
@@ -71,8 +79,22 @@ display: none;
   width: 44px;
   height: 44px;
 }
+.listItem.family{
+   width: 44px;
+}
 .itemImg{
   margin-right: 0;
+}
 
+}
+@media screen and (min-width: 768px){
+  .listItem.family{
+   width: 96px;
+}
+}
+@media  screen and  (max-width: 1199px){
+
+.listItem:first-child{
+  display: flex;
 }
 }

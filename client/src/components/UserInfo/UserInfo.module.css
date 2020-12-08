@@ -29,3 +29,8 @@ margin-right: 30px;
   display: none;
 }
 }
+@media  screen and  (max-width: 767px) {
+.userInfoContainer{
+    margin-right: 0;
+}
+}
