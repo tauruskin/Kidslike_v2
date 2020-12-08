@@ -5,25 +5,25 @@ import PropTypes from 'prop-types';
 import styles from './Button.module.css';
 
 export default function Button({
-  handelClick,
+  handleClick,
   label,
   type,
-  green,
+  orange,
   transparent,
-  hoverWhite,
+  white
 }) {
   return (
     <button
       type={type}
-      onClick={handelClick}
+      onClick={handleClick}
       className={
-        green
-          ? styles.ButtonGreen
+        orange
+          ? styles.ButtonOrange
           : transparent
           ? styles.ButtonTransparent
-          : hoverWhite
-          ? styles.ButtonHoverWhite
-          : styles.ButtonWhite
+          : white
+          ? styles.ButtonWhite
+          : styles.ButtonGrey
       }
     >
       {label}
@@ -34,6 +34,6 @@ export default function Button({
 Button.propTypes = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  handelClick: PropTypes.func,
-  green: PropTypes.bool,
+  handleClick: PropTypes.func,
+  orange: PropTypes.bool,
 };
