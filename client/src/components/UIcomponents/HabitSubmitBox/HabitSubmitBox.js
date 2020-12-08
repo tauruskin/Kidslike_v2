@@ -6,13 +6,13 @@ import DropDownMenu from '../DropDownMenu/DropDownMenu'
 import styles from './HabitSubmitBox.module.css';
 
 function HabitSubmitBox() {
-    const [showDropDown, setShowDropDown] = useState(true);
+    const [showDropDown, setShowDropDown] = useState(false);
     return (
         <div className={styles.submitBox}>
             <p className={styles.submitBoxTitle}>Підтвердження</p>
             <HabitCheckBtn isCheckMark={true} handelClick={() => { }} label={'Підтвердити виконання'}/>
             <HabitCheckBtn handelClick={() => { }} label={'Підтвердити не виконання'} />
-            <MoreButton handleClick={() => { setShowDropDown(true) }} />
+            <MoreButton onClick={() => setShowDropDown(!showDropDown)} />
             {showDropDown && <DropDownMenu/>}
         </div>
     )

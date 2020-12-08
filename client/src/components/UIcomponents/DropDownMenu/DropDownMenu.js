@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
-
-import styles from './DropDownMenu.module.css'
+import ChangeHabbit from '../../modals/changeHabbit/ChangeHabbit';
+    
+import styles from './DropDownMenu.module.css';
 
 export default function DropDownMenu() {
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(true);
+    const close = () => {
+        setShowModal(!showModal);
+    };
 
     return (
         <>
-            <ul className={styles.options}>
-                <li className={styles.optionButton} onclick={()=> {setShowModal(true)}}></li>
-                <li className={styles.optionButton} onclick={() => {}}></li>
-            </ul>
+            <div className={styles.options}>
+                <button className={styles.optionButton} onclick={() => setShowModal(!showModal)}>Редагувати</button>
+                <button className={styles.optionButton} onclick={() => {}}>Видалити</button>
+            </div>
+            {showModal && <ChangeHabbit close={close}/>}
         </>
     )
 }
