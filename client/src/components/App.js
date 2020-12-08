@@ -5,7 +5,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import NotFound from '../components/NotFound/NotFound';
 import { CustomLoader } from './UIcomponents/CustomLoader/CustomLoader';
-
+import { ModalTest } from './ModalTest';
 class App extends Component {
   render() {
     return (
@@ -22,6 +22,7 @@ class App extends Component {
             {/* <Route component={NotFound} /> */}
             <Redirect to="/home" />
           </Switch>
+          <ModalTest />
         </Suspense>
       </BrowserRouter>
     );
