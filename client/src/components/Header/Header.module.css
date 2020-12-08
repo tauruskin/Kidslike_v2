@@ -1,0 +1,52 @@
+.header {
+  position: fixed;
+  background:transparent;
+    z-index: 1;
+  height: 64px;
+  padding: 10px 20px;
+   display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  /* border-bottom: 1px solid black; */
+  background-color: #E5E5E5;
+
+}
+.headerPrivate {
+  z-index: 1;
+  position: fixed;
+  background:transparent;
+  max-width: 1200px;
+  width: 100%;
+  height: 64px;
+  padding: 10px 20px;
+   display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  /* border-bottom: 1px solid black; */
+  background-color: #E5E5E5;
+
+}
+@media  screen and  (max-width: 1199px) {
+  .header{
+    justify-content: center;
+  }
+  .headerPrivate{
+    justify-content: center;
+  }
+ 
+}
+@media  screen and  (max-width: 767px) {
+  .header{
+  flex-wrap: wrap;
+  height: 132px;
+  }
+ 
+ 
+}
+
+
+.userLogo {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
