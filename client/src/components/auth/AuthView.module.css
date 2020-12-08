@@ -1,12 +1,12 @@
 /* Не очень хороший тон изменять цвет body
 div id='root' должен занимать все пространство въюпорта
 */
-body{
-  background-color: #FF8626;
+body {
+  background-color: #ff8626;
 }
 
-.container{
+.container {
   display: flex;
   align-items: center;
-  padding: 44px 0 130px 170px;
+  /* padding: 44px 0 130px 170px; */
 }
