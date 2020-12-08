@@ -9,6 +9,20 @@ export default [
     private: false,
   },
   {
+    path: '/login',
+    label: 'Login',
+    exact: true,
+    component: lazy(() => import('./Views/AuthView')),
+    private: false,
+  },
+  {
+    path: '/registration',
+    label: 'Login',
+    exact: true,
+    component: lazy(() => import('./Views/AuthView')),
+    private: false,
+  },
+  {
     path: '/home',
     label: 'Home',
     exact: false,

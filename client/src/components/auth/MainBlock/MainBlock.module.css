@@ -1,0 +1,23 @@
+.rightbar{
+  margin-left: 71px;
+}
+
+.title{
+  margin: 0;
+  width: 595px;
+  margin-bottom: 44px;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 42px;
+  color: #FFFFFF;
+}
+
+.imgBlock{
+  width: 811px;
+}
+
+.img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
