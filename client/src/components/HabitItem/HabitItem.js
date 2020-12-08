@@ -1,6 +1,6 @@
 import React from 'react';
-import boy from '../../images/avatars/boy_in_frame.png';
-import girl from '../../images/avatars/girl_in_frame.png';
+import boy from '../../img/avatars/boy_in_frame.png';
+import girl from '../../img/avatars/girl_in_frame.png';
 import HabitSubmitBox from '../UIcomponents/HabitSubmitBox/HabitSubmitBox';
 
 import styles from './HabitItem.module.css';
