@@ -62,9 +62,17 @@ text-align: left;
 }
 }
 
-/* @media  screen and  (max-width: ) {
+@media  screen and  (max-width: 767px) {
 
 .navLink{
+display: none;
+}
+.listItem{
+  width: 44px;
+  height: 44px;
+}
+.itemImg{
+  margin-right: 0;
 
 }
-} */
+}
