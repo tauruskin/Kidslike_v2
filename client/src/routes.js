@@ -13,6 +13,6 @@ export default [
     label: 'Home',
     exact: false,
     component: lazy(() => import('./Views/HomeView')),
-    private: true,
+    private: false,
   },
 ];

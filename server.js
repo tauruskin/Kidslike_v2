@@ -45,7 +45,31 @@ exports.CrudServer = class {
 
   initRoutes() {
     this.server.use("/api/test", testsRouter);
+
     this.server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+    //put your route here
+    // start
+
+    // end
+    //put your route here
+
+    this.server.use("/api/*", (req, res) => {
+      res.status(404).send("This api not found.");
+    });
+
+    if (process.env.LOCATION === "production") {
+      this.server.use(
+        "/",
+        express.static(path.join(__dirname, "client", "build"))
+      );
+
+      this.server.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+      });
+    }
+
+    
   }
 
   initErrorHandling() {
