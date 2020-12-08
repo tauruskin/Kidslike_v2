@@ -108,7 +108,7 @@
   display: inline-block;
   width: 14px;
   height: 16px;
-  background-image: url('../../../images/trash.svg');
+  background-image: url('../../../img/trash.svg');
   background-repeat: no-repeat;
   margin-right: 15px;
 }
@@ -121,7 +121,7 @@
 
 .modalCloseBtn {
   padding: 0;
-  background-image: url('../../../images/close.svg');
+  background-image: url('../../../img/close.svg');
   background-position: center;
   width: 10px;
   height: 10px;
