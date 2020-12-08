@@ -6,11 +6,14 @@ import { NavLink } from 'react-router-dom'
 export default function UserInfo() {
   return (
     <>
-      <img src={defaultLogo} alt="default logo" />
-      <span className={style.userName} >Name</span>
-      <NavLink to='/'>
-        <img src={logout} alt='logout' className={style.logout} />
-      </NavLink>
+      <div className={style.userInfoContainer}>
+        <img className={style.userAvatar} src={defaultLogo} alt="default logo" />
+        <span className={style.userName} >Name</span>
+        <NavLink to='/'>
+          <img src={logout} alt='logout' className={style.logout} />
+        </NavLink>
+      </div>
+
     </>
   )
 }

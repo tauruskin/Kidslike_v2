@@ -4,6 +4,9 @@ import pin from '../../images/header/pin.svg'
 import gift from '../../images/header/gift.svg'
 import styles from './Navigation.module.css'
 
+
+
+
 export default function Navigation() {
   return (<>
     <ul className={styles.navList}>

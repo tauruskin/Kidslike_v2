@@ -9,6 +9,7 @@ import Header from './Header/Header'
 import Logo from './Logo/Logo';
 import UserInfo from './UserInfo/UserInfo';
 import Navigation from './Navigation/Navigation';
+const privatePage = false
 
 class App extends Component {
   render() {
@@ -16,8 +17,8 @@ class App extends Component {
       <BrowserRouter>
         <Header>
           <Logo />
-          <Navigation />
-          <UserInfo />
+          {privatePage && <Navigation />}
+          {privatePage && <UserInfo />}
         </Header>
         <Suspense fallback={<CustomLoader />}>
           <Switch>
