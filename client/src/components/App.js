@@ -21,12 +21,12 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <Header privatePage={privatePage}>
+          <Logo privatePage={privatePage} />
+          {privatePage && <Navigation />}
+          {privatePage && <UserInfo />}
+        </Header>
         <Layout>
-          <Header privatePage={privatePage}>
-            <Logo privatePage={privatePage} />
-            {privatePage && <Navigation />}
-            {privatePage && <UserInfo />}
-          </Header>
           <Suspense fallback={<CustomLoader />}>
             <Switch>
               {routes.map(route =>
