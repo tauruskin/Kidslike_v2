@@ -1,6 +1,6 @@
 import React from 'react';
-import boy from '../../Images/avatars/boy_in_frame.png'
-import girl from '../../Images/avatars/girl_in_frame.png'
+import boy from '../../images/avatars/boy_in_frame.png'
+import girl from '../../images/avatars/girl_in_frame.png'
 import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 import HabitCheckDiv from '../UIcomponents/HabitCheckDiv/HabitCheckDiv';
 
