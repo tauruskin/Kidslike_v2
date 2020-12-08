@@ -10,7 +10,6 @@ import Header from './Header/Header';
 import Logo from './Logo/Logo';
 import UserInfo from './UserInfo/UserInfo';
 import Navigation from './Navigation/Navigation';
-import { ModalTest } from './ModalTest';
 import Layout from './Layout/Layout';
 
 /*
@@ -40,7 +39,6 @@ class App extends Component {
               <Route component={NotFound} />
               <Redirect to="/home" />
             </Switch>
-            <ModalTest />
           </Suspense>
         </Layout>
       </BrowserRouter>

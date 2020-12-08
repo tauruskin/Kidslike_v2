@@ -6,10 +6,10 @@ class TestView extends Component {
   render() {
     return (
       <>
-        <h2>Test Page</h2>
+        <h2 style={{ paddingTop: '200px' }}>Test Page</h2>
         <p>You can test your component</p>
-        <ModalTest />
         <HabitsList />
+        <ModalTest />
       </>
     );
   }
