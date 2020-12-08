@@ -8,7 +8,7 @@ import styles from './HabitItem.module.css'
 // import habitsTemplate from './habitsTemplate'
 
 
-function HabitItem({ gender, habitName, points, startDate, days}) {
+function HabitItem({ gender, habitName, points, startDate, days }) {
     return (
         <div>
             <img className={styles.avatar} src={gender === "boy" ? boy : girl} alt='avatar'></img>
@@ -22,7 +22,7 @@ function HabitItem({ gender, habitName, points, startDate, days}) {
             <p className={styles.text}>x1.5</p>
             {/* </div> */}
             {/* <HabitCheckDiv/> */}
-            <MoreButton onClick={()=>{}}/>
+            <MoreButton onClick={() => { }} />
         </div>
     )
 }

@@ -19,6 +19,7 @@
  
 }
 .headerPrivate {
+  z-index: 1;
   position: fixed;
   background:transparent;
   max-width: 1200px;
