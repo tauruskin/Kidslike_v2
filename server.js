@@ -1,6 +1,7 @@
 const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, ".env") });
-
+const swaggerUi = require("swagger-ui-express"),
+swaggerDocument = require("./swagger.json");
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
@@ -44,6 +45,7 @@ exports.CrudServer = class {
 
   initRoutes() {
     this.server.use("/api/test", testsRouter);
+    this.server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   }
 
   initErrorHandling() {
