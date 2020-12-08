@@ -17,8 +17,8 @@
 
 .ButtonCheck {
   composes: button;
-  background-image: url(../../../images/svg-icons/chechlist-marks/mark-black.svg),
-    url(../../../images/svg-icons/chechlist-marks/mark-green.svg);
+  background-image: url(../../../img/svg-icons/chechlist-marks/mark-black.svg),
+    url(../../../img/svg-icons/chechlist-marks/mark-green.svg);
   background-size: auto, 0;
 }
 .ButtonCheck:focus,
@@ -31,7 +31,7 @@
 
 .ButtonCheck[disabled] {
   border-color: #d5e1dc;
-  background-image: url(../../../images/svg-icons/chechlist-marks/mark-grey.svg);
+  background-image: url(../../../img/svg-icons/chechlist-marks/mark-grey.svg);
   background-size: auto;
   cursor: default;
 }
@@ -40,7 +40,7 @@
   composes: button;
   background-color: #43d190;
   border-color: #43d190;
-  background-image: url(../../../images/svg-icons/chechlist-marks/mark.svg);
+  background-image: url(../../../img/svg-icons/chechlist-marks/mark.svg);
   background-size: auto;
 }
 
@@ -51,15 +51,15 @@
 
 .ButtonCheckDisabled {
   composes: button;
-  background-image: url(../../../images/svg-icons/chechlist-marks/mark-grey.svg),
-    url(../../../images/svg-icons/chechlist-marks/mark-green.svg);
+  background-image: url(../../../img/svg-icons/chechlist-marks/mark-grey.svg),
+    url(../../../img/svg-icons/chechlist-marks/mark-green.svg);
   background-size: auto, 0;
 }
 
 .ButtonCross {
   composes: button;
-  background-image: url(../../../images/svg-icons/chechlist-marks/cross-black.svg),
-    url(../../../images/svg-icons/chechlist-marks/cross-red.svg);
+  background-image: url(../../../img/svg-icons/chechlist-marks/cross-black.svg),
+    url(../../../img/svg-icons/chechlist-marks/cross-red.svg);
   background-size: auto, 0;
 }
 
@@ -72,8 +72,8 @@
 }
 .ButtonCrossDisabled {
   composes: button;
-  background-image: url(../../../images/svg-icons/chechlist-marks/cross-grey.svg),
-    url(../../../images/svg-icons/chechlist-marks/cross-red.svg);
+  background-image: url(../../../img/svg-icons/chechlist-marks/cross-grey.svg),
+    url(../../../img/svg-icons/chechlist-marks/cross-red.svg);
   background-size: auto, 0;
 }
 
@@ -81,13 +81,13 @@
   composes: button;
   background-color: #fe6083;
   border-color: #fe6083;
-  background-image: url(../../../images/svg-icons/chechlist-marks/cross-white.svg);
+  background-image: url(../../../img/svg-icons/chechlist-marks/cross-white.svg);
   background-size: auto;
   cursor: default;
 }
 .ButtonCross[disabled] {
   border-color: #d5e1dc;
-  background-image: url(../../../images/svg-icons/chechlist-marks/cross-grey.svg);
+  background-image: url(../../../img/svg-icons/chechlist-marks/cross-grey.svg);
   background-size: auto;
   cursor: default;
 }

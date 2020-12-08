@@ -6,8 +6,8 @@
   border: 0;
   cursor: pointer;
   background-color: #fff;
-  background-image: url(../../../images/svg-icons/trash-grey.svg),
-    url(../../../images/svg-icons/trash-open.svg);
+  background-image: url(../../../img/svg-icons/trash-grey.svg),
+    url(../../../img/svg-icons/trash-open.svg);
   background-repeat: no-repeat;
   background-size: auto, 0;
   background-position: center;

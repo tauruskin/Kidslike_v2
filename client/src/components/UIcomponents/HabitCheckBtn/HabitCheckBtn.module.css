@@ -21,35 +21,35 @@
 .checkBtn {
   composes: button;
   margin-right: 10px;
-  background-image: url(../../../images/svg/check-orange.svg);
+  background-image: url(../../../img/svg/check-orange.svg);
   /* ,
-    url(../../../images/svg/check-white.svg);
+    url(../../../img/svg/check-white.svg);
   background-size: auto, 0; */
 }
 
 .checkBtnActive {
   composes: button;
   margin-right: 10px;
-  background-image: url(../../../images/svg/check-white.svg);
+  background-image: url(../../../img/svg/check-white.svg);
 }
 
 .checkBtnDisabled {
   composes: button;
   margin-right: 10px;
-  background-image: url(../../../images/svg/check-grey.svg);
+  background-image: url(../../../img/svg/check-grey.svg);
 }
 
 .crossBtn {
   composes: button;
-  background-image: url(../../../images/svg/cross-orange.svg);
+  background-image: url(../../../img/svg/cross-orange.svg);
 }
 
 .crossBtnActive {
   composes: button;
-  background-image: url(../../../images/svg/cross-white.svg);
+  background-image: url(../../../img/svg/cross-white.svg);
 }
 
 .crossBtnDisabled {
   composes: button;
-  background-image: url(../../../images/svg/cross-grey.svg);
+  background-image: url(../../../img/svg/cross-grey.svg);
 }
