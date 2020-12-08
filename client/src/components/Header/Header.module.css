@@ -18,39 +18,3 @@
   height: 40px;
   border-radius: 20px;
 }
-.navControls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.authModule {
-  max-width: 270px;
-  padding: 0 5;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.button {
-  background: none;
-  border: none;
-  width: 35px;
-  height: 35px;
-  display: block;
-}
-
-@media (min-width: 768px) {
-  .navControls {
-    min-width: 200px;
-    padding-left: 5px;
-  }
-}
-@media (min-width: 1280px) {
-  .button {
-    display: none;
-  }
-  .navControls {
-    min-width: 700px;
-    place-content: flex-end;
-  }
-}
