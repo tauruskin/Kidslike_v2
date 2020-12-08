@@ -480,7 +480,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/TaskResponse"
+                  "$ref": "#/definitions/GetAllTasksResponse"
                 }
               }
             }
@@ -1333,7 +1333,7 @@
 },
 "GetAllTasksResponse" : {
    "type": "array",
-        "children": {
+        "items": {
           "type": "array",
           "items": {
             "type": "object",
