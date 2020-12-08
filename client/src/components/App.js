@@ -9,9 +9,9 @@ import Header from './Header/Header'
 import Logo from './Logo/Logo';
 import UserInfo from './UserInfo/UserInfo';
 import Navigation from './Navigation/Navigation';
+import { ModalTest } from './ModalTest';
 const privatePage = true
 
-import { ModalTest } from './ModalTest';
 class App extends Component {
   render() {
     return (
