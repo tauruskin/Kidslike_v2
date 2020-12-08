@@ -11,7 +11,7 @@ import Logo from './Logo/Logo';
 import UserInfo from './UserInfo/UserInfo';
 import Navigation from './Navigation/Navigation';
 import Layout from './Layout/Layout';
-
+import HabitsList from './HabitsList/HabitsList'
 /*
  *temporary variable for test.
  */
@@ -27,6 +27,7 @@ class App extends Component {
             {privatePage && <Navigation />}
             {privatePage && <UserInfo />}
           </Header>
+          <HabitsList/>
           <Suspense fallback={<CustomLoader />}>
             <Switch>
               {routes.map(route =>
