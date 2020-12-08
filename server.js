@@ -22,14 +22,6 @@ exports.CrudServer = class {
 
   initServer() {
     this.server = express();
-    this.server.use(
-      "/",
-      express.static(path.join(__dirname, "client", "build"))
-    );
-
-    this.server.get("*", (req, res) => {
-      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-    });
   }
 
   async initDatabase() {
@@ -52,6 +44,19 @@ exports.CrudServer = class {
 
   initRoutes() {
     this.server.use("/api/test", testsRouter);
+    this.server.use("/api/*", (req, res) => {
+      res.status(404).send("This api not found.");
+    });
+    // res.status(200);
+
+    this.server.use(
+      "/",
+      express.static(path.join(__dirname, "client", "build"))
+    );
+
+    this.server.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    });
   }
 
   initErrorHandling() {
