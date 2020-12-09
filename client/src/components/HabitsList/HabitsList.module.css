@@ -8,10 +8,9 @@
 .HabitItem {
   position: relative;
   box-sizing: border-box;
-  justify-content: center;
   width: 690px;
   height: 142px;
-  padding: 30px 30px 37px 30px;
+  padding: 15px;
   border-radius: 20px;
   background-color: #fff;
 }
@@ -28,6 +27,5 @@
   .HabitItem {
     width: 280px;
     height: 197px;
-    padding: 20px 15px;
   }
 }

@@ -12,6 +12,7 @@ import UserInfo from './UserInfo/UserInfo';
 import Navigation from './Navigation/Navigation';
 import Layout from './Layout/Layout';
 import ChildTaskPage from './ChildTaskPage/ChildTaskPage'
+import HabitsList from './HabitsList/HabitsList'
 /*
  *temporary variable for test.
  */
