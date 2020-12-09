@@ -18,13 +18,13 @@ export default function Navigation() {
         </li>
         <li className={styles.listItem}>
           <img className={styles.itemImg} src={pin} alt="pin" />
-          <NavLink className={styles.navLink} to="/">
+          <NavLink className={styles.navLink} to="/home">
             Звички i задачi
           </NavLink>
         </li>
         <li className={styles.listItem}>
           <img className={styles.itemImg} src={gift} alt="gift" />
-          <NavLink className={styles.navLink} to="/gifts">
+          <NavLink className={styles.navLink} to="/home/gifts">
             Подарунки
           </NavLink>
         </li>
