@@ -1,53 +1,58 @@
-.container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-  margin-top: 56px;
+.container{
+    display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        margin-top: 56px;
 }
-.giftImage {
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  border-radius: 15px;
-  overflow: hidden;
+.giftImage{
+     margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-top: 10px;
 }
-.giftIcon {
-  width: 40px;
-  height: 40px;
-  margin-right: 20px;
+.giftIcon{
+    width: 40px;
+    height: 40px;
+      margin-right: 20px;
 }
-.giftImageContainer {
-  position: relative;
-  margin-top: 7px;
+.giftImageContainer{
+    position: relative;
 }
-.giftAvatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: white;
-  padding: 5px;
-  position: absolute;
-  top: 5px;
-  left: 5px;
+.gifsTitleContainer{
+    display: flex;
+    align-items: center;
+    margin-bottom: 53px;
 }
-.giftAvatar > img {
-  width: 30px;
-  height: 30px;
+.giftAvatar{
+   width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color:white;
+    padding: 5px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
-.giftTitle {
-  font-size: 26px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.19;
-  letter-spacing: 0em;
+.giftAvatar > img{
+    width: 30px;
+    height: 30px;
 }
-.giftName {
-  font-size: 22px;
-  font-weight: 900;
-  margin-bottom: -3px;
+.giftTitle{
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height:1.19;
+    letter-spacing: 0em;
 }
-.GiftContainer {
-  margin: -10px auto;
+.giftName{
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: -3px;
+}
+.GiftContainer{
+margin:-10px auto;
 }
 
 .giftCard {
@@ -67,6 +72,7 @@
   margin-left: auto;
   margin-bottom: 7px;
   margin-right: 5px;
+  
 }
 .moreBtnFolder {
   margin-right: 5px;
@@ -116,4 +122,10 @@
     font-size: 22px;
     line-height: 1.18;
   }
+}
+@media screen and (min-width: 1200px) {
+  .container{
+    margin-left: auto;
+        width: 60%;
+}
 }

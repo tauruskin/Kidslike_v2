@@ -3,12 +3,12 @@ import defaultLogo from '../../img/header/userInfo.svg';
 import star from '../../img/svg/star.svg';
 import array from './testArray'
 import styles from './Gifts.module.css'
-import dots from '../../img/svg/dots-grey.svg'
-import testImg from './test.png'
+// import dots from '../../img/svg/dots-grey.svg'
+// import testImg from './test.png'
 import defaultImage from './defaultImage.png'
 import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 
-console.log(styles.giftCard);
+// console.log(styles.giftCard);
 export default function GiftCard({ logo = defaultLogo, img = defaultImage }) {
     return (
         <div className={styles.GiftContainer}>
