@@ -1,70 +1,82 @@
 // const { MoveFile } = require('../server/helpers/moveFiles');
 // const { asyncWrapper } = require('../server/helpers/async-wrapper');
 // const { avatarGenerate } = require('../server/helpers/avatar-generator');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const uuid = require('uuid');
-const { Conflict, NotFound, Unauthorized, Unverify } = require('../helpers/errors/auth.errors');
-const { UserModel } = require('./auth.model');
-const { mailing } = require('../helpers/auth/mailing');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const uuid = require("uuid");
+const {
+  Conflict,
+  NotFound,
+  Unauthorized,
+  Unverify,
+} = require("../helpers/errors/auth.errors");
+const { UserModel } = require("../users/users.model");
+const { mailing } = require("../helpers/auth/mailing");
 
 exports.signUp = async (req, res, next) => {
-  const {email, password, username} = req.body;
-  const existing = await UserModel.findOne({email});
-  if(existing){
+  const { email, password, username } = req.body;
+  const existing = await UserModel.findOne({ email });
+  if (existing) {
     throw new Conflict("Email already exists");
   }
   // const avatar = await avatarGenerate();
   // asyncWrapper(MoveFile(avatar));
-  const passwordHash = await bcrypt.hash(password, +process.env.SALT_ROUNDS)
+  const passwordHash = await bcrypt.hash(password, +process.env.SALT_ROUNDS);
 
-  const user = await UserModel.create({email, passwordHash, username,
+  const user = await UserModel.create({
+    email,
+    passwordHash,
+    username,
     // avatarURL:`${process.env.DOMAIN_ADDRESS}/images/${avatar}`,
-    verificationToken: uuid.v4()});
-    mailing.sendEmailForVarification(user);
-  return res.status(201).send({email, username, _id:user._id});
-}
+    verificationToken: uuid.v4(),
+  });
+  mailing.sendEmailForVarification(user);
+  return res.status(201).send({ email, username, _id: user._id });
+};
 
 exports.signIn = async (req, res, next) => {
-  const {email, password} = req.body;
-  const existing = await UserModel.findOne({email});
+  const { email, password } = req.body;
+  const existing = await UserModel.findOne({ email });
 
-  if(!existing){
-    throw new NotFound('User with such email doesnt exists')
+  if (!existing) {
+    throw new NotFound("User with such email doesnt exists");
   }
-  if(existing.verificationToken !== null){
-    throw new Unverify('Please verify your email')
+  if (existing.verificationToken !== null) {
+    throw new Unverify("Please verify your email");
   }
   const validPassword = await bcrypt.compare(password, existing.passwordHash);
-  if(!validPassword){
-    throw new Unauthorized('Email or password is wrong');
+  if (!validPassword) {
+    throw new Unauthorized("Email or password is wrong");
   }
-  const token = jwt.sign({userID: existing._id}, process.env.JWT_SECRET, {
-    expiresIn: '2d',
-  })
-  const user = await UserModel.findByIdAndUpdate(existing._id, { $push: {tokens: token} } )
+  const token = jwt.sign({ userID: existing._id }, process.env.JWT_SECRET, {
+    expiresIn: "2d",
+  });
+  const user = await UserModel.findByIdAndUpdate(existing._id, {
+    $push: { tokens: token },
+  });
   return res.status(201).send({
     token,
-    user:
-      {email, username:user.username, _id:user._id}
-    }
-  );
-}
+    user: { email, username: user.username, _id: user._id },
+  });
+};
 
 exports.signOut = async (req, res, next) => {
-  const {user, token} = req;
-  await UserModel.updateOne( { _id: user._id}, {
-  $pull :{ tokens: token}
-  })
+  const { user, token } = req;
+  await UserModel.updateOne(
+    { _id: user._id },
+    {
+      $pull: { tokens: token },
+    }
+  );
   return res.status(204).send();
-}
+};
 
-exports.verifyEmail = async( req, res, next) => {
-  const {verificationToken} = req.params;
-  const user = await UserModel.findOne({verificationToken}) 
-  if(!user){
-    throw new NotFound('User not found or email is already varifed');
+exports.verifyEmail = async (req, res, next) => {
+  const { verificationToken } = req.params;
+  const user = await UserModel.findOne({ verificationToken });
+  if (!user) {
+    throw new NotFound("User not found or email is already varifed");
   }
-  await UserModel.updateOne({_id: user._id}, {verificationToken: null})
-  res.status(200).send('Varification was successful');
-}
+  await UserModel.updateOne({ _id: user._id }, { verificationToken: null });
+  res.status(200).send("Varification was successful");
+};
