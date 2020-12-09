@@ -36,11 +36,4 @@ export default [
     component: lazy(() => import('./Views/HomeView')),
     private: false,
   },
-  {
-    path: '/gifts',
-    label: 'Gifts',
-    exact: true,
-    component: lazy(() => import('./Views/GiftsView')),
-    private: false,
-  },
 ];
