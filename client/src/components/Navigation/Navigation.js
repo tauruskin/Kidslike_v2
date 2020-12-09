@@ -24,7 +24,7 @@ export default function Navigation() {
         </li>
         <li className={styles.listItem}>
           <img className={styles.itemImg} src={gift} alt="gift" />
-          <NavLink className={styles.navLink} to="/">
+          <NavLink className={styles.navLink} to="/gifts">
             Подарунки
           </NavLink>
         </li>
