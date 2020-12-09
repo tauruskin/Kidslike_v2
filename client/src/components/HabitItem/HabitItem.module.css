@@ -1,7 +1,7 @@
 .habitItemFolder {
   position: relative;
   display: flex;
-  padding: 15px;
+  padding: 15px 15px 2px;
 }
 
 .avatar {
@@ -32,7 +32,7 @@
   display: flex;
   list-style: none;
   padding: 0;
-  margin: 13px 0 0 95px;
+  margin: 8px 0 0 95px;
   width: 400px;
 }
 
