@@ -11,7 +11,7 @@ import Logo from './Logo/Logo';
 import UserInfo from './UserInfo/UserInfo';
 import Navigation from './Navigation/Navigation';
 import Layout from './Layout/Layout';
-
+import HabitsList from './HabitsList/HabitsList'
 /*
  *temporary variable for test.
  */
