@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
+import DropDownMenu from '../DropDownMenu/DropDownMenu'
 
 import styles from './MoreButton.module.css'
 
-function MoreButton({onClick}) {
-    // const [showDropDown, setShowDropDown] = useState(false);
+function MoreButton({type}) {
+    const [showDropDown, setShowDropDown] = useState(false);
+    const close = () => {
+        setShowDropDown(!showDropDown);
+    };
 
     return (
-        <>
-            <button className={styles.btn} type='button' onClick={onClick}></button>
-        </>
+        <div className={styles.drop_down_folder}>
+            <button className={styles.btn} type='button' onClick={() => close()}></button>
+            {showDropDown && <DropDownMenu modalType={type} handleClick={() => close()} />}
+        </div>
     )
 }
 
