@@ -1,3 +1,52 @@
+.title{
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height:1.19;
+    letter-spacing: 0em;
+}
+.leftSideBarCard{
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 30px 20px;
+  }
+  .leftSideBarAvatar{
+   width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color:white;
+    padding: 5px;
+}
+.task{
+    
+    border-bottom: 1px solid #ffbe9d;
+    border-top: 1px solid #ffbe9d;
+
+}
+
+.childName{
+     font-size: 22px;
+    font-weight: 900;
+    display: inline-block;
+    /* margin-bottom: -3px; */
+    margin-left: 15px;
+}
+.childTitle{
+    display: flex;
+    align-items: center;
+}
+.star{
+    margin-left: auto;
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+
+
 .container{
     display: flex;
         align-items: center;
@@ -16,54 +65,17 @@
     height: 40px;
       margin-right: 20px;
 }
-.giftImageContainer{
-    position: relative;
-}
-.gifsTitleContainer{
-    display: flex;
-    align-items: center;
-    margin-bottom: 53px;
-}
-.giftAvatar{
-   width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color:white;
-    padding: 5px;
-    position: absolute;
-    top: 5px;
-    left: 5px;
-}
+
 .giftAvatar > img{
     width: 30px;
     height: 30px;
 }
-.giftTitle{
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 500;
-    line-height:1.19;
-    letter-spacing: 0em;
-}
-.giftName{
-    font-size: 22px;
-    font-weight: 900;
-    margin-bottom: -3px;
-}
+
 .GiftContainer{
 margin:-10px auto;
 }
 
-.giftCard{
-    width: calc((100% - 25px * 1) / 2);
-    display: inline-block;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: white;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-  }
+
   .giftCard:last-child{
       margin-bottom: 31px;
   }

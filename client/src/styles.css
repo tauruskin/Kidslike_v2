@@ -4,7 +4,9 @@ body {
   background-repeat: no-repeat;
   height: 100vh;
 }
-
+a {
+  text-decoration: none;
+}
 /* 
 /* a {
   text-decoration: none;
@@ -22,6 +24,7 @@ button {
 }
 
 h1 {
+  margin: 0;
   font-style: normal;
   font-weight: 500;
   font-size: 26px;
