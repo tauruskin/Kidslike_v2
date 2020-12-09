@@ -11,7 +11,7 @@ import Logo from './Logo/Logo';
 import UserInfo from './UserInfo/UserInfo';
 import Navigation from './Navigation/Navigation';
 import Layout from './Layout/Layout';
-
+import ChildTaskPage from './ChildTaskPage/ChildTaskPage'
 /*
  *temporary variable for test.
  */
