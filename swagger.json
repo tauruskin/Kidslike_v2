@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "version": "1.0.0",
+        "version": "1.1.0",
         "title": "Kidslike docs",
         "description": "Api docs for KidsLike V2 project",
         "license": {
@@ -10,16 +10,9 @@
         }
     },
     
-    "servers": [
-        {
-            "url": "/localhost:5000",
-            "description": "Local Dev, or from Heroku"
-        },
-        {
-            "url": "/api/",
-            "description": "With docker-compose and nginx proxy"
-        }
-    ],
+    "servers"
+       : [{ "url": "http://kidslike-v2.top/api/" }],
+    
     "tags": [
          {
       "name": "Auth",
@@ -107,7 +100,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/definitions/SignUpRequest"
+                                "$ref": "#/definitions/SignInRequest"
                             }
                         }
                     }
@@ -118,7 +111,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/SignUpResponse"
+                  "$ref": "#/definitions/SignInResponse"
                 }
               }
             }
@@ -171,7 +164,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetUserInfo"
+                  "$ref": "#/definitions/GetUserInfo"
                 }
               }
             }
@@ -230,7 +223,7 @@
 
               }
           },
-          "./habits" : {
+          "/habits" : {
               "get":{
                   "tags": ["Habits"],
                      "summary": "Get all children data  for current user",
@@ -241,7 +234,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/GetHabitsRequest"
+                  "$ref": "#/definitions/GetHabitsResponse"
                 }
               }
             }
@@ -261,7 +254,7 @@
         }
               }
           },
-           "/habits/{childId}":{
+           "/habit/{childId}":{
                "post" : {
         "tags": ["Habits"],
         "summary": "Add habit for  child",
@@ -280,7 +273,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/AddHabitRequest"
+                "$ref": "#/definitions/AddTaskRequest"
               }
             }
           }
@@ -309,11 +302,8 @@
             "content": {}
           }
         }
-      }
-           },
-           "/habits/{habitId}": {
-               
-      "patch": {
+      },
+         "patch": {
         "tags": ["Habits"],
         "summary": "Edit habit",
         "parameters": [
@@ -359,6 +349,7 @@
           }
         }
       },
+
       "delete" : {
             "tags": ["Habits"],
         "summary": "Delete habit",
@@ -391,84 +382,8 @@
         }
       }
            },
-"/habits/completed/{habitId}": {
-                    "patch": {
-        "tags": ["Habits"],
-        "summary": "Habit was compeleted for current day",
-        "parameters": [
-          {
-            "name": "habitId",
-            "in": "path",
-            "description": "Habit's id ",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/OnceCompetedHabit"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request ",
-            "content": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {}
-          },
-          "404": {
-            "description": "Child not found ",
-            "content": {}
-          }
-        }
-      }
-            },
-             "/habits/failed/{habitId}": {
-      "patch": {
-        "tags": ["Habits"],
-        "summary": "Habit was not compeleted for current day",
-        "parameters": [
-          {
-            "name": "habitId",
-            "in": "path",
-            "description": "Habit's id",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/OnceFailedHabit"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request ",
-            "content": {}
-          },
-          "401": {
-            "description": "Unauthorized ",
-            "content": {}
-          },
-          "404": {
-            "description": "Child not found",
-            "content": {}
-          }
-        }
-      }
-    },
+         
+            
        "/tasks": {
       "get": {
         "tags": ["Tasks"],
@@ -548,16 +463,14 @@
             "content": {}
           }
         }
-      },
-          "/tasks/{taskId}": {
-      "patch": {
+      },  "patch": {
         "tags": ["Tasks"],
-        "summary": "Adjust task",
+        "summary": "Edit task",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "Task's id",
+            "description": "Task's id ",
             "required": true,
             "type": "string"
           }
@@ -574,16 +487,17 @@
           }
         },
         "responses": {
-          "200": {
+          "204": {
             "description": "Successful",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/definitions/EditTaskResponse" }
-              }
+                "schema": {
+                  "$ref": "#/definitions/EditTaskResponse"
+                }
             }
-          },
+          }},
           "400": {
-            "description": "Bad request ",
+            "description": "Bad request",
             "content": {}
           },
           "401": {
@@ -595,8 +509,7 @@
             "content": {}
           }
         }
-      },
-      "delete": {
+      },     "delete": {
         "tags": ["Tasks"],
         "summary": "Delete task",
         "parameters": [
@@ -627,159 +540,10 @@
           }
         }
       }
-    }
+    
     },
-        "/tasks/completed/{taskId}": {
-      "patch": {
-        "tags": ["Tasks"],
-        "summary": "Mark tas as completed",
-        "parameters": [
-          {
-            "name": "taskId",
-            "in": "path",
-            "description": "Task's id",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/definitions/TaskCompletedResponse" }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request ",
-            "content": {}
-          },
-          "401": {
-            "description": "Unauthorized ",
-            "content": {}
-          },
-          "404": {
-            "description": "Child not found",
-            "content": {}
-          }
-        }
-      }
-    },
-    "/tasks/failed/{taskId}": {
-      "patch": {
-        "tags": ["Tasks"],
-        "summary": "Mark task as not completed",
-        "parameters": [
-          {
-            "name": "taskId",
-            "in": "path",
-            "description": "Task's id ",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/definitions/TaskFailedResponse" }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request (invalid id)",
-            "content": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {}
-          },
-          "404": {
-            "description": "Child not found ",
-            "content": {}
-          }
-        }
-      }
-    },
-       "/tasks/repeat/{taskId}": {
-      "patch": {
-        "tags": ["Tasks"],
-        "summary": "Repeat task",
-        "parameters": [
-          {
-            "name": "taskId",
-            "in": "path",
-            "description": "Task's id ",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/definitions/RepeatTaskResponse" }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request ",
-            "content": {}
-          },
-          "401": {
-            "description": "Unauthorized ",
-            "content": {}
-          },
-         
-          "404": {
-            "description": "Child not found",
-            "content": {}
-          }
-        }
-      }
-    },
-     "/tasks/done/{childId}": {
-      "get": {
-        "tags": ["Tasks"],
-        "summary": "Get completed tasks for child",
-        "parameters": [
-          {
-            "name": "childId",
-            "in": "path",
-            "description": "Child's id",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/TaskCompletedResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {}
-          },
-          "404": {
-            "description": "No completed tasks found",
-            "content": {}
-          }
-        }
-      }
-    },
+  
+    
      "/presents": {
       "get": {
         "tags": ["Presents"],
@@ -841,7 +605,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/PresentResponse"
+                  "$ref": "#/definitions/AddPresentResponse"
                 }
               }
             }
@@ -859,10 +623,8 @@
             "content": {}
           }
         }
-      }
-    },
-        "/presents/{presentId}": {
-      "patch": {
+      },
+         "patch": {
         "tags": ["Presents"],
         "summary": "Edit present",
         "parameters": [
@@ -880,7 +642,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/PurchasePresentRequest"
+                "$ref": "#/definitions/EditPresentRequest"
               }
             }
           }
@@ -890,7 +652,7 @@
             "description": "Successful",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/definitions/PresentResponse" }
+                "schema": { "$ref": "#/definitions/EditPresentResponse" }
               }
             }
           },
@@ -908,7 +670,7 @@
           }
         }
       },
-      "delete": {
+         "delete": {
         "tags": ["Presents"],
         "summary": "Remove present",
         "parameters": [
@@ -939,51 +701,8 @@
           }
         }
       }
-    },
-     "/presents/purchase/{presentId}": {
-      "patch": {
-        "tags": ["Presents"],
-        "summary": "Purchase present" ,
-        "parameters": [
-          {
-            "name": "presentId",
-            "in": "path",
-            "description": "present's id ",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/PurchasedPresent"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request ",
-            "content": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {}
-          },
-
-          "404": {
-            "description": "Child not found ",
-            "content": {}
-          },
-          "409": {
-            "description": "Not enough points",
-            "content": {}
-          }
-        }
-      }
     }
+     
 
 
     },
@@ -1047,7 +766,27 @@
         }
 },
 "SignInResponse":{
-
+  "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty1"
+          },
+            "token": {
+            "type": "string",
+            "description": "User's token",
+            "example": "fdsfsdfsdf3i3i3i3i3"
+          },
+           "additionalProperties": {
+           "$ref": "#/definitions/GetUserInfo"
+         }
+        }
 },
 "AddChildRequest":{
     "required": ["name", "gender"],
@@ -1104,7 +843,7 @@
           }
         }
 },
-"GetHabitsRequest": {
+"GetHabitsResponse": {
    "type": "array",
         "items": {
           "type": "array",
@@ -1116,9 +855,9 @@
                 "description": "Habit's name",
                 "example": "Name of the habit"
               },
-              "pointsPerDay": {
+              "pointsPerRepeat": {
                 "type": "integer",
-                "description": "Habit's reward for a single day",
+                "description": "Points for one succesfull repeat",
                 "example": 1
               },
               "childId": {
@@ -1136,7 +875,7 @@
         }
 },
 "AddHabitRequest" : {
-     "required": ["name", "pointsPerDay"],
+     "required": ["name", "pointsPerRepeat"],
         "type": "object",
         "properties": {
           "name": {
@@ -1144,7 +883,7 @@
             "description": "Habit's name",
             "example": "Wash dishes"
           },
-          "pointsPerDay": {
+          "pointsPerRepeat": {
             "type": "integer",
             "minimum": 1,
             "description": "Child accumulate points for every succesfull repeat of habit",
@@ -1153,7 +892,7 @@
         }
 },
 "AddHabitResponse" : {
-     "required": ["name", "pointsPerDay"],
+     "required": ["name", "pointsPerRepeat"],
         "type": "object",
         "properties": {
           "name": {
@@ -1161,7 +900,7 @@
             "description": "Habit's name",
             "example": "Wash dishes"
           },
-          "pointsPerDay": {
+          "pointsPerRepeat": {
             "type": "integer",
             "minimum": 1,
             "description": "Child accumulate points for every succesfull repeat of habit",
@@ -1172,35 +911,51 @@
             "description": "User's id",
             "example": "507f1f77bcf86cd799439012"
           },
-        "isCompleted": {
-                  "type": "array",
-                  "description": "Successful repeats of habit"
-                }
+      "isCompleted": {
+            "type": "array",
+            "items":{
+              "type":"string",
+                  "enum": ["done", "missed", "inProgress"]
+            },
+            "description":"Record of habits repeats"
+           
+          }
         }
 },
 "EditHabitRequest" : {
-    "type": "object",
+     "type": "object",
         "properties": {
           "name": {
             "type": "string",
             "description": "Habit's name",
-            "example": "PushUps"
+            "example": "Name of the habit"
           },
-          "pointsPerDay": {
+          "pointsPerRepeat": {
             "type": "integer",
             "minimum": 1,
-            "description": "Accumulated points for one succesfull repeat",
+            "description": "Habit's reward for a single day",
             "example": 1
+          },
+          "isCompleted": {
+            "type": "array",
+            "items":{
+              "type":"string",
+                  "enum": ["done", "missed", "inProgress"]
+            },
+            "description":"Record of habits repeats"
+           
           }
         }
 },
 "EditHabitResponse" : {
+  "type": "object",
+  "properties": {
    "name": {
             "type": "string",
             "description": "Habit's name",
             "example": "Name of the habit"
           },
-          "pointsPerDay": {
+          "pointsPerRepeat": {
             "type": "integer",
             "description": "Accumulated points for one succesfull repeat",
             "example": 1
@@ -1215,99 +970,17 @@
             "description": "Habit's id",
             "example": "gdsfgsdgfse45353"
           },
-            "isCompleted": {
-                  "type": "array",
-                  "description": "Successful repeats of habit"
-                }
+          "isCompleted": {
+            "type": "array",
+            "items":{
+              "type":"string",
+                  "enum": ["done", "missed", "inProgress"]
+            },
+            "description":"Record of habits repeats .There is 3 options : done , missed and inProgress"
+           
+          }}
 },
-"OnceCompetedHabit" : {
-   "type": "object",
-        "properties": {
-          "updatedHabit": {
-            "type": "object",
-            "description": "Updated habit",
-            "properties": {
 
-              "name": {
-                "type": "string",
-                "description": "Habit's name",
-                "example": "Name of the habit"
-              },
-              "pointsPerDay": {
-                "type": "integer",
-                "description": "Habit's reward for a single day",
-                "minimum": 1,
-                "example": 12
-              },
-              "childId": {
-                "type": "string",
-                "description": "Id of the child whose habit it is",
-                "example": "fasdfasdfaf33333"
-              },
-              "id": {
-                "type": "string",
-                "description": "Habit's id",
-                "example": "fasdfasdfaf33333"
-              }
-            }
-          },
-            "isCompleted": {
-                  "type": "array",
-                  "description": "habit status",
-                  "enum": ["done"]
-                },
-          "totalPoints": {
-            "type": "integer",
-            "description": "Child's total ammount of points",
-            "minimum": 1,
-            "example": 10
-          }
-        }
-},
-"OnceFailedHabit" : {
-   "type": "object",
-        "properties": {
-          "updatedHabit": {
-            "type": "object",
-            "description": "Updated habit",
-            "properties": {
-
-              "name": {
-                "type": "string",
-                "description": "Habit's name",
-                "example": "Name of the habit"
-              },
-              "pointsPerDay": {
-                "type": "integer",
-                "description": "Habit's reward for a single day",
-                "minimum": 1,
-                "example": 12
-              },
-              "childId": {
-                "type": "string",
-                "description": "Id of the child whose habit it is",
-                "example": "fasdfasdfaf33333"
-              },
-              "id": {
-                "type": "string",
-                "description": "Habit's id",
-                "example": "fasdfasdfaf33333"
-              }
-            }
-          },
-          "totalPoints": {
-            "type": "integer",
-            "description": "Child's total ammount of points",
-            "minimum": 1,
-            "example": 10
-          },
-                 "isCompleted": {
-                  "type": "array",
-                  "description": "habit status",
-                  "enum": ["failed"]
-                }
-        }
-},
 "AddTaskRequest" : {
     "required": ["name", "points"],
         "type": "object",
@@ -1349,10 +1022,14 @@
             "minimum": 1,
             "example": 1
           },
-         "isCompleted": {
-            "type": "string",
-            "description": "Task's status",
-            "enum": ["inProgress", "done", "failed"]
+        "isCompleted": {
+            "type": "array",
+            "items":{
+              "type":"string",
+                  "enum": ["done", "missed", "inProgress"]
+            },
+            "description":"Record of tasks completion. Available 3 options: done, missed , inProgress"
+           
           },
               "daysToComplete": {
             "type": "integer",
@@ -1398,10 +1075,14 @@
             "minimum": 1,
             "example": 1
           },
-          "isCompleted": {
-            "type": "string",
-            "description": "Task's status",
-            "enum": ["inProgress", "done", "failed"]
+         "isCompleted": {
+            "type": "array",
+            "items":{
+              "type":"string",
+                  "enum": ["done", "missed", "inProgress"]
+            },
+            "description":"Record of habits repeats"
+           
           },
           "daysToComplete": {
             "type": "integer",
@@ -1431,144 +1112,57 @@
           }
         }
 },
-"TaskCompletedResponse": {
-     "type": "object",
-        "properties": {
-          "completedTask": {
-            "type": "object",
-            "properties": {
-               "name": {
-            "type": "string",
-            "description": "Task's name",
-        "example": "Run every morning"
-          },
-          "points": {
-            "type": "string",
-            "description": "Task's points",
-            "minimum": 1,
-            "example": 1
-          },
-              "isCompleted": {
-                "type": "string",
-                "description": "Task's status",
-                "enum": ["done"]
-              },
-              "daysToComplete": {
-            "type": "integer",
-            "description": "How many days left to complete task",
-            "minimum": 1,
-            "example": 1
-          },
-             "startDate": {
-            "type": "string",
-            "description": "Task's start date",
-            "example": "2020-12-08"
-          },
-          "endDate": {
-            "type": "string",
-            "description": "Task's end date" ,
-   "example": "2020-12-17"
-          },
-              "childId": {
-                "type": "string",
-                "description": "Child's Id",
-                "example": "fsdfsdfsdfttrtery4444"
-              },
-              "id": {
-                "type": "string",
-                "description": "Task's id",
-              "example": "fsdfsdfsdfttrtery4444"
-              }
-            }
-          },
-          "totalPoints": {
-            "type": "integer",
-            "description": "Updated total of points",
-            "minimum": 1,
-            "example": 131
-          }
-        }
-},
-"TaskFailedResponse": {
-     "type": "object",
-        "properties": {
-          "completedTask": {
-            "type": "object",
-            "properties": {
-               "name": {
-            "type": "string",
-            "description": "Task's name",
-        "example": "Run every morning"
-          },
-          "points": {
-            "type": "string",
-            "description": "Task's points",
-            "minimum": 1,
-            "example": 1
-          },
-              "isCompleted": {
-                "type": "string",
-                "description": "Task's status",
-                "enum": ["failed"]
-              },
-              "daysToComplete": {
-            "type": "integer",
-            "description": "How many days left to complete task",
-            "minimum": 1,
-            "example": 1
-          },
-             "startDate": {
-            "type": "string",
-            "description": "Task's start date",
-            "example": "2020-12-08"
-          },
-          "endDate": {
-            "type": "string",
-            "description": "Task's end date" ,
-   "example": "2020-12-17"
-          },
-              "childId": {
-                "type": "string",
-                "description": "Child's Id",
-                "example": "fsdfsdfsdfttrtery4444"
-              },
-              "id": {
-                "type": "string",
-                "description": "Task's id",
-              "example": "fsdfsdfsdfttrtery4444"
-              }
-            }
-          },
-          "totalPoints": {
-            "type": "integer",
-            "description": "Updated total of points",
-            "minimum": 1,
-            "example": 131
-          }
-        }
-},
+
+
 "EditTaskRequest" : {
-    "type": "object",
+ "type": "object",
         "properties": {
+              "minimum": 1,
           "name": {
             "type": "string",
             "description": "Task's name",
-            "example": "Run every morning"
+            "example": "Name of the task"
           },
           "points": {
-            "type": "integer",
+            "type": "string",
             "description": "Task's points",
             "minimum": 1,
             "example": 1
           },
-          "daysToComplete": {
+          "isCompleted": {
+            "type": "string",
+            "description": "Task's status",
+            "enum": ["inProgress"]
+          },
+             "daysToComplete": {
             "type": "integer",
+            "description": "How many days left to complete task",
             "minimum": 1,
-       "description": "How many days left to complete task",
             "example": 1
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Task's start date",
+            "example": "2020-12-08"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Task's end date" ,
+   "example": "2020-12-17"
+          },
+          "childId": {
+            "type": "string",
+            "description": "Child's id",
+            "example": "dfsadfasdfa3r5353"
+          },
+          "id": {
+            "type": "string",
+            "description": "Task's id",
+            "example": "507f15345f77bcf86c5435d7994390dfsdgsdg12"
           }
         }
-},"RepeatTaskResponse" : {
+        
+},"EditTaskResponse" : {
    "type": "object",
         "properties": {
           "name": {
@@ -1576,7 +1170,7 @@
             "description": "Task's name",
             "example": "Name of the task"
           },
-          "reward": {
+          "points": {
             "type": "string",
             "description": "Task's points",
             "minimum": 1,
@@ -1670,8 +1264,7 @@
       }
     }
   },
-   "PresentResponse": {
-
+   "AddPresentResponse": {
     "type": "object",
     "properties": {
       "name": {
@@ -1682,15 +1275,16 @@
       "price": {
         "type": "integer",
         "description": "Present's price",
-        "example": "1"
+        "example": 1
       },
        "isPurchased": {
             "type": "boolean",
             "description": "Present's status",
             "example": false
           },
-      "file": {
-        "type": "file",
+
+      "imageUrl": {
+        "type": "string",
         "description": "Present's image "
       },
        "childId": {
@@ -1705,7 +1299,7 @@
           }
     }
   },
-  "PurchasePresentRequest": {
+  "EditPresentRequest": {
     "type": "object",
     "properties": {
       "name": {
@@ -1718,13 +1312,24 @@
         "description":"Present's price",
         "example": 10
       },
-      "file": {
-        "type": "file",
-        "description": "Present's image"
+       "file": {
+            "type": "file",
+            "description": "Picture of the present"
+          },
+        "isPurchased": {
+        "type": "boolean",
+        "description": "Present's status",
+        "example":false
+      },
+        "presentId": {
+        "type": "string",
+        "description":"Present's id",
+        "example": "dadadfegwegwe"
       }
+
     }
   },
-  "PurchasedPresent": {
+  "EditPresentResponse": {
     "type": "object",
     "properties": {      
       "name": {
@@ -1750,13 +1355,52 @@
         "description": "Id of the child created for this present",
         "example": "frnf43r7834hn4222e"
       },
-      "id": {
+           "presentId": {
         "type": "string",
-        "description": "Present's id",
-        "example": "ideqm8323j23een33e3"
+        "description":"Present's id",
+        "example": "dadadfegwegwe"
       }
     
   }
-}
+},  "GetUserInfo": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "username": {
+            "type": "string",
+            "description": "User's name",
+            "example": "John"
+          },
+          "id": {
+            "type": "string",
+            "description": "User's id",
+            "example": "507f1f77bcf86cd799439012"
+          },
+          "children": {
+            "type": "array",
+            "description": "User's children",
+            "items": {
+              "type": "object",
+              "properties": {
+                "totalPoints": {
+                  "type": "integer",
+                  "description": "Total of points",
+                  "example":243
+                },
+                 "habits": {
+           "$ref": "#/definitions/GetHabitsResponse"
+         },
+         "tasks" : {
+ "$ref": "#/definitions/GetAllTasksResponse"
+         },
+         "presents" : {
+              "$ref": "#/definitions/GetPresentsResponse"
+         }
+        
+              }}}}}
     }
 }
