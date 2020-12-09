@@ -1,5 +1,6 @@
 .submitBox {
   margin-left: 35px;
+  box-sizing: content-box;
 }
 
 .submitBoxTitle {
@@ -14,7 +15,10 @@
 
 @media (max-width: 768px) {
   .submitBox {
-    margin-top: 10px;
     margin-left: 0;
+  }
+
+  .submitBoxTitle {
+    margin-top: 0;
   }
 }

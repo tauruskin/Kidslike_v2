@@ -20,11 +20,7 @@
 
 .checkBtn {
   composes: button;
-  margin-right: 10px;
   background-image: url(../../../img/svg/check-orange.svg);
-  /* ,
-    url(../../../img/svg/check-white.svg);
-  background-size: auto, 0; */
 }
 
 .checkBtnActive {

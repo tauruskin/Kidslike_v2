@@ -1,15 +1,15 @@
 .drop_down_folder {
-  position: absolute;
-  top: -20px;
-  right: -15px;
+  position: relative;
+  width: 16px;
+  height: 4px;
+  margin: 0 0 0 auto;
 }
 
 .btn {
-  /* position: absolute;
-  top: -10px;
-  right: -15px; */
+  display: block;
   width: 16px;
   height: 4px;
+  margin: 0 0 0 auto;
   cursor: pointer;
   border: none;
   background-image: url(../../../img/svg/dots-grey.svg),
@@ -23,8 +23,4 @@
 }
 
 @media (max-width: 768px) {
-  .drop_down_folder {
-    top: 10;
-    right: 0;
-  }
 }
