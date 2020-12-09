@@ -20,10 +20,6 @@ export default function DropDownMenu({ modalType, handleClick}) {
                     </div>
                 </div>
             </div>
-            {/* <div className={styles.options}>
-                <button className={styles.optionButton} onClick={() => close()}>Редагувати</button>
-                <button className={styles.optionButton} onClick={() => {}}>Видалити</button>
-            </div> */}
             {modalType === 'habit' && showModal && <ChangeHabbit close={() => { close(); handleClick() }} />}
             {modalType === 'task' && showModal && <ChangeTask close={() => { close(); handleClick() }} />}
             {/* {modalType === 'gift' && showModal && <ChangeGift close={close} />} */}
