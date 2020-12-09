@@ -1,4 +1,4 @@
 
 
-let array = Array(7).fill('')
+let array = Array(3).fill('')
 export default array

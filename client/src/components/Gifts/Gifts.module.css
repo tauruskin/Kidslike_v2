@@ -10,6 +10,7 @@
     width: 100%;
     border-radius: 15px;
     overflow: hidden;
+    margin-top: 10px;
 }
 .giftIcon{
     width: 40px;
@@ -71,6 +72,7 @@ margin:-10px auto;
   margin-left: auto;
   margin-bottom: 7px;
   margin-right: 5px;
+  
 }
 .moreBtnFolder {
   margin-right: 5px;
@@ -120,4 +122,10 @@ margin:-10px auto;
     font-size: 22px;
     line-height: 1.18;
   }
+}
+@media screen and (min-width: 1200px) {
+  .container{
+    margin-left: auto;
+        width: 60%;
+}
 }

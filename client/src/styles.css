@@ -33,3 +33,6 @@ h1 {
 img{
   display: block;
 }
+ul{
+  padding: 0;
+}

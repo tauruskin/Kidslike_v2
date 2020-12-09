@@ -12,9 +12,11 @@ import { NavLink } from 'react-router-dom';
 export default function LeftSideBar({ logo = defaultLogo }) {
     return (
         <>
-            <div className={styles.GiftContainer}>
-                <img src={family} alt="family" />
-                <h1 className={styles.title}>Сім’я</h1>
+            <div className={styles.container}>
+                <div className={styles.titleName}>
+                    <img src={family} alt="family" className={styles.iconFamily} />
+                    <h1 className={styles.title}>Сім’я</h1>
+                </div>
                 {array.map((el, i) => {
                     return (<div key={i} className={styles.leftSideBarCard}>
                         <div className={styles.childTitle}>
@@ -33,10 +35,13 @@ export default function LeftSideBar({ logo = defaultLogo }) {
                         </div>
 
                         <div className={styles.task}>
-                            <span>Викинути сміття</span><span>+4</span>
-                            <span>Викинути сміття</span><span>+4</span>
+                            <ul>
+                                <li className={styles.habitsList}><span className={styles.spanText}>Викинути сміття</span><span className={styles.spanNumber}>+4</span></li>
+                                <li className={styles.habitsList}><span className={styles.spanText}>Викинути сміття</span><span className={styles.spanNumber}>+4</span></li>
+
+                            </ul>
                         </div>
-                        <NavLink to='/'>до виконаних задач <img src={arrow} alt="arrow" /> </NavLink>
+                        <NavLink to='/' className={styles.arrowText}>До виконаних задач <img src={arrow} alt="arrow" className={styles.arrow} /> </NavLink>
                     </div>
                     )
                 })}
