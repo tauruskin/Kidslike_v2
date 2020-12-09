@@ -5,36 +5,47 @@ import array from './testArray'
 import styles from './Gifts.module.css'
 import dots from '../../img/svg/dots-grey.svg'
 import testImg from './test.png'
+import defaultImage from './defaultImage.png'
+
 console.log(styles.giftCard);
-export default function GiftCard() {
+export default function GiftCard({ logo = defaultLogo, img = defaultImage }) {
     return (
-        <div>
+        <div className={styles.GiftContainer}>
             {array.map((el, i) => {
-                return (<div key={i} className={styles.giftCard}>   <img
-                    className={styles.dotsImage}
-                    src={dots}
-                    alt="dots"
-                />
-                    <img
-                        // className={style.}
-                        src={defaultLogo}
-                        alt="default logo"
+                return (<div key={i} className={styles.giftCard}>
+                    <img width='26px' height='8px'
+                        className={styles.dotsImage}
+                        src={dots}
+                        alt="dots"
                     />
-                    <img
-                        // className={style.}
-                        src={testImg}
-                        alt="default logo"
-                    />
-                    <h2>Name Gift</h2>
-                    <img
-                        // className={style.}
-                        src={star}
-                        alt="star"
-                    />
-                    <span>Rating</span>
-                    <button>Button</button></div>)
+                    <div className={styles.giftImageContainer}>
+                        <img
+                            className={styles.giftAvatar}
+                            src={logo}
+                            alt="default logo"
+                        />
+                        <img
+                            className={styles.giftImage}
+                            src={img}
+                            alt="default logo"
+                        />
+                    </div>
+                    <h2 className={styles.giftName}>Name Gift</h2>
+                    <div className={styles.buttonPricePosition}>
+                        <div className={styles.starPrice}>
+                            <img
+                                // className={styles.}
+                                src={star}
+                                alt="star"
+                            />
+                            <span>40</span>
+                        </div>
+                        <button className={styles.giftButton}>Button</button></div>
+                </div>
+                )
             })}
 
         </div>
     )
 }
+

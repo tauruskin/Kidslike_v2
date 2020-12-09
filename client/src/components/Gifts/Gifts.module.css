@@ -1,38 +1,109 @@
 .container{
     display: flex;
         align-items: center;
+        margin-bottom: 30px;
+        margin-top: 56px;
 }
 .giftImage{
+     margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.giftIcon{
     width: 40px;
     height: 40px;
-    margin-right: 20px;
+      margin-right: 20px;
+}
+.giftImageContainer{
+    position: relative;
+}
+.giftAvatar{
+   width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color:white;
+    padding: 5px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+.giftAvatar > img{
+    width: 30px;
+    height: 30px;
 }
 .giftTitle{
-font-size: 26px;
-font-style: normal;
-font-weight: 500;
-line-height:1.19;
-letter-spacing: 0em;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height:1.19;
+    letter-spacing: 0em;
+}
+.giftName{
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: -3px;
+}
+.GiftContainer{
+margin:-10px auto;
 }
 
-
 .giftCard{
-      width: 30%;
-      display: inline-block;
-      border-radius: 20px;
-      overflow: hidden;
-      background-color: white;
-      margin-right: 10px;
-      margin-bottom: 10px;
+    width: calc((100% - 25px * 1) / 2);
+    display: inline-block;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: white;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  .giftCard:last-child{
+      margin-bottom: 31px;
   }
 .dotsImage{
     margin-left: auto;
-    margin-top: 10px;
-    margin-right: 15px;
+    margin-bottom: 7px;
+    margin-right: 5px;
 }
-
+.starPrice{
+    display: flex;
+align-items: center;
+}
+.starPrice>img{
+ width: 20px;
+ height: 20px;
+    margin-right: 3px;
+}
+.starPrice>span{
+font-size: 22px;
+}
+.giftButton{
+    width: 120px;
+    height: 38px;
+    background-color: transparent;
+    color: #ff8626;
+    border: 1px solid #ff8626;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-bottom: 11px;
+}
+.giftButton:hover,
+.giftButton:focus{
+color: #828282;
+border-color: #bdbdbd;
+background-color: #e5e5e5;
+}
+.buttonPricePosition{
+    display: flex;
+}
   @media screen and (max-width: 767px) {
-.giftImage{
+.giftCard{
+        width: 280px;
+    height: 290px;
+}
+.giftIcon{
     width: 30px;
     height: 30px;
     margin-right: 15px;
