@@ -6,6 +6,7 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const { testsRouter } = require("./test/tests.router");
+const { authRouter } = require("./auth/auth.router");
 
 const IMAGES_PATH = path.join(__dirname, "public/images");
 
@@ -57,6 +58,7 @@ exports.CrudServer = class {
 
     //put your route here
     // start
+    this.server.use('/api/auth', authRouter)
 
     // end
     //put your route here

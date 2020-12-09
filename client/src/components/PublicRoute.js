@@ -6,12 +6,14 @@ const PublicRoute = ({
   isAuthenticated,
   ...routeProps
 }) => (
-  <Route
-    {...routeProps}
-    render={props =>
-      isAuthenticated ? <Redirect to="/home" /> : <Component {...props} />
-    }
-  />
+  <>
+    <Route
+      {...routeProps}
+      render={props =>
+        isAuthenticated ? <Redirect to="/home" /> : <Component {...props} />
+      }
+    />
+  </>
 );
 
 export default PublicRoute;
