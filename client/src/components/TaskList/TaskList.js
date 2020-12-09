@@ -13,7 +13,7 @@ export default function TaskList() {
                         key={el.startDate}
                         className={styles.HabitItem}
                     >
-                        <MoreButton type={'habit'} />
+                        <MoreButton type={'task'} />
                         <TaskItem  {...el} />
                     </li>
                 ))}

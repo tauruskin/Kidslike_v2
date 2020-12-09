@@ -49,3 +49,14 @@
   composes: button;
   background-image: url(../../../img/svg/cross-grey.svg);
 }
+
+.repeatBtn {
+  composes: button;
+  display: inline-block;
+  margin-left: 0;
+  background-image: url(../../../img/svg/repeat-orange.svg);
+}
+
+.repeatBtn:last-child {
+  margin-left: 0;
+}
