@@ -15,7 +15,7 @@ export const ModalTest = () => {
   return (
     <>
       <button onClick={() => setModalShow(true)}>test modal</button>
-      {modalShow && <ChangeTask close={close} />}
+      {modalShow && <AddChildren close={close} />}
     </>
   );
 };
