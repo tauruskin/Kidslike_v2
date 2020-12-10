@@ -23,7 +23,7 @@ export default function TaskItem({ gender, taskName, points, startDate, daysToCo
                         <p className={styles.text}>Час на виконання:</p>
                         <p className={styles.days}>{daysToComplete} день</p>
                     </div>}
-                <HabitSubmitBox repeat={true}/>
+                <HabitSubmitBox repeat={false}/>
             </div>
         </div>
     );
