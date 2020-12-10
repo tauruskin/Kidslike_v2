@@ -1,6 +1,7 @@
 .habitItemFolder {
   position: relative;
   display: flex;
+  padding: 15px 15px 2px;
 }
 
 .avatar {
@@ -9,8 +10,6 @@
   width: 75px;
   height: 75px;
   margin-right: 20px;
-  top: 0;
-  left: 0;
 }
 
 .habitContentWrapper {
@@ -19,7 +18,7 @@
 
 .habitTitle {
   display: inline-block;
-  margin-left: 95px;
+  margin: 0 0 0 95px;
   vertical-align: middle;
   color: #333333;
   font-family: Rubik;
@@ -33,10 +32,8 @@
   display: flex;
   list-style: none;
   padding: 0;
-  margin: 0;
-  margin-left: 95px;
-  margin-top: 13px;
-  width: 409px;
+  margin: 8px 0 0 95px;
+  width: 400px;
 }
 
 .daysItem {
@@ -68,9 +65,7 @@
 }
 
 .text {
-  position: absolute;
-  right: 10px;
-  bottom: -20px;
+  margin: 3px 5px 0 auto;
   width: 28px;
   height: 20px;
   font-family: Rubik;
@@ -85,73 +80,74 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    padding: 5px 0;
   }
 
   .avatar {
-    display: inline-block;
+    /* display: inline-block; */
+    top: 0;
+    left: 0;
     width: 30px;
     height: 30px;
     margin-right: 15px;
-    vertical-align: middle;
+    /* vertical-align: middle; */
   }
 
   .habitTitle {
-    display: inline-block;
-    margin-top: 4px;
+    /* display: inline-block; */
     margin-left: 45px;
-    vertical-align: middle;
+    /* vertical-align: middle;
     color: #333333;
     font-family: Rubik;
     font-style: normal;
-    font-weight: 900;
+    font-weight: 900; */
     font-size: 18px;
     line-height: 21px;
   }
 
   .daysList {
-    display: flex;
+    /* display: flex;
     list-style: none;
-    padding: 0;
-    margin: 0;
-    margin-top: 17px;
+    padding: 0; */
+    /* margin: 0; */
+    margin: 17px 0 0;
     width: 250px;
   }
 
   .daysItem {
-    display: inline-block;
+    /* display: inline-block; */
     padding: 6px;
     width: 25.86px;
     height: 25.86px;
-    border: 1px solid #ffffff;
+    /* border: 1px solid #ffffff;
     background-color: #f6f7f9;
     text-align: center;
-    vertical-align: middle;
+    vertical-align: middle; */
   }
 
-  .daysItem:first-child {
+  /* .daysItem:first-child {
     border-radius: 20px 0px 0px 20px;
   }
 
   .daysItem:last-child {
     border-radius: 0px 20px 20px 0px;
-  }
+  } */
 
   .points {
     display: block;
-    font-size: 12px;
+    /* font-size: 12px;
     color: #828282;
-    font-family: Rubik;
+    font-family: Rubik; */
   }
 
   .text {
-    right: -5px;
-    bottom: -26px;
-    width: 28px;
+    margin: 3px 0 0 auto;
+    /* width: 28px;
     height: 20px;
     font-family: Rubik;
     font-weight: normal;
     font-size: 12px;
     line-height: 14px;
-    color: #828282;
+    color: #828282; */
   }
 }

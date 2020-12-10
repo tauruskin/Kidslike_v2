@@ -6,6 +6,11 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const { testsRouter } = require("./test/tests.router");
+const { childsRouter } = require("./childs/childs.router");
+const { giftsRouter } = require("./gifts/gifts.router");
+const { habitsRouter } = require("./habits/habits.router");
+const { tasksRouter } = require("./tasks/tasks.router");
+const { authRouter } = require("./auth/auth.router");
 
 const IMAGES_PATH = path.join(__dirname, "public/images");
 
@@ -57,6 +62,11 @@ exports.CrudServer = class {
 
     //put your route here
     // start
+    this.server.use("/api/auth", authRouter);
+    this.server.use("/api/childs", childsRouter);
+    this.server.use("/api/gifts", giftsRouter);
+    this.server.use("/api/habits", habitsRouter);
+    this.server.use("/api/tasks", tasksRouter);
 
     // end
     //put your route here
