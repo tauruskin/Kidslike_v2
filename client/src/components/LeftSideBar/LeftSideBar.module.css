@@ -6,6 +6,7 @@
     letter-spacing: 0em;
 }
 
+
 .leftSideBarCard {
     width: 100%;
     border-radius: 20px;
@@ -104,6 +105,26 @@
 
 @media screen and (max-width:1199px) {
     .container {
-        display: none;
+        display: none   ;
+       /* transform: translateX(-150%); */
+       /* display: flex; */
+       /* flex-wrap: wrap; */
+    }
+    .renderClass{
+        display: block;
+    background-color: #e5e5e5;
+    height: 170%; 
+    z-index: 99;
+    position: absolute;
+    overflow: hidden ;
+}
+    .leftSideBarCard{
+        width: 45%;
+        margin-right: 10px;
+    }
+    .cardsContainer {
+  /* width: 40%; */
+  display: flex;
+  flex-wrap: wrap;
     }
 }

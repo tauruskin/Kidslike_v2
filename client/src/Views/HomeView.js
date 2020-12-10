@@ -10,10 +10,11 @@ class HomeView extends Component {
   render() {
     const { match } = this.props;
     console.log(match);
+    console.log(this.props);
     return (
       <>
         <h2>Home</h2>
-        <LeftSideBar />
+        <LeftSideBar family={this.props.family} />
         <Route path={`${match.path}`} exact>
           <HabitsList />
           <TaskList />
