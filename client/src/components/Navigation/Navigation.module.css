@@ -29,9 +29,7 @@ text-align: center;
     justify-content: center;
     cursor: pointer;
 }
-.listItem.family{
-  /* display: none; */
-}
+
 .listItem:first-child{
   display: none;
 }
@@ -66,7 +64,6 @@ font-style: normal;
 font-weight: 500;
 line-height: 14px;
 letter-spacing: 0em;
-text-align: left;
 }
 }
 
@@ -75,7 +72,7 @@ text-align: left;
  width: 100%;
  order: 2;
 }
-.navLink{
+.navLink>span{
 display: none;
 }
 .listItem{

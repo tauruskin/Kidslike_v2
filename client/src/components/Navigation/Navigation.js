@@ -11,21 +11,27 @@ export default function Navigation() {
     <>
       <ul className={styles.navList}>
         <li className={[styles.listItem, styles.family].join(' ')}>
-          <img className={styles.itemImg} src={family} alt="pin" />
           <NavLink className={styles.navLink} to="/">
-            Сім’я
+            <img className={styles.itemImg} src={family} alt="pin" />
+            <span>
+              Сім’я
+            </span>
           </NavLink>
         </li>
         <li className={styles.listItem}>
           <NavLink className={styles.navLink} to="/home">
             <img className={styles.itemImg} src={pin} alt="pin" />
-            Звички i задачi
+            <span>
+              Звички i задачi
+            </span>
           </NavLink>
         </li>
         <li className={styles.listItem}>
           <NavLink className={styles.navLink} to="/home/gifts">
             <img className={styles.itemImg} src={gift} alt="gift" />
-            Подарунки
+            <span>
+              Подарунки
+            </span>
           </NavLink>
         </li>
       </ul>
