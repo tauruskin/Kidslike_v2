@@ -25,10 +25,13 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "formik": "^2.2.5",
     "joi": "^17.3.0",
     "joi-objectid": "^3.0.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.10.14",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react-redux": "^7.2.2",
+    "yup": "^0.32.3"
   }
 }

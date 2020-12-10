@@ -1,0 +1,62 @@
+/* временный контейнер для стилизации формы */
+.Container {
+  background-color: #e5e5e5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.FormWrap {
+  position: relative;
+  width: 100%;
+  max-width: 575px;
+  padding: 50px 60px 60px;
+  color: #828282;
+  background-color: #ffffff;
+}
+@media (min-width: 768px) {
+  .FormWrap {
+    border-radius: 20px;
+  }
+}
+
+.Title {
+  color: #333333;
+}
+
+.Label {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.FieldWrap {
+  margin-bottom: 35px;
+}
+
+.BtnWrap {
+  display: flex;
+  justify-content: center;
+}
+.Input {
+  border: 1px solid #bdbdbd;
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+.Input:hover,
+.Input:focus {
+  outline: 0;
+  border: 1px solid #ff8626;
+}
