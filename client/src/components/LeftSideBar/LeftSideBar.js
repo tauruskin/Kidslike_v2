@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import defaultLogo from '../../img/header/userInfo.svg';
 import family from '../../img/header/family.svg';
 import star from '../../img/svg/star.svg';
@@ -6,10 +7,14 @@ import arrow from '../../img/svg/arrow.svg';
 import Button from '../UIcomponents/Button/Button'
 import array from './testArray';
 import styles from './LeftSideBar.module.css';
+import AddHabbit from '../modals/addHabbit/AddHabbit';
+import AddChildren from '../modals/addChildren/AddChildren';
 
-import { NavLink } from 'react-router-dom';
+
 
 export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
+      const [showAddChildren, setShowAddChildren] = useState(false);
+    const close = () => { setShowAddChildren(false) };
   return (
     <>
       <div className={Family ? [styles.container, styles.renderClass].join(' ') : styles.container}>
@@ -45,13 +50,14 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
                   </ul>
                 </div>
                 <NavLink to="/home/child" className={styles.arrowText}>
-                  До виконаних задач{' '}
+                  До виконаних задач
                   <img src={arrow} alt="arrow" className={styles.arrow} />{' '}
                 </NavLink>
               </div>
             );
           })}
-          <Button label={"Додати дитину  +"} transparent={true} type={'button'}></Button>
+          <Button label={"Додати дитину  +"} transparent={true} type={'button'} handleClick={() => setShowAddChildren(true)} ></Button>
+           {showAddChildren && <AddChildren close={() => close()}/>}
         </div>
       </div>
     </>
