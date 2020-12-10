@@ -19,10 +19,13 @@ const AddTask = ({ close }) => {
             </label>
             <label className={styles.label}>
               <p className={styles.inputName}>Призначення звички</p>
-              <input
-                className={styles.input}
-                placeholder="Оберіть дитину"
-              ></input>
+              <select className={styles.select} placeholder="Оберіть дитину">
+                <option disabled>Выберите героя</option>
+                <option value="Чебурашка">Чебурашка</option>
+                <option value="Крокодил Гена">Крокодил Гена</option>
+                <option value="Шапокляк">Шапокляк</option>
+                <option value="Крыса Лариса">Крыса Лариса</option>
+              </select>
             </label>
             <label className={styles.label}>
               <p className={styles.inputName}>Бал</p>
@@ -34,7 +37,7 @@ const AddTask = ({ close }) => {
                 Дні на виконання (необов’язково)
               </p>
 
-              <input className={styles.inputMark} placeholder="___"></input>
+              <input className={styles.inputDays} placeholder="___"></input>
             </label>
           </div>
           <div className={styles.buttonsBlock}>
