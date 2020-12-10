@@ -39,6 +39,7 @@
 }
 
 .input {
+  padding-left: 20px;
   font-size: 16px;
   width: 280px;
   height: 44px;
@@ -47,12 +48,41 @@
   border-radius: 15px;
 }
 
+.input:focus {
+  border: 1px solid #ffbe9d;
+}
+
+.select {
+  cursor: pointer;
+  padding-left: 20px;
+  font-size: 16px;
+  width: 280px;
+  height: 44px;
+  border: 1px solid #bdbdbd;
+  box-sizing: border-box;
+  border-radius: 15px;
+  appearance: none;
+  background: url(../../../img/svg/select-triangle.svg) 96% / 15% no-repeat;
+  background-size: 15px;
+}
+
+.select:focus {
+  border: 1px solid #ffbe9d;
+}
+
 .inputMark {
+  padding-left: 40px;
   width: 170px;
   height: 44px;
   border: 1px solid #bdbdbd;
   box-sizing: border-box;
   border-radius: 15px;
+  background: url(../../../img/svg/star_small.svg) 12% / 15% no-repeat;
+  background-size: 17px;
+}
+
+.inputMark:focus {
+  border: 1px solid #ffbe9d;
 }
 
 .buttonSave {
@@ -64,7 +94,6 @@
   width: 220px;
   height: 44px;
   font-family: 'Rubik', sans-serif;
-
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -92,6 +121,15 @@
   line-height: 19px;
 }
 
+.buttonSave:hover {
+  background: #ffa273;
+}
+.buttonCancle:hover {
+  background: #ffffff;
+  color: #ff8626;
+  border: 1px solid #ff8626;
+}
+
 .modalCloseBtn {
   padding: 0;
   background-image: url('../../../img/close.svg');
@@ -111,8 +149,8 @@
 
 @media screen and (min-width: 768px) {
   .modalBody {
-    width: 535px;
-    height: 437px;
+    width: 575px;
+    height: 477px;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
   }
@@ -140,6 +178,11 @@
   .input {
     width: 340px;
   }
+
+  .select {
+    width: 340px;
+  }
+
   .buttonSave {
     margin: 0;
   }
