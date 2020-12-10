@@ -1,4 +1,6 @@
 # Logs
+.DS_Store
+*.DS_Store
 logs
 *.log
 npm-debug.log*
@@ -102,3 +104,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# build
+/client/build
+./client/build

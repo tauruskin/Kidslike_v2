@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { AddFormPresent } from '../components/AddFormPresent/AddFormPresent';
+import { Link } from 'react-router-dom';
+import AuthPage from '../components/AuthPage/AuthPage'
 
 export default class LoginView extends Component {
   render() {
     return (
       <>
-        <div>LoginView</div>
-        <AddFormPresent />
+        <AuthPage/>
       </>
     );
   }

@@ -1,0 +1,29 @@
+.input {
+  height: 44px;
+  width: 340px;
+  margin: 10px 0 20px 0;
+  padding-left: 20px;
+  font-size: 16px;
+  line-height: 19px;
+  font-family: Rubik;
+  border: 1px solid #BDBDBD;
+  border-radius: 15px;
+}
+
+.input[disabled] {
+  cursor: not-allowed;
+}
+
+.input.lastChild{
+  margin-bottom: 30px;
+}
+
+.label{
+  display: inline-block;
+  font-family: Rubik;
+  width: 147px;
+  height: 10px;
+  font-size: 12px;
+  line-height: 14px;
+  color: #828282;
+}

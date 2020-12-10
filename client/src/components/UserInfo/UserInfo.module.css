@@ -1,0 +1,38 @@
+.logout {
+    width: 20px;
+    height: 20px;
+}
+
+.userName {
+    font-family: Rubik;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.18;
+    margin-right: 30px;
+}
+
+.userInfoContainer {
+    display: flex;
+    align-items: center;
+    margin-right: 308px;
+}
+
+.userAvatar {
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 5px;
+    margin-right: 15px;
+}
+
+@media screen and (max-width: 1199px) {
+    .userName {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .userInfoContainer {
+        margin-right: 0;
+    }
+}

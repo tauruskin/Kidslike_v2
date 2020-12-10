@@ -1,5 +1,5 @@
 {
-  "name": "Kidslike_v2",
+  "name": "kidslike_v2",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -8,6 +8,8 @@
     "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",
+    "client:i": "npm i --prefix client",
+    "client:build": "npm run build --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
@@ -17,9 +19,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "bcryptjs": "^2.4.3",
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.3",
-    "nodemon": "^2.0.6"
+    "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.4.16",
+    "nodemon": "^2.0.6",
+    "uuid": "^8.3.2"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -31,7 +37,7 @@
     "mongodb": "^3.6.3",
     "mongoose": "^5.10.14",
     "morgan": "^1.10.0",
-    "react-redux": "^7.2.2",
-    "yup": "^0.32.3"
+    "react-media": "^1.10.0",
+    "swagger-ui-express": "^4.1.5"
   }
 }

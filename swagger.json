@@ -1,0 +1,1406 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.1.2",
+        "title": "Kidslike docs",
+        "description": "Api docs for KidsLike V2 project",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    
+    "servers"
+       : [{ "url": "http://kidslike-v2.top/api/" }],
+    
+    "tags": [
+         {
+      "name": "Auth",
+      "description": "Authorization endpoints"
+    },
+    
+    {
+      "name": "User",
+      "description": "User endpoints"
+    },
+    {
+      "name": "Child",
+      "description": "Children endpoints"
+    },
+    {
+      "name": "Habits",
+      "description": "Habits endpoints"
+    },
+    {
+      "name": "Tasks",
+      "description": "Tasks endpoints"
+    },
+    {
+      "name": "gifts",
+      "description": "gifts endpoints"
+    }
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+     
+         "/auth/signUp":{
+             "post":{
+                    "tags": ["Auth"],
+                        "summary": "Registration of new user",
+                            "parameters": [],
+                            "requestBody": {
+                    "description":"SignUP Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/SignUpRequest"
+                            }
+                        }
+                    }
+                },
+                   "responses": {
+          "201": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/SignUpResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {}
+          },
+          "409": {
+            "description": "email already exists",
+            "content": {}
+          }
+        }
+
+             }
+
+
+         },
+         "/auth/signIn":{
+             "post":{
+                    "tags": ["Auth"],
+                        "summary": "Log in of existing user",
+                            "parameters": [],
+                            "requestBody": {
+                    "description":"SignIn Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/SignInRequest"
+                            }
+                        }
+                    }
+                },
+                   "responses": {
+          "201": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/SignInResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {}
+          },
+          "409": {
+            "description": "email doesnt exists",
+            "content": {}
+          }
+        }
+
+             }
+         },
+          "/auth/signOut":{
+                "post": {
+        "tags": ["Auth"],
+        "summary": "Logout",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "Successful",
+            "content": {}
+          },
+          "400": {
+            "description": "Missing token",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized ",
+            "content": {}
+          },
+          "404": {
+            "description": "Invalid user",
+            "content": {}
+          }
+        }
+      }
+          },
+          "/user": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get all your data",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/GetUserInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "No token",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          }
+        }
+      }
+    },
+          "/child": {
+              "post":{
+                   "tags": ["Child"],
+                    "summary": "Add a child",
+                      "parameters": [],
+                      "requestBody": {
+          "description": "Child's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/AddChildRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/AddChildResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request ",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Child not found ",
+            "content": {}
+          }
+        }
+
+              }
+          },
+          "/habits" : {
+              "get":{
+                  "tags": ["Habits"],
+                     "summary": "Get all children data  for current user",
+                        "parameters": [],
+                           "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/GetHabitsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing token",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized ",
+            "content": {}
+          },
+          "404": {
+            "description": "Invalid user",
+            "content": {}
+          }
+        }
+              }
+          },
+           "/habit/{childId}":{
+               "post" : {
+        "tags": ["Habits"],
+        "summary": "Add habit for  child",
+        "parameters": [
+          {
+            "name": "childId",
+            "in": "path",
+            "description": "Child's Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "Habit's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/AddTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/AddHabitResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request ",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Child not found",
+            "content": {}
+          }
+        }
+      },
+         "patch": {
+        "tags": ["Habits"],
+        "summary": "Edit habit",
+        "parameters": [
+          {
+            "name": "habitId",
+            "in": "path",
+            "description": "Habit's id ('id' field in habit's object)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "Habit's object. At least one field is required",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/EditHabitRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/definitions/EditHabitResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request ",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized ",
+            "content": {}
+          },
+          "404": {
+            "description": "Child not found",
+            "content": {}
+          }
+        }
+      },
+
+      "delete" : {
+            "tags": ["Habits"],
+        "summary": "Delete habit",
+        "parameters": [
+          {
+            "name": "habitId",
+            "in": "path",
+            "description": "Habit's id ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful",
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request ",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Child not found",
+            "content": {}
+          }
+        }
+      }
+           },
+         
+            
+       "/tasks": {
+      "get": {
+        "tags": ["Tasks"],
+        "summary": "Get all children tasks for current user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/GetAllTasksResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request ",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Invalid user",
+            "content": {}
+          }
+        }
+      }
+    },
+      "/tasks/{childId}": {
+      "post": {
+        "tags": ["Tasks"],
+        "summary": "Add task for the child",
+        "parameters": [
+          {
+            "name": "childId",
+            "in": "path",
+            "description": "Id of the child",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "Task's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/AddTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/AddTaskResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Child not found",
+            "content": {}
+          }
+        }
+      },  "patch": {
+        "tags": ["Tasks"],
+        "summary": "Edit task",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "Task's id ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "Task's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/EditTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/EditTaskResponse"
+                }
+            }
+          }},
+          "400": {
+            "description": "Bad request",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized ",
+            "content": {}
+          },
+          "404": {
+            "description": "Child not found ",
+            "content": {}
+          }
+        }
+      },     "delete": {
+        "tags": ["Tasks"],
+        "summary": "Delete task",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "Task's id ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful",
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized ",
+            "content": {}
+          },
+          "404": {
+            "description": "Child not found ",
+            "content": {}
+          }
+        }
+      }
+    
+    },
+  
+    
+     "/gifts": {
+      "get": {
+        "tags": ["gifts"],
+        "summary": "Get all gifts for current user's children",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/GetgiftsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "No token",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Invalid user",
+            "content": {}
+          }
+        }
+      }
+    },
+       "/gifts/{childId}": {
+      "post": {
+        "tags": ["gifts"],
+        "summary": "Add present",
+        "parameters": [
+          {
+            "name": "childId",
+            "in": "path",
+            "description": "Id of the child ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "present's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/AddPresentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/AddPresentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request ",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized ",
+            "content": {}
+          },
+          "404": {
+            "description": "Child not found ",
+            "content": {}
+          }
+        }
+      },
+         "patch": {
+        "tags": ["gifts"],
+        "summary": "Edit present",
+        "parameters": [
+          {
+            "name": "presentId",
+            "in": "path",
+            "description": "present's id ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "present's object.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/EditPresentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/definitions/EditPresentResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request ",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized ",
+            "content": {}
+          },
+          "404": {
+            "description": "Child not found ",
+            "content": {}
+          }
+        }
+      },
+         "delete": {
+        "tags": ["gifts"],
+        "summary": "Remove present",
+        "parameters": [
+          {
+            "name": "presentId",
+            "in": "path",
+            "description": "present's id ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful",
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Child not found ",
+            "content": {}
+          }
+        }
+      }
+    }
+     
+
+
+    },
+    "definitions": {
+      
+        "SignUpRequest": {
+        "required": ["email", "password", "username"],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty123"
+          },
+          "username": {
+            "type": "string",
+            "description": "User's name",
+            "example": "John"
+          }
+        }
+      },
+        "SignUpResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "username": {
+            "type": "string",
+            "description": "User's name",
+            "example": "John"
+          },
+          "id": {
+            "type": "string",
+            "description": " id",
+            "example": "fsdfsd4443242426g"
+          }
+        }
+      },
+"SignInRequest":{
+  "required": ["email", "password"],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty1"
+          }
+        }
+},
+"SignInResponse":{
+  "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty1"
+          },
+            "token": {
+            "type": "string",
+            "description": "User's token",
+            "example": "fdsfsdfsdf3i3i3i3i3"
+          },
+           "additionalProperties": {
+           "$ref": "#/definitions/GetUserInfo"
+         }
+        }
+},
+"AddChildRequest":{
+    "required": ["name", "gender"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Child's name",
+            "example": "John"
+          },
+          "gender": {
+            "type": "string",
+            "description": "Child's gender",
+            "enum": ["male", "female"]
+          }
+        }
+},
+"AddChildResponse":{
+   "type": "object",
+        "properties": {
+          "totalPoints": {
+            "type": "integer",
+            "description": "Sum of childs points"
+          },
+          "habits": {
+            "type": "array",
+            "description": "Child's habits",
+            "items": {}
+          },
+          "tasks": {
+            "type": "array",
+            "description": "Child's tasks",
+            "items": {}
+          },
+          "gifts": {
+            "type": "array",
+            "description": "Child's gifts",
+            "items": {}
+          },
+          "name": {
+            "type": "string",
+            "description": "Child's name",
+            "example": "John"
+          },
+          "gender": {
+            "type": "string",
+            "description": "Child's gender",
+            "enum": ["male", "female"]
+          },
+          "id": {
+            "type": "string",
+            "description": "Child's id",
+            "example": "fasdfaeef3523525"
+          }
+        }
+},
+"GetHabitsResponse": {
+   "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Habit's name",
+                "example": "Name of the habit"
+              },
+              "pointsPerRepeat": {
+                "type": "integer",
+                "description": "Points for one succesfull repeat",
+                "example": 1
+              },
+              "childId": {
+                "type": "string",
+                "description": "Child's Id",
+                "example": "dadadaf33g3g"
+              },
+              "id": {
+                "type": "string",
+                "description": "Habit's id",
+           "example": "dadadaf33g3g"
+              }
+            }
+          }
+        }
+},
+"AddHabitRequest" : {
+     "required": ["name", "pointsPerRepeat"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Habit's name",
+            "example": "Wash dishes"
+          },
+          "pointsPerRepeat": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Child accumulate points for every succesfull repeat of habit",
+            "example": 10
+          }
+        }
+},
+"AddHabitResponse" : {
+     "required": ["name", "pointsPerRepeat"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Habit's name",
+            "example": "Wash dishes"
+          },
+          "pointsPerRepeat": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Child accumulate points for every succesfull repeat of habit",
+            "example": 10
+          },
+          "childId":{
+            "type": "string",
+            "description": "User's id",
+            "example": "507f1f77bcf86cd799439012"
+          },
+      "isCompleted": {
+            "type": "array",
+            "items":{
+              "type":"string",
+                  "enum": ["done", "missed", "inProgress"]
+            },
+            "description":"Record of habits repeats"
+           
+          }
+        }
+},
+"EditHabitRequest" : {
+     "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Habit's name",
+            "example": "Name of the habit"
+          },
+          "pointsPerRepeat": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Habit's reward for a single day",
+            "example": 1
+          },
+          "isCompleted": {
+            "type": "array",
+            "items":{
+              "type":"string",
+                  "enum": ["done", "missed", "inProgress"]
+            },
+            "description":"Record of habits repeats"
+           
+          }
+        }
+},
+"EditHabitResponse" : {
+  "type": "object",
+  "properties": {
+   "name": {
+            "type": "string",
+            "description": "Habit's name",
+            "example": "Name of the habit"
+          },
+          "pointsPerRepeat": {
+            "type": "integer",
+            "description": "Accumulated points for one succesfull repeat",
+            "example": 1
+          },
+          "childId": {
+            "type": "string",
+            "description": "Id of the child",
+            "example": "gfdsgsdfgs444234242"
+          },
+          "id": {
+            "type": "string",
+            "description": "Habit's id",
+            "example": "gdsfgsdgfse45353"
+          },
+          "isCompleted": {
+            "type": "array",
+            "items":{
+              "type":"string",
+                  "enum": ["done", "missed", "inProgress"]
+            },
+            "description":"Record of habits repeats .There is 3 options : done , missed and inProgress"
+           
+          }}
+},
+
+"AddTaskRequest" : {
+    "required": ["name", "points"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Task's name",
+            "example": "Run everyday"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Task's points",
+            "minimum": 1,
+            "example": 1
+          },
+          "daysToComplete": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Days  to be complete task",
+            "example": 11
+          }
+        }
+},
+"GetAllTasksResponse" : {
+   "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Task's name",
+                "example": "Name of the task"
+              },
+             "points": {
+            "type": "string",
+            "description": "Task's points",
+            "minimum": 1,
+            "example": 1
+          },
+        "isCompleted": {
+            "type": "array",
+            "items":{
+              "type":"string",
+                  "enum": ["done", "missed", "inProgress"]
+            },
+            "description":"Record of tasks completion. Available 3 options: done, missed , inProgress"
+           
+          },
+              "daysToComplete": {
+            "type": "integer",
+            "description": "How many days left to complete task",
+            "minimum": 1,
+            "example": 1
+          },
+             "startDate": {
+            "type": "string",
+            "description": "Task's start date",
+            "example": "2020-12-08"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Task's end date" ,
+   "example": "2020-12-17"
+          },
+              "childId": {
+                "type": "string",
+                "description": "Id of the child whose task it is",
+       "example": "507f3fsdv1f77fdsfsf"
+              },
+              "id": {
+                "type": "string",
+                "description": "Task's id",
+                "example": "507f3fsdv1f77fdsfsf"
+              }
+            }
+          }
+        }
+},
+"AddTaskResponse" : {
+   "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Task's name",
+        "example": "Run every morning"
+          },
+          "points": {
+            "type": "string",
+            "description": "Task's points",
+            "minimum": 1,
+            "example": 1
+          },
+         "isCompleted": {
+            "type": "array",
+            "items":{
+              "type":"string",
+                  "enum": ["done", "missed", "inProgress"]
+            },
+            "description":"Record of habits repeats"
+           
+          },
+          "daysToComplete": {
+            "type": "integer",
+            "description": "How many days left to complete task",
+            "minimum": 1,
+            "example": 1
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Task's start date",
+            "example": "2020-12-08"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Task's end date" ,
+   "example": "2020-12-17"
+          },
+          "childId": {
+            "type": "string",
+            "description": "Childs id",
+            "example": "fasdfasdfasg356262"
+          },
+          "id": {
+            "type": "string",
+            "description": "Task's id",
+            "example": "fsdafasdfa5325252"
+          }
+        }
+},
+
+
+"EditTaskRequest" : {
+ "type": "object",
+        "properties": {
+              "minimum": 1,
+          "name": {
+            "type": "string",
+            "description": "Task's name",
+            "example": "Name of the task"
+          },
+          "points": {
+            "type": "string",
+            "description": "Task's points",
+            "minimum": 1,
+            "example": 1
+          },
+          "isCompleted": {
+            "type": "string",
+            "description": "Task's status",
+            "enum": ["inProgress"]
+          },
+             "daysToComplete": {
+            "type": "integer",
+            "description": "How many days left to complete task",
+            "minimum": 1,
+            "example": 1
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Task's start date",
+            "example": "2020-12-08"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Task's end date" ,
+   "example": "2020-12-17"
+          },
+          "childId": {
+            "type": "string",
+            "description": "Child's id",
+            "example": "dfsadfasdfa3r5353"
+          },
+          "id": {
+            "type": "string",
+            "description": "Task's id",
+            "example": "507f15345f77bcf86c5435d7994390dfsdgsdg12"
+          }
+        }
+        
+},"EditTaskResponse" : {
+   "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Task's name",
+            "example": "Name of the task"
+          },
+          "points": {
+            "type": "string",
+            "description": "Task's points",
+            "minimum": 1,
+            "example": 1
+          },
+          "isCompleted": {
+            "type": "string",
+            "description": "Task's status",
+            "enum": ["inProgress"]
+          },
+             "daysToComplete": {
+            "type": "integer",
+            "description": "How many days left to complete task",
+            "minimum": 1,
+            "example": 1
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Task's start date",
+            "example": "2020-12-08"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Task's end date" ,
+   "example": "2020-12-17"
+          },
+          "childId": {
+            "type": "string",
+            "description": "Child's id",
+            "example": "dfsadfasdfa3r5353"
+          },
+          "id": {
+            "type": "string",
+            "description": "Task's id",
+            "example": "507f15345f77bcf86c5435d7994390dfsdgsdg12"
+          }
+        }
+},
+
+"GetgiftsResponse": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Present's name",
+        "example": "Name of the present"
+      },
+      "price": {
+        "type": "integer",
+        "description": "Present's price",
+        "example": 1
+      },
+      "isPurchased": {
+        "type": "boolean",
+        "description": "Present's status",
+        "example": false
+      },
+      "imageUrl": {
+        "type": "string",
+        "description": "Present's image url"
+      },
+      "childId": {
+        "type": "string",
+        "description": "Id of the child created for this present",
+        "example": "frnf43r7834hn4222e"
+      },
+      "id": {
+        "type": "string",
+        "description": "Present's id",
+        "example": "ideqm8323j23een33e3"
+      }
+    }
+  },
+  "AddPresentRequest": {
+    "required": ["name", "price"],
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Present's name",
+        "example":"Name of the present"
+      },
+      "price": {
+        "type": "integer",
+        "description": "Present's price",
+        "example": 1
+      },
+      "file": {
+        "type": "file",
+        "description": "Present's image (optional)"
+      }
+    }
+  },
+   "AddPresentResponse": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Present's name",
+        "example":"Name of the present"
+      },
+      "price": {
+        "type": "integer",
+        "description": "Present's price",
+        "example": 1
+      },
+       "isPurchased": {
+            "type": "boolean",
+            "description": "Present's status",
+            "example": false
+          },
+
+      "imageUrl": {
+        "type": "string",
+        "description": "Present's image "
+      },
+       "childId": {
+            "type": "string",
+            "description": "Child's Id",
+            "example": "5fsdfsdfsd1"
+          },
+            "id": {
+            "type": "string",
+            "description": "Present's id",
+            "example": "507fs1ffdsfsdfs2"
+          }
+    }
+  },
+  "EditPresentRequest": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Present's name",
+        "example": "Name of the present"
+      },
+      "price": {
+        "type": "integer",
+        "description":"Present's price",
+        "example": 10
+      },
+       "file": {
+            "type": "file",
+            "description": "Picture of the present"
+          },
+        "isPurchased": {
+        "type": "boolean",
+        "description": "Present's status",
+        "example":false
+      },
+        "presentId": {
+        "type": "string",
+        "description":"Present's id",
+        "example": "dadadfegwegwe"
+      }
+
+    }
+  },
+  "EditPresentResponse": {
+    "type": "object",
+    "properties": {      
+      "name": {
+        "type": "string",
+        "description":"Present's name",
+        "example": "Name of the present"
+      },
+      "price": {
+        "type": "integer",
+        "description":"Present's price",
+        "example": "1"
+      },
+      "isPurchased": {
+        "type": "boolean",
+        "description": "Present's status"
+      },
+      "imageUrl": {
+        "type": "string",
+        "description": "Present's image url"
+      },
+      "childId": {
+        "type": "string",
+        "description": "Id of the child created for this present",
+        "example": "frnf43r7834hn4222e"
+      },
+           "presentId": {
+        "type": "string",
+        "description":"Present's id",
+        "example": "dadadfegwegwe"
+      }
+    
+  }
+},  "GetUserInfo": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "username": {
+            "type": "string",
+            "description": "User's name",
+            "example": "John"
+          },
+          "id": {
+            "type": "string",
+            "description": "User's id",
+            "example": "507f1f77bcf86cd799439012"
+          },
+          "children": {
+            "type": "array",
+            "description": "User's children",
+            "items": {
+              "type": "object",
+              "properties": {
+                "totalPoints": {
+                  "type": "integer",
+                  "description": "Total of points",
+                  "example":243
+                },
+                 "habits": {
+           "$ref": "#/definitions/GetHabitsResponse"
+         },
+         "tasks" : {
+ "$ref": "#/definitions/GetAllTasksResponse"
+         },
+         "gifts" : {
+              "$ref": "#/definitions/GetgiftsResponse"
+         }
+        
+              }}}}}
+    }
+}

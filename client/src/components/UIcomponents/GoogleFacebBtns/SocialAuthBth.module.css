@@ -1,0 +1,30 @@
+.btn{
+  background-color: transparent;
+  cursor: pointer;
+  margin: 0 auto;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  display: block;
+  font-family: Rubik;
+  font-style: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid;
+}
+
+.btn.google{
+  padding-left: 23px;
+  padding-right: 23px;
+  margin-bottom: 15px;
+  border-color: #EC4541;
+  color: #EC4541;
+}
+
+.btn.facebook{
+  padding-left: 14px;
+  padding-right: 14px;
+  border-color: #305B94;
+  color: #305B94;
+}

@@ -25,9 +25,8 @@ exports.deleteTest = async (req, res, next) => {
 
     const deleteTest = await TestModel.findByIdAndDelete(id);
     if (!deleteTest) {
-      return res.status(404).send("Contact not found");
+      return res.status(404).send("SomeName not found");
     }
-    // removeContactById(contact.id);
     return res.status(204).send();
   } catch (err) {
     next(err);

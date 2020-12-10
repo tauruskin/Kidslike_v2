@@ -1,0 +1,109 @@
+.title {
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.19;
+    letter-spacing: 0em;
+}
+
+.leftSideBarCard {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 30px 20px;
+}
+
+.leftSideBarAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    padding: 5px;
+}
+
+.task {
+    border-bottom: 1px solid #ffbe9d;
+    border-top: 1px solid #ffbe9d;
+}
+
+.childName {
+    font-size: 22px;
+    font-weight: 900;
+    display: inline-block;
+    /* margin-bottom: -3px; */
+    margin-left: 15px;
+}
+
+.childTitle {
+    display: flex;
+    align-items: center;
+}
+
+.star {
+    margin-left: auto;
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        /* margin-left: auto; */
+        width: 30%;
+        margin-top: 56px;
+    }
+}
+
+.titleName {
+    display: flex;
+    align-items: center;
+    margin-bottom: 43px
+    /* margin-bottom: 53px; */
+}
+
+.iconFamily {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+}
+
+.habitsList {
+    margin-bottom: 20px;
+    display: flex
+}
+
+.arrowText {
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    color: #ff8626;
+    display: flex;
+    margin-top: 20px;
+}
+
+.arrow {
+    margin-left: auto;
+}
+
+.spanText {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: #828282;
+}
+
+.spanNumber {
+    margin-left: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: #828282;
+}
+
+@media screen and (max-width:1199px) {
+    .container {
+        display: none;
+    }
+}
