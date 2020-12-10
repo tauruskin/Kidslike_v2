@@ -6,12 +6,12 @@
     background-size: cover;
     text-align: center;
 }
-.picture{
+/* .picture{
          background-image: url('../../img/main.png');
          background-repeat: no-repeat;
          padding-bottom: 70px;
          margin-top: 70px;
-}
+} */
 .title {
 font-family: Rubik;
 font-style: normal;
@@ -66,7 +66,7 @@ font-weight: normal;
         display: grid;
         grid-auto-rows: auto 1fr;
     }
-    .auth__Picture {
+    .picture {
         display: flex;
         background-image: url('../../img/main.png');
         background-repeat: no-repeat;
@@ -120,13 +120,19 @@ font-weight: normal;
     }
 
     .title {
-        font-size: 42px;
-        line-height: 50px;
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: 900;
+      font-size: 42px;
+      line-height: 50px;
     }
 
     .description {
-        font-size: 22px;
-        line-height: 26px;
+     font-family: Rubik;
+     font-style: normal;
+     font-weight: normal;
+     font-size: 22px;
+     line-height: 26px;
     }
 
     .btn {
