@@ -24,7 +24,6 @@ class HomeView extends Component {
           <Route path={`${match.path}/child`}>
             <ChildTaskPage />
           </Route>
-
         </Container>
         {/* <Route path={`${match.path}`} exact>
             <HabitsList />
