@@ -10,7 +10,6 @@ import Container from '../components/Container/Container';
 class HomeView extends Component {
   render() {
     const { match } = this.props;
-    console.log(match);
     return (
       <>
         <h2>Home</h2>
@@ -20,7 +19,7 @@ class HomeView extends Component {
             <HabitsList />
             <TaskList />
           </Route>
-          <Route path={`${match.path}/Gifts`} component={GiftsView} />
+          <Route path={`${match.path}/gifts`} component={GiftsView} />
           <Route path={`${match.path}/child`}>
             <ChildTaskPage />
           </Route>
