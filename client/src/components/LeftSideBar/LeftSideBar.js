@@ -3,7 +3,7 @@ import defaultLogo from '../../img/header/userInfo.svg';
 import family from '../../img/header/family.svg';
 import star from '../../img/svg/star.svg';
 import arrow from '../../img/svg/arrow.svg';
-
+import Button from '../UIcomponents/Button/Button'
 import array from './testArray';
 import styles from './LeftSideBar.module.css';
 
@@ -51,6 +51,7 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
               </div>
             );
           })}
+          <Button label={"Додати дитину  +"} transparent={true} type={'button'}></Button>
         </div>
       </div>
     </>
