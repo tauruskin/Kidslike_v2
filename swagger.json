@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "version": "1.1.0",
+        "version": "1.1.2",
         "title": "Kidslike docs",
         "description": "Api docs for KidsLike V2 project",
         "license": {
@@ -36,8 +36,8 @@
       "description": "Tasks endpoints"
     },
     {
-      "name": "Presents",
-      "description": "Presents endpoints"
+      "name": "gifts",
+      "description": "gifts endpoints"
     }
     ],
     "consumes": [
@@ -544,10 +544,10 @@
     },
   
     
-     "/presents": {
+     "/gifts": {
       "get": {
-        "tags": ["Presents"],
-        "summary": "Get all presents for current user's children",
+        "tags": ["gifts"],
+        "summary": "Get all gifts for current user's children",
         "parameters": [],
         "responses": {
           "200": {
@@ -555,7 +555,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/GetPresentsResponse"
+                  "$ref": "#/definitions/GetgiftsResponse"
                 }
               }
             }
@@ -575,9 +575,9 @@
         }
       }
     },
-       "/presents/{childId}": {
+       "/gifts/{childId}": {
       "post": {
-        "tags": ["Presents"],
+        "tags": ["gifts"],
         "summary": "Add present",
         "parameters": [
           {
@@ -625,7 +625,7 @@
         }
       },
          "patch": {
-        "tags": ["Presents"],
+        "tags": ["gifts"],
         "summary": "Edit present",
         "parameters": [
           {
@@ -671,7 +671,7 @@
         }
       },
          "delete": {
-        "tags": ["Presents"],
+        "tags": ["gifts"],
         "summary": "Remove present",
         "parameters": [
           {
@@ -821,9 +821,9 @@
             "description": "Child's tasks",
             "items": {}
           },
-          "presents": {
+          "gifts": {
             "type": "array",
-            "description": "Child's presents",
+            "description": "Child's gifts",
             "items": {}
           },
           "name": {
@@ -1210,7 +1210,7 @@
         }
 },
 
-"GetPresentsResponse": {
+"GetgiftsResponse": {
     "type": "object",
     "properties": {
       "name": {
@@ -1397,8 +1397,8 @@
          "tasks" : {
  "$ref": "#/definitions/GetAllTasksResponse"
          },
-         "presents" : {
-              "$ref": "#/definitions/GetPresentsResponse"
+         "gifts" : {
+              "$ref": "#/definitions/GetgiftsResponse"
          }
         
               }}}}}

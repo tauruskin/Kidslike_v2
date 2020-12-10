@@ -12,6 +12,7 @@ const {
 } = require("../helpers/errors/auth.errors");
 const { UserModel } = require("../users/users.model");
 const { mailing } = require("../helpers/auth/mailing");
+const { serializeUser } = require("../users/users.serializer");
 
 exports.signUp = async (req, res, next) => {
   const { email, password, username } = req.body;
@@ -31,7 +32,7 @@ exports.signUp = async (req, res, next) => {
     verificationToken: uuid.v4(),
   });
   mailing.sendEmailForVarification(user);
-  return res.status(201).send({ email, username, _id: user._id });
+  return res.status(201).send(serializeUser(user));
 };
 
 exports.signIn = async (req, res, next) => {
@@ -56,7 +57,7 @@ exports.signIn = async (req, res, next) => {
   });
   return res.status(201).send({
     token,
-    user: { email, username: user.username, _id: user._id },
+    user: serializeUser(user),
   });
 };
 
