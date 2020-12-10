@@ -11,7 +11,7 @@ function HabitsList() {
     const close = () => { setShowAddHabitModal(false) };
 
     return (
-        <>
+        <div className={styles.listHolder}>
             <div className={styles.gifsTitleContainer}>
                 <div className={styles.giftIcon}></div>
                 <h1 className={styles.giftTitle}>Звички</h1>
@@ -29,7 +29,7 @@ function HabitsList() {
             </ul> 
             <Button label={'Додати звичку +'} handleClick={() => setShowAddHabitModal(true)} type={'button'} orange={true} />
             {showAddHabitModal && <AddHabbit close={() => close()}/>}
-        </>
+        </div>
     )
 }
 

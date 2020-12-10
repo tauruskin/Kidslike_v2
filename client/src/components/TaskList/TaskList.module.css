@@ -63,4 +63,8 @@
     font-size: 22px;
     line-height: 1.18;
   }
+
+  .listHolder {
+    text-align: center;
+  }
 }

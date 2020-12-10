@@ -11,7 +11,7 @@ export default function TaskList() {
     const close = () => { setShowAddTaskModal(false) };
 
     return (
-        <>
+        <div className={styles.listHolder}>
             <div className={styles.gifsTitleContainer}>
                 <div className={styles.giftIcon}></div>
                 <h1 className={styles.giftTitle}>Задачі</h1>
@@ -29,6 +29,6 @@ export default function TaskList() {
             </ul>
             <Button label={'Додати задачу +'} handleClick={() => setShowAddTaskModal(true)} type={'button'} orange={true} />
             {showAddTaskModal && <AddTask close={() => close()} />}
-        </>
+        </div>
     )
 }
