@@ -3,12 +3,17 @@ import HabitCheckBtn from '../../UIcomponents/HabitCheckBtn/HabitCheckBtn'
 
 import styles from './HabitSubmitBox.module.css';
 
-function HabitSubmitBox() {
+function HabitSubmitBox({repeat}) {
     return (
         <div className={styles.submitBox}>
-            <p className={styles.submitBoxTitle}>Підтвердження</p>
-            <HabitCheckBtn isCheckMark={true} handelClick={() => { }} label={'Підтвердити виконання'}/>
-            <HabitCheckBtn handelClick={() => { }} label={'Підтвердити не виконання'} />
+            {repeat ?
+                <><p className={styles.submitBoxTitle}>Повторити</p>
+                    <HabitCheckBtn isRepeatMark={repeat} handelClick={() => { }} label={'Підтвердити виконання'} />
+                </> :
+                <><p className={styles.submitBoxTitle}>Підтвердження</p>
+                    <HabitCheckBtn isCheckMark={true} handelClick={() => { }} label={'Підтвердити виконання'} />
+                    <HabitCheckBtn handelClick={() => { }} label={'Підтвердити не виконання'} />
+                </>}
         </div>
     )
 }
