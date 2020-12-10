@@ -17,14 +17,14 @@ export default function Navigation() {
           </NavLink>
         </li>
         <li className={styles.listItem}>
-          <img className={styles.itemImg} src={pin} alt="pin" />
           <NavLink className={styles.navLink} to="/home">
+            <img className={styles.itemImg} src={pin} alt="pin" />
             Звички i задачi
           </NavLink>
         </li>
         <li className={styles.listItem}>
-          <img className={styles.itemImg} src={gift} alt="gift" />
           <NavLink className={styles.navLink} to="/home/gifts">
+            <img className={styles.itemImg} src={gift} alt="gift" />
             Подарунки
           </NavLink>
         </li>
