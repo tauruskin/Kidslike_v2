@@ -7,7 +7,6 @@ import arrow from '../../img/svg/arrow.svg';
 import Button from '../UIcomponents/Button/Button'
 import array from './testArray';
 import styles from './LeftSideBar.module.css';
-import AddHabbit from '../modals/addHabbit/AddHabbit';
 import AddChildren from '../modals/addChildren/AddChildren';
 
 
