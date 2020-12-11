@@ -1,58 +1,67 @@
-.container{
-    display: flex;
-        align-items: center;
-        margin-bottom: 30px;
-        margin-top: 56px;
+.container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 56px;
 }
-.giftImage{
-     margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    border-radius: 15px;
-    overflow: hidden;
-    margin-top: 10px;
+
+.giftImage {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 10px;
 }
-.giftIcon{
-    width: 40px;
-    height: 40px;
-      margin-right: 20px;
+
+.giftIcon {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
 }
-.giftImageContainer{
-    position: relative;
+
+.giftImageContainer {
+  position: relative;
 }
-.gifsTitleContainer{
-    display: flex;
-    align-items: center;
-    margin-bottom: 53px;
+
+.gifsTitleContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 53px;
 }
-.giftAvatar{
-   width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color:white;
-    padding: 5px;
-    position: absolute;
-    top: 5px;
-    left: 5px;
+
+.giftAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  padding: 5px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
 }
-.giftAvatar > img{
-    width: 30px;
-    height: 30px;
+
+.giftAvatar > img {
+  width: 30px;
+  height: 30px;
 }
-.giftTitle{
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 500;
-    line-height:1.19;
-    letter-spacing: 0em;
+
+.giftTitle {
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.19;
+  letter-spacing: 0em;
 }
-.giftName{
-    font-size: 22px;
-    font-weight: 900;
-    margin-bottom: -3px;
+
+.giftName {
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: -3px;
 }
-.GiftContainer{
-margin:-10px auto;
+
+.GiftContainer {
+  margin: 0 auto;
 }
 
 .giftCard {
@@ -65,30 +74,36 @@ margin:-10px auto;
   margin-bottom: 10px;
   padding: 10px;
 }
+
 .giftCard:last-child {
   margin-bottom: 31px;
 }
+
 .dotsImage {
   margin-left: auto;
   margin-bottom: 7px;
   margin-right: 5px;
-  
 }
+
 .moreBtnFolder {
   margin-right: 5px;
 }
+
 .starPrice {
   display: flex;
   align-items: center;
 }
+
 .starPrice > img {
   width: 20px;
   height: 20px;
   margin-right: 3px;
 }
+
 .starPrice > span {
   font-size: 22px;
 }
+
 .giftButton {
   width: 120px;
   height: 38px;
@@ -99,15 +114,18 @@ margin:-10px auto;
   margin-left: auto;
   margin-bottom: 11px;
 }
+
 .giftButton:hover,
 .giftButton:focus {
   color: #828282;
   border-color: #bdbdbd;
   background-color: #e5e5e5;
 }
+
 .buttonPricePosition {
   display: flex;
 }
+
 @media screen and (max-width: 767px) {
   .giftCard {
     width: 280px;
@@ -123,9 +141,22 @@ margin:-10px auto;
     line-height: 1.18;
   }
 }
-@media screen and (min-width: 1200px) {
-  .container{
-    margin-left: auto;
-        width: 60%;
+
+@media screen and (min-width: 768px) {
+  .container {
+    margin: -7px;
+  }
+
+  .giftCard {
+    width: 337px;
+    height: 296px;
+    margin: 7px;
+  }
 }
+
+@media screen and (min-width: 1200px) {
+  .container {
+    /* margin-left: auto;
+    width: 60%; */
+  }
 }
