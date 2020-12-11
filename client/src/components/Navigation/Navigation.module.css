@@ -88,12 +88,8 @@
   .itemImg {
     margin-right: 0;
   }
-  .listItem {
-    margin: 0;
-  }
-  .listItem:not(:last-child) {
-    margin: 0;
-  }
+  .listItem,
+  .listItem:not(:last-child),
   .listItem:last-child {
     margin: 0;
   }
