@@ -14,3 +14,7 @@ exports.UpdateHabitSchema = Joi.object({
     points: Joi.string(),
     daysToComplete: Joi.array(),
 }).min(1);
+
+exports.validateIdSchema = Joi.object({
+    id: Joi.objectId(),
+});

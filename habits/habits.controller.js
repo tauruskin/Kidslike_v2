@@ -1,3 +1,4 @@
+const { NotFound } = require("../helpers/errors/auth.errors");
 const { HabitModel } = require("./habits.model");
 
 exports.createHabit = async (req, res, next) => {
@@ -44,15 +45,10 @@ exports.updateHabit = async (req, res, next) => {
 };
 
 exports.deleteHabit = async (req, res, next) => {
-  try {
     const { id } = req.params;
 
     const deleteHabit = await HabitModel.findByIdAndDelete(id);
     if (!deleteHabit) {
-      return res.status(404).send("Child not found");
-    }
+      throw new NotFound('Habit not found')    }
     return res.status(204).send();
-  } catch (err) {
-    next(err);
-  }
 };
