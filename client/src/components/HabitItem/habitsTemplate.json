@@ -55,5 +55,24 @@
                 null,
                 null
             ]
+        },
+        {
+            "childName": "Petro",
+            "gender": "boy",
+            "habitName": "40 minutes of yoga",
+            "points": 6,
+            "startDate": 1607425000011,
+            "days": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         }
     ]
