@@ -1,10 +1,16 @@
-// const Joi = require("joi");
-// Joi.objectId = require("joi-objectid")(Joi);
+const Joi = require("joi");
+Joi.objectId = require("joi-objectid")(Joi);
 
-// exports.validateIdSchema = Joi.object({
-//   contactId: Joi.objectId(),
-// });
+exports.CreateHabitSchema = Joi.object({
+    name: Joi.string().required(),
+    childId: Joi.string().required(),
+    points: Joi.string().required(),
+    daysToComplete: Joi.array().items(Joi.string()).length(10),
+});
 
-// exports.validateSomeName = Joi.object({
-//   someStr: Joi.string(),
-// });
+exports.UpdateHabitSchema = Joi.object({
+    name: Joi.string(),
+    childId: Joi.string(),
+    points: Joi.string(),
+    daysToComplete: Joi.array(),
+}).min(1);
