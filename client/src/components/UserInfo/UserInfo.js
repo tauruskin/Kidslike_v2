@@ -1,23 +1,29 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import defaultLogo from '../../img/header/userInfo.svg';
 import logout from '../../img/header/logout.svg';
 import style from './UserInfo.module.css';
 import { NavLink } from 'react-router-dom';
-import Logout from '../Logout/Logout';
-import LogoutModal from '../Logout/LogoutModal'
+// import Logout from '../Logout/Logout';
+// import LogoutModal from '../Logout/LogoutModal'
+import Logout from '../Logout/Logout'
 
 
-export default class UserInfo extends Component  {
-  state = {
-    isModalOpen: false,
-  };
-  handleOpenModal = () => {
-    this.setState({ isModalOpen: true });
-  };
-  handleCloseModal = () => {
-    this.setState({ isModalOpen: false });
-  };
-  render() {
+export default function UserInfo()  {
+  // state = {
+  //   isModalOpen: false,
+  // };
+  // handleOpenModal = () => {
+  //   this.setState({ isModalOpen: true });
+  // };
+  // handleCloseModal = () => {
+  //   this.setState({ isModalOpen: false });
+  const [showModal, setShowModal] = useState(false)
+  const close = () => {setShowModal(false)}
+
+
+
+  
+ 
     return (
       <>
         <div className={style.userInfoContainer}>
@@ -28,13 +34,11 @@ export default class UserInfo extends Component  {
           />
           <span className={style.userName}>Name</span>
           <NavLink to="/">
-            <img src={logout} alt="logout" className={style.logout} onClick={this.handleOpenModal} />
+            <img src={logout} alt="logout" className={style.logout} onClick={() => setShowModal(true)} />
           </NavLink>
-          {this.state.isModalOpen && <LogoutModal onClose={this.handleCloseModal}>
-            <Logout onClose={this.handleCloseModal} />
-          </LogoutModal>}
+          {showModal && <Logout close={() => close()}/>}
         </div>
       </>
     );
-  }
+
 }
