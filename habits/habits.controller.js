@@ -30,18 +30,14 @@ exports.getHabitById = async (req, res, next) => {
 };
 
 exports.updateHabit = async (req, res, next) => {
-  try {
     const { id } = req.params;
     const updatedHabit = await HabitModel.findByIdAndUpdate(id, req.body, {
       new: true,
     });
     if (!updatedHabit) {
-      return res.status(404).send("Habit not found");
+      throw new NotFound('Habit not found')  
     }
     return res.status(200).send(updatedHabit);
-  } catch (err) {
-    next(err);
-  }
 };
 
 exports.deleteHabit = async (req, res, next) => {

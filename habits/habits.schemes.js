@@ -12,7 +12,7 @@ exports.UpdateHabitSchema = Joi.object({
     name: Joi.string(),
     childId: Joi.string(),
     points: Joi.string(),
-    daysToComplete: Joi.array(),
+    daysToComplete: Joi.array().length(10),
 }).min(1);
 
 exports.validateIdSchema = Joi.object({
