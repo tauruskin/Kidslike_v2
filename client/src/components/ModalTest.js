@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AddChildren from './modals/addChildren/AddChildren';
 import AddHabbit from './modals/addHabbit/AddHabbit';
+import AddPresent from './modals/addPresent/AddPresent';
 import AddTask from './modals/addTask/AddTask';
 import ChangeHabbit from './modals/changeHabbit/ChangeHabbit';
 import ChangeTask from './modals/changeTask/ChangeTask';
@@ -15,7 +16,7 @@ export const ModalTest = () => {
   return (
     <>
       <button onClick={() => setModalShow(true)}>test modal</button>
-      {modalShow && <AddChildren close={close} />}
+      {modalShow && <AddPresent close={close} />}
     </>
   );
 };

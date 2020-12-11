@@ -13,7 +13,8 @@ export const BasicInput = ({
   labelWidth,
   inputWidth,
   type,
-  password
+  password,
+  onBlur
 }) => 
 {
   const inputClasses = [styles.input];
@@ -44,6 +45,7 @@ export const BasicInput = ({
         placeholder={placeholder}
         style={{ width: inputWidth }}
         onChange={handleChange}
+        onBlur={onBlur}
       />
     </div>
   );

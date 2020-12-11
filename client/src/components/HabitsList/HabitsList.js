@@ -17,13 +17,13 @@ function HabitsList() {
                 <h1 className={styles.giftTitle}>Звички</h1>
             </div>
             <ul className={styles.HabitList}>
-                {habitsTemplate.map(el => (
+                {habitsTemplate.map((el, i) => (
                     <li
                         key={el.startDate}
                         className={styles.HabitItem}
                     >
                         <MoreButton type={'habit'} />
-                        <HabitItem  {...el}/>
+                        <HabitItem {...el}/>
                         </li>
                 ))}
             </ul> 
