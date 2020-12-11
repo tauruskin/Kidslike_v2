@@ -24,7 +24,7 @@ router.get("/", asyncWrapper(getHabits));
 router.get("/:id", asyncWrapper(getHabitById));
 
 // // 3. U - Update
-router.patch("/:id", validate(UpdateHabitSchema), asyncWrapper(updateHabit));
+router.patch("/:id", authorize, validate(UpdateHabitSchema), asyncWrapper(updateHabit));
 
 // 4. D - Delete
 router.delete("/:id", authorize, validate(validateIdSchema, 'params'), asyncWrapper(deleteHabit));
