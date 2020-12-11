@@ -2,13 +2,21 @@ import React, { useState } from 'react';
 
 import styles from './AddChildren.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
+import { createChildren } from '../../../redux/children/childrenActions';
+import { useDispatch } from 'react-redux';
 
 const AddChildren = ({ close }) => {
+  const dispatch = useDispatch();
   const [childName, setChildName] = useState('');
   const [childGender, setChildGender] = useState('');
 
   const handleSubmit = evt => {
     console.log('name:', childName, 'Gender:', childGender);
+
+    dispatch(
+      createChildren({ name: childName, gender: childGender, points: 0 }),
+    );
+
     evt.preventDefault();
     close();
   };

@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 
 import styles from './AddHabbit.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
+import { createHabbit } from '../../../redux/habbit/habbitActions';
+import { useDispatch } from 'react-redux';
 
 const AddHabbit = ({ close }) => {
+  const dispatch = useDispatch();
   const [habbitName, setHabbitName] = useState('');
   const [mark, setMark] = useState('');
   const [habbitTarget, setHabbitTarget] = useState('');
@@ -16,6 +19,10 @@ const AddHabbit = ({ close }) => {
       mark,
       'habbitTarget',
       habbitTarget,
+    );
+
+    dispatch(
+      createHabbit({ name: habbitName, childId: habbitTarget, points: mark }),
     );
     evt.preventDefault();
     close();
