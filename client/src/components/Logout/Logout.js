@@ -1,15 +1,10 @@
 import React from 'react';
 import styles from './logout.module.css';
-import modalBackDrop from '../modalBackDrop/ModalBackDrop'
-import moduleName from '../UIcomponents/Button/Button'
-import { orange } from '@material-ui/core/colors';
-const {
-  Container,
-  Text,
- Button,
- ButtonWrapper,
-} = styles
-const Logout = ({ close  }) =>{
+import modalBackDrop from '../modalBackDrop/ModalBackDrop';
+import moduleName from '../UIcomponents/Button/Button';
+// import { orange } from '@material-ui/core/colors';
+const { Container, Text, Button, ButtonWrapper } = styles;
+const Logout = ({ close }) => {
   return (
     <>
       <div className={Container}>
@@ -18,10 +13,10 @@ const Logout = ({ close  }) =>{
           {/* <button className={Button} onClick={() => close()}>
             Так
           </button> */}
-          <Button className={(orange, Button)} onClick={() => close()}>
+          <Button className={('#ff9800', Button)} onClick={() => close()}>
             Так
           </Button>
-          <Button className={(orange, Button)} onClick={() => close()}>
+          <Button className={('#ff9800', Button)} onClick={() => close()}>
             Ні
           </Button>
           {/* <button className={Button} onClick={() => close()}>
@@ -31,7 +26,6 @@ const Logout = ({ close  }) =>{
       </div>
     </>
   );
-}
+};
 
-
-export default modalBackDrop(Logout)
+export default modalBackDrop(Logout);
