@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import styles from './AddTask.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
 import { createTask } from '../../../redux/tasks/taskActions';

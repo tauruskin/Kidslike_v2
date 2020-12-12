@@ -10,10 +10,13 @@ export default function Button({
   type,
   orange,
   transparent,
-  white
+  white, 
+  bordered,
+  disabled
 }) {
   return (
     <button
+      disabled={disabled}
       type={type}
       onClick={handleClick}
       className={
@@ -22,7 +25,9 @@ export default function Button({
           : transparent
           ? styles.ButtonTransparent
           : white
-          ? styles.ButtonWhite
+          ? styles.ButtonWhite :
+          bordered 
+          ?  styles.ButtonBordered
           : styles.ButtonGrey
       }
     >
@@ -36,4 +41,5 @@ Button.propTypes = {
   label: PropTypes.string.isRequired,
   handleClick: PropTypes.func,
   orange: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
