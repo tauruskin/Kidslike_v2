@@ -11,6 +11,8 @@ const { giftsRouter } = require("./gifts/gifts.router");
 const { habitsRouter } = require("./habits/habits.router");
 const { tasksRouter } = require("./tasks/tasks.router");
 const { authRouter } = require("./auth/auth.router");
+const { getCurretUser } = require("./users/users.controller");
+const { userRouter } = require("./users/users.router");
 
 const IMAGES_PATH = path.join(__dirname, "public/images");
 
@@ -67,6 +69,7 @@ exports.CrudServer = class {
     this.server.use("/api/gifts", giftsRouter);
     this.server.use("/api/habits", habitsRouter);
     this.server.use("/api/tasks", tasksRouter);
+    this.server.use("/api/user", userRouter)
 
     // end
     //put your route here

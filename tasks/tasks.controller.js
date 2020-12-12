@@ -14,7 +14,9 @@ exports.getTasks = async (req, res, next) => {
   try {
     console.log("get task");
     const tasks = await TaskModel.find();
+     console.log(tasks);
     return res.status(200).send(tasks);
+   
   } catch (err) {
     next(err);
   }
