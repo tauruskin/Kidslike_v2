@@ -41,10 +41,10 @@ router.post("/", validate(CreateHabitSchema), asyncWrapper(createHabit));
 
 // 2. R - Read
 router.get("/", asyncWrapper(getHabits));
-router.get(
-  "/:habitsId",
-  asyncWrapper(getHabitById)
-);
+// router.get(
+//   "/:habitsId",
+//   asyncWrapper(getHabitById)
+// );
 
 // // 3. U - Update
 router.patch(

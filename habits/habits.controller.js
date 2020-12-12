@@ -6,13 +6,15 @@ exports.createHabit = async (req, res, next) => {
 };
 
 exports.getHabits = async (req, res, next) => {
-  const habits = await HabitModel.find();
+  const { children } = req.body;
+  const habits = await HabitModel.find({ childId: children});
   return res.status(200).send(habits);
 };
 
-exports.getHabitById = async (req, res, next) => {
-  return res.status(200).send(req.habit);
-};
+// exports.getHabitById = async (req, res, next) => {
+//   const { id } = req.habit;
+//   return res.status(200).send(req.habit);
+// };
 
 exports.updateHabit = async (req, res, next) => {
   const { id } = req.habit;
