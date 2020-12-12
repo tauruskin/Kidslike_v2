@@ -19,7 +19,7 @@ const mongoose = require("mongoose");
 
 const router = Router();
 
-router.all(authorize);
+// router.all(authorize);
 
 router.param("habitsId", async (req, res, next, habitsId) => {
   if (!mongoose.Types.ObjectId.isValid(habitsId)) {
