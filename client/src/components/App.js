@@ -13,6 +13,7 @@ import Navigation from './Navigation/Navigation';
 import Layout from './Layout/Layout';
 import ChildTaskPage from './ChildTaskPage/ChildTaskPage';
 import HabitsList from './HabitsList/HabitsList';
+import { ModalTest } from './ModalTest';
 /*
  *temporary variable for test.
  */
@@ -35,6 +36,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <ModalTest />
         <Header privatePage={privatePage}>
           <Logo privatePage={privatePage} />
           {privatePage && <Navigation familyRender={this.familyRender} />}
