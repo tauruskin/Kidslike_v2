@@ -8,10 +8,8 @@ export const CustomSelect = ({
   name,
   handleChange,
   labelText,
-  labelWidth,
   onBlur,
 }) => {
-  const inputClasses = [styles.input];
   
   // {/* не стилизируются options, но если использовать материал или подобное, то не будет по факту самого селекта */}
   return (
