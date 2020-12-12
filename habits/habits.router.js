@@ -25,10 +25,19 @@ router.post("/", validate(CreateHabitSchema), asyncWrapper(createHabit));
 
 // 2. R - Read
 router.get("/", asyncWrapper(getHabits));
-router.get("/:id", asyncWrapper(getHabitById));
+router.get(
+  "/:id",
+  validate(validateIdSchema, "params"),
+  asyncWrapper(getHabitById)
+);
 
 // // 3. U - Update
-router.patch("/:id", validate(UpdateHabitSchema), asyncWrapper(updateHabit));
+router.patch(
+  "/:id",
+  validate(validateIdSchema, "params"),
+  validate(UpdateHabitSchema),
+  asyncWrapper(updateHabit)
+);
 
 // 4. D - Delete
 router.delete(
