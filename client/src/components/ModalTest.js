@@ -19,9 +19,9 @@ export const ModalTest = () => {
   return (
     <>
       <button onClick={() => setModalShow(true)}>test modal</button>
-      {modalShow && <AddHabbit close={close} />}
+      {modalShow && <AddTask close={close} />}
       <button onClick={() => setModalShow2(true)}>test modal</button>
-      {modalShow2 && <ChangeHabbit close={close2} />}
+      {modalShow2 && <ChangeTask close={close2} />}
     </>
   );
 };

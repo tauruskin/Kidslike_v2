@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 
 import styles from './AddTask.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
+import { createTask } from '../../../redux/tasks/taskActions';
+import { useDispatch } from 'react-redux';
 
 const AddTask = ({ close }) => {
+  const dispatch = useDispatch();
+
   const [taskName, setTaskName] = useState('');
   const [mark, setMark] = useState('');
   const [taskTarget, setTaskTarget] = useState('');
@@ -19,6 +23,15 @@ const AddTask = ({ close }) => {
       taskTarget,
       'taskDays',
       taskDays,
+    );
+
+    dispatch(
+      createTask({
+        name: taskName,
+        childId: taskTarget,
+        points: mark,
+        days: taskDays,
+      }),
     );
     evt.preventDefault();
     close();

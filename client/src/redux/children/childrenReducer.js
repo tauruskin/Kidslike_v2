@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { createChildren } from './childrenActions';
+import { createChildren, changeChildrenMark } from './childrenActions';
 
 const children = createReducer([], {
   [createChildren]: (state, { payload }) => [
@@ -10,5 +10,7 @@ const children = createReducer([], {
       points: payload.points,
     },
   ],
+  [changeChildrenMark]: (state, { payload }) =>
+    state.map(el => (el._id === payload._id ? (el = payload) : el)),
 });
 export default children;

@@ -41,7 +41,7 @@ const AddChildren = ({ close }) => {
               <input
                 name="gender"
                 type="radio"
-                onChange={() => setChildGender('girl')}
+                onChange={() => setChildGender('female')}
               />
               <span className={styles.radiobox}></span>
             </label>
@@ -50,7 +50,7 @@ const AddChildren = ({ close }) => {
               <input
                 name="gender"
                 type="radio"
-                onChange={() => setChildGender('boy')}
+                onChange={() => setChildGender('male')}
               />
               <span className={styles.radiobox}></span>
             </label>
