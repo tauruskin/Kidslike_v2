@@ -5,8 +5,7 @@ exports.createChild = async (req, res, next) => {
 
   const newChild = await ChildModel.create(req.body);
   const newChildId = await newChild.id;
-   const userId = req.user._id;
-   console.log(userId)
+   const userId = req.user.userId;
   
   const updatedUser = await UserModel.findByIdAndUpdate(userId)
   if (!updatedUser)
