@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './BasicInput.module.css'
 
 export const BasicInput = ({
+  reg,
   lastchild,
   forLabel,
   id,
@@ -11,20 +12,13 @@ export const BasicInput = ({
   handleChange,
   placeholder,
   labelWidth,
-  inputWidth,
   type,
-  password,
-  onBlur
+  styleValidate
 }) => 
 {
   const inputClasses = [styles.input];
-  // will be uncomment tomorrow when add validation  (don't delete)
-  
 
-  // const error = error ? <div className={styles.input__error}>{error ? error.message : null}</div> : null;
-  // if (disabled) inputClasses.push(styles.input_disabled);
-
-  if(password) inputClasses.push(styles.input_password);
+  if(styleValidate)inputClasses.push(styles.invalid);
   if(lastchild) inputClasses.push(styles.lastChild);
 
   return (
@@ -37,15 +31,14 @@ export const BasicInput = ({
         {labelText}
       </label>
       <input
+        ref={reg}
         type={type}
         id={id}
         className={inputClasses.join(' ')}
         value={value}
         name={name}
         placeholder={placeholder}
-        style={{ width: inputWidth }}
         onChange={handleChange}
-        onBlur={onBlur}
       />
     </div>
   );

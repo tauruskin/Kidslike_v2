@@ -8,15 +8,21 @@ import ChangeTask from './modals/changeTask/ChangeTask';
 
 export const ModalTest = () => {
   const [modalShow, setModalShow] = useState(false);
+  const [modalShow2, setModalShow2] = useState(false);
 
   const close = () => {
     setModalShow(prev => false);
   };
 
+  const close2 = () => {
+    setModalShow2(prev => false);
+  };
   return (
     <>
       <button onClick={() => setModalShow(true)}>test modal</button>
-      {modalShow && <AddPresent close={close} />}
+      {modalShow && <AddTask close={close} />}
+      <button onClick={() => setModalShow2(true)}>test modal</button>
+      {modalShow2 && <ChangeTask close={close2} />}
     </>
   );
 };

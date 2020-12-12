@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import ChangeHabbit from '../../modals/changeHabbit/ChangeHabbit';
 import ChangeTask from '../../modals/changeTask/ChangeTask';
     
-import styles from './DropDownMenu.module.css';
+import styles from './BubbleComponent.module.css';
 
-export default function DropDownMenu({ modalType, handleClick}) {
+export default function BubbleComponent({ modalType, handleClick, msg, width, height, top}) {
     const [showModal, setShowModal] = useState(false);
     const close = () => {
         setShowModal(!showModal);
     };
 
     return (
+        msg ? <div style = {{width:width,height:height,top:top}}
+        className={styles.arrowBox}><p className={styles.authText}>{msg}</p></div> : 
         <>
             <div className={styles.reviews}>
                 <div className={styles.comment}>

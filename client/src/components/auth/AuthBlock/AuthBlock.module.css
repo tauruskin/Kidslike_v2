@@ -1,13 +1,12 @@
-.container {
-  padding: 50px 118px 50px 117px;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
-  background-color: #fff;
-  height: 100%;
+.container{
+  padding: 20px 20px 86px 20px;
+  /* max-width: 280px;
+  margin: 0 auto; */
 }
 
 .title {
   margin: 0;
+  margin-bottom: 30px ;
   font-weight: 900;
   font-size: 26px;
   line-height: 31px;
@@ -25,4 +24,30 @@
 
 .authLink {
   color: #828282;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 767px) {
+  .title{
+    font-size: 22px;
+    line-height: 26px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 50px 118px 59px 117px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    background-color: #fff;
+  }
+}
+
+
+@media screen and (max-width: 1199px) {
+
+}
+
+@media screen and (min-width: 1200px) {
+
 }

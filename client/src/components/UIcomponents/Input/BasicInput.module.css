@@ -1,3 +1,19 @@
+@media screen and (max-width: 767px) {
+  .inputBlock {
+    width: 280px;
+    margin: 0 auto;
+  }
+  .input {
+    width: 280px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .input {
+    width: 340px;
+  }
+}
+
 .input {
   height: 44px;
   width: 280px;
@@ -19,6 +35,14 @@
 
 .input[disabled] {
   cursor: not-allowed;
+}
+
+.input.valid {
+  border-color: #43d190;
+}
+
+.input.invalid {
+  border-color: #fe6083;
 }
 
 .input.lastChild {

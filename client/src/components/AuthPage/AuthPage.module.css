@@ -6,14 +6,8 @@
     background-size: cover;
     text-align: center;
 }
-/* .picture{
-         background-image: url('../../img/main.png');
-         background-repeat: no-repeat;
-         padding-bottom: 70px;
-         margin-top: 70px;
-} */
 .title {
-font-family: Rubik;
+   font-family: 'Rubik';
 font-style: normal;
 font-weight: normal;
     font-weight: 900;
@@ -24,7 +18,7 @@ font-weight: normal;
 }
 
 .description {
-    font-family: Rubik;
+     font-family: 'Rubik';
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -39,7 +33,7 @@ font-weight: normal;
 }
 .btn__signIn,
 .btn__signOut {
-    font-family: Rubik;
+     font-family: 'Rubik';
     width: 70%;
     font-style: normal;
     font-weight: normal;
@@ -93,7 +87,7 @@ font-weight: normal;
     }
     .btn {
         display: grid;
-        grid-template-columns: 184px 184px;
+        grid-template-columns: 180px 180px;
         grid-gap: 15px;
         justify-content: center;
     }
