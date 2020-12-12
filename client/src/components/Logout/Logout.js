@@ -1,30 +1,37 @@
 import React from 'react';
 import styles from './logout.module.css';
-const {
-  Container,
-  Text,
- Button,
- ButtonWrapper,
-} = styles
+import modalBackDrop from '../modalBackDrop/ModalBackDrop';
+import Button from '../UIcomponents/Button/Button';
+import { NavLink } from 'react-router-dom';
 
-
-const Logout = ({ onClose,  }) =>{
+const { Container, Text, btn, ButtonWrapper } = styles;
+const Logout = ({ close }) => {
   return (
     <>
       <div className={Container}>
         <p className={Text}>Ви впевненi що хочете вийти?</p>
         <div className={ButtonWrapper}>
-          <button className={Button} onClick={onClose}>
-            Так
-          </button>
-          <button className={Button} onClick={onClose}>
-            Ні
-          </button>
+          <NavLink to="/">
+            <Button
+              orange={true}
+              type="button"
+              className={btn}
+              handleClick={() => close()}
+              label="Так"
+            />
+          </NavLink>
+
+          <Button
+            orange={true}
+            type="button"
+            className={btn}
+            handleClick={() => close()}
+            label="Hi"
+          />
         </div>
       </div>
     </>
   );
-}
+};
 
-
-export default Logout
+export default modalBackDrop(Logout);

@@ -6,17 +6,17 @@ import family from '../../img/header/family.svg';
 
 import styles from './Navigation.module.css';
 
-export default function Navigation() {
+export default function Navigation({ familyRender }) {
   return (
     <>
       <ul className={styles.navList}>
-        <li className={[styles.listItem, styles.family].join(' ')}>
-          <NavLink className={styles.navLink} to="/">
-            <img className={styles.itemImg} src={family} alt="pin" />
-            <span>
-              Сім’я
+        <li onClick={familyRender} className={[styles.listItem, styles.family].join(' ')}>
+          {/* <NavLink className={styles.navLink} to="/"> */}
+          <img className={styles.itemImg} src={family} alt="pin" />
+          <span>
+            Сім’я
             </span>
-          </NavLink>
+          {/* </NavLink> */}
         </li>
         <li className={styles.listItem}>
           <NavLink className={styles.navLink} to="/home">

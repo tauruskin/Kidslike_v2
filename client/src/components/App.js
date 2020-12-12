@@ -20,13 +20,26 @@ import { ModalTest } from './ModalTest';
 const privatePage = true;
 
 class App extends Component {
+  /*
+  *temporary state for leftSideBar.
+  */
+  state = {
+    family: true
+  }
+  /*
+  *temporary method for leftSideBar.
+  */
+  familyRender = () => {
+    this.setState({ family: !this.state.family })
+  }
+
   render() {
     return (
       <BrowserRouter>
         <ModalTest />
         <Header privatePage={privatePage}>
           <Logo privatePage={privatePage} />
-          {privatePage && <Navigation />}
+          {privatePage && <Navigation familyRender={this.familyRender} />}
           {privatePage && <UserInfo />}
         </Header>
         <Layout>
@@ -36,8 +49,8 @@ class App extends Component {
                 route.private ? (
                   <PrivateRoute key={route.label} {...route} />
                 ) : (
-                  <PublicRoute key={route.label} {...route} />
-                ),
+                    <PublicRoute family={this.state.family} key={route.label} {...route} />
+                  ),
               )}
               <Route component={NotFound} />
               <Redirect to="/home" />

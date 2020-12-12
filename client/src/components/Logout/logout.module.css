@@ -1,9 +1,8 @@
 .Container {
     padding: 25px;
     border: 3px solid;
-    border-color: #ff8626;
-    width: 100%;
-    height: 100%;
+    border-color: #fff;
+    border-radius: 20px;
     display: flex;
     text-align: center;
     flex-direction: column;
@@ -14,33 +13,36 @@
 .Text {
     font-size: 21px;
     margin-bottom: 23px;
+    color: #ff8626;
 }
 
 .ButtonWrapper {
-    width: 200px;
+    width: 100%;
     display: flex;
-    justify-content: center;
-
+    justify-content: space-between;
+    margin-right: 5px;
 }
 
-.Button {
-   display: flex;
-   min-width: 70px;
-   height: 44px;
-   padding: 12px 18px;
-   border-radius: 20px;
-   transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-   text-align: center;
-   cursor: pointer;
-   text-decoration: none;
-   font-family: 'Rubik',
-   sans-serif;
-   font-weight: 400;
-   font-size: 16px; 
-   margin-right: 10px;
+.btn {
+    display: flex;
+    min-width: 70px;
+    height: 44px;
+    color: #ff8626;
+    padding: 12px 18px;
+    border: 3px solid;
+    border-radius: 20px;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Rubik',
+        sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    margin-right: 10px;
 }
 
-.Button:hover {
+.btn:hover {
     background-color: #ff8626;
     color: #fff;
 }

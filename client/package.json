@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "@hookform/resolvers": "^1.1.2",
     "prop-types": "^15.7.2",
     "react-hook-form": "^6.12.2",
     "yup": "^0.32.6"
