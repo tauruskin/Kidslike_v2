@@ -3,30 +3,20 @@ const { HabitModel } = require("./habits.model");
 
 exports.createHabit = async (req, res, next) => {
   const newHabit = await HabitModel.create(req.body);
-
   return res.status(201).send(newHabit);
 };
 
 exports.getHabits = async (req, res, next) => {
-  try {
-    const habits = await HabitModel.find();
-    return res.status(200).send(habits);
-  } catch (err) {
-    next(err);
-  }
+  const habits = await HabitModel.find();
+  return res.status(200).send(habits);
 };
 
 exports.getHabitById = async (req, res, next) => {
-  try {
-    const habit = await HabitModel.findById(req.params.id);
-    if (!habit) {
-      return res.status(404).send("Contact not found");
-    }
-
-    return res.status(200).send(habit);
-  } catch (err) {
-    next(err);
+  const habit = await HabitModel.findById(req.params.id);
+  if (!habit) {
+    return res.status(404).send("Contact not found");
   }
+  return res.status(200).send(habit);
 };
 
 exports.updateHabit = async (req, res, next) => {
