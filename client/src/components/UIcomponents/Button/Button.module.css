@@ -51,6 +51,12 @@
   background-color: #ffa273;
   outline: 0;
 }
+.ButtonOrange[disabled]:hover,
+.ButtonOrange[disabled]:focus {
+  border: 1px solid #ff8626;
+  background-color: #ff8626;
+  outline: 0;
+}
 
 .ButtonWhite:hover,
 .ButtonWhite:focus {
