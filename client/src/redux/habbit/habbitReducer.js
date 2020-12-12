@@ -11,6 +11,9 @@ const userHabits = createReducer(userHabitsState, {
       name: payload.name,
       childId: payload.childId,
       points: payload.points,
+      daysToComplete: payload.daysToComplete,
+      createdAt: payload.createdAt,
+      updatedAt: payload.updatedAt,
     },
   ],
   [updateHabbit]: (state, { payload }) =>
