@@ -9,9 +9,9 @@ const UserSchema = new Schema(
     passwordHash: { type: String, required: true },
     username: { type: String, required: true },
     tokens: [{ type: String }],
-    verificationToken: { type: String },
+    // verificationToken: { type: String },
     // avatarURL: {type: String, unique: true},
-    children: [{type : String, unique: true}]
+    children: [{type : String, unique: true }]
   },
   {
     timestamps: true,
