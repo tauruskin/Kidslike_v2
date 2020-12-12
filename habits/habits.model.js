@@ -1,4 +1,3 @@
-const { array } = require("joi");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
@@ -13,13 +12,13 @@ function daysToCompleteExample(length) {
 const habitSchema = new Schema(
   {
     name: { type: String, required: true },
-    points: { type: String, required: true },
+    points: { type: Number, required: true },
     daysToComplete: {
       type: [String],
       default: daysToCompleteExample(10),
       required: true,
     },
-    childId: { type: String, required: true },
+    childId: { type: mongoose.ObjectId, required: true },
   },
   {
     timestamps: true,

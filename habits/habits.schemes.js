@@ -3,15 +3,14 @@ Joi.objectId = require("joi-objectid")(Joi);
 
 exports.CreateHabitSchema = Joi.object({
   name: Joi.string().required(),
-  childId: Joi.string().required(),
-  points: Joi.string().required(),
-  daysToComplete: Joi.array().items(Joi.string()).length(10),
+  childId: Joi.objectId().required(),
+  points: Joi.number().required(),
 });
 
 exports.UpdateHabitSchema = Joi.object({
   name: Joi.string(),
-  childId: Joi.string(),
-  points: Joi.string(),
+  childId: Joi.objectId(),
+  points: Joi.number(),
   daysToComplete: Joi.array().length(10),
 }).min(1);
 
