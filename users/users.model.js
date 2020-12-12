@@ -1,3 +1,4 @@
+const { array } = require("joi");
 const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
@@ -10,6 +11,7 @@ const UserSchema = new Schema(
     tokens: [{ type: String }],
     verificationToken: { type: String },
     // avatarURL: {type: String, unique: true},
+    children: [{type : String, unique: true}]
   },
   {
     timestamps: true,

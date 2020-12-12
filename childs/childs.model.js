@@ -6,6 +6,7 @@ const childSchema = new Schema(
     name: { type: String, required: true },
     gender: { type: String, required: true },
     points: { type: String, required: false },
+    userId: {type: String, required:true}
     // gifts: масив id
     // habits: масив id
     // tasks: масив id
