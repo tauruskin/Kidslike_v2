@@ -1,14 +1,12 @@
 const { ChildModel } = require("../childs/childs.model");
-const { NotFound } = require("../helpers/errors/auth.errors");
 const { GiftModel } = require("./gifts.model");
 
 exports.createGift = async (req, res, next) => {
-    const newGift = await GiftModel.create(req.body);
-    return res.status(201).send(newGift);
+  const newGift = await GiftModel.create(req.body);
+  return res.status(201).send(newGift);
 };
 
 exports.getGifts = async (req, res, next) => {
-
   const { childrenId } = req.user;
   if (!childrenId.length) return res.status(200).send([]);
 
@@ -22,34 +20,19 @@ exports.getGifts = async (req, res, next) => {
 };
 
 exports.getGiftById = async (req, res, next) => {
-  const { giftId } = req.params;
-    const gift = await GiftModel.findById(giftId);
-    if (!gift) {
-     throw new NotFound("Gift not found");
-    }
-    return res.status(200).send(gift); 
+  return res.status(200).send(req.gift);
 };
 
 exports.updateGift = async (req, res, next) => {
-    const { giftId } = req.params;
-    const updatedGift = await GiftModel.findByIdAndUpdate(giftId, req.body, {
-      new: true,
-    });
-    if (!updatedGift) {
-      throw new NotFound("Gift not found");
-    }
-    return res.status(200).send(updatedGift);
-
+  const { _id } = req.gift;
+  const updatedGift = await GiftModel.findByIdAndUpdate(_id, req.body, {
+    new: true,
+  });
+  return res.status(200).send(updatedGift);
 };
 
 exports.deleteGift = async (req, res, next) => {
-
-    const { giftId } = req.params;
-
-    const deleteGift = await GiftModel.findByIdAndDelete(giftId);
-    if (!deleteGift) {
-      throw new NotFound("Gift not found");
-    }
-    return res.status(204).send();
- 
+  const { _id } = req.gift;
+  await GiftModel.findByIdAndDelete(_id);
+  return res.status(204).send();
 };
