@@ -13,7 +13,7 @@ const userHabitsInitialState = [{
 
 const userHabits = createReducer(userHabitsInitialState, {
   [actions.getAllHabitsSuccess]: (_, { payload }) => {
-    return {...payload.habits};
+    return {...payload};
   },
 
   [actions.createHabbitSuccess]: (state, { payload }) => [

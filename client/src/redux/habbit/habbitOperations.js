@@ -1,15 +1,21 @@
 import axios from 'axios';
 import actions from './habbitActions';
-
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZmQ2MDg2NzNlYzkwNjJiMThjYzI4MjEiLCJpYXQiOjE2MDc4ODU1ODAsImV4cCI6MTYwODA1ODM4MH0.-pM6Ue5CTAUpu0BcYmUevUl67pxLgMi5_MmUc8TkO8Y'
 // axios.defaults.baseURL = 'http://kidslike-v2.top/';
 // axios.defaults.baseURL = 'http://localhost:5000/';
+axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` }
 
-const getAllHabits = childrenId => async dispatch => {
+
+const getAllHabits = children => async dispatch => {
     dispatch(actions.getAllHabitsRequest());
     try {
-        const response = await axios.get('http://localhost:5000/api/habits/', childrenId);
+        console.log(children);
+        const response = await axios.get('http://localhost:5000/api/habits/', { children });
+        console.log({ children});
         dispatch(actions.getAllHabitsSuccess(response.data));
+        console.log(response.data);
     } catch (error) {
+        // console.log(error);
         dispatch(actions.getAllHabitsError(error));
     }
 };

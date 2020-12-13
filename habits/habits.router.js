@@ -40,7 +40,7 @@ router.param("habitsId", async (req, res, next, habitsId) => {
 router.post("/", validate(CreateHabitSchema), asyncWrapper(createHabit));
 
 // 2. R - Read
-router.get("/", asyncWrapper(getHabits));
+router.get("/", authorize, asyncWrapper(getHabits));
 // router.get(
 //   "/:habitsId",
 //   asyncWrapper(getHabitById)

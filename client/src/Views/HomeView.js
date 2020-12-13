@@ -16,13 +16,7 @@ class HomeView extends Component {
   componentDidMount() {
     // console.log(this.props.token);
     // authOperations.setToken(this.props.token);
-    this.props.getAllHabits({
-      childrenId: [
-        '5fd16a4cf5208f36bc9ca42b',
-        '5fd49e403e33eb3eda2f2af5',
-        '5fd4900e2cff4236e2f9c14e'
-      ]
-    });
+    this.props.getAllHabits( ['5fd16a4cf5208f36bc9ca42b']);
   }
 
   render() {
