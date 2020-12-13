@@ -6,6 +6,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import BubbleComponent from '../UIcomponents/BubbleComponent/BubbleComponent';
 import styles from '../LoginForm/LoginForm.module.css'
+import { signUp } from '../../redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
 
 const schema = yup.object().shape({
   email: yup.string().email('E-mail введено некоректно').required(`Це обов'язкове поле`)
@@ -28,7 +30,8 @@ export const RegisterForm = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = data => console.log(data);
+  const dispatch = useDispatch();
+  const onSubmit = data => dispatch(signUp(data));
 
   return(
     <>
@@ -43,7 +46,7 @@ export const RegisterForm = () => {
       reg={register} lastChild forLabel='username' id='username' labelText='Ваше ім’я' name='username' placeholder='Ім’я' labelWidth='147' inputWidth='340' type='text' /> 
 
       <div className={styles.btn_centred}>
-        <Button  type='Submit' label='Увійти' orange/>
+        <Button  type='Submit' label='Зареєструватись' orange/>
       </div>
       {errors.email && <BubbleComponent width='230px' height='45px' 	top='82px' msg={errors.email.message}/>}
       {errors.password && <BubbleComponent width='300px' height='46px' top='174px' msg={errors.password.message}/>}
