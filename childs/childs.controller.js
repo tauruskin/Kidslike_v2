@@ -6,7 +6,6 @@ exports.createChild = async (req, res, next) => {
   const newChild = await ChildModel.create(req.body);
   const newChildId =  newChild.id;
    const userId = req.user._id;
- 
   const updatedUser = await UserModel.findByIdAndUpdate(userId);
   if (!updatedUser)
   {
@@ -25,11 +24,10 @@ exports.createChild = async (req, res, next) => {
 
 exports.getChildren = async (req, res, next) => {
   const { childrenId } = req.user;
-  const child = await ChildModel.find({ _id: childrenId.map((el) => el) });
-    console.log(child)
-    return res.status(200).send(child);
-
-
+  const children = await ChildModel.find({ _id: childrenId.map((el) => el) });
+  if (!children)
+  { return res.status(404).send("Children not found")}
+    return res.status(200).send(children);
 };
 
 exports.getChildById = async (req, res, next) => {
