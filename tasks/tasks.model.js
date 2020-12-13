@@ -1,5 +1,3 @@
-const { string } = require("joi");
-const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
@@ -7,10 +5,9 @@ const taskSchema = new Schema(
   {
     name: { type: String, required: true },
     points: { type: Number, required: true },
-    isCompleted: { type: String, 
-      required: false },
+    isCompleted: { type: Boolean, required: false, default: false },
     daysToComplete: { type: String, required: false },
-    childId: { type: String, required: false},
+    childId: { type: mongoose.ObjectId, required: false },
   },
   {
     timestamps: true,
