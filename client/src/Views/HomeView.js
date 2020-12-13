@@ -14,9 +14,7 @@ import habbitOperations from '../redux/habbit/habbitOperations';
 class HomeView extends Component {
 
   componentDidMount() {
-    // console.log(this.props.token);
-    // authOperations.setToken(this.props.token);
-    this.props.getAllHabits( ['5fd16a4cf5208f36bc9ca42b']);
+    this.props.getAllHabits();
   }
 
   render() {

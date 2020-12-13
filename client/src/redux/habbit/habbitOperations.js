@@ -6,12 +6,10 @@ const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZmQ2MDg2NzNl
 axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` }
 
 
-const getAllHabits = children => async dispatch => {
+const getAllHabits = () => async dispatch => {
     dispatch(actions.getAllHabitsRequest());
     try {
-        console.log(children);
-        const response = await axios.get('http://localhost:5000/api/habits/', { children });
-        console.log({ children});
+        const response = await axios.get('http://localhost:5000/api/habits/');
         dispatch(actions.getAllHabitsSuccess(response.data));
         console.log(response.data);
     } catch (error) {
@@ -23,12 +21,14 @@ const getAllHabits = children => async dispatch => {
 const addHabit = habit => async dispatch => {
     dispatch(actions.createHabbitRequest());
     try { 
-        // console.log(habit);
+        console.log(habit);
         const response = await axios.post(
-            '/api/habits', { ...habit },
+            'http://localhost:5000/api/habits/', { ...habit },
         );
+        console.log(response.data);
         dispatch(actions.createHabbitSuccess(response.data));
     } catch (error) {
+        console.log('error', error);
         dispatch(actions.createHabbitError(error.message));
     }
 };
