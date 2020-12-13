@@ -11,9 +11,7 @@ const getAllHabits = () => async dispatch => {
     try {
         const response = await axios.get('http://localhost:5000/api/habits/');
         dispatch(actions.getAllHabitsSuccess(response.data));
-        console.log(response.data);
     } catch (error) {
-        // console.log(error);
         dispatch(actions.getAllHabitsError(error));
     }
 };
@@ -21,23 +19,21 @@ const getAllHabits = () => async dispatch => {
 const addHabit = habit => async dispatch => {
     dispatch(actions.createHabbitRequest());
     try { 
-        console.log(habit);
+        // console.log(habit);
         const response = await axios.post(
             'http://localhost:5000/api/habits/', { ...habit },
         );
-        console.log(response.data);
         dispatch(actions.createHabbitSuccess(response.data));
     } catch (error) {
-        console.log('error', error);
         dispatch(actions.createHabbitError(error.message));
     }
 };
 
-const updateHabit = data => async dispatch => {
+const updateHabit = (data, id) => async dispatch => {
     dispatch(actions.updateHabbitRequest());
     try {
-        await axios.patch(`/api/habits/${data.id}`, data).then(res => {
-            dispatch(actions.updateHabbitSuccess(res.data.updatedHabit));
+        await axios.patch(`http://localhost:5000/api/habits/${id}`, data).then(res => {
+            dispatch(actions.updateHabbitSuccess(res.data));
         });
     } catch (error) {
         dispatch(actions.updateHabbitError(error.message));
