@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const { asyncWrapper } = require("../helpers/wrapper_Try_Catch")
+
 const {
   createChild,
   getChilds,
@@ -12,16 +14,16 @@ const router = Router();
 // CRUD
 
 // 1. C - Create
-router.post("/", createChild);
+router.post("/", asyncWrapper(createChild));
 
 // 2. R - Read
-router.get("/", getChilds);
-router.get("/:id", getChildById);
+router.get("/", asyncWrapper(getChilds));
+router.get("/:id", asyncWrapper(getChildById));
 
 // // 3. U - Update
-router.patch("/:id", updateChild);
+router.patch("/:id", asyncWrapper(updateChild));
 
 // 4. D - Delete
-router.delete("/:id", deleteChild);
+router.delete("/:id",asyncWrapper(deleteChild));
 
 exports.childsRouter = router;

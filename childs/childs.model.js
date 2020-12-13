@@ -6,9 +6,10 @@ const childSchema = new Schema(
     name: { type: String, required: true },
     gender: { type: String, required: true },
     points: { type: String, required: false },
-    // gifts: масив id
-    // habits: масив id
-    // tasks: масив id
+    userId: { type: String, required: true },
+    gifts: [{ type: String, required: false }],
+    habits: [{ type: String, required: false }],
+    tasks: [{ type: String, required: false }],
   },
   {
     timestamps: true,

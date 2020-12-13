@@ -5,8 +5,10 @@ const taskSchema = new Schema(
   {
     name: { type: String, required: true },
     points: { type: String, required: true },
-    isCompleted: { type: String, required: false },
-    daysToComplet: { type: String, required: false },
+    isCompleted: { type: String, 
+ 
+      required: false },
+    daysToComplete: { type: String, required: false },
     childId: { type: String, required: true },
   },
   {
