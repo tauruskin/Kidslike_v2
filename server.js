@@ -12,7 +12,6 @@ const { giftsRouter } = require("./gifts/gifts.router");
 const { habitsRouter } = require("./habits/habits.router");
 const { tasksRouter } = require("./tasks/tasks.router");
 const { authRouter } = require("./auth/auth.router");
-const { getCurretUser } = require("./users/users.controller");
 const { userRouter } = require("./users/users.router");
 
 const IMAGES_PATH = path.join(__dirname, "public/images");

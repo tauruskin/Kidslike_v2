@@ -4,39 +4,44 @@ const { ChildModel } = require("./childs.model");
 exports.createChild = async (req, res, next) => {
 
   const newChild = await ChildModel.create(req.body);
-  const newChildId = await newChild.id;
-   const userId = req.user.userId;
-  
-  const updatedUser = await UserModel.findByIdAndUpdate(userId)
+  const newChildId =  newChild.id;
+   const userId = req.user._id;
+ 
+  const updatedUser = await UserModel.findByIdAndUpdate(userId);
   if (!updatedUser)
   {
     res.status(400).send("User not found")
-    }
-  updatedUser.children.push(newChildId)
+  }
+  updatedUser.childrenId.push(newChildId)
   updatedUser.save()
-  return res.status(201).send(newChild);
+  return res.status(201).send({
+    id: newChild._id,
+    name: newChild.name,
+    gender: newChild.gender,
+    points: 0
+  });
 
 };
 
-exports.getChilds = async (req, res, next) => {
-    const childs = await ChildModel.find();
-  return res.status(200).send(childs);
+exports.getChildren = async (req, res, next) => {
+  const { childrenId } = req.user;
+  const child = await ChildModel.find({ _id: childrenId.map((el) => el) });
+    console.log(child)
+    return res.status(200).send(child);
+
 
 };
 
 exports.getChildById = async (req, res, next) => {
-  
     const child = await ChildModel.findById(req.params.id);
     if (!child) {
       return res.status(404).send("Contact not found");
     }
-
     return res.status(200).send(child);
   
 };
 
 exports.updateChild = async (req, res, next) => {
-
     const { id } = req.params;
     const updatedChild = await ChildModel.findByIdAndUpdate(id, req.body, {
       new: true,
