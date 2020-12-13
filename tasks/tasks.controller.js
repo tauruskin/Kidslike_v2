@@ -1,5 +1,4 @@
 const { TaskModel } = require("./tasks.model");
-const { NotFound } = require("../helpers/errors/auth.errors");
 
 exports.createTask = async (req, res, next) => {
   const newtask = await TaskModel.create(req.body);
@@ -12,29 +11,20 @@ exports.getTasks = async (req, res, next) => {
 };
 
 exports.getTaskById = async (req, res, next) => {
-  const task = await TaskModel.findById(req.params.id);
-  if (!task) {
-    throw new NotFound("Task not found");
-  }
-  return res.status(200).send(task);
+  return res.status(200).send(req.task);
 };
 
 exports.updateTask = async (req, res, next) => {
-  const { id } = req.params;
-  const updatedtask = await TaskModel.findByIdAndUpdate(id, req.body, {
+  const { _id } = req.task;
+  await TaskModel.findByIdAndUpdate(_id, req.body, {
     new: true,
   });
-  if (!updatedtask) {
-    throw new NotFound("Task not found");
-  }
+
   return res.status(200).send(updatedtask);
 };
 
 exports.deleteTask = async (req, res, next) => {
-  const { id } = req.params;
-  const deletetask = await TaskModel.findByIdAndDelete(id);
-  if (!deletetask) {
-    throw new NotFound("Task not found");
-  }
+  const { _id } = req.task;
+  await TaskModel.findByIdAndDelete(_id);
   return res.status(204).send();
 };
