@@ -7,6 +7,7 @@ exports.createHabit = async (req, res, next) => {
 
 exports.getHabits = async (req, res, next) => {
   const { children } = req.body;
+  console.log(children);
   const habits = await HabitModel.find({ childId: children});
   return res.status(200).send(habits);
 };
