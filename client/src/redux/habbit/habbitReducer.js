@@ -19,6 +19,7 @@ const userHabits = createReducer(userHabitsInitialState, {
     ...state,
 
     {
+      _id: payload._id,
       name: payload.name,
       childId: payload.childId,
       points: payload.points,
