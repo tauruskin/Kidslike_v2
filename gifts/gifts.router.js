@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const { authorize } = require("../helpers/auth/token_verify");
+const { asyncWrapper } = require("../helpers/wrapper_Try_Catch");
 const {
   createGift,
   getGifts,
@@ -9,14 +11,15 @@ const {
 
 const router = Router();
 
+// router.all(authorize);
 // CRUD
 
 // 1. C - Create
-router.post("/", createGift);
+router.post("/", asyncWrapper(createGift));
 
 // 2. R - Read
-router.get("/", getGifts);
-router.get("/:id", getGiftById);
+router.get("/", authorize, asyncWrapper(getGifts));
+router.get("/:id", asyncWrapper(getGiftById));
 
 // // 3. U - Update
 router.patch("/:id", updateGift);

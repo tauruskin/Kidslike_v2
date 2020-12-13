@@ -3,6 +3,7 @@ const { GiftModel } = require("./gifts.model");
 exports.createGift = async (req, res, next) => {
   try {
     const newGift = await GiftModel.create(req.body);
+    const { _id } = req.user;
 
     return res.status(201).send(newGift);
   } catch (err) {
@@ -11,12 +12,25 @@ exports.createGift = async (req, res, next) => {
 };
 
 exports.getGifts = async (req, res, next) => {
-  try {
-    const gifts = await GiftModel.find();
-    return res.status(200).send(gifts);
-  } catch (err) {
-    next(err);
-  }
+  console.log('req.user', req.user)
+
+console.log('req.user.childrenId', req.user.childrenId)
+   
+
+    // if (childrenId.length) {
+    //   const promises = childrenId.map(GiftModel.findById);
+    //   const gifts = await Promise.all(promises);
+    // }
+    const testgifts = [
+      {
+        name: "Legotest",
+        price: "5",
+        imageUrl: "",
+        childId: 1,
+      },
+    ];
+    return res.status(200).send(testgifts);
+
 };
 
 exports.getGiftById = async (req, res, next) => {
