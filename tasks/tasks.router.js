@@ -6,22 +6,23 @@ const {
   updateTask,
   deleteTask,
 } = require("./tasks.controller");
+const { asyncWrapper } = require("../helpers/wrapper_Try_Catch");
 
 const router = Router();
 
 // CRUD
 
 // 1. C - Create
-router.post("/", createTask);
+router.post("/", asyncWrapper(createTask));
 
 // 2. R - Read
-router.get("/", getTasks);
-router.get("/:id", getTaskById);
+router.get("/", asyncWrapper(getTasks));
+router.get("/:id", asyncWrapper(getTaskById));
 
 // // 3. U - Update
-router.patch("/:id", updateTask);
+router.patch("/:id",asyncWrapper(updateTask));
 
 // 4. D - Delete
-router.delete("/:id", deleteTask);
+router.delete("/:id", asyncWrapper(deleteTask));
 
 exports.tasksRouter = router;
