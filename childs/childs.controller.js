@@ -1,39 +1,42 @@
+const { UserModel } = require("../users/users.model");
 const { ChildModel } = require("./childs.model");
 
 exports.createChild = async (req, res, next) => {
-  try {
-    const newChild = await ChildModel.create(req.body);
 
-    return res.status(201).send(newChild);
-  } catch (err) {
-    next(err);
-  }
+  const newChild = await ChildModel.create(req.body);
+  const newChildId = await newChild.id;
+   const userId = req.user.userId;
+  
+  const updatedUser = await UserModel.findByIdAndUpdate(userId)
+  if (!updatedUser)
+  {
+    res.status(400).send("User not found")
+    }
+  updatedUser.children.push(newChildId)
+  updatedUser.save()
+  return res.status(201).send(newChild);
+
 };
 
 exports.getChilds = async (req, res, next) => {
-  try {
     const childs = await ChildModel.find();
-    return res.status(200).send(childs);
-  } catch (err) {
-    next(err);
-  }
+  return res.status(200).send(childs);
+
 };
 
 exports.getChildById = async (req, res, next) => {
-  try {
+  
     const child = await ChildModel.findById(req.params.id);
     if (!child) {
       return res.status(404).send("Contact not found");
     }
 
     return res.status(200).send(child);
-  } catch (err) {
-    next(err);
-  }
+  
 };
 
 exports.updateChild = async (req, res, next) => {
-  try {
+
     const { id } = req.params;
     const updatedChild = await ChildModel.findByIdAndUpdate(id, req.body, {
       new: true,
@@ -42,13 +45,11 @@ exports.updateChild = async (req, res, next) => {
       return res.status(404).send("Child not found");
     }
     return res.status(200).send(updatedChild);
-  } catch (err) {
-    next(err);
-  }
+  
 };
 
 exports.deleteChild = async (req, res, next) => {
-  try {
+
     const { id } = req.params;
 
     const deleteChild = await ChildModel.findByIdAndDelete(id);
@@ -56,7 +57,5 @@ exports.deleteChild = async (req, res, next) => {
       return res.status(404).send("Child not found");
     }
     return res.status(204).send();
-  } catch (err) {
-    next(err);
-  }
+ 
 };
