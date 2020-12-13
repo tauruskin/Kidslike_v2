@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const { Schema, ObjectID } = mongoose;
 
 const giftSchema = new Schema(
   {
     name: { type: String, required: true },
-    price: { type: String, required: true },
-    imageUrl: { type: String, required: false },
-    childId: { type: String, required: true },
+    price: { type: Number, required: true },
+    imageUrl: { type: String, default: "" },
+    childId: { type: ObjectID, required: true },
   },
   {
     timestamps: true,

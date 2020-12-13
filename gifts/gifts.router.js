@@ -8,6 +8,8 @@ const {
   updateGift,
   deleteGift,
 } = require("./gifts.controller");
+const { validate } = require("../helpers/validate");
+const { createGiftSchema } = require("./gifts.schemes");
 
 const router = Router();
 
@@ -15,7 +17,7 @@ const router = Router();
 // CRUD
 
 // 1. C - Create
-router.post("/", asyncWrapper(createGift));
+router.post("/", authorize, validate(createGiftSchema), asyncWrapper(createGift));
 
 // 2. R - Read
 router.get("/", authorize, asyncWrapper(getGifts));
