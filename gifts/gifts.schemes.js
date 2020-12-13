@@ -1,10 +1,20 @@
-// const Joi = require("joi");
-// Joi.objectId = require("joi-objectid")(Joi);
+const Joi = require("joi");
+Joi.objectId = require("joi-objectid")(Joi);
 
-// exports.validateIdSchema = Joi.object({
-//   contactId: Joi.objectId(),
-// });
+exports.createGiftSchema = Joi.object({
+    name: Joi.string().required(),
+    price: Joi.number().required(),
+    imageUrl: Joi.string(),
+    childId: Joi.objectId().required()
+});
 
-// exports.validateSomeName = Joi.object({
-//   someStr: Joi.string(),
-// });
+exports.updateGiftSchema = Joi.object({
+    name: Joi.string(),
+    price: Joi.number(),
+    imageUrl: Joi.string(),
+    childId: Joi.objectId(),
+})
+
+exports.validateIdSchema = Joi.object({
+    giftId: Joi.objectId(),
+});
