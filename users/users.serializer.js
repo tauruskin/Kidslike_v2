@@ -3,5 +3,8 @@ exports.serializeUser = (user) => {
     id: user._id,
     email: user.email,
     // avatarURL: user.avatarURL,
+    childrenId: user.childrenId,
+    verificationToken: user.verificationToken,
+    tokens: user.tokens
   };
 };
