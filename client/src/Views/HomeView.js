@@ -12,7 +12,6 @@ class HomeView extends Component {
     const { match } = this.props;
     return (
       <>
-        <h2>Home</h2>
         <LeftSideBar family={this.props.family} />
         <Container>
           <Route path={`${match.path}`} exact>
@@ -24,14 +23,6 @@ class HomeView extends Component {
             <ChildTaskPage />
           </Route>
         </Container>
-        {/* <Route path={`${match.path}`} exact>
-            <HabitsList />
-            <TaskList />
-        </Route>
-        <Route path={`${match.path}/Gifts`} component={GiftsView} />
-        <Route path={`${match.path}/child`}>
-          <ChildTaskPage />
-        </Route> */}
       </>
     );
   }

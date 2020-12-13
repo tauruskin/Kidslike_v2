@@ -3,6 +3,7 @@ require("dotenv").config({ path: path.join(__dirname, ".env") });
 const swaggerUi = require("swagger-ui-express"),
   swaggerDocument = require("./swagger.json");
 const express = require("express");
+const cors = require("cors");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const { testsRouter } = require("./test/tests.router");
@@ -11,6 +12,7 @@ const { giftsRouter } = require("./gifts/gifts.router");
 const { habitsRouter } = require("./habits/habits.router");
 const { tasksRouter } = require("./tasks/tasks.router");
 const { authRouter } = require("./auth/auth.router");
+const { userRouter } = require("./users/users.router");
 
 const IMAGES_PATH = path.join(__dirname, "public/images");
 
@@ -30,6 +32,7 @@ exports.CrudServer = class {
 
   initServer() {
     this.server = express();
+    this.server.use(cors());
     this.server.use("/images", express.static(IMAGES_PATH));
   }
 
@@ -67,6 +70,7 @@ exports.CrudServer = class {
     this.server.use("/api/gifts", giftsRouter);
     this.server.use("/api/habits", habitsRouter);
     this.server.use("/api/tasks", tasksRouter);
+    this.server.use("/api/user", userRouter);
 
     // end
     //put your route here
