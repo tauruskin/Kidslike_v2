@@ -7,7 +7,7 @@ import authAction from './authActions';
 // };
 
 // axios.defaults.baseURL = 'http://kidslike-v2.top/';
-axios.defaults.baseURL = 'http:localhost:5000/';
+axios.defaults.baseURL = 'http://localhost:5000/';
 
 const setToken = token =>
   (axios.defaults.headers.common.Authorization = `${token}`);
@@ -33,7 +33,7 @@ export const signUp = userData => async dispatch => {
   await axios
     .post('api/auth/signUp', userData)
     .then(response => {
-      console.log('response',response)
+      console.log('response', response);
       // axios
       //   .post('api/auth/signUp', userData)
       //   .then(response => {
