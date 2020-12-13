@@ -10,12 +10,12 @@ import Container from '../components/Container/Container';
 import authOperations from '../redux/auth/authOperations';
 import authSelector from '../redux/auth/authSelectors';
 import habbitOperations from '../redux/habbit/habbitOperations';
+import { getAllHabits } from '../redux/habbit/habbitSelector';
 
 class HomeView extends Component {
-
-  componentDidMount() {
-    this.props.getAllHabits();
-  }
+  // componentDidMount() {
+  //   this.props.getAllHabits();
+  // }
 
   render() {
     const { match } = this.props;
@@ -38,6 +38,7 @@ class HomeView extends Component {
 }
 
 const mapStateToProps = state => ({
+  // allHabits: getAllHabits(state),
   // token: authSelector.isAuthenticated(state),
 });
 

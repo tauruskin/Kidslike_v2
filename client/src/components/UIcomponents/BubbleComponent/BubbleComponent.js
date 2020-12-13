@@ -4,7 +4,7 @@ import ChangeTask from '../../modals/changeTask/ChangeTask';
     
 import styles from './BubbleComponent.module.css';
 
-export default function BubbleComponent({ modalType, handleClick, msg, width, height, top}) {
+export default function BubbleComponent({ modalType, handleClick, msg, width, height, top, habitData}) {
     const [showModal, setShowModal] = useState(false);
     const close = () => {
         setShowModal(!showModal);
@@ -22,7 +22,7 @@ export default function BubbleComponent({ modalType, handleClick, msg, width, he
                     </div>
                 </div>
             </div>
-            {modalType === 'habit' && showModal && <ChangeHabbit close={() => { close(); handleClick() }} />}
+                {modalType === 'habit' && showModal && <ChangeHabbit data={habitData} close={() => { close(); handleClick() }} />}
             {modalType === 'task' && showModal && <ChangeTask close={() => { close(); handleClick() }} />}
             {/* {modalType === 'gift' && showModal && <ChangeGift close={close} />} */}
         </>
