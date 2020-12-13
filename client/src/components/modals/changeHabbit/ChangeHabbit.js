@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 import styles from './ChangeHabbit.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
-import {
-  updateHabbit,
-  deleteHabbit,
-} from '../../../redux/habbit/habbitActions';
+// import {
+//   updateHabbit,
+//   deleteHabbit,
+// } from '../../../redux/habbit/habbitActions';
 import { useDispatch } from 'react-redux';
 const ChangeHabbit = ({ close }) => {
   const dispatch = useDispatch();
@@ -23,11 +23,11 @@ const ChangeHabbit = ({ close }) => {
       habbitTarget,
     );
 
-    dispatch(
-      updateHabbit({ name: habbitName, childId: habbitTarget, points: mark }),
-    );
-    evt.preventDefault();
-    close();
+    // dispatch(
+    //   updateHabbit({ name: habbitName, childId: habbitTarget, points: mark }),
+    // );
+    // evt.preventDefault();
+    // close();
   };
 
   const handleDelete = () => {
