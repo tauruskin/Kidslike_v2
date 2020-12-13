@@ -9,11 +9,11 @@ exports.createGiftSchema = Joi.object({
 });
 
 exports.updateGiftSchema = Joi.object({
-    email: Joi.string().email(),
-    subscription: Joi.string(),
-    password: Joi.string(),
-    token: Joi.string(),
-});
+    name: Joi.string(),
+    price: Joi.number(),
+    imageUrl: Joi.string(),
+    childId: Joi.objectId(),
+})
 
 exports.validateIdSchema = Joi.object({
     giftId: Joi.objectId(),

@@ -9,24 +9,48 @@ const {
   deleteGift,
 } = require("./gifts.controller");
 const { validate } = require("../helpers/validate");
-const { createGiftSchema } = require("./gifts.schemes");
+const {
+  createGiftSchema,
+  updateGiftSchema,
+  validateIdSchema,
+} = require("./gifts.schemes");
 
 const router = Router();
 
-// router.all(authorize);
 // CRUD
 
 // 1. C - Create
-router.post("/", authorize, validate(createGiftSchema), asyncWrapper(createGift));
+router.post(
+  "/",
+  authorize,
+  validate(createGiftSchema),
+  asyncWrapper(createGift)
+);
 
 // 2. R - Read
 router.get("/", authorize, asyncWrapper(getGifts));
-router.get("/:id", asyncWrapper(getGiftById));
+router.get(
+  "/:giftId",
+  authorize,
+  validate(validateIdSchema, "params"),
+  asyncWrapper(getGiftById)
+);
 
 // // 3. U - Update
-router.patch("/:id", updateGift);
+router.patch(
+  "/:giftId",
+  authorize,
+  validate(validateIdSchema, "params"),
+  validate(updateGiftSchema),
+  asyncWrapper(updateGift)
+);
 
 // 4. D - Delete
-router.delete("/:id", deleteGift);
+router.delete(
+  "/:giftId",
+  authorize,
+  validate(validateIdSchema, "params"),
+  asyncWrapper(deleteGift)
+);
 
 exports.giftsRouter = router;
