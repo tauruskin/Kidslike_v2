@@ -5,7 +5,7 @@ const userHabitsInitialState = {
   name: 'Test Habit #1',
   childId: '5fd16a4cf5208f36bc9ca42b',
   points: 5,
-  daysToComplete: [true, true, null, null, false, false, false, false, false, false],
+  daysToComplete: [true, true, false, false, null, null, null, null, null, null],
   createdAt: '2020-12-10T09:47:43.152+00:00',
   updatedAt: '2020-12-12T10:41:05.180+00:00',
 };
