@@ -6,6 +6,10 @@ exports.createTask = async (req, res, next) => {
 };
 
 exports.getTasks = async (req, res, next) => {
+  // todo фильтрация. только таски детей этого пользователя
+
+  const { childrenId } = req.user;
+
   const tasks = await TaskModel.find();
   return res.status(200).send(tasks);
 };
@@ -16,7 +20,7 @@ exports.getTaskById = async (req, res, next) => {
 
 exports.updateTask = async (req, res, next) => {
   const { _id } = req.task;
-  await TaskModel.findByIdAndUpdate(_id, req.body, {
+  const updatedtask = await TaskModel.findByIdAndUpdate(_id, req.body, {
     new: true,
   });
 
