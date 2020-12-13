@@ -2,11 +2,11 @@ import axios from 'axios';
 import actions from './habbitActions';
 
 // axios.defaults.baseURL = 'http://kidslike-v2.top/';
+// axios.defaults.baseURL = 'http://localhost:5000/';
 
 const getAllHabits = childrenId => async dispatch => {
     dispatch(actions.getAllHabitsRequest());
     try {
-        console.log(childrenId);
         const response = await axios.get('http://localhost:5000/api/habits/', childrenId);
         dispatch(actions.getAllHabitsSuccess(response.data));
     } catch (error) {

@@ -16,7 +16,13 @@ class HomeView extends Component {
   componentDidMount() {
     // console.log(this.props.token);
     // authOperations.setToken(this.props.token);
-    this.props.getAllHabits({children: ['5fd49e403e33eb3eda2f2af5']});
+    this.props.getAllHabits({
+      childrenId: [
+        '5fd16a4cf5208f36bc9ca42b',
+        '5fd49e403e33eb3eda2f2af5',
+        '5fd4900e2cff4236e2f9c14e'
+      ]
+    });
   }
 
   render() {
@@ -43,7 +49,11 @@ const mapStateToProps = state => ({
   // token: authSelector.isAuthenticated(state),
 });
 
-export default connect(mapStateToProps, {
+const mapDispatchToProps = { getAllHabits: habbitOperations.getAllHabits,}
+
+export default connect(mapStateToProps, mapDispatchToProps
+  // {
   // onLogOut: authOperations.logOut,
-  getAllHabits: habbitOperations.getAllHabits,
-})(HomeView);
+  // getAllHabits: habbitOperations.getAllHabits,
+// }
+)(HomeView);
