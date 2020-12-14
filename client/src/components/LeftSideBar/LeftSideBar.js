@@ -9,22 +9,20 @@ import array from './testArray';
 import styles from './LeftSideBar.module.css';
 import AddChildren from '../modals/addChildren/AddChildren';
 
-
-
 export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
       const [showAddChildren, setShowAddChildren] = useState(false);
     const close = () => { setShowAddChildren(false) };
   return (
     <>
-      <div className={Family ? [styles.container, styles.renderClass].join(' ') : styles.container}>
+        <div className={Family ? [styles.container, styles.renderClass].join(' ') : styles.container}>
         <div className={styles.titleName}>
-          <img src={family} alt="family" className={styles.iconFamily} />
+            <img src={family} alt="family" className={styles.iconFamily} />
           <h1 className={styles.title}>Сім’я</h1>
         </div>
-        <div className={styles.cardsContainer}>
+        <ul className={styles.cardsContainer}>
           {array.map((el, i) => {
             return (
-              <div key={i} className={styles.leftSideBarCard}>
+              <li key={i} className={styles.leftSideBarCard}>
                 <div className={styles.childTitle}>
                   <img
                     className={styles.leftSideBarAvatar}
@@ -52,12 +50,12 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
                   До виконаних задач
                   <img src={arrow} alt="arrow" className={styles.arrow} />{' '}
                 </NavLink>
-              </div>
+              </li>
             );
           })}
+        </ul>
           <Button label={"Додати дитину  +"} transparent={true} type={'button'} handleClick={() => setShowAddChildren(true)} ></Button>
-           {showAddChildren && <AddChildren close={() => close()}/>}
-        </div>
+          {showAddChildren && <AddChildren close={() => close()} />}
       </div>
     </>
   );

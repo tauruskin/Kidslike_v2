@@ -13,7 +13,7 @@ export default function Navigation({ familyRender , family,familyRenderAnotherLi
         <li onClick={familyRender} className={[styles.listItem, styles.family].join(' ')} style={family?{backgroundColor:"transparent", border: "1px solid #bdbdbd"}:{backgroundColor:'',border: ""}}>
           {/* <NavLink className={styles.navLink} to="/"> */}
           <img className={styles.itemImg} src={familyImg} alt="pin" />
-          <span>
+          <span className={styles.familySpan}>
             Сім’я
             </span>
           {/* </NavLink> */}
