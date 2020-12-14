@@ -2,15 +2,7 @@ const { TaskModel } = require("./tasks.model");
 
 exports.createTask = async (req, res, next) => {
   const newTask = await TaskModel.create(req.body);
-  const newTaskId = newTask.id;
-  const childId = req.params.id;
-  const updatedTask = await TaskModel.findByIdAndUpdate(newTaskId);
-  if (!updatedTask) {
-    res.status(400).send("task not created");
-  }
-  updatedTask.childId = childId;
-  updatedTask.save();
-  return res.status(201).send(updatedTask);
+  return res.status(201).send(newTask);
 };
 
 exports.getTasks = async (req, res, next) => {
