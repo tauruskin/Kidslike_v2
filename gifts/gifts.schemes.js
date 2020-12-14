@@ -13,4 +13,4 @@ exports.updateGiftSchema = Joi.object({
   price: Joi.number(),
   imageUrl: Joi.string(),
   childId: Joi.objectId(),
-}).min(1);
+});
