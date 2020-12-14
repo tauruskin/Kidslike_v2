@@ -1,10 +1,14 @@
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 
-exports.validateIdSchema = Joi.object({
-  contactId: Joi.objectId(),
+exports.createChildSchema = Joi.object({
+  name: Joi.string().required(),
+  gender: Joi.string().required(),
+  // userId: Joi.objectId().required(),
 });
 
-exports.validateSomeName = Joi.object({
-  someStr: Joi.string(),
-});
+exports.updateChildSchema = Joi.object({
+  name: Joi.string(),
+  points: Joi.number(),
+  gender: Joi.string(),
+}).min(1);
