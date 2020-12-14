@@ -1,61 +1,45 @@
+const { NotFound } = require("../helpers/errors/auth.errors");
 const { UserModel } = require("../users/users.model");
 const { ChildModel } = require("./childs.model");
 
 exports.createChild = async (req, res, next) => {
-
-  const newChild = await ChildModel.create(req.body);
-  const newChildId = await newChild.id;
-   const userId = req.user.userId;
-  
-  const updatedUser = await UserModel.findByIdAndUpdate(userId)
-  if (!updatedUser)
-  {
-    res.status(400).send("User not found")
-    }
-  updatedUser.children.push(newChildId)
-  updatedUser.save()
+  const newChild = await ChildModel.create({
+    ...req.body,
+    userId: req.user._id,
+  });
+  await UserModel.findByIdAndUpdate(req.user._id, {
+    $push: { childId: newChild._id },
+  });
   return res.status(201).send(newChild);
-
 };
 
-exports.getChilds = async (req, res, next) => {
-    const childs = await ChildModel.find();
-  return res.status(200).send(childs);
-
+exports.getChildren = async (req, res, next) => {
+  const { childId } = req.user;
+  const children = await ChildModel.find({ _id: childId.map((el) => el) });
+  // todo не будет работать [] = true
+  if (!children) {
+    throw new NotFound("You don't have a child yet.");
+  }
+  return res.status(200).send(children);
 };
 
 exports.getChildById = async (req, res, next) => {
-  
-    const child = await ChildModel.findById(req.params.id);
-    if (!child) {
-      return res.status(404).send("Contact not found");
-    }
-
-    return res.status(200).send(child);
-  
+  return res.status(200).send(req.child);
 };
 
 exports.updateChild = async (req, res, next) => {
-
-    const { id } = req.params;
-    const updatedChild = await ChildModel.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
-    if (!updatedChild) {
-      return res.status(404).send("Child not found");
-    }
-    return res.status(200).send(updatedChild);
-  
+  const { _id } = req.child;
+  const updatedChild = await ChildModel.findByIdAndUpdate(_id, req.body, {
+    new: true,
+  });
+  return res.status(200).send(updatedChild);
 };
 
 exports.deleteChild = async (req, res, next) => {
-
-    const { id } = req.params;
-
-    const deleteChild = await ChildModel.findByIdAndDelete(id);
-    if (!deleteChild) {
-      return res.status(404).send("Child not found");
-    }
-    return res.status(204).send();
- 
+  const { _id } = req.child;
+  await ChildModel.findByIdAndDelete(_id);
+  await UserModel.findByIdAndUpdate(req.user._id, {
+    $pull: { childId: _id },
+  });
+  return res.status(204).send();
 };

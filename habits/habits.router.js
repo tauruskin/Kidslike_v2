@@ -7,11 +7,7 @@ const {
   deleteHabit,
 } = require("./habits.controller");
 const { validate } = require("../helpers/validate");
-const {
-  CreateHabitSchema,
-  UpdateHabitSchema,
-  validateIdSchema,
-} = require("./habits.schemes");
+const { createHabitSchema, updateHabitSchema } = require("./habits.schemes");
 const { asyncWrapper } = require("../helpers/wrapper_Try_Catch");
 const { authorize } = require("../helpers/auth/token_verify");
 const { HabitModel } = require("./habits.model");
@@ -19,7 +15,7 @@ const mongoose = require("mongoose");
 
 const router = Router();
 
-router.all(authorize);
+// router.all(authorize);
 
 router.param("habitsId", async (req, res, next, habitsId) => {
   if (!mongoose.Types.ObjectId.isValid(habitsId)) {
@@ -37,23 +33,26 @@ router.param("habitsId", async (req, res, next, habitsId) => {
 // CRUD
 
 // 1. C - Create
-router.post("/", validate(CreateHabitSchema), asyncWrapper(createHabit));
+router.post(
+  "/",
+  authorize,
+  validate(createHabitSchema),
+  asyncWrapper(createHabit)
+);
 
 // 2. R - Read
-router.get("/", asyncWrapper(getHabits));
-router.get(
-  "/:habitsId",
-  asyncWrapper(getHabitById)
-);
+router.get("/", authorize, asyncWrapper(getHabits));
+router.get("/:habitsId", authorize, asyncWrapper(getHabitById));
 
 // // 3. U - Update
 router.patch(
   "/:habitsId",
-  validate(UpdateHabitSchema),
+  authorize,
+  validate(updateHabitSchema),
   asyncWrapper(updateHabit)
 );
 
 // 4. D - Delete
-router.delete("/:habitsId", asyncWrapper(deleteHabit));
+router.delete("/:habitsId", authorize, asyncWrapper(deleteHabit));
 
 exports.habitsRouter = router;

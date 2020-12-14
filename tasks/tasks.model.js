@@ -4,12 +4,10 @@ const { Schema } = mongoose;
 const taskSchema = new Schema(
   {
     name: { type: String, required: true },
-    points: { type: String, required: true },
-    isCompleted: { type: String, 
- 
-      required: false },
+    points: { type: Number, required: true },
+    isCompleted: { type: Boolean, required: false, default: false },
     daysToComplete: { type: String, required: false },
-    childId: { type: String, required: true },
+    childId: { type: mongoose.ObjectId, required: false },
   },
   {
     timestamps: true,
