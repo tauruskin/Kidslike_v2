@@ -1,20 +1,24 @@
+const { NotFound } = require("../helpers/errors/auth.errors");
 const { UserModel } = require("../users/users.model");
 const { ChildModel } = require("./childs.model");
 
 exports.createChild = async (req, res, next) => {
-  const newChild = await ChildModel.create(req.body);
-  const { _id } = newChild;
-  console.log(_id);
-  console.log(req.user._id);
-  await UserModel.findByIdAndUpdate(req.user._id, { childrenId: _id });
+  const newChild = await ChildModel.create({
+    ...req.body,
+    userId: req.user._id,
+  });
+  await UserModel.findByIdAndUpdate(req.user._id, {
+    $push: { childrenId: newChild._id },
+  });
   return res.status(201).send(newChild);
 };
 
 exports.getChildren = async (req, res, next) => {
   const { childrenId } = req.user;
   const children = await ChildModel.find({ _id: childrenId.map((el) => el) });
+  // todo не будет работать [] = true
   if (!children) {
-    return res.status(404).send("Children not found");
+    throw new NotFound("You don't have a child yet.");
   }
   return res.status(200).send(children);
 };
@@ -25,7 +29,7 @@ exports.getChildById = async (req, res, next) => {
 
 exports.updateChild = async (req, res, next) => {
   const { _id } = req.child;
-  const updatedChild = await ChildModel.findByIdAndUpdate(id, req.body, {
+  const updatedChild = await ChildModel.findByIdAndUpdate(_id, req.body, {
     new: true,
   });
   return res.status(200).send(updatedChild);
@@ -34,5 +38,8 @@ exports.updateChild = async (req, res, next) => {
 exports.deleteChild = async (req, res, next) => {
   const { _id } = req.child;
   await ChildModel.findByIdAndDelete(_id);
+  await UserModel.findByIdAndUpdate(req.user._id, {
+    $pull: { childrenId: _id },
+  });
   return res.status(204).send();
 };

@@ -51,6 +51,6 @@ router.patch(
 );
 
 // 4. D - Delete
-router.delete("/:childId", asyncWrapper(deleteChild));
+router.delete("/:childId", authorize, asyncWrapper(deleteChild));
 
 exports.childsRouter = router;
