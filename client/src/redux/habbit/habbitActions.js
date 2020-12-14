@@ -1,5 +1,35 @@
 import { createAction } from '@reduxjs/toolkit';
 
-export const createHabbit = createAction('habbit/createHabbit');
-export const updateHabbit = createAction('habbit/updateHabbit');
-export const deleteHabbit = createAction('habbit/deleteHabbit');
+const createHabbitRequest = createAction('habbit/createHabbitRequest');
+const createHabbitSuccess = createAction('habbit/createHabbitSuccess');
+const createHabbitError = createAction('habbit/createHabbitError');
+
+
+const updateHabbitRequest = createAction('habbit/updateHabbitRequest');
+const updateHabbitSuccess = createAction('habbit/updateHabbitSuccess');
+const updateHabbitError = createAction('habbit/updateHabbitError');
+
+
+const deleteHabbitRequest = createAction('habbit/deleteHabbitRequest');
+const deleteHabbitSuccess = createAction('habbit/deleteHabbitSuccess');
+const deleteHabbitError = createAction('habbit/deleteHabbitError');
+
+
+const getAllHabitsRequest = createAction('habbit/getAllHabitsRequest');
+const getAllHabitsSuccess = createAction('habbit/getAllHabitsSuccess');
+const getAllHabitsError = createAction('habbit/getAllHabitsError');
+
+export default {
+    createHabbitRequest,
+    createHabbitSuccess,
+    createHabbitError,
+    updateHabbitRequest,
+    updateHabbitSuccess,
+    updateHabbitError,
+    deleteHabbitRequest,
+    deleteHabbitSuccess,
+    deleteHabbitError,
+    getAllHabitsRequest,
+    getAllHabitsSuccess,
+    getAllHabitsError,
+}

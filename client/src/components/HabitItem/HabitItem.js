@@ -5,7 +5,7 @@ import HabitSubmitBox from '../UIcomponents/HabitSubmitBox/HabitSubmitBox';
 
 import styles from './HabitItem.module.css';
 
-function HabitItem({ gender, habitName, points, startDate, days }) {
+function HabitItem({ gender, name, points, createdAt, daysToComplete }) {
   return (
     <div className={styles.habitItemFolder}>
       <img
@@ -14,9 +14,9 @@ function HabitItem({ gender, habitName, points, startDate, days }) {
         alt="avatar"
       ></img>
       <div className={styles.habitContentWrapper}>
-        <p className={styles.habitTitle}>{habitName}</p>
+        <p className={styles.habitTitle}>{name}</p>
         <ul className={styles.daysList}>
-          {days.map(el => (
+          {daysToComplete.map(el => (
             <li className={styles.daysItem}>
               <span className={styles.points}>{points}</span>
             </li>

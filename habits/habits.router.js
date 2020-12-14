@@ -19,7 +19,7 @@ const mongoose = require("mongoose");
 
 const router = Router();
 
-router.all(authorize);
+// router.all(authorize);
 
 router.param("habitsId", async (req, res, next, habitsId) => {
   if (!mongoose.Types.ObjectId.isValid(habitsId)) {
@@ -37,14 +37,10 @@ router.param("habitsId", async (req, res, next, habitsId) => {
 // CRUD
 
 // 1. C - Create
-router.post("/", validate(CreateHabitSchema), asyncWrapper(createHabit));
+router.post("/", authorize, validate(CreateHabitSchema), asyncWrapper(createHabit));
 
 // 2. R - Read
-router.get("/", asyncWrapper(getHabits));
-router.get(
-  "/:habitsId",
-  asyncWrapper(getHabitById)
-);
+router.get("/", authorize, asyncWrapper(getHabits));
 
 // // 3. U - Update
 router.patch(

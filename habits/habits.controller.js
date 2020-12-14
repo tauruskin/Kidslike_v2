@@ -6,12 +6,11 @@ exports.createHabit = async (req, res, next) => {
 };
 
 exports.getHabits = async (req, res, next) => {
-  const habits = await HabitModel.find();
+  const { childrenId } = req.user;
+  const habits = await HabitModel.find({ childId: childrenId });
+  // const { childrenId } = req.user;
+  // const habits = await HabitModel.find({ childId: childrenId  });
   return res.status(200).send(habits);
-};
-
-exports.getHabitById = async (req, res, next) => {
-  return res.status(200).send(req.habit);
 };
 
 exports.updateHabit = async (req, res, next) => {
@@ -19,13 +18,13 @@ exports.updateHabit = async (req, res, next) => {
   const updatedHabit = await HabitModel.findByIdAndUpdate(id, req.body, {
     new: true,
   });
-
   return res.status(200).send(updatedHabit);
 };
 
 exports.deleteHabit = async (req, res, next) => {
   const { id } = req.habit;
-
+  console.log(Object.keys(req));
+  console.log(req.habit);
   await HabitModel.findByIdAndDelete(id);
 
   return res.status(204).send();
