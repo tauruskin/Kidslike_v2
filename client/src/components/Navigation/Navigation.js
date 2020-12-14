@@ -10,7 +10,7 @@ export default function Navigation({ familyRender , family,familyRenderAnotherLi
   return (
     <>
       <ul className={styles.navList}>
-        <li onClick={familyRender} className={[styles.listItem, styles.family].join(' ')} style={family?{backgroundColor:"transparent", border: "1px solid #bdbdbd"}:{backgroundColor:'',border: ""}}>
+        <li onClick={familyRender} className={[styles.listItem, styles.family].join(' ')} style={family?{backgroundColor:"transparent", border: "1px solid #bdbdbd"}:{backgroundColor:"",border: ""}}>
           {/* <NavLink className={styles.navLink} to="/"> */}
           <img className={styles.itemImg} src={familyImg} alt="pin" />
           <span className={styles.familySpan}>

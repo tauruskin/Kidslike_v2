@@ -48,9 +48,9 @@ class App extends Component {
             <Switch>
               {routes.map(route =>
                 route.private ? (
-                  <PrivateRoute key={route.label} {...route} />
+                  <PrivateRoute key={route.label} {...route} family={this.state.family} />
                 ) : (
-                    <PublicRoute family={this.state.family} key={route.label} {...route} />
+                    <PublicRoute key={route.label} {...route} />
                   ),
               )}
               <Route component={NotFound} />
