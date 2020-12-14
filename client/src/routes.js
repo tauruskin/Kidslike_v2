@@ -23,6 +23,13 @@ export default [
     private: false,
   },
   {
+    path: '/verification',
+    label: 'Verify',
+    exact: true,
+    component: lazy(() => import('./Views/TokenVerifyView')),
+    private: false,
+  },
+  {
     path: '/test',
     label: 'Test Page',
     exact: true,
@@ -32,8 +39,8 @@ export default [
   {
     path: '/home',
     label: 'Home',
-    exact: false,
+    exact: true,
     component: lazy(() => import('./Views/HomeView')),
-    private: false,
+    private: true,
   },
 ];

@@ -79,5 +79,6 @@ exports.verifyEmail = async (req, res, next) => {
     throw new NotFound("User not found or email is already varifed");
   }
   await UserModel.updateOne({ _id: user._id }, { verificationToken: null });
-  res.status(200).send("Varification was successful");
+  // res.status(200).send("Varification was successful");
+  return res.redirect(`${process.env.CLIENT_URL}/verification`);
 };
