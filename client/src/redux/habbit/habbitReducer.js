@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import actions from './habbitActions';
 
-const userHabitsInitialState = [
+const userTasksInitialState = [
   // {
   // _id: '5fd16a4cf5208f36bc9ca42b',
   // name: 'Test Habit #1',
@@ -13,7 +13,7 @@ const userHabitsInitialState = [
   // }
 ];
 
-const userHabits = createReducer(userHabitsInitialState, {
+const userHabits = createReducer(userTasksInitialState, {
   [actions.getAllHabitsSuccess]: (_, { payload }) => {
     return payload;
   },

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import actions from './habbitActions';
 
-const port = 'http://localhost:5000/';
+const port = 'http://localhost:5005/';
 const token =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZmQ2Yjc2NDA1NmUyZDM2NmNhZWMxZTUiLCJpYXQiOjE2MDc5MDczMDksImV4cCI6MTYwODA4MDEwOX0.33_nHnSAAnl-cLdwNj8rws3Obrcq3x733s_Fu9caLmA';
 // axios.defaults.baseURL = 'http://kidslike-v2.top/';
