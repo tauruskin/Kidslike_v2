@@ -8,14 +8,14 @@ exports.createChild = async (req, res, next) => {
     userId: req.user._id,
   });
   await UserModel.findByIdAndUpdate(req.user._id, {
-    $push: { childrenId: newChild._id },
+    $push: { childId: newChild._id },
   });
   return res.status(201).send(newChild);
 };
 
 exports.getChildren = async (req, res, next) => {
-  const { childrenId } = req.user;
-  const children = await ChildModel.find({ _id: childrenId.map((el) => el) });
+  const { childId } = req.user;
+  const children = await ChildModel.find({ _id: childId.map((el) => el) });
   // todo не будет работать [] = true
   if (!children) {
     throw new NotFound("You don't have a child yet.");
@@ -39,7 +39,7 @@ exports.deleteChild = async (req, res, next) => {
   const { _id } = req.child;
   await ChildModel.findByIdAndDelete(_id);
   await UserModel.findByIdAndUpdate(req.user._id, {
-    $pull: { childrenId: _id },
+    $pull: { childId: _id },
   });
   return res.status(204).send();
 };

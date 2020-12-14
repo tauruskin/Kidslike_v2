@@ -7,10 +7,10 @@ exports.createGift = async (req, res, next) => {
 };
 
 exports.getGifts = async (req, res, next) => {
-  const { childrenId } = req.user;
-  if (!childrenId.length) return res.status(200).send([]);
+  const { childId } = req.user;
+  if (!childId.length) return res.status(200).send([]);
 
-  const children = await ChildModel.find({ _id: childrenId.map((el) => el) });
+  const children = await ChildModel.find({ _id: childId.map((el) => el) });
   if (!children) return res.status(200).send([]);
 
   const gifts = await GiftModel.find({ childId: children.map((el) => el) });

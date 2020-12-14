@@ -6,7 +6,7 @@ exports.createTaskSchema = Joi.object({
   points: Joi.number().required(),
   isCompleted: Joi.boolean(),
   daysToComplete: Joi.string(),
-  childrenId: Joi.objectId().required(),
+  childId: Joi.objectId().required(),
 });
 
 exports.updateTaskSchema = Joi.object({
@@ -14,7 +14,7 @@ exports.updateTaskSchema = Joi.object({
   points: Joi.number(),
   isCompleted: Joi.boolean(),
   daysToComplete: Joi.string(),
-  childrenId: Joi.objectId(),
+  childId: Joi.objectId(),
 }).min(1);
 
 exports.validateIdSchema = Joi.object({

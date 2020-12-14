@@ -7,7 +7,7 @@ const taskSchema = new Schema(
     points: { type: Number, required: true },
     isCompleted: { type: Boolean, required: false, default: false },
     daysToComplete: { type: String, required: false },
-    childrenId: { type: mongoose.ObjectId, required: false },
+    childId: { type: mongoose.ObjectId, required: false },
   },
   {
     timestamps: true,
