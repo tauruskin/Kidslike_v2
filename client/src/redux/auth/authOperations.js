@@ -45,7 +45,7 @@ const signOut = () => dispatch => {
 };
 
 export default {
-  signOut,
+  signUp,
   signIn,
   signOut,
   setToken,

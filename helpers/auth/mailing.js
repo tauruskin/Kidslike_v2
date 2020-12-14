@@ -8,9 +8,7 @@ class SendMail{
         user: `${process.env.NODEMAILER_EMAIL}`,
         pass: `${process.env.NODEMAILER_PASSWORD}`
       },
-      tls: {
-        rejectUnauthorized: false
-      }
+      tls: {rejectUnauthorized: false}
     });
   }
 
