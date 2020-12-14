@@ -16,3 +16,7 @@ exports.updateTaskSchema = Joi.object({
   daysToComplete: Joi.string(),
   childId: Joi.objectId(),
 }).min(1);
+
+exports.validateIdSchema = Joi.object({
+  id: Joi.objectId(),
+});
