@@ -9,11 +9,11 @@ export default class AuthView extends Component {
   render() {
     return <>
     <div className={styles.container}>
+      <MainBlock/>
       {this.state.path === '/registration' ? 
       <AuthBlock flag='register' name='Реєстрація'/> :
       <AuthBlock flag='login' name='Вхід'/>
       }
-      <MainBlock/>
     </div>
     </>
   }

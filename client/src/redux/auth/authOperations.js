@@ -1,5 +1,5 @@
 import axios from 'axios';
-import authAction from './authAction';
+import authAction from './authActions';
 
 axios.defaults.baseURL = 'http://kidslike-v2.top/';
 
@@ -45,7 +45,7 @@ const signOut = () => dispatch => {
 };
 
 export default {
-  signOut,
+  signUp,
   signIn,
   signOut,
   setToken,

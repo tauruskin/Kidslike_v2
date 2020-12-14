@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 
 import styles from './AddHabbit.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
+import habitOperations from '../../../redux/habbit/habbitOperations';
+import { useDispatch } from 'react-redux';
 
 const AddHabbit = ({ close }) => {
+  const dispatch = useDispatch();
   const [habbitName, setHabbitName] = useState('');
   const [mark, setMark] = useState('');
   const [habbitTarget, setHabbitTarget] = useState('');
-
+// здесь нужна будет ф-я, которая возьмёт из state childId по имени ребёнка из селектора
   const handleSubmit = evt => {
     console.log(
       'name:',
@@ -16,6 +19,10 @@ const AddHabbit = ({ close }) => {
       mark,
       'habbitTarget',
       habbitTarget,
+    );
+
+    dispatch(
+      habitOperations.addHabit({ name: habbitName, childId: '5fd49e403e33eb3eda2f2af5', points: mark }),
     );
     evt.preventDefault();
     close();

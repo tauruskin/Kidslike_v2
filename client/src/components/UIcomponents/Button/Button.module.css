@@ -12,6 +12,9 @@
   font-weight: 400;
   font-size: 16px;
 }
+.button[disabled] {
+  cursor: default;
+}
 
 .ButtonOrange {
   composes: button;
@@ -28,7 +31,8 @@
   color: #ff8626;
 }
 
-.ButtonTransparent {
+.ButtonTransparent,
+.ButtonBordered {
   composes: button;
   border: 1px solid #bdbdbd;
   background-color: transparent;
@@ -45,11 +49,19 @@
 .ButtonOrange:hover,
 .ButtonOrange:focus {
   background-color: #ffa273;
+  outline: 0;
+}
+.ButtonOrange[disabled]:hover,
+.ButtonOrange[disabled]:focus {
+  border: 1px solid #ff8626;
+  background-color: #ff8626;
+  outline: 0;
 }
 
 .ButtonWhite:hover,
 .ButtonWhite:focus {
   background-color: #ffdfcf;
+  outline: 0;
 }
 
 .ButtonTransparent:hover,
@@ -57,10 +69,20 @@
   background-color: #ffffff;
   border: 1px solid #ffffff;
   color: #ff8626;
+  outline: 0;
 }
 
 .ButtonGrey:hover,
 .ButtonGrey:focus {
   background-color: #ffa273;
   border: 1px solid #ffa273;
+  outline: 0;
+}
+
+.ButtonBordered:hover,
+.ButtonBordered:focus {
+  background-color: #ffffff;
+  border: 1px solid #ffa273;
+  color: #ff8626;
+  outline: 0;
 }

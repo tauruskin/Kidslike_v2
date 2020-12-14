@@ -1,62 +1,35 @@
 const { HabitModel } = require("./habits.model");
 
 exports.createHabit = async (req, res, next) => {
-  try {
-    const newHabit = await HabitModel.create(req.body);
-
-    return res.status(201).send(newHabit);
-  } catch (err) {
-    next(err);
-  }
+  const newHabit = await HabitModel.create(req.body);
+  return res.status(201).send(newHabit);
 };
 
 exports.getHabits = async (req, res, next) => {
-  try {
-    const habits = await HabitModel.find();
-    return res.status(200).send(habits);
-  } catch (err) {
-    next(err);
-  }
+  const { childId } = req.user;
+  const habits = await HabitModel.find({ childId: childId });
+  // const { childId } = req.user;
+  // const habits = await HabitModel.find({ childId: childId  });
+  return res.status(200).send(habits);
 };
 
 exports.getHabitById = async (req, res, next) => {
-  try {
-    const habit = await HabitModel.findById(req.params.id);
-    if (!habit) {
-      return res.status(404).send("Contact not found");
-    }
-
-    return res.status(200).send(habit);
-  } catch (err) {
-    next(err);
-  }
+  return res.status(200).send(req.hebit);
 };
 
 exports.updateHabit = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const updatedHabit = await HabitModel.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
-    if (!updatedHabit) {
-      return res.status(404).send("Habit not found");
-    }
-    return res.status(200).send(updatedHabit);
-  } catch (err) {
-    next(err);
-  }
+  const { _id } = req.habit;
+  const updatedHabit = await HabitModel.findByIdAndUpdate(_id, req.body, {
+    new: true,
+  });
+  return res.status(200).send(updatedHabit);
 };
 
 exports.deleteHabit = async (req, res, next) => {
-  try {
-    const { id } = req.params;
+  const { _id } = req.habit;
+  // console.log(Object.keys(req));
+  // console.log(req.habit);
+  await HabitModel.findByIdAndDelete(_id);
 
-    const deleteHabit = await HabitModel.findByIdAndDelete(id);
-    if (!deleteHabit) {
-      return res.status(404).send("Child not found");
-    }
-    return res.status(204).send();
-  } catch (err) {
-    next(err);
-  }
+  return res.status(204).send();
 };

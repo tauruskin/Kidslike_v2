@@ -5,10 +5,8 @@ const childSchema = new Schema(
   {
     name: { type: String, required: true },
     gender: { type: String, required: true },
-    points: { type: String, required: false },
-    // gifts: масив id
-    // habits: масив id
-    // tasks: масив id
+    points: { type: Number, required: false, default: 0 },
+    userId: { type: mongoose.ObjectId, required: false },
   },
   {
     timestamps: true,

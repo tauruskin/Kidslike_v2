@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
@@ -10,6 +11,7 @@ const UserSchema = new Schema(
     tokens: [{ type: String }],
     verificationToken: { type: String },
     // avatarURL: {type: String, unique: true},
+    childId: [{ type: ObjectId, unique: true }],
   },
   {
     timestamps: true,
