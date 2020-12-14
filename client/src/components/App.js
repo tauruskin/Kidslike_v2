@@ -32,6 +32,9 @@ class App extends Component {
   familyRender = () => {
     this.setState({ family: !this.state.family })
   }
+   familyRenderAnotherLinks = () => {
+    this.setState({ family: false })
+  }
 
   render() {
     return (
@@ -39,7 +42,7 @@ class App extends Component {
         <ModalTest />
         <Header privatePage={privatePage}>
           <Logo privatePage={privatePage} />
-          {privatePage && <Navigation familyRender={this.familyRender} />}
+          {privatePage && <Navigation familyRender={this.familyRender} familyRenderAnotherLinks={this.familyRenderAnotherLinks} family={this.state.family} />}
           {privatePage && <UserInfo />}
         </Header>
         <Layout>
