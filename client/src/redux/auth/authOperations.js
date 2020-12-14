@@ -15,10 +15,12 @@ export const signIn = userData => dispatch => {
     .post('api/auth/signIn', userData)
     .then(response => {
       setToken(response.data.token);
+      // localStorage.setItem('token', response.data.token)
       dispatch(authAction.signinSuccess(response.data));
     })
     .catch(error => {
-      dispatch(authAction.signInError(error.message));
+      console.log(error);
+      // dispatch(authAction.signInError(error.message));
     });
 };
 

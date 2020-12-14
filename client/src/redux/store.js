@@ -19,7 +19,7 @@ import storage from 'redux-persist/lib/storage';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['accessToken', 'refreshToken'],
+  whitelist: ['token', 'refreshToken'],
 };
 
 // const childrenPersistConfig = {
@@ -29,7 +29,8 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    user: persistReducer(authPersistConfig, authReducer),
+    auth: persistReducer(authPersistConfig, authReducer),
+    // user: persistReducer(authPersistConfig, authReducer),
     children: childrenReducer,
     habbits: habbitReducer,
     tasks: taskReducer,

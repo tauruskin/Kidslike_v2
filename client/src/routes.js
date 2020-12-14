@@ -39,7 +39,7 @@ export default [
   {
     path: '/home',
     label: 'Home',
-    exact: false,
+    exact: true,
     component: lazy(() => import('./Views/HomeView')),
     private: true,
   },

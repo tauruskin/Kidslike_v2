@@ -80,5 +80,5 @@ exports.verifyEmail = async (req, res, next) => {
   }
   await UserModel.updateOne({ _id: user._id }, { verificationToken: null });
   // res.status(200).send("Varification was successful");
-  return res.redirect('http://localhost:3000/verification');
+  return res.redirect(`${process.env.CLIENT_URL}/verification`);
 };
