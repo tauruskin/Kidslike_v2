@@ -1,52 +1,41 @@
 import axios from 'axios';
 import authAction from './authActions';
 
-axios.defaults.baseURL = 'http://kidslike-v2.top/';
+// axios.defaults.baseURL = 'http://kidslike-v2.top/';
+axios.defaults.baseURL = 'http://localhost:5000/';
 
 const setToken = token =>
   (axios.defaults.headers.common.Authorization = `${token}`);
 
 const clearToken = () => (axios.defaults.headers.common.Authorization = '');
-const signIn = userData => dispatch => {
-  dispatch(authAction.signInRequest());
 
+export const signIn = userData => dispatch => {
+  dispatch(authAction.signinRequest());
   axios
     .post('api/auth/signIn', userData)
     .then(response => {
-      setToken(response.data.access_token);
-      dispatch(authAction.signInSuccess(response.data));
+      setToken(response.data.token);
+      // localStorage.setItem('token', response.data.token)
+      dispatch(authAction.signinSuccess(response.data));
     })
     .catch(error => {
-      dispatch(authAction.signInError(error.message));
+      console.log(error);
+      // dispatch(authAction.signInError(error.message));
     });
 };
 
-const signUp = userData => dispatch => {
-  dispatch(authAction.signUputRequest());
-
+export const signUp = userData => dispatch => {
+  dispatch(authAction.signupRequest());
   axios
     .post('api/auth/signUp', userData)
-    .then(response => {
-      axios
-        .post('api/auth/signUp', userData)
-        .then(response => {
-          setToken(response.data.access_token);
-          dispatch(authAction.signInSuccess(response.data));
-        })
-        .catch(er => console.log(er));
-      dispatch(authAction.signUpSuccess(response.data));
-    })
-    .catch(error => dispatch(authAction.signUpError(error)));
+    .catch(error => console.log(error));
 };
 
-const signOut = () => dispatch => {
+export const signOut = () => dispatch => {
   clearToken();
   dispatch(authAction.signOutSuccess());
 };
 
 export default {
-  signUp,
-  signIn,
-  signOut,
   setToken,
 };
