@@ -6,7 +6,11 @@ exports.createHabit = async (req, res, next) => {
 };
 
 exports.getHabits = async (req, res, next) => {
-  const { childId } = req.user;
+  const { childId, tokens, username } = req.user;
+  console.log(req.user);
+  console.log('childId--', childId);
+  console.log('tokens--', tokens);
+  console.log('username--', username);
   const habits = await HabitModel.find({ childId: childId });
   // const { childId } = req.user;
   // const habits = await HabitModel.find({ childId: childId  });
