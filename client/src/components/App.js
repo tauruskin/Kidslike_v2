@@ -5,7 +5,6 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import NotFound from '../components/NotFound/NotFound';
 import { CustomLoader } from './UIcomponents/CustomLoader/CustomLoader';
-
 import Header from './Header/Header';
 import Logo from './Logo/Logo';
 import UserInfo from './UserInfo/UserInfo';
@@ -14,12 +13,11 @@ import Layout from './Layout/Layout';
 import ChildTaskPage from './ChildTaskPage/ChildTaskPage';
 import HabitsList from './HabitsList/HabitsList';
 import { ModalTest } from './ModalTest';
-/*
- *temporary variable for test.
- */
-const privatePage = true;
+import authSelectors from '../redux/auth/authSelectors'
+import { connect } from 'react-redux';
 
 class App extends Component {
+ 
   /*
   *temporary state for leftSideBar.
   */
@@ -40,10 +38,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <ModalTest />
-        <Header privatePage={privatePage}>
-          <Logo privatePage={privatePage} />
-          {privatePage && <Navigation familyRender={this.familyRender} familyRenderAnotherLinks={this.familyRenderAnotherLinks} family={this.state.family} />}
-          {privatePage && <UserInfo />}
+        <Header privatePage={this.props.isAuthenticated}>
+          <Logo privatePage={this.props.isAuthenticated} />
+          {this.props.isAuthenticated && <Navigation familyRender={this.familyRender} familyRenderAnotherLinks={this.familyRenderAnotherLinks} family={this.state.family} />}
+          {this.props.isAuthenticated && <UserInfo />}
         </Header>
         <Layout>
           <Suspense fallback={<CustomLoader />}>
@@ -65,4 +63,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  isAuthenticated: authSelectors.isAuthenticated(state),
+});
+
+export default connect(mapStateToProps)(App);
+
+// export default App;
