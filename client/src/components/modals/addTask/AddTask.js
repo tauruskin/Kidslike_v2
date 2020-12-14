@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './AddTask.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
-import { createTask } from '../../../redux/tasks/taskActions';
+import operations from '../../../redux/tasks/taskOperations';
 import { useDispatch } from 'react-redux';
 
 const AddTask = ({ close }) => {
@@ -25,7 +25,7 @@ const AddTask = ({ close }) => {
     );
 
     dispatch(
-      createTask({
+      operations.addTask({
         name: taskName,
         childId: taskTarget,
         points: mark,

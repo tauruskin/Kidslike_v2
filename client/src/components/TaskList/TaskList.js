@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import TaskItem from '../TaskItem/TaskItem'
+import React, { useState, useEffect } from 'react';
+import TaskItem from '../TaskItem/TaskItem';
+import { useSelector, useDispatch } from 'react-redux';
+import operations from '../../redux/tasks/taskOperations'
 import styles from './TaskList.module.css'
 import taskTemplate from './taskTemplate.json'
 import MoreButton from '../UIcomponents/MoreButton/MoreButton';
@@ -9,7 +11,16 @@ import AddTask from '../modals/addTask/AddTask';
 export default function TaskList() {
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
     const close = () => { setShowAddTaskModal(false) };
-
+    const tasks = useSelector(state => state.tasks)
+    const dispatch = useDispatch();
+    useEffect(() => {
+       dispatch(operations.getAllTasks())
+        
+    }, [])
+    useEffect(() => {
+        
+    }, [tasks])
+console.log(tasks)
     return (
         <div className={styles.listHolder}>
             <div className={styles.gifsTitleContainer}>
@@ -17,7 +28,7 @@ export default function TaskList() {
                 <h1 className={styles.giftTitle}>Задачі</h1>
             </div>
             <ul className={styles.HabitList}>
-                {taskTemplate.map(el => (
+                {tasks.map(el => (
                     <li
                         key={el.startDate}
                         className={styles.HabitItem}
