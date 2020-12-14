@@ -22,7 +22,7 @@ const AddHabbit = ({ close }) => {
     );
 
     dispatch(
-      habitOperations.addHabit({ name: habbitName, childId: '5fd49e403e33eb3eda2f2af5', points: mark }),
+      habitOperations.addHabit({ name: habbitName, childId: '5fd728b03fcc272ae46855d3', points: mark }),
     );
     evt.preventDefault();
     close();
