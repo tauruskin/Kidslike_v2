@@ -29,6 +29,7 @@ const ChangeHabbit = ({ close, data }) => {
   };
 
   const handleDelete = () => {
+    dispatch(habitOperations.deleteHabit(data._id));
     close();
   };
 

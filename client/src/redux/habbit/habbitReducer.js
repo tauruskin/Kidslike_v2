@@ -26,6 +26,6 @@ const userHabits = createReducer(userHabitsInitialState, {
     state.map(el => (el._id === payload._id ? (el = payload) : el)),
   
   [actions.deleteHabbitSuccess]: (state, { payload }) =>
-    state.filter(habit => habit._id !== payload),
+  {state.filter(el => el._id !== payload)}
 });
 export default userHabits;

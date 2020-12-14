@@ -43,7 +43,7 @@ const updateHabit = (data, id) => async dispatch => {
 const deleteHabit = id => async dispatch => {
     dispatch(actions.deleteHabbitRequest());
     try {
-        await axios.delete(`/habits/${id}`).then(() => {
+        await axios.delete(`http://localhost:5000/api/habits/${id}`).then(() => {
             dispatch(actions.deleteHabbitSuccess(id));
         })
     } catch (error) {

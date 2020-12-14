@@ -23,7 +23,8 @@ exports.updateHabit = async (req, res, next) => {
 
 exports.deleteHabit = async (req, res, next) => {
   const { id } = req.habit;
-
+  console.log(Object.keys(req));
+  console.log(req.habit);
   await HabitModel.findByIdAndDelete(id);
 
   return res.status(204).send();

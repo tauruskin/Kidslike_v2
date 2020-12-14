@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import ChangeHabbit from '../../modals/changeHabbit/ChangeHabbit';
 import ChangeTask from '../../modals/changeTask/ChangeTask';
+import habitOperations from '../../../redux/habbit/habbitOperations';
     
 import styles from './BubbleComponent.module.css';
 
@@ -10,6 +12,11 @@ export default function BubbleComponent({ modalType, handleClick, msg, width, he
         setShowModal(!showModal);
     };
 
+    const dispatch = useDispatch();
+    const deleteHabit = (id) => {
+        dispatch(habitOperations.deleteHabit(id))
+    }
+
     return (
         msg ? <div style = {{width:width,height:height,top:top}}
         className={styles.arrowBox}><p className={styles.authText}>{msg}</p></div> : 
@@ -18,7 +25,7 @@ export default function BubbleComponent({ modalType, handleClick, msg, width, he
                 <div className={styles.comment}>
                     <div className={styles.comment_bubble}>
                         <button className={styles.optionButton} onClick={() => close()}>Редагувати</button>
-                        <button className={styles.optionButton} onClick={() => { }}>Видалити</button>
+                            <button className={styles.optionButton} onClick={() => { deleteHabit(habitData._id); handleClick() }}>Видалити</button>
                     </div>
                 </div>
             </div>
