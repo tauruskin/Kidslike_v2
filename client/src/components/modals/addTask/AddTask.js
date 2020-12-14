@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const AddTask = ({ close }) => {
   const dispatch = useDispatch();
   const children = useSelector(state => state.children)
-  console.log(children.map(el => el.name))
+
 
   const [taskName, setTaskName] = useState('');
   const [mark, setMark] = useState('');
@@ -15,7 +15,6 @@ const AddTask = ({ close }) => {
   const [taskDays, setTaskDays] = useState('');
 
   const handleSubmit = evt => {
-
     dispatch(
       operations.addTask({
         name: taskName,
@@ -50,6 +49,7 @@ const AddTask = ({ close }) => {
                 onChange={({ target: { value } }) => setTaskTarget(value)}
                 placeholder="Оберіть дитину"
               >
+                <option key={children.id}>Оберіть дитину</option>
                 {children &&
                   children.map(child => (
                     <option key={child._id} value={child._id}>

@@ -13,14 +13,16 @@ const ChangeTask = ({ close }) => {
   const [taskDays, setTaskDays] = useState('');
 
   const handleSubmit = evt => {
-  
+  console.log(taskName)
     dispatch(
-      operations.updateTask({
-        name: taskName,
-        childId: taskTarget,
-        points: mark,
-        days: taskDays,
-      }),
+      operations.updateTask(
+        {
+          name: taskName,
+          points: mark,
+          days: taskDays,
+        },
+       taskTarget,
+      ),
     );
     evt.preventDefault();
     close();
