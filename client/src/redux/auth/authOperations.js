@@ -1,11 +1,6 @@
 import axios from 'axios';
 import authAction from './authActions';
 
-// const headers = {
-//   'Content-Type': 'application/json',
-//   'X-Custom-Header': 'custom value',
-// };
-
 // axios.defaults.baseURL = 'http://kidslike-v2.top/';
 axios.defaults.baseURL = 'http://localhost:5000/';
 
@@ -15,35 +10,22 @@ const setToken = token =>
 const clearToken = () => (axios.defaults.headers.common.Authorization = '');
 
 export const signIn = userData => dispatch => {
-  dispatch(authAction.signInRequest());
-
+  dispatch(authAction.signinRequest());
   axios
     .post('api/auth/signIn', userData)
     .then(response => {
-      setToken(response.data.access_token);
-      dispatch(authAction.signInSuccess(response.data));
+      setToken(response.data.token);
+      dispatch(authAction.signinSuccess(response.data));
     })
     .catch(error => {
       dispatch(authAction.signInError(error.message));
     });
 };
 
-export const signUp = userData => async dispatch => {
+export const signUp = userData => dispatch => {
   dispatch(authAction.signupRequest());
-  await axios
+  axios
     .post('api/auth/signUp', userData)
-    .then(response => {
-      console.log('response', response);
-      // axios
-      //   .post('api/auth/signUp', userData)
-      //   .then(response => {
-      //     setToken(response.data.access_token);
-      //     dispatch(authAction.signInSuccess(response.data));
-      //   })
-      //   .catch(er => console.log(er));
-      // dispatch(authAction.signUpSuccess(response.data));
-    })
-    // .catch(error => dispatch(authAction.signUpError(error)));
     .catch(error => console.log(error));
 };
 

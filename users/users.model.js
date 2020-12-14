@@ -12,7 +12,6 @@ const UserSchema = new Schema(
     verificationToken: { type: String },
     childrenId: [{ type: String, unique: true }],
     // avatarURL: {type: String, unique: true},
-    children: [{ type: String, unique: true }],
   },
   {
     timestamps: true,
