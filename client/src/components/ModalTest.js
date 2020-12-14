@@ -20,7 +20,7 @@ export const ModalTest = () => {
   return (
     <>
       <button onClick={() => setModalShow(true)}>test modal</button>
-      {modalShow && <AddTask close={close} />}
+      {modalShow && <AddChildren close={close} />}
       <button onClick={() => setModalShow2(true)}>test modal</button>
       {modalShow2 && <ChangeTask close={close2} />}
     </>
