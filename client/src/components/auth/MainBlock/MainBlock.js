@@ -3,6 +3,7 @@ import styles from './MainBlock.module.css'
 import img from './authMain.png'
 
 export const MainBlock = () => {
+  
   return(
     <div className={styles.rightbar}>
       <p className={styles.title}>Мотивуйте дитину вдосконалювати себе!</p>

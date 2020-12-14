@@ -1,9 +1,9 @@
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 
-exports.validateIdSchema = Joi.object({
-  contactId: Joi.objectId(),
-});
+// exports.validateIdSchema = Joi.object({
+//   contactId: Joi.objectId(),
+// });
 
 exports.UserSchemaForSignUp = Joi.object({
   email: Joi.string().email().required(),

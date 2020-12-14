@@ -13,14 +13,15 @@ class SendMail{
   }
 
   async sendEmailForVarification(user){
-    // here will be our link, this is for example
     const linkForVarification = `${process.env.DOMAIN_ADDRESS}/api/auth/verify/${user.verificationToken}`;
-
+    // const linkForVarification = `http://localhost:3000/home`;
+  
     return this.transport.sendMail({
       from: 'newEmail', 
       to: `${user.email}`,
       subject: 'nodemailer',
       html: `<p>Please open this <a href='${linkForVarification}'>link</a> and varify your email</p>`
+      // html: `<p>Please open this <a href='${linkForVarification}'>link</a> and varify your email</p>`
     })
   }
 }

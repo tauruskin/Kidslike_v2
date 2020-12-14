@@ -6,6 +6,7 @@ import styles from '../components/auth/AuthView.module.css'
 export default class AuthView extends Component {
   state = {path: this.props.location.pathname};
 
+  
   render() {
     return <>
     <div className={styles.container}>
