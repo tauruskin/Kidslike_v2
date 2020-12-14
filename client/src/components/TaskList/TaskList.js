@@ -15,7 +15,6 @@ export default function TaskList() {
     const dispatch = useDispatch();
     useEffect(() => {
        dispatch(operations.getAllTasks())
-        
     }, [])
     useEffect(() => {
         

@@ -19,6 +19,9 @@ const getAllTasksSuccess = createAction('task/getAllTasksSuccess');
 const getAllTasksError = createAction('task/getAllTasksError');
 
 export default {
+    createTaskRequest,
+    createTaskSuccess,
+    createTaskError,
   updateTaskRequest,
   updateTaskSuccess,
   updateTaskError,

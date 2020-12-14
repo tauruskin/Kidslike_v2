@@ -5,7 +5,7 @@ import HabitSubmitBox from '../UIcomponents/HabitSubmitBox/HabitSubmitBox';
 
 import styles from './TaskItem.module.css';
 
-export default function TaskItem({ gender, taskName, points, startDate, daysToComplete }) {
+export default function TaskItem({ gender, name, points, startDate, daysToComplete }) {
     return (
         <div className={styles.habitItemFolder}>
             <img
@@ -15,7 +15,7 @@ export default function TaskItem({ gender, taskName, points, startDate, daysToCo
             ></img>
             <div className={styles.taskContentWrapper}>
                 <div className={styles.taskInfo}>
-                    <p className={styles.habitTitle}>{taskName}</p>
+                    <p className={styles.habitTitle}>{name}</p>
                     <p className={styles.habitPoints}>{points}</p>  
                 </div>
                 {daysToComplete &&
