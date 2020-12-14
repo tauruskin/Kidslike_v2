@@ -22,7 +22,7 @@ function HabitsList() {
 
     useEffect(() => {
         // dispatch(habbitOperations.getAllHabits());
-        console.log('habits', habits);
+        // console.log('habits', habits);
     }, [habits]);
 
     return (
