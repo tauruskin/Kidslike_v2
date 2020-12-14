@@ -8,7 +8,7 @@ exports.createTask = async (req, res, next) => {
 exports.getTasks = async (req, res, next) => {
   // todo фильтрация. только таски детей этого пользователя
 
-  const { childrenId } = req.user;
+  const { childId } = req.user;
 
   const tasks = await TaskModel.find();
   return res.status(200).send(tasks);

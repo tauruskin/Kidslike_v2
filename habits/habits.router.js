@@ -7,7 +7,7 @@ const {
   deleteHabit,
 } = require("./habits.controller");
 const { validate } = require("../helpers/validate");
-const { CreateHabitSchema, UpdateHabitSchema } = require("./habits.schemes");
+const { createHabitSchema, updateHabitSchema } = require("./habits.schemes");
 const { asyncWrapper } = require("../helpers/wrapper_Try_Catch");
 const { authorize } = require("../helpers/auth/token_verify");
 const { HabitModel } = require("./habits.model");
@@ -36,7 +36,7 @@ router.param("habitsId", async (req, res, next, habitsId) => {
 router.post(
   "/",
   authorize,
-  validate(CreateHabitSchema),
+  validate(createHabitSchema),
   asyncWrapper(createHabit)
 );
 
@@ -48,7 +48,7 @@ router.get("/:habitsId", authorize, asyncWrapper(getHabitById));
 router.patch(
   "/:habitsId",
   authorize,
-  validate(UpdateHabitSchema),
+  validate(updateHabitSchema),
   asyncWrapper(updateHabit)
 );
 
