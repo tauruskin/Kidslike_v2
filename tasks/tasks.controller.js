@@ -1,17 +1,24 @@
 const { TaskModel } = require("./tasks.model");
 
 exports.createTask = async (req, res, next) => {
-  const newtask = await TaskModel.create(req.body);
-  return res.status(201).send(newtask);
+  const newTask = await TaskModel.create(req.body);
+  const newTaskId = newTask.id;
+  const childId = req.params.id;
+  const updatedTask = await TaskModel.findByIdAndUpdate(newTaskId);
+  if (!updatedTask) {
+    res.status(400).send("task not created");
+  }
+  updatedTask.childId = childId;
+  updatedTask.save();
+  return res.status(201).send(updatedTask);
 };
 
 exports.getTasks = async (req, res, next) => {
-  // todo фильтрация. только таски детей этого пользователя
-
-  const { childId } = req.user;
-
-  const tasks = await TaskModel.find();
-  return res.status(200).send(tasks);
+  const { childrenId } = req.user;
+  const usersTasks = await TaskModel.find({
+    childId: childrenId.map((el) => el),
+  });
+  return res.status(200).send(usersTasks);
 };
 
 exports.getTaskById = async (req, res, next) => {
