@@ -1,16 +1,21 @@
+import { current } from '@reduxjs/toolkit';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import boy from '../../img/avatars/boy_in_frame.png';
 import girl from '../../img/avatars/girl_in_frame.png';
 import HabitSubmitBox from '../UIcomponents/HabitSubmitBox/HabitSubmitBox';
 
 import styles from './TaskItem.module.css';
 
-export default function TaskItem({ gender, name, points, startDate, daysToComplete }) {
+export default function TaskItem({ name, points,  daysToComplete, childId }) {
+    const children = useSelector(state => state.children);  
+    const currentChild = children.find(el => el._id === childId)
+    
     return (
         <div className={styles.habitItemFolder}>
             <img
                 className={styles.avatar}
-                src={gender === 'boy' ? boy : girl}
+                src={currentChild.gender === 'male' ? boy : girl}
                 alt="avatar"
             ></img>
             <div className={styles.taskContentWrapper}>

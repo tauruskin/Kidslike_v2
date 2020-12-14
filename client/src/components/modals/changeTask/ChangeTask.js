@@ -3,26 +3,17 @@ import React, { useState } from 'react';
 import styles from './ChangeTask.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
 import operations from '../../../redux/tasks/taskOperations';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 const ChangeTask = ({ close }) => {
+  const children = useSelector(state => state.children);
   const dispatch = useDispatch();
-
   const [taskName, setTaskName] = useState('');
   const [mark, setMark] = useState('');
   const [taskTarget, setTaskTarget] = useState('');
   const [taskDays, setTaskDays] = useState('');
 
   const handleSubmit = evt => {
-    console.log(
-      'taskName:',
-      taskName,
-      'mark:',
-      mark,
-      'taskTarget',
-      taskTarget,
-      'taskDays',
-      taskDays,
-    );
+  
     dispatch(
       operations.updateTask({
         name: taskName,
@@ -56,15 +47,17 @@ const ChangeTask = ({ close }) => {
             <label className={styles.label}>
               <p className={styles.inputName}>Призначення звички</p>
               <select
+                value={children.childId}
                 className={styles.select}
                 onChange={({ target: { value } }) => setTaskTarget(value)}
                 placeholder="Оберіть дитину"
               >
-                <option disabled>Выберите героя</option>
-                <option value="Чебурашка">Чебурашка</option>
-                <option value="Крокодил Гена">Крокодил Гена</option>
-                <option value="Шапокляк">Шапокляк</option>
-                <option value="Крыса Лариса">Крыса Лариса</option>
+                {children &&
+                  children.map(child => (
+                    <option key={child._id} value={child._id}>
+                      {child.name}
+                    </option>
+                  ))}
               </select>
             </label>
             <label className={styles.label}>
@@ -92,7 +85,7 @@ const ChangeTask = ({ close }) => {
             </button>
           </div>
           <div className={styles.buttonsBlock}>
-            <button className={styles.buttonSave}>Зберегти</button>
+            <button onClick={handleSubmit} className={styles.buttonSave}>Зберегти</button>
 
             <button className={styles.buttonCancle} onClick={() => close()}>
               Відміна

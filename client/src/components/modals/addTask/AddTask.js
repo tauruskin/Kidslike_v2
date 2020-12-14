@@ -15,16 +15,6 @@ const AddTask = ({ close }) => {
   const [taskDays, setTaskDays] = useState('');
 
   const handleSubmit = evt => {
-    console.log(
-      'taskName:',
-      taskName,
-      'mark:',
-      mark,
-      'taskTarget',
-      taskTarget,
-      'taskDays',
-      taskDays,
-    );
 
     dispatch(
       operations.addTask({

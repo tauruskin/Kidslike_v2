@@ -19,7 +19,6 @@ export default function TaskList() {
     useEffect(() => {
         
     }, [tasks])
-console.log(tasks)
     return (
         <div className={styles.listHolder}>
             <div className={styles.gifsTitleContainer}>
@@ -28,8 +27,8 @@ console.log(tasks)
             </div>
             <ul className={styles.HabitList}>
                 {tasks.map(el => (
-                    <li
-                        key={el.startDate}
+                    <li 
+                        key={el._id}
                         className={styles.HabitItem}
                     >
                         <MoreButton type={'task'} />
