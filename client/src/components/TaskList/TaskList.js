@@ -3,6 +3,10 @@ import TaskItem from '../TaskItem/TaskItem';
 import { useSelector, useDispatch } from 'react-redux';
 import operations from '../../redux/tasks/taskOperations';
 import styles from './TaskList.module.css';
+<<<<<<< HEAD
+import taskTemplate from './taskTemplate.json';
+=======
+>>>>>>> dev
 import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 import Button from '../UIcomponents/Button/Button';
 import AddTask from '../modals/addTask/AddTask';
@@ -27,7 +31,7 @@ export default function TaskList() {
       <ul className={styles.HabitList}>
         {tasks.map(el => (
           <li key={el._id} className={styles.HabitItem}>
-            <MoreButton type={'task'} />
+            <MoreButton type={'task'} data={el} />
             <TaskItem {...el} />
           </li>
         ))}
