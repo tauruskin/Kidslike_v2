@@ -1,7 +1,7 @@
 import axios from 'axios';
 import actions from './taskActions';
 
-const domain = process.env.DOMAIN_ADDRESS;
+// const domain = process.env.DOMAIN_ADDRESS;
 //todo token
 // const token =
 //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZmQ2Yjc2NDA1NmUyZDM2NmNhZWMxZTUiLCJpYXQiOjE2MDc5MDczMDksImV4cCI6MTYwODA4MDEwOX0.33_nHnSAAnl-cLdwNj8rws3Obrcq3x733s_Fu9caLmA';
@@ -10,7 +10,7 @@ const domain = process.env.DOMAIN_ADDRESS;
 const getAllTasks = () => async dispatch => {
   dispatch(actions.getAllTasksRequest());
   try {
-    const response = await axios.get(`${domain}/api/tasks/`);
+    const response = await axios.get(`/api/tasks/`);
     console.log(response);
     dispatch(actions.getAllTasksSuccess(response.data));
   } catch (error) {
@@ -22,7 +22,7 @@ const addTask = Task => async dispatch => {
   dispatch(actions.createTaskRequest());
   try {
     console.log(Task);
-    const response = await axios.post(`${domain}/api/tasks/`, { ...Task });
+    const response = await axios.post(`/api/tasks/`, { ...Task });
     dispatch(actions.createTaskSuccess(response.data));
   } catch (error) {
     dispatch(actions.createTaskError(error.message));
@@ -32,7 +32,7 @@ const addTask = Task => async dispatch => {
 const updateTask = (data, id) => async dispatch => {
   dispatch(actions.updateTaskRequest());
   try {
-    await axios.patch(`${domain}/api/tasks/${id}`, data).then(res => {
+    await axios.patch(`/api/tasks/${id}`, data).then(res => {
       dispatch(actions.updateTaskSuccess(res.data));
     });
   } catch (error) {
@@ -43,7 +43,7 @@ const updateTask = (data, id) => async dispatch => {
 const deleteTask = id => async dispatch => {
   dispatch(actions.deleteTaskRequest());
   try {
-    await axios.delete(`${domain}/api/tasks/${id}`).then(() => {
+    await axios.delete(`/api/tasks/${id}`).then(() => {
       dispatch(actions.deleteTaskSuccess(id));
     });
   } catch (error) {

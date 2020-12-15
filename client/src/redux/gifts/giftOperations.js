@@ -1,7 +1,7 @@
 import axios from 'axios';
 import actions from './giftActions';
 
-const domain = process.env.DOMAIN_ADDRESS;
+// const domain = process.env.DOMAIN_ADDRESS;
 //todo token
 // const token =
 //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZmQ3YzY0MzA1ZWIyMTUwYjAwMmRjNTYiLCJpYXQiOjE2MDc5Nzg2OTAsImV4cCI6MTYwODE1MTQ5MH0.MjiV-6iBMs-iOALSI7EmAvCaMR_UY5yiKelsSk2gmD4';
@@ -11,7 +11,7 @@ const domain = process.env.DOMAIN_ADDRESS;
 const getAllGifts = () => async dispatch => {
   dispatch(actions.getAllGiftsRequest());
   try {
-    const response = await axios.get(`${domain}/api/gifts/`);
+    const response = await axios.get(`/api/gifts/`);
     dispatch(actions.getAllGiftsSuccess(response.data));
   } catch (error) {
     dispatch(actions.getAllGiftsError(error));
@@ -22,7 +22,7 @@ const addGift = gift => async dispatch => {
   dispatch(actions.createGiftRequest());
   try {
     console.log(gift);
-    const response = await axios.post(`${domain}/api/gifts/`, { ...gift });
+    const response = await axios.post(`/api/gifts/`, { ...gift });
     dispatch(actions.createGiftSuccess(response.data));
   } catch (error) {
     dispatch(actions.createGiftError(error.message));
@@ -32,7 +32,7 @@ const addGift = gift => async dispatch => {
 const updateGift = (data, id) => async dispatch => {
   dispatch(actions.updateGiftRequest());
   try {
-    await axios.patch(`${domain}/api/gifts/${id}`, data).then(res => {
+    await axios.patch(`/api/gifts/${id}`, data).then(res => {
       dispatch(actions.updateGiftSuccess(res.data));
     });
   } catch (error) {
@@ -43,7 +43,7 @@ const updateGift = (data, id) => async dispatch => {
 const deleteGift = id => async dispatch => {
   dispatch(actions.deleteGiftRequest());
   try {
-    await axios.delete(`${domain}/api/gifts/${id}`).then(() => {
+    await axios.delete(`/api/gifts/${id}`).then(() => {
       dispatch(actions.deleteGiftSuccess(id));
     });
   } catch (error) {
