@@ -3,26 +3,23 @@ import React, { useState } from 'react';
 import styles from './AddHabbit.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
 import habitOperations from '../../../redux/habbit/habbitOperations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const AddHabbit = ({ close }) => {
   const dispatch = useDispatch();
+  const children = useSelector(state => state.children)
+
   const [habbitName, setHabbitName] = useState('');
   const [mark, setMark] = useState('');
   const [habbitTarget, setHabbitTarget] = useState('');
 // здесь нужна будет ф-я, которая возьмёт из state childId по имени ребёнка из селектора
   const handleSubmit = evt => {
-    console.log(
-      'name:',
-      habbitName,
-      'mark:',
-      mark,
-      'habbitTarget',
-      habbitTarget,
-    );
-
     dispatch(
-      habitOperations.addHabit({ name: habbitName, childId: '5fd728b03fcc272ae46855d3', points: mark }),
+      habitOperations.addHabit({
+        name: habbitName,
+        childId: habbitTarget,
+        points: mark,
+      }),
     );
     evt.preventDefault();
     close();
@@ -45,15 +42,18 @@ const AddHabbit = ({ close }) => {
             <label className={styles.label}>
               <p className={styles.inputName}>Призначення звички</p>
               <select
+                value={children.childId}
                 className={styles.select}
                 onChange={({ target: { value } }) => setHabbitTarget(value)}
                 placeholder="Оберіть дитину"
               >
-                <option disabled>Выберите героя</option>
-                <option value="Чебурашка">Чебурашка</option>
-                <option value="Крокодил Гена">Крокодил Гена</option>
-                <option value="Шапокляк">Шапокляк</option>
-                <option value="Крыса Лариса">Крыса Лариса</option>
+                <option key={children.id}>Оберіть дитину</option>
+                {children &&
+                  children.map(child => (
+                    <option key={child._id} value={child._id}>
+                      {child.name}
+                    </option>
+                  ))}
               </select>
             </label>
             <label className={styles.label}>
@@ -66,7 +66,7 @@ const AddHabbit = ({ close }) => {
             </label>
           </div>
           <div className={styles.buttonsBlock}>
-            <button className={styles.buttonSave}>Зберегти</button>
+            <button className={styles.buttonSave} onClick={handleSubmit}>Зберегти</button>
 
             <button className={styles.buttonCancle} onClick={() => close()}>
               Відміна
