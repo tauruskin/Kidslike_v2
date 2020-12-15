@@ -1,8 +1,6 @@
 import axios from 'axios';
 import authAction from './authActions';
 
-axios.defaults.baseURL = process.env.DOMAIN_ADDRESS;
-
 export const setToken = token =>
   (axios.defaults.headers.common['Authorization'] = token);
 
