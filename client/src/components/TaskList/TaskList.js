@@ -31,7 +31,7 @@ export default function TaskList() {
                         key={el._id}
                         className={styles.HabitItem}
                     >
-                        <MoreButton type={'task'} />
+                        <MoreButton type={'task'} data={el} />
                         <TaskItem  {...el} />
                     </li>
                 ))}

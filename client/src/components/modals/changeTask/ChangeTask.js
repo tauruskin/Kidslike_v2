@@ -4,31 +4,29 @@ import styles from './ChangeTask.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
 import operations from '../../../redux/tasks/taskOperations';
 import { useDispatch,useSelector } from 'react-redux';
-const ChangeTask = ({ close }) => {
+const ChangeTask = ({ close, data }) => {
+  console.log(data)
   const children = useSelector(state => state.children);
   const dispatch = useDispatch();
-  const [taskName, setTaskName] = useState('');
+  const [taskName, setTaskName] = useState(data.name);
   const [mark, setMark] = useState('');
-  const [taskTarget, setTaskTarget] = useState('');
-  const [taskDays, setTaskDays] = useState('');
+  const [taskTarget, setTaskTarget] = useState(data.ChildId);
+  const [taskDays, setTaskDays] = useState(data.daysToComplete);
 
   const handleSubmit = evt => {
-  console.log(taskName)
-    dispatch(
-      operations.updateTask(
-        {
-          name: taskName,
-          points: mark,
-          days: taskDays,
-        },
-       taskTarget,
-      ),
-    );
+ 
     evt.preventDefault();
     close();
   };
+   dispatch(
+     operations.updateTask(
+       { name: taskName, childId: taskTarget, points: mark },
+       data._id,
+     ),
+   );
 
   const handleDelete = () => {
+    dispatch(operations.deleteTask(data._id))
     close();
   };
 
