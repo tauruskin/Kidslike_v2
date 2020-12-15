@@ -102,7 +102,7 @@ const ChangeTask = ({ close, data }) => {
             </button>
           </div>
           <div className={styles.buttonsBlock}>
-            <button  className={styles.buttonSave}>
+            <button onClick={handleSubmit} className={styles.buttonSave}>
               Зберегти
             </button>
 
