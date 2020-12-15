@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const jwt = require("jsonwebtoken");
 const { validate } = require("../helpers/validate");
 const { signUp, signIn, signOut, verifyEmail } = require("./auth.controller");
 const { UserSchemaForSignUp, UserSchemaForSignIn } = require("./auth.schemes");
@@ -11,5 +12,6 @@ router.post("/signUp", validate(UserSchemaForSignUp), asyncWrapper(signUp));
 router.post("/signIn", validate(UserSchemaForSignIn), asyncWrapper(signIn));
 router.delete("/signOut", authorize, asyncWrapper(signOut));
 router.get("/verify/:verificationToken", asyncWrapper(verifyEmail));
+
 
 exports.authRouter = router;

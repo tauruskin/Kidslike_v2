@@ -6,6 +6,8 @@ import * as yup from "yup";
 import { BasicInput } from '../UIcomponents/Input/BasicInput';
 import styles from './LoginForm.module.css'
 import BubbleComponent from '../UIcomponents/BubbleComponent/BubbleComponent';
+import { signIn } from '../../redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
 
 const schema = yup.object().shape({
   email: yup.string().email('E-mail введено некоректно').required(`Це обов'язкове поле`)
@@ -23,8 +25,9 @@ export const LoginForm = () => {
     resolver: yupResolver(schema),
     mode: 'onChange',
   });
+  const dispatch = useDispatch();
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => dispatch(signIn(data));
   
   return(
     <>
