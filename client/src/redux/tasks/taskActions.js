@@ -1,7 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
 
-
-
 const createTaskRequest = createAction('task/createTaskRequest');
 const createTaskSuccess = createAction('task/createTaskSuccess');
 const createTaskError = createAction('task/createTaskError');
@@ -19,9 +17,9 @@ const getAllTasksSuccess = createAction('task/getAllTasksSuccess');
 const getAllTasksError = createAction('task/getAllTasksError');
 
 export default {
-    createTaskRequest,
-    createTaskSuccess,
-    createTaskError,
+  createTaskRequest,
+  createTaskSuccess,
+  createTaskError,
   updateTaskRequest,
   updateTaskSuccess,
   updateTaskError,
@@ -32,4 +30,3 @@ export default {
   getAllTasksSuccess,
   getAllTasksError,
 };
-
