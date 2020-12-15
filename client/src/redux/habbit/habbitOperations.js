@@ -22,7 +22,6 @@ const getAllHabits = () => async dispatch => {
 const addHabit = habit => async dispatch => {
   dispatch(actions.createHabbitRequest());
   try {
-    // console.log(habit);
     const response = await axios.post(`${port}api/habits/`, { ...habit });
     dispatch(actions.createHabbitSuccess(response.data));
   } catch (error) {
@@ -43,10 +42,9 @@ const updateHabit = (data, id) => async dispatch => {
 
 const checkHabitDone = (id, data) => async dispatch => {
   dispatch(actions.checkHabbitRequest());
-  try { console.log('request');
+  try {
     await axios.patch(`${port}api/habits/${id}/check`, data).then(res => {
       dispatch(actions.checkHabbitSuccess(res.data));
-      console.log(res);
       dispatch(childOperations.getAllChildren());
     });
   } catch (error) {

@@ -28,12 +28,13 @@ exports.updateHabit = async (req, res, next) => {
 exports.checkHabitDone = async (req, res, next) => {
   const { _id, childId, points } = req.habit;
   const { done } = req.body;
+  const pointsToAdd = done === 'yes' ? points : 0;
   const habitToCheck = await HabitModel.findOneAndUpdate({ _id, 'daysToComplete.date': req.body.date },
     { $set: { 'daysToComplete.$.done': req.body.done } }, {
     new: true,
   });
-  const data = await ChildModel.findByIdAndUpdate({ _id: childId },
-  {$inc: {points: points}})
+  await ChildModel.findByIdAndUpdate({ _id: childId },
+    { $inc: { points: pointsToAdd}})
   return res.status(200).send(habitToCheck);
 };
 

@@ -5,7 +5,7 @@ import habbitOperations from '../../../redux/habbit/habbitOperations';
 
 import styles from './HabitSubmitBox.module.css';
 
-function HabitSubmitBox({ repeat, id, date, disabled }) {
+function HabitSubmitBox({ repeat, id, date, disabled, setIsDone }) {
     const dispatch = useDispatch();
     const onClick = (req_data) => {
         dispatch(habbitOperations.checkHabitDone(id, req_data));
@@ -19,11 +19,11 @@ function HabitSubmitBox({ repeat, id, date, disabled }) {
                 </> :
                 <><p className={styles.submitBoxTitle}>Підтвердження</p>
                     <HabitCheckBtn isCheckMark={true}
-                        handelClick={() => { onClick({ date, done: 'yes' }) }}
+                        handelClick={() => { onClick({ date, done: 'yes' }); setIsDone() }}
                         label={'Підтвердити виконання'}
                         isDisabled={disabled} />
                     <HabitCheckBtn
-                        handelClick={() => { onClick({ date, done: 'no' }) }}
+                        handelClick={() => { onClick({ date, done: 'no' }); setIsDone() }}
                         label={'Підтвердити не виконання'}
                         isDisabled={disabled} />
                 </>}
