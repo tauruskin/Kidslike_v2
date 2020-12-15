@@ -3,10 +3,6 @@ import TaskItem from '../TaskItem/TaskItem';
 import { useSelector, useDispatch } from 'react-redux';
 import operations from '../../redux/tasks/taskOperations';
 import styles from './TaskList.module.css';
-<<<<<<< HEAD
-import taskTemplate from './taskTemplate.json';
-=======
->>>>>>> dev
 import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 import Button from '../UIcomponents/Button/Button';
 import AddTask from '../modals/addTask/AddTask';
