@@ -73,6 +73,9 @@
   margin-bottom: 20px;
   display: flex;
 }
+.habitsList:first-child {
+  margin-top: 20px;
+}
 
 .arrowText {
   font-weight: 500;
