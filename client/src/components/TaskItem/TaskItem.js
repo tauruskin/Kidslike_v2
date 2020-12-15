@@ -15,7 +15,7 @@ export default function TaskItem({ name, points,  daysToComplete, childId }) {
         <div className={styles.habitItemFolder}>
             <img
                 className={styles.avatar}
-                src={currentChild.gender === 'male' ? boy : girl}
+                src={(currentChild.gender)? currentChild.gender === 'male' ? boy : girl : boy}
                 alt="avatar"
             ></img>
             <div className={styles.taskContentWrapper}>
