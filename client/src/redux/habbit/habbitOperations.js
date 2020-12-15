@@ -1,5 +1,6 @@
 import axios from 'axios';
 import actions from './habbitActions';
+import childOperations from '../children/childrenOperations'
 
 const port = 'http://localhost:5000/';
 const token =
@@ -42,9 +43,11 @@ const updateHabit = (data, id) => async dispatch => {
 
 const checkHabitDone = (id, data) => async dispatch => {
   dispatch(actions.checkHabbitRequest());
-  try {
+  try { console.log('request');
     await axios.patch(`${port}api/habits/${id}/check`, data).then(res => {
       dispatch(actions.checkHabbitSuccess(res.data));
+      console.log(res);
+      dispatch(childOperations.getAllChildren());
     });
   } catch (error) {
     dispatch(actions.checkHabbitError(error.message));
