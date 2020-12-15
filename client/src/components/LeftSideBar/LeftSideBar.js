@@ -23,7 +23,6 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
     dispatch(childrenOperations.getAllChildren());
   }, []);
 
-  console.log('children', children);
   return (
     <>
       <div
