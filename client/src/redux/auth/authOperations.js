@@ -3,10 +3,11 @@ import authAction from './authActions';
 
 axios.defaults.baseURL = process.env.DOMAIN_ADDRESS;
 
-const setToken = token =>
+export const setToken = token =>
   (axios.defaults.headers.common['Authorization'] = token);
 
-const clearToken = () => (axios.defaults.headers.common['Authorization'] = '');
+export const clearToken = () =>
+  (axios.defaults.headers.common['Authorization'] = '');
 
 export const signIn = userData => dispatch => {
   dispatch(authAction.signinRequest());
@@ -31,8 +32,4 @@ export const signUp = userData => dispatch => {
 export const signOut = () => dispatch => {
   clearToken();
   dispatch(authAction.signOutSuccess());
-};
-
-export default {
-  setToken,
 };
