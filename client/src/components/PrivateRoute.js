@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import { setToken } from '../redux/auth/authOperations';
 import authSelectors from '../redux/auth/authSelectors';
 
 const PrivateRoute = ({
@@ -8,14 +9,21 @@ const PrivateRoute = ({
   component: Component,
   isAuthenticated,
   ...routeProps
-}) => (
+}) => {
+  setToken(isAuthenticated);
+  return (
     <Route
       {...routeProps}
       render={props =>
-        isAuthenticated ? <Component {...props} family={family} /> : <Redirect to="/" />
+        isAuthenticated ? (
+          <Component {...props} family={family} />
+        ) : (
+          <Redirect to="/" />
+        )
       }
     />
   );
+};
 
 // export default PrivateRoute;
 

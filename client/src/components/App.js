@@ -16,6 +16,10 @@ import { ModalTest } from './ModalTest';
 import authSelectors from '../redux/auth/authSelectors';
 import { connect } from 'react-redux';
 
+import axios from 'axios';
+import { baseURL } from '../config';
+axios.defaults.baseURL = baseURL;
+
 class App extends Component {
   /*
    *temporary state for leftSideBar.
@@ -61,7 +65,7 @@ class App extends Component {
                   <PublicRoute key={route.label} {...route} />
                 ),
               )}
-              <Route component={NotFound} />
+              {/* <Route component={NotFound} /> */}
               <Redirect to="/home" />
             </Switch>
           </Suspense>
@@ -71,10 +75,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isAuthenticated: authSelectors.isAuthenticated(state),
-});
+// const mapStateToProps = state => ({
+//   isAuthenticated: authSelectors.isAuthenticated(state),
+// });
 
-export default connect(mapStateToProps)(App);
+// export default connect(mapStateToProps)(App);
 
-// export default App;
+export default App;
