@@ -40,6 +40,17 @@ const updateHabit = (data, id) => async dispatch => {
   }
 };
 
+const checkHabitDone = (id, data) => async dispatch => {
+  dispatch(actions.checkHabbitRequest());
+  try {
+    await axios.patch(`${port}api/habits/${id}/check`, data).then(res => {
+      dispatch(actions.checkHabbitSuccess(res.data));
+    });
+  } catch (error) {
+    dispatch(actions.checkHabbitError(error.message));
+  }
+}
+
 const deleteHabit = id => async dispatch => {
   dispatch(actions.deleteHabbitRequest());
   try {
@@ -55,5 +66,6 @@ export default {
   getAllHabits,
   addHabit,
   updateHabit,
+  checkHabitDone,
   deleteHabit,
 };
