@@ -1,10 +1,11 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import defaultLogo from '../../img/header/userInfo.svg';
 import logout from '../../img/header/logout.svg';
 import style from './UserInfo.module.css';
 import Logout from '../Logout/Logout';
-import userOperation from '../../redux/user/userOperation'
-import userSelector from '../../redux/user/userSelector'
+import EditChild from '../UIcomponents/EditChild/EditChild';
+import userOperation from '../../redux/user/userOperation';
+import userSelector from '../../redux/user/userSelector';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function UserInfo() {
@@ -13,14 +14,21 @@ export default function UserInfo() {
     setShowModal(false);
   };
   const srcLogo = defaultLogo;
-    const dispatch = useDispatch()
-  const user = useSelector(userSelector.getUser)
+  const dispatch = useDispatch();
+  const user = useSelector(userSelector.getUser);
   useEffect(() => {
-    dispatch(userOperation.getUserInfo())
-  }, [])
+    dispatch(userOperation.getUserInfo());
+  }, []);
   return (
     <div className={style.userInfoContainer}>
-      <img className={style.userAvatar} src={user.avatarURL ||srcLogo} alt="default logo" />
+      <img
+        className={style.userAvatar}
+        src={user.avatarURL || srcLogo}
+        alt="default logo"
+      />
+      <div className={style.bubbleWrap}>
+        <EditChild />
+      </div>
       <span className={style.userName}>{user.username}</span>
 
       <img
