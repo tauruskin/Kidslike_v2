@@ -9,9 +9,9 @@ import {
   getAllChildrenRequest,
   getAllChildrenSuccess,
   getAllChildrenError,
-  // deleteChildrenRequest,
-  // deleteChildrenSuccess,
-  // deleteChildrenError
+  deleteChildrenRequest,
+  deleteChildrenSuccess,
+  deleteChildrenError
 
 } from './childrenActions';
 
@@ -24,7 +24,8 @@ import {
 //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZmQ3YTc2YWJiMzczNDBiYjcxYTQxYWEiLCJpYXQiOjE2MDc5NzMyMjksImV4cCI6MTYwODE0NjAyOX0.lKRAeF8D-g1r7HCq-1Ngjm_cTsb7vFzQBjpxQcdm-04';
 // axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
-import { setToken } from '../auth/authOperations';
+// import { setToken } from '../auth/authOperations';
+
 const getAllChildren = () => async dispatch => {
   dispatch(getAllChildrenRequest());
   try {
@@ -56,20 +57,20 @@ const updateChildren = (data, id) => async dispatch => {
   }
 };
 
-// const deleteChildren = id => async dispatch => {
-//   dispatch(actions.deleteChildrenRequest());
-//   try {
-//     await axios.delete(`/api/childs/${id}`).then(() => {
-//       dispatch(actions.deleteChildrenSuccess(id));
-//     });
-//   } catch (error) {
-//     dispatch(actions.deleteChildrenError(error.message));
-//   }
-// };
+const deleteChildren = id => async dispatch => {
+  dispatch(deleteChildrenRequest());
+  try {
+    await axios.delete(`/api/childs/${id}`).then(() => {
+      dispatch(deleteChildrenSuccess(id));
+    });
+  } catch (error) {
+    dispatch(deleteChildrenError(error.message));
+  }
+};
 
 export default {
   getAllChildren,
   addChildren,
   updateChildren,
-  // deleteChildren
+  deleteChildren
 };

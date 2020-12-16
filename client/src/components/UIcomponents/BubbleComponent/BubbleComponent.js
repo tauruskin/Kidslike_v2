@@ -5,6 +5,7 @@ import ChangeTask from '../../modals/changeTask/ChangeTask';
 import habitOperations from '../../../redux/habbit/habbitOperations';
 import operations from '../../../redux/tasks/taskOperations';
 import ChangeChildren from '../../modals/changeChildren/ChangeChildren';
+import childrenOperations from '../../../redux/children/childrenOperations';
 
 import styles from './BubbleComponent.module.css';
 import { deleteGift } from '../../../redux/gifts/giftOperations';
@@ -27,6 +28,7 @@ export default function BubbleComponent({
   };
 
   const dispatch = useDispatch();
+  
   const deleteHabit = id => {
     dispatch(habitOperations.deleteHabit(id));
   };
@@ -36,8 +38,8 @@ export default function BubbleComponent({
   const deletePresent = id => {
     dispatch(deleteGift(id));
   };
-  const deleteChild = id => {
-    dispatch(deleteChild(id));
+  const deleteChildren = id => {
+    dispatch(childrenOperations.deleteChildren(id));
   };
   return msg ? (
     <div
@@ -92,7 +94,7 @@ export default function BubbleComponent({
               <button
                 className={styles.optionButton}
                 onClick={() => {
-                  deletePresent(childData._id);
+                  deleteChildren(childData._id);
                   handleClick();
                 }}
               >
