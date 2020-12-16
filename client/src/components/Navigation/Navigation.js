@@ -6,7 +6,9 @@ import familyImg from '../../img/header/family.svg';
 
 import styles from './Navigation.module.css';
 
-export default function Navigation({ familyRender , family,familyRenderAnotherLinks }) {
+export default function Navigation({ familyRender, family, familyRenderAnotherLinks }) {
+
+
   return (
     <>
       <ul className={styles.navList}>

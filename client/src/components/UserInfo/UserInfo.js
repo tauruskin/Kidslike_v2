@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import defaultLogo from '../../img/header/userInfo.svg';
 import logout from '../../img/header/logout.svg';
 import style from './UserInfo.module.css';
 import Logout from '../Logout/Logout';
+import userOperation from '../../redux/user/userOperation'
+import userSelector from '../../redux/user/userSelector'
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function UserInfo() {
   const [showModal, setShowModal] = useState(false);
@@ -10,12 +13,15 @@ export default function UserInfo() {
     setShowModal(false);
   };
   const srcLogo = defaultLogo;
-  //  useSelector(state => state.user.avatarURL);
-
+    const dispatch = useDispatch()
+  const user = useSelector(userSelector.getUser)
+  useEffect(() => {
+    dispatch(userOperation.getUserInfo())
+  }, [])
   return (
     <div className={style.userInfoContainer}>
-      <img className={style.userAvatar} src={srcLogo} alt="default logo" />
-      <span className={style.userName}>Name</span>
+      <img className={style.userAvatar} src={user.avatarURL ||srcLogo} alt="default logo" />
+      <span className={style.userName}>{user.username}</span>
 
       <img
         src={logout}
