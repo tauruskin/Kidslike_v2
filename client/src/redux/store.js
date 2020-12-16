@@ -9,11 +9,11 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import authReducer from '../redux/auth/authReducer';
-import childrenReducer from '../redux/children/childrenReducer';
-import habbitReducer from '../redux/habbit/habbitReducer';
-import taskReducer from '../redux/tasks/taskReducer';
-
+import authReducer from './auth/authReducer';
+import userReducer from './user/userReducer';
+import childrenReducer from './children/childrenReducer';
+import habbitReducer from './habbit/habbitReducer';
+import taskReducer from './tasks/taskReducer';
 
 import storage from 'redux-persist/lib/storage';
 import { userGifts } from './gifts/giftReducer';
@@ -32,7 +32,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    // user: persistReducer(authPersistConfig, authReducer),
+    // user: userReducer,
     children: childrenReducer,
     habbits: habbitReducer,
     tasks: taskReducer,
