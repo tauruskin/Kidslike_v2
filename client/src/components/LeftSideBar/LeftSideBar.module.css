@@ -59,7 +59,12 @@
     /* margin-left: auto; */
     min-width: 345px;
     margin: 30px 40px;
+    text-align: center;
   }
+}
+
+.cardsContainer {
+  margin-bottom: 100px;
 }
 
 .titleName {
@@ -122,6 +127,7 @@
     z-index: 1;
     background-color: #e5e5e5;
     height: 150%;
+    width: 100%;
   }
   .renderClass {
     /* display: block; */
@@ -143,6 +149,7 @@
     /* width: 40%; */
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 30px;
   }
   .titleName {
     margin-top: 30px;
@@ -150,16 +157,25 @@
 }
 @media screen and (max-width: 767px) {
   .leftSideBarCard {
-    /* width: 100%; */
+    min-width: 280px;
     /* max-width: 337px; */
     margin-right: auto;
     margin-left: auto;
+  }
+
+  .cardsContainer {
+    margin-bottom: 60px;
+  }
+
+  .container {
+    text-align: center;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .leftSideBarCard {
     width: 45%;
+    min-width: 335px;
     margin-right: 10px;
   }
 }
