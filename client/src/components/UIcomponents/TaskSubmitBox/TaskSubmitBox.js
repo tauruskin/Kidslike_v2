@@ -1,39 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import HabitCheckBtn from '../../UIcomponents/HabitCheckBtn/HabitCheckBtn';
-import habbitOperations from '../../../redux/habbit/habbitOperations';
+import operations from '../../../redux/tasks/taskOperations';
 
 import styles from './HabitSubmitBox.module.css';
 
-function TaskSubmitBox({ repeat, id, date, disabled, setIsDone }) {
+function TaskSubmitBox({ status ,id}) {
     const dispatch = useDispatch();
-    const onClick = req_data => {
-        dispatch(habbitOperations.checkHabitDone(id, req_data));
-    };
+    const handleCompleteAction = () => {
+        dispatch(operations.updateTask({
+            isCompleted: true
+        },id)
+        )
+    }
+      const handleFailAction = () => {
+        dispatch(operations.updateTask({
+            isCompleted: false
+        },id)
+        )
+    }
 
     return (
-        <div className={styles.submitBox}>
-   
-            <p className={styles.submitBoxTitle}>Підтвердження</p>
-            <button
-       
-                label="Підтвердити виконання"
-                type="button"
-                className={
-                    styles.checkBtn
-                }
-            ></button>
-            <button
-       
-                label="Підтвердити не виконання"
-                type="button"
-                className={
-                    styles.checkBtn
-                }
-            ></button>
-        
-      
-        </div>
+      <div className={styles.submitBox}>
+        <p className={styles.submitBoxTitle}>Підтвердження</p>
+        <button
+                onClick={handleCompleteAction}
+          label="Підтвердити виконання"
+          type="button"
+          className={styles.checkBtn}
+        ></button>
+        <button
+          onClick={handleFailAction}
+          label="Підтвердити не виконання"
+          type="button"
+          className={styles.crossBtn}
+        ></button>
+      </div>
     );
 
 }

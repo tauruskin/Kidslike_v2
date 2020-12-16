@@ -7,10 +7,9 @@ import TaskSubmitBox from '../UIcomponents/TaskSubmitBox/TaskSubmitBox';
 
 import styles from './TaskItem.module.css';
 
-export default function TaskItem({ name, points, daysToComplete, childId }) {
+export default function TaskItem({ name, points, daysToComplete, childId ,_id, isCompleted}) {
   const children = useSelector(state => state.children);
   const currentChild = children.find(el => el._id === childId);
-
   return (
     <div className={styles.habitItemFolder}>
       <img
@@ -35,7 +34,7 @@ export default function TaskItem({ name, points, daysToComplete, childId }) {
             <p className={styles.days}>{daysToComplete} день</p>
           </div>
         )}
-        <TaskSubmitBox repeat={false} />
+        <TaskSubmitBox status={isCompleted} id={_id} />
       </div>
     </div>
   );
