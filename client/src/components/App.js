@@ -15,7 +15,7 @@ import userOperation from '../redux/user/userOperation';
 import { setToken } from '../redux/auth/authOperations';
 
 import axios from 'axios';
-import { baseURL } from '../../config';
+import { baseURL } from '../config';
 axios.defaults.baseURL = baseURL;
 
 class App extends Component {
