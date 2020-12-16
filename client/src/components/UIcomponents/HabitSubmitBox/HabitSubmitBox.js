@@ -19,11 +19,11 @@ function HabitSubmitBox({ repeat, id, date, disabled, setIsDone }) {
                 </> :
                 <><p className={styles.submitBoxTitle}>Підтвердження</p>
                     <HabitCheckBtn isCheckMark={true}
-                        handelClick={() => { onClick({ date, done: 'yes' }); setIsDone() }}
+                        handelClick={() => { onClick({ date, done: 'yes' });{ setIsDone && setIsDone()} }}
                         label={'Підтвердити виконання'}
                         isDisabled={disabled} />
                     <HabitCheckBtn
-                        handelClick={() => { onClick({ date, done: 'no' }); setIsDone() }}
+                        handelClick={() => { onClick({ date, done: 'no' }); {setIsDone && setIsDone()} }}
                         label={'Підтвердити не виконання'}
                         isDisabled={disabled} />
                 </>}

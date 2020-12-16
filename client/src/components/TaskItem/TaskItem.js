@@ -22,7 +22,7 @@ export default function TaskItem({
       <img
         className={styles.avatar}
         src={
-          currentChild.gender
+          currentChild
             ? currentChild.gender === 'male'
               ? boy
               : girl
