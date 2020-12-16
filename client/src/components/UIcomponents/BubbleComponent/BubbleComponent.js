@@ -14,6 +14,7 @@ export default function BubbleComponent({
   msg,
   width,
   height,
+  right,
   top,
   taskData,
   habitData,
@@ -36,7 +37,7 @@ export default function BubbleComponent({
   };
   return msg ? (
     <div
-      style={{ width: width, height: height, top: top }}
+      style={{ width: width, height: height, top: top, right: right}}
       className={styles.arrowBox}
     >
       <p className={styles.authText}>{msg}</p>

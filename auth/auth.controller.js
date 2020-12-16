@@ -21,7 +21,6 @@ exports.signUp = async (req, res, next) => {
     throw new Conflict("Email already exists");
   }
   // const avatar = await avatarGenerate();
-  // asyncWrapper(MoveFile(avatar));
   const passwordHash = await bcrypt.hash(password, +process.env.SALT_ROUNDS);
 
   const user = await UserModel.create({
@@ -31,8 +30,8 @@ exports.signUp = async (req, res, next) => {
     // avatarURL:`${process.env.DOMAIN_ADDRESS}/images/${avatar}`,
     verificationToken: uuid.v4(),
   });
-  mailing.sendEmailForVarification(user);
-  return res.status(201).send(serializeUser(user));
+  const some = mailing.sendEmailForVarification(user);
+  if(some) return res.status(201).send(serializeUser(user));
 };
 
 exports.signIn = async (req, res, next) => {
