@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import boy from '../../img/avatars/boy_in_frame.png';
 import girl from '../../img/avatars/girl_in_frame.png';
-import HabitSubmitBox from '../UIcomponents/HabitSubmitBox/HabitSubmitBox';
+import TaskSubmitBox from '../UIcomponents/TaskSubmitBox/TaskSubmitBox';
 
 import styles from './TaskItem.module.css';
 
@@ -35,7 +35,7 @@ export default function TaskItem({ name, points, daysToComplete, childId }) {
             <p className={styles.days}>{daysToComplete} день</p>
           </div>
         )}
-        <HabitSubmitBox repeat={false} />
+        <TaskSubmitBox repeat={false} />
       </div>
     </div>
   );

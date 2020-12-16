@@ -21,7 +21,7 @@ exports.getTaskById = async (req, res, next) => {
 };
 
 exports.updateTask = async (req, res, next) => {
-  const { _id, childId, isCompleted,points , createdAt } = req.task;
+  const { _id , createdAt } = req.task;
 
   const updatedTask = await TaskModel.findByIdAndUpdate(_id, req.body, {
     new: true,
