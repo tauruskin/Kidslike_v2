@@ -8,14 +8,20 @@ const PrivateRoute = ({
   component: Component,
   isAuthenticated,
   ...routeProps
-}) => (
+}) => {
+  return (
     <Route
       {...routeProps}
       render={props =>
-        isAuthenticated ? <Component {...props} family={family} /> : <Redirect to="/" />
+        isAuthenticated ? (
+          <Component {...props} family={family} />
+        ) : (
+          <Redirect to="/" />
+        )
       }
     />
   );
+};
 
 // export default PrivateRoute;
 

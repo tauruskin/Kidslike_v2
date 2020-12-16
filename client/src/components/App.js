@@ -1,27 +1,29 @@
 import React, { Component, Suspense } from 'react';
-import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { Switch, BrowserRouter, Redirect } from 'react-router-dom';
 import routes from '../routes';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import NotFound from '../components/NotFound/NotFound';
 import { CustomLoader } from './UIcomponents/CustomLoader/CustomLoader';
 import Header from './Header/Header';
 import Logo from './Logo/Logo';
 import UserInfo from './UserInfo/UserInfo';
 import Navigation from './Navigation/Navigation';
 import Layout from './Layout/Layout';
-import ChildTaskPage from './ChildTaskPage/ChildTaskPage';
-import HabitsList from './HabitsList/HabitsList';
-import { ModalTest } from './ModalTest';
-import authSelectors from '../redux/auth/authSelectors';
 import { connect } from 'react-redux';
+import authSelectors from '../redux/auth/authSelectors';
+import userOperation from '../redux/user/userOperation';
+import { setToken } from '../redux/auth/authOperations';
+
+import axios from 'axios';
+import { baseURL } from '../config';
+axios.defaults.baseURL = baseURL;
 
 class App extends Component {
   /*
    *temporary state for leftSideBar.
    */
   state = {
-    family: true,
+    family: false,
   };
   /*
    *temporary method for leftSideBar.
@@ -33,19 +35,25 @@ class App extends Component {
     this.setState({ family: false });
   };
 
+  componentDidMount() {
+    setToken(this.props.isAuthenticated);
+    // this.props.onGetUserInfo();
+  }
+
   render() {
+    const { isAuthenticated } = this.props;
     return (
       <BrowserRouter>
-        <Header privatePage={this.props.isAuthenticated}>
-          <Logo privatePage={this.props.isAuthenticated} />
-          {this.props.isAuthenticated && (
+        <Header privatePage={isAuthenticated}>
+          <Logo privatePage={isAuthenticated} />
+          {isAuthenticated && (
             <Navigation
               familyRender={this.familyRender}
               familyRenderAnotherLinks={this.familyRenderAnotherLinks}
               family={this.state.family}
             />
           )}
-          {this.props.isAuthenticated && <UserInfo />}
+          {isAuthenticated && <UserInfo />}
         </Header>
         <Layout>
           <Suspense fallback={<CustomLoader />}>
@@ -61,7 +69,7 @@ class App extends Component {
                   <PublicRoute key={route.label} {...route} />
                 ),
               )}
-              <Route component={NotFound} />
+              {/* <Route component={NotFound} /> */}
               <Redirect to="/home" />
             </Switch>
           </Suspense>

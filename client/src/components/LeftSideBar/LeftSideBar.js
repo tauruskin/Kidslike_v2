@@ -38,54 +38,54 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
           <img src={family} alt="family" className={styles.iconFamily} />
           <h1 className={styles.title}>Сім’я</h1>
         </div>
-        <ul className={styles.cardsContainer}>
-          {children.map((el, i) => {
-            return (
-              <li key={i} className={styles.leftSideBarCard}>
-                <div className={styles.childTitle}>
-                  <img
-                    className={styles.leftSideBarAvatar}
-                    src={el.gender ? (el.gender === 'male' ? boy : girl) : boy}
-                    alt="avatar"
-                  />
-                  <h2 className={styles.childName}>{el.name}</h2>
-                  <img className={styles.star} src={star} alt="star" />
-                  <span>{el.points}</span>
-                </div>
 
-                <div className={styles.task}>
-                  <ul>
-                    {tasks.map(
-                      element =>
-                        element.childId === el._id &&
-                        element.isCompleted === null && (
-                          <li className={styles.habitsList}>
-                            <span className={styles.spanText}>
-                              {element.name}
-                            </span>
-                            <span className={styles.spanNumber}>
-                              +{element.points}
-                            </span>
-                          </li>
-                        ),
-                    )}
-                    {/* <li className={styles.habitsList}>
-                      <span className={styles.spanText}>Викинути сміття</span>
-                      <span className={styles.spanNumber}>+4</span>
-                    </li> */}
-                  </ul>
-                </div>
-                <NavLink
-                  to={`/home/child/${el._id}`}
-                  className={styles.arrowText}
-                >
-                  До виконаних задач
-                  <img src={arrow} alt="arrow" className={styles.arrow} />
-                </NavLink>
-              </li>
-            );
-          })}
-        </ul>
+        {children.length === 0 && <p> у вас нет детей</p>}
+        {children.length > 0 && (
+          <ul className={styles.cardsContainer}>
+            {children.map((el, i) => {
+              return (
+                <li key={el._id} className={styles.leftSideBarCard}>
+                  <div className={styles.childTitle}>
+                    <img
+                      className={styles.leftSideBarAvatar}
+                      src={el.gender ? (el.gender === 'male' ? boy : girl) : boy}
+                    alt="avatar"
+                    />
+                    <h2 className={styles.childName}>{el.name}</h2>
+                    <img className={styles.star} src={star} alt="star" />
+                    <span>{el.points}</span>
+                  </div>
+
+
+                  <div className={styles.task}>
+                    <ul>
+                      {tasks.map(element =>
+                          element.childId === el._id &&
+                          element.isCompleted === null && (
+                            <li key={element._id} className={styles.habitsList}>
+                              <span className={styles.spanText}>
+                                {element.name}
+                              </span>
+                              <span className={styles.spanNumber}>
+                                +{element.points}
+                              </span>
+                            </li>
+                          ),
+                      )}
+                    </ul>
+                  </div>
+                  <NavLink
+                    to={`/home/child/${el._id}`}
+                    className={styles.arrowText}
+                  >
+                    До виконаних задач
+                    <img src={arrow} alt="arrow" className={styles.arrow} />
+                  </NavLink>
+                </li>
+              );
+            })}
+          </ul>
+        )}
         <Button
           label={'Додати дитину  +'}
           transparent={true}

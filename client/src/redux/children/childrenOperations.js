@@ -10,16 +10,21 @@ import {
   getAllChildrenSuccess,
   getAllChildrenError,
 } from './childrenActions';
-const port = 'http://localhost:5000/';
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZmQ3YTc2YWJiMzczNDBiYjcxYTQxYWEiLCJpYXQiOjE2MDc5NzMyMjksImV4cCI6MTYwODE0NjAyOX0.lKRAeF8D-g1r7HCq-1Ngjm_cTsb7vFzQBjpxQcdm-04';
-axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
+// import { baseURL } from '../config';
+// axios.defaults.baseURL = baseURL;
+// const domain = process.env.DOMAIN_ADDRESS;
+
+//todo token
+// const token =
+//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZmQ3YTc2YWJiMzczNDBiYjcxYTQxYWEiLCJpYXQiOjE2MDc5NzMyMjksImV4cCI6MTYwODE0NjAyOX0.lKRAeF8D-g1r7HCq-1Ngjm_cTsb7vFzQBjpxQcdm-04';
+// axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
+import { setToken } from '../auth/authOperations';
 const getAllChildren = () => async dispatch => {
   dispatch(getAllChildrenRequest());
   try {
-    const response = await axios.get(`${port}api/childs/`);
-    console.log(response)
+    const response = await axios.get(`/api/childs/`);
     dispatch(getAllChildrenSuccess(response.data));
   } catch (error) {
     dispatch(getAllChildrenError(error));
@@ -29,8 +34,7 @@ const getAllChildren = () => async dispatch => {
 const addChildren = children => async dispatch => {
   dispatch(createChildrenRequest());
   try {
-    console.log(children);
-    const response = await axios.post(`${port}api/childs/`, { ...children });
+    const response = await axios.post(`/api/childs/`, { ...children });
     dispatch(createChildrenSuccess(response.data));
   } catch (error) {
     dispatch(createChildrenError(error.message));
@@ -40,7 +44,7 @@ const addChildren = children => async dispatch => {
 const updateChildren = (data, id) => async dispatch => {
   dispatch(changeChildrenMarkRequest());
   try {
-    await axios.patch(`${port}api/childs/${id}`, data).then(res => {
+    await axios.patch(`/api/childs/${id}`, data).then(res => {
       dispatch(changeChildrenMarkSuccess(res.data));
     });
   } catch (error) {
