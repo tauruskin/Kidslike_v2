@@ -9,6 +9,8 @@ import styles from './LeftSideBar.module.css';
 import AddChildren from '../modals/addChildren/AddChildren';
 import childrenOperations from '../../redux/children/childrenOperations';
 import { useSelector, useDispatch } from 'react-redux';
+import boy from '../../img/avatars/boy.png';
+import girl from '../../img/avatars/girl.png';
 
 export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
   const dispatch = useDispatch();
@@ -36,6 +38,7 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
           <img src={family} alt="family" className={styles.iconFamily} />
           <h1 className={styles.title}>Сім’я</h1>
         </div>
+
         {children.length === 0 && <p> у вас нет детей</p>}
         {children.length > 0 && (
           <ul className={styles.cardsContainer}>
@@ -45,13 +48,14 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
                   <div className={styles.childTitle}>
                     <img
                       className={styles.leftSideBarAvatar}
-                      src={logo}
-                      alt="default logo"
+                      src={el.gender ? (el.gender === 'male' ? boy : girl) : boy}
+                    alt="avatar"
                     />
                     <h2 className={styles.childName}>{el.name}</h2>
                     <img className={styles.star} src={star} alt="star" />
                     <span>{el.points}</span>
                   </div>
+
 
                   <div className={styles.task}>
                     <ul>
