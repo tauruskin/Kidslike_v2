@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import HabitCheckBtn from '../../UIcomponents/HabitCheckBtn/HabitCheckBtn';
 import habbitOperations from '../../../redux/habbit/habbitOperations';
 

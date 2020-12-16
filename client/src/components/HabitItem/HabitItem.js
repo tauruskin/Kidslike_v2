@@ -20,7 +20,6 @@ function HabitItem({ gender, name, points, childId, daysToComplete, _id }) {
 
   const hahdleClick = (date, value) => { setSelectedDate(date); setIsDone(value); console.log(value); };
 
-
   return (
     <div className={styles.habitItemFolder}>
       <img

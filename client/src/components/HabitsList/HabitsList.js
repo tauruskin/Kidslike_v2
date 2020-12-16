@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import HabitItem from '../HabitItem/HabitItem'
 import styles from './HabitsList.module.css'
-import habitsTemplate from '../HabitItem/habitsTemplate.json'
 import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 import Button from '../UIcomponents/Button/Button';
 import AddHabbit from '../modals/addHabbit/AddHabbit';
