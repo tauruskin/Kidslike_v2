@@ -7,7 +7,13 @@ import HabitSubmitBox from '../UIcomponents/HabitSubmitBox/HabitSubmitBox';
 
 import styles from './TaskItem.module.css';
 
-export default function TaskItem({ name, points, daysToComplete, childId }) {
+export default function TaskItem({
+  name,
+  points,
+  daysToComplete,
+  childId,
+  repeat = false,
+}) {
   const children = useSelector(state => state.children);
   const currentChild = children.find(el => el._id === childId);
 
@@ -35,7 +41,7 @@ export default function TaskItem({ name, points, daysToComplete, childId }) {
             <p className={styles.days}>{daysToComplete} день</p>
           </div>
         )}
-        <HabitSubmitBox repeat={false} />
+        <HabitSubmitBox repeat={repeat} />
       </div>
     </div>
   );

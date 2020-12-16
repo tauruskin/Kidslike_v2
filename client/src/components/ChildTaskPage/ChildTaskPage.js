@@ -6,8 +6,10 @@ import styles from './ChildTaskPage.module.css';
 import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 import Button from '../UIcomponents/Button/Button';
 import defaultLogo from '../../img/header/userInfo.svg';
-
+import boy from '../../img/avatars/boy.png';
+import girl from '../../img/avatars/girl.png';
 export default function ChildTaskPage() {
+  const [tasksDrow, settasksDrow] = useState([]);
   const tasks = useSelector(state => state.tasks);
   const children = useSelector(state => state.children);
 
@@ -19,7 +21,10 @@ export default function ChildTaskPage() {
   useEffect(() => {
     dispatch(operations.getAllTasks());
   }, []);
-  useEffect(() => {}, [tasks]);
+
+  useEffect(() => {
+    settasksDrow(tasks.slice(0, 4));
+  }, [tasks]);
 
   {
     return (
@@ -32,19 +37,30 @@ export default function ChildTaskPage() {
                   <div className={styles.giftIcon}>
                     <img
                       className={styles.leftSideBarAvatar}
-                      src={defaultLogo}
-                      alt="default logo"
+                      src={
+                        el.gender ? (el.gender === 'male' ? boy : girl) : boy
+                      }
+                      alt="avatar"
                     />
                   </div>
                   <h1 className={styles.giftTitle}>{el.name}</h1>
                 </div>
                 <ul className={styles.HabitList}>
-                  {tasks.map(
+                  {tasksDrow.map(
                     element =>
-                      element.childId === el._id && (
-                        <li key={element._id} className={styles.HabitItem}>
+                      element.childId === el._id &&
+                      element.isCompleted !== null && (
+                        <li
+                          key={element._id}
+                          className={styles.HabitItem}
+                          style={
+                            element.isCompleted
+                              ? { border: '1px solid rgb(126, 242, 157)' }
+                              : { border: '1px solid rgb(235, 162, 185)' }
+                          }
+                        >
                           <MoreButton type={'task'} />
-                          <TaskItem {...element} />
+                          <TaskItem {...element} repeat={true} />
                         </li>
                       ),
                   )}
@@ -52,7 +68,14 @@ export default function ChildTaskPage() {
               </div>
             ),
         )}
-        <Button label={'Дивитися ще'} type={'button'} white={true} />
+        <Button
+          label={'Дивитися ще'}
+          type={'button'}
+          white={true}
+          handleClick={() => {
+            settasksDrow(tasks);
+          }}
+        />
       </div>
     );
   }
