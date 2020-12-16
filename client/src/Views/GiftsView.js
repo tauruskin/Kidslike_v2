@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import gift from '../img/header/gift.svg';
 import styles from '../components/Gifts/Gifts.module.css';
-import GiftCard from '../components/Gifts/GiftCard';
+//import GiftCard from '../components/Gifts/GiftCard';
 import Button from '../components/UIcomponents/Button/Button';
 import AddPresent from '../components/modals/addPresent/AddPresent';
+import { GiftList } from '../components/Gifts/GiftList';
 
 export default function GiftsView() {
   const [showModal, setShowModal] = useState(false);
@@ -17,7 +18,7 @@ export default function GiftsView() {
             <img className={styles.giftIcon} src={gift} alt="gift" />
             <h1 className={styles.giftTitle}>Подарунки</h1>
           </div>
-          <GiftCard />
+          <GiftList />
           <Button
             handleClick={open}
             orange={true}

@@ -21,7 +21,6 @@ const getAllGifts = () => async dispatch => {
 const addGift = gift => async dispatch => {
   dispatch(actions.createGiftRequest());
   try {
-    console.log(gift);
     const response = await axios.post(`/api/gifts/`, { ...gift });
     dispatch(actions.createGiftSuccess(response.data));
   } catch (error) {

@@ -25,7 +25,6 @@ const getAllChildren = () => async dispatch => {
   dispatch(getAllChildrenRequest());
   try {
     const response = await axios.get(`/api/childs/`);
-    console.log(response);
     dispatch(getAllChildrenSuccess(response.data));
   } catch (error) {
     dispatch(getAllChildrenError(error));
@@ -35,7 +34,6 @@ const getAllChildren = () => async dispatch => {
 const addChildren = children => async dispatch => {
   dispatch(createChildrenRequest());
   try {
-    console.log(children);
     const response = await axios.post(`/api/childs/`, { ...children });
     dispatch(createChildrenSuccess(response.data));
   } catch (error) {

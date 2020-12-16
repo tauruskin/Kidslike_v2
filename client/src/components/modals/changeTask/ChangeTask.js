@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styles from './ChangeTask.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
 import operations from '../../../redux/tasks/taskOperations';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 const ChangeTask = ({ close, data }) => {
   const children = useSelector(state => state.children);
   const dispatch = useDispatch();
@@ -13,16 +13,6 @@ const ChangeTask = ({ close, data }) => {
   const [taskDays, setTaskDays] = useState(data.daysToComplete);
 
   const handleSubmit = evt => {
-    console.log(
-      'name:',
-      taskName,
-      'points',
-      mark,
-      'id',
-      taskTarget,
-
-    );
-
     dispatch(
       operations.updateTask(
         {
@@ -36,9 +26,9 @@ const ChangeTask = ({ close, data }) => {
     );
     evt.preventDefault();
     close();
-  }
+  };
   const handleDelete = () => {
-    dispatch(operations.deleteTask(data._id))
+    dispatch(operations.deleteTask(data._id));
     close();
   };
 
@@ -102,7 +92,7 @@ const ChangeTask = ({ close, data }) => {
             </button>
           </div>
           <div className={styles.buttonsBlock}>
-            <button  className={styles.buttonSave}>
+            <button onClick={handleSubmit} className={styles.buttonSave}>
               Зберегти
             </button>
 

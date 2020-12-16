@@ -1,5 +1,6 @@
 import axios from 'axios';
 import actions from './habbitActions';
+import childOperations from '../children/childrenOperations';
 
 // const domain = process.env.DOMAIN_ADDRESS;
 //todo token
@@ -22,7 +23,6 @@ const getAllHabits = () => async dispatch => {
 const addHabit = habit => async dispatch => {
   dispatch(actions.createHabbitRequest());
   try {
-    // console.log(habit);
     const response = await axios.post(`/api/habits/`, { ...habit });
     dispatch(actions.createHabbitSuccess(response.data));
   } catch (error) {
@@ -46,6 +46,7 @@ const checkHabitDone = (id, data) => async dispatch => {
   try {
     await axios.patch(`/api/habits/${id}/check`, data).then(res => {
       dispatch(actions.checkHabbitSuccess(res.data));
+      dispatch(childOperations.getAllChildren());
     });
   } catch (error) {
     dispatch(actions.checkHabbitError(error.message));

@@ -12,7 +12,7 @@ const AddTask = ({ close }) => {
   const [taskName, setTaskName] = useState('');
   const [mark, setMark] = useState('');
   const [taskTarget, setTaskTarget] = useState('');
-  const [taskDays, setTaskDays] = useState('');
+  const [taskDays, setTaskDays] = useState("10");
 
   const handleSubmit = evt => {
     dispatch(

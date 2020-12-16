@@ -11,7 +11,6 @@ const getAllTasks = () => async dispatch => {
   dispatch(actions.getAllTasksRequest());
   try {
     const response = await axios.get(`/api/tasks/`);
-    console.log(response);
     dispatch(actions.getAllTasksSuccess(response.data));
   } catch (error) {
     dispatch(actions.getAllTasksError(error));
@@ -21,7 +20,6 @@ const getAllTasks = () => async dispatch => {
 const addTask = Task => async dispatch => {
   dispatch(actions.createTaskRequest());
   try {
-    console.log(Task);
     const response = await axios.post(`/api/tasks/`, { ...Task });
     dispatch(actions.createTaskSuccess(response.data));
   } catch (error) {
