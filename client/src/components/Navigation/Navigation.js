@@ -8,11 +8,8 @@ import {useLocation} from "react-router-dom";
 
 export default function Navigation({ familyRender, family, familyRenderAnotherLinks }) {
   const location = useLocation()
-  console.log(location.pathname);
   const home = (location.pathname === "/home" && family === false)
   const gifts = (location.pathname === "/home/gifts" && family === false)
-
-  console.log(home);
   return (
     <>
       <ul className={styles.navList}>
