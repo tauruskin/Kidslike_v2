@@ -31,14 +31,17 @@ function HabitsList() {
         <div className={styles.giftIcon}></div>
         <h1 className={styles.giftTitle}>Звички</h1>
       </div>
-      <ul className={styles.HabitList}>
-        {habits.map((el, i) => (
-          <li key={el._id} className={styles.HabitItem}>
-            <MoreButton type={'habit'} data={el} />
-            <HabitItem {...el} />
-          </li>
-        ))}
-      </ul>
+      {habits.length === 0 && <p> у вас нет habits</p>}
+      {habits.length > 0 && (
+        <ul className={styles.HabitList}>
+          {habits.map((el, i) => (
+            <li key={el._id} className={styles.HabitItem}>
+              <MoreButton type={'habit'} data={el} />
+              <HabitItem {...el} />
+            </li>
+          ))}
+        </ul>
+      )}
       <Button
         label={'Додати звичку +'}
         handleClick={() => setShowAddHabitModal(true)}

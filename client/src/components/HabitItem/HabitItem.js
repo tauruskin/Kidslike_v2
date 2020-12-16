@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import boy from '../../img/avatars/boy_in_frame.png';
 import girl from '../../img/avatars/girl_in_frame.png';

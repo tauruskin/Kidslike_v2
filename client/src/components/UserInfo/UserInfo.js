@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import defaultLogo from '../../img/header/userInfo.svg';
 import logout from '../../img/header/logout.svg';
 import style from './UserInfo.module.css';
@@ -10,7 +9,7 @@ export default function UserInfo() {
   const close = () => {
     setShowModal(false);
   };
-  const srcLogo = defaultLogo
+  const srcLogo = defaultLogo;
   //  useSelector(state => state.user.avatarURL);
 
   return (
