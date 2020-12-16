@@ -11,25 +11,25 @@ import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 import { getAllGifts } from '../../redux/gifts/giftOperations';
 
 // console.log(styles.giftCard);
-export default function GiftCard({ logo = defaultLogo, img = defaultImage }) {
+export default function GiftCard({ logo = defaultLogo }) {
   const dispatch = useDispatch();
-  const gifts = useSelector(state => state.gifts)
+  const gifts = useSelector(state => state.gifts);
   useEffect(() => {
     dispatch(getAllGifts());
   }, []);
 
-//удалить подарок - поместить айдишник подарка, 
-//чтоб при клике на кнопку он отправлялся в запрос
-//например
-// const handleDelete = () => {
-// взять giftId 
-//   dispatch(deleteGift(giftId))
-// }
+  //удалить подарок - поместить айдишник подарка,
+  //чтоб при клике на кнопку он отправлялся в запрос
+  //например
+  // const handleDelete = () => {
+  // взять giftId
+  //   dispatch(deleteGift(giftId))
+  // }
 
   return (
     <div className={styles.GiftContainer}>
-      {gifts.map(gift => {
-        return (
+      {gifts.length === 0 && <p> у вас нет gifts</p>}
+      {gifts.length > 0 && gifts.map(gift => (
           <div key={gift._id} className={styles.giftCard}>
             <div className={styles.moreBtnFolder}>
               <MoreButton type={'gift'} />
@@ -40,7 +40,11 @@ export default function GiftCard({ logo = defaultLogo, img = defaultImage }) {
                 src={logo}
                 alt="default logo"
               />
-              <img className={styles.giftImage} src={gift.imageUrl} alt={gift.name} />
+              <img
+                className={styles.giftImage}
+                src={gift.imageUrl}
+                alt={gift.name}
+              />
             </div>
             <h2 className={styles.giftName}>{gift.name}</h2>
             <div className={styles.buttonPricePosition}>
@@ -55,8 +59,8 @@ export default function GiftCard({ logo = defaultLogo, img = defaultImage }) {
               <button className={styles.giftButton}>Button</button>
             </div>
           </div>
-        );
-      })}
+        )
+      )}
     </div>
   );
 }

@@ -10,7 +10,7 @@ const PrivateRoute = ({
   isAuthenticated,
   ...routeProps
 }) => {
-  setToken(isAuthenticated);
+  
   return (
     <Route
       {...routeProps}

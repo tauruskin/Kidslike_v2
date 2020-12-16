@@ -10,7 +10,8 @@ export default function UserInfo() {
   const close = () => {
     setShowModal(false);
   };
-  const srcLogo = useSelector(state => state.user.avatarURL);
+  const srcLogo = defaultLogo
+  //  useSelector(state => state.user.avatarURL);
 
   return (
     <div className={style.userInfoContainer}>
