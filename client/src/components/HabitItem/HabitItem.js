@@ -27,7 +27,7 @@ function HabitItem({ gender, name, points, childId, daysToComplete, _id }) {
       <img
         className={styles.avatar}
         src={
-          currentChild.gender !== null
+          currentChild
             ? currentChild.gender === 'male'
               ? boy
               : girl
