@@ -37,8 +37,8 @@ export const AuthBlock = ({flag, name}) => {
   <div className={styles.container}>
     <p className={styles.title}>{name}</p>
     {flag==='login'? <LoginForm/> : <RegisterForm/>}
-    <a href={googleLoginUrl}> <SocialAuthBtn name='Увійти за допомогою Google' google /></a>
-    {/* <SocialAuthBtn name='Увійти за допомогою Google' google handleClick={loginWithGoogle}/> */}
+    {/* <a href={googleLoginUrl}> <SocialAuthBtn name='Увійти за допомогою Google' google /></a> */}
+    <SocialAuthBtn name='Увійти за допомогою Google' google handleClick={loginWithGoogle}/>
     <SocialAuthBtn name='Увійти за допомогою Facebook' facebook handleClick={loginWithFacebook}/>
     {openBubbleGoogle && <BubbleComponent msg="Ми працюємо над цим =)" width='150px' height='35px' top='400px' right='180px'/>}
     {openBubbleFacebook && <BubbleComponent msg="Ми працюємо над цим =)" width='150px' height='35px' top='459px' right='180px'/>}

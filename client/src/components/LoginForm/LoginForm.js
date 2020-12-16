@@ -53,7 +53,7 @@ export const LoginForm = () => {
         addValues('Будь ласка підтвердіть свою реєстрацію в повідомленні на пошті')
         break;
       case 'Request failed with status code 401':
-        addValues('Неправильний пароль або логін')
+        addValues('Невірний пароль або логін')
         break;
       default:
         break;
