@@ -37,8 +37,8 @@ export const logout = token => dispatch => {
   axios
     .delete('/api/auth/signOut', token)
     .then(() => {
-      clearToken();
       dispatch(authAction.signoutSuccess());
     })
-    .catch(err => dispatch(authAction.signoutError(err)));
+    .catch(err => dispatch(authAction.signoutError(err)))
+    .finally(clearToken());
 };
