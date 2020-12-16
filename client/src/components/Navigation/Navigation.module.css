@@ -43,7 +43,7 @@
 .listItem:last-child {
   margin-right: 81px;
 }
-
+.active,
 .listItem:hover {
   background-color: transparent;
   border: 1px solid #bdbdbd;
