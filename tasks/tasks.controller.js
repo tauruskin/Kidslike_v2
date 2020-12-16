@@ -37,13 +37,13 @@ isCompleted: false
       { new: true })
   };
   if (updatedTask.isCompleted) {
-    const child = await ChildModel.findById(updatedTask.childId)
-    const updatedScore = updatedTask.points + child.points;
-    const UpdatedChild = ChildModel.findByIdAndUpdate(child, {
-      points: updatedScore
-    }
-      ,
-    {new: true})
+    const UpdatedChild = ChildModel.findByIdAndUpdate(
+      updatedTask.childId,
+      {
+        $inc: { points: updatedTask.points },
+      },
+      { new: true }
+    );
   }
   
   return res.status(200).send(updatedTask);
