@@ -38,6 +38,7 @@ const updateTask = (data, id) => async dispatch => {
   }
 };
 
+
 const deleteTask = id => async dispatch => {
   dispatch(actions.deleteTaskRequest());
   try {
@@ -48,10 +49,22 @@ const deleteTask = id => async dispatch => {
     dispatch(actions.deleteTaskError(error.message));
   }
 };
+const changeTasksStatus = (data, id) => async dispatch => {
+  dispatch(actions.changeTasksStatusRequest());
+  try {
+    await axios.patch(`/api/tasks/${id}`, data).then(res => {
+      dispatch(actions.changeTasksStatusSuccess(res.data));
+      dispatch(getAllTasks());
+    });
+  } catch (error) {
+    dispatch(actions.createTaskError(error.message));
+  }
+};
 
 export default {
   getAllTasks,
   addTask,
   updateTask,
   deleteTask,
+  changeTasksStatus
 };

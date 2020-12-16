@@ -13,7 +13,7 @@ function TaskSubmitBox({ status ,id}) {
         )
     }
       const handleFailAction = () => {
-        dispatch(operations.updateTask({
+        dispatch(operations.changeTasksStatus({
             isCompleted: false
         },id)
         )

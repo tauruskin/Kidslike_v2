@@ -15,7 +15,7 @@ export default function TaskItem({ name, points, daysToComplete, childId ,_id, i
       <img
         className={styles.avatar}
         src={
-          currentChild.gender
+          currentChild
             ? currentChild.gender === 'male'
               ? boy
               : girl
