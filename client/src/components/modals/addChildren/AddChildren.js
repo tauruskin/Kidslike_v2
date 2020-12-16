@@ -11,7 +11,6 @@ const AddChildren = ({ close }) => {
   const [childGender, setChildGender] = useState('');
 
   const handleSubmit = evt => {
-    console.log('name:', childName, 'Gender:', childGender);
     dispatch(
       childrenOperations.addChildren({
         name: childName,

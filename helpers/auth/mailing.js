@@ -1,30 +1,28 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
-class SendMail{
-  constructor(){
+class SendMail {
+  constructor() {
     this.transport = nodemailer.createTransport({
-      service: 'gmail',
+      service: "gmail",
       auth: {
         user: `${process.env.NODEMAILER_EMAIL}`,
-        pass: `${process.env.NODEMAILER_PASSWORD}`
+        pass: `${process.env.NODEMAILER_PASSWORD}`,
       },
-      tls: {rejectUnauthorized: false}
+      tls: { rejectUnauthorized: false },
     });
   }
 
-  async sendEmailForVarification(user){
+  async sendEmailForVarification(user) {
     const linkForVarification = `${process.env.DOMAIN_ADDRESS}/api/auth/verify/${user.verificationToken}`;
-    // const linkForVarification = `http://localhost:3000/home`;
-  
+
     return this.transport.sendMail({
-      from: 'newEmail', 
+      from: "newEmail",
       to: `${user.email}`,
-      subject: 'nodemailer',
-      html: `<p>Please open this <a href='${linkForVarification}'>link</a> and varify your email</p>`
+      subject: "nodemailer",
+      html: `<p>Please open this <a href='${linkForVarification}'>link</a> and varify your email</p>`,
       // html: `<p>Please open this <a href='${linkForVarification}'>link</a> and varify your email</p>`
-    })
+    });
   }
 }
 
 exports.mailing = new SendMail();
-

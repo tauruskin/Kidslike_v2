@@ -24,14 +24,17 @@ export default function TaskList() {
         <div className={styles.giftIcon}></div>
         <h1 className={styles.giftTitle}>Задачі</h1>
       </div>
-      <ul className={styles.HabitList}>
-        {tasks.map(el => (
-          <li key={el._id} className={styles.HabitItem}>
-            <MoreButton type={'task'} data={el} />
-            <TaskItem {...el} />
-          </li>
-        ))}
-      </ul>
+      {tasks.length === 0 && <p> у вас нет tasks</p>}
+      {tasks.length > 0 && (
+        <ul className={styles.HabitList}>
+          {tasks.map(el => (
+            <li key={el._id} className={styles.HabitItem}>
+              <MoreButton type={'task'} data={el} />
+              <TaskItem {...el} />
+            </li>
+          ))}
+        </ul>
+      )}
       <Button
         label={'Додати задачу +'}
         handleClick={() => setShowAddTaskModal(true)}

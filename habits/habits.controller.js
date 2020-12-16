@@ -1,14 +1,13 @@
 const { HabitModel } = require("./habits.model");
-const { ChildModel } = require('../childs/childs.model')
+const { ChildModel } = require("../childs/childs.model");
 
 exports.createHabit = async (req, res, next) => {
   const newHabit = await HabitModel.create(req.body);
-  console.log(newHabit);
   return res.status(201).send(newHabit);
 };
 
 exports.getHabits = async (req, res, next) => {
-  const { childId} = req.user;
+  const { childId } = req.user;
   const habits = await HabitModel.find({ childId: childId });
   return res.status(200).send(habits);
 };
@@ -28,13 +27,18 @@ exports.updateHabit = async (req, res, next) => {
 exports.checkHabitDone = async (req, res, next) => {
   const { _id, childId, points } = req.habit;
   const { done } = req.body;
-  const pointsToAdd = done === 'yes' ? points : 0;
-  const habitToCheck = await HabitModel.findOneAndUpdate({ _id, 'daysToComplete.date': req.body.date },
-    { $set: { 'daysToComplete.$.done': req.body.done } }, {
-    new: true,
-  });
-  await ChildModel.findByIdAndUpdate({ _id: childId },
-    { $inc: { points: pointsToAdd}})
+  const pointsToAdd = done === "yes" ? points : 0;
+  const habitToCheck = await HabitModel.findOneAndUpdate(
+    { _id, "daysToComplete.date": req.body.date },
+    { $set: { "daysToComplete.$.done": req.body.done } },
+    {
+      new: true,
+    }
+  );
+  await ChildModel.findByIdAndUpdate(
+    { _id: childId },
+    { $inc: { points: pointsToAdd } }
+  );
   return res.status(200).send(habitToCheck);
 };
 
