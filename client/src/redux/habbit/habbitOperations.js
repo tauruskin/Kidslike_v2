@@ -12,7 +12,6 @@ import childOperations from '../children/childrenOperations';
 const getAllHabits = () => async dispatch => {
   dispatch(actions.getAllHabitsRequest());
   try {
-    // setToken();
     const response = await axios.get(`/api/habits/`);
     dispatch(actions.getAllHabitsSuccess(response.data));
   } catch (error) {
@@ -46,8 +45,9 @@ const checkHabitDone = (id, data) => async dispatch => {
   try {
     await axios.patch(`/api/habits/${id}/check`, data).then(res => {
       dispatch(actions.checkHabbitSuccess(res.data));
-      dispatch(childOperations.getAllChildren());
     });
+    dispatch(childOperations.getAllChildren());
+    dispatch(getAllHabits());
   } catch (error) {
     dispatch(actions.checkHabbitError(error.message));
   }

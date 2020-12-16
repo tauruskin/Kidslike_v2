@@ -14,16 +14,13 @@ function HabitsList() {
     setShowAddHabitModal(false);
   };
   const habits = useSelector(state => state.habbits);
+  const filteredhabits = habits.filter(habit => habit.daysToComplete.some(day => day.done === null));
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(habbitOperations.getAllHabits());
   }, []);
-
-  useEffect(() => {
-    // dispatch(habbitOperations.getAllHabits());
-    // console.log('habits', habits);
-  }, [habits]);
 
   return (
     <div className={styles.listHolder}>
@@ -34,7 +31,7 @@ function HabitsList() {
       {habits.length === 0 && <p> у вас нет habits</p>}
       {habits.length > 0 && (
         <ul className={styles.HabitList}>
-          {habits.map((el, i) => (
+          {filteredhabits.map((el, i) => (
             <li key={el._id} className={styles.HabitItem}>
               <MoreButton type={'habit'} data={el} />
               <HabitItem {...el} />
