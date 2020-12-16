@@ -9,6 +9,7 @@ import styles from './LeftSideBar.module.css';
 import AddChildren from '../modals/addChildren/AddChildren';
 import childrenOperations from '../../redux/children/childrenOperations';
 import { useSelector, useDispatch } from 'react-redux';
+import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 
 export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
   const dispatch = useDispatch();
@@ -42,6 +43,9 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
             {children.map((el, i) => {
               return (
                 <li key={el._id} className={styles.leftSideBarCard}>
+                  <div className={styles.moreButton_wraper} >
+                    {<MoreButton type={'child'} />}
+                  </div>
                   <div className={styles.childTitle}>
                     <img
                       className={styles.leftSideBarAvatar}
