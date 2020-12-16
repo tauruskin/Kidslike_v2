@@ -39,7 +39,6 @@
     "mongodb": "^3.6.3",
     "mongoose": "^5.10.14",
     "morgan": "^1.10.0",
-    "react-media": "^1.10.0",
     "swagger-ui-express": "^4.1.5"
   }
 }

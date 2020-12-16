@@ -3,20 +3,20 @@ div id='root' должен занимать все пространство въ
 */
 
 @media screen and (max-width: 767px) {
-  body{
+  /* body{
     background-color: #fff;
-  }
+  } */
   .container {
     min-width: 321px;
     margin: 0 auto;
   }
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   body {
     background-color: #ff8626;
-  }
-}
+  }  */
+/* }  */
 
 @media screen and (max-width: 1199px) {
   .container {

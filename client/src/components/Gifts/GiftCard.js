@@ -1,50 +1,32 @@
-import React from 'react'
-import defaultLogo from '../../img/header/userInfo.svg';
+import React from 'react';
 import star from '../../img/svg/star.svg';
-import array from './testArray'
-import styles from './Gifts.module.css'
-// import dots from '../../img/svg/dots-grey.svg'
-// import testImg from './test.png'
-import defaultImage from './defaultImage.png'
+import styles from './Gifts.module.css';
 import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 
-// console.log(styles.giftCard);
-export default function GiftCard({ logo = defaultLogo, img = defaultImage }) {
-    return (
-        <div className={styles.GiftContainer}>
-            {array.map((el, i) => {
-                return (<div key={i} className={styles.giftCard}>
-                    <div className={styles.moreBtnFolder}>
-                        <MoreButton type={'gift'} />
-                    </div>
-                    <div className={styles.giftImageContainer}>
-                        <img
-                            className={styles.giftAvatar}
-                            src={logo}
-                            alt="default logo"
-                        />
-                        <img
-                            className={styles.giftImage}
-                            src={img}
-                            alt="default logo"
-                        />
-                    </div>
-                    <h2 className={styles.giftName}>Name Gift</h2>
-                    <div className={styles.buttonPricePosition}>
-                        <div className={styles.starPrice}>
-                            <img
-                                // className={styles.}
-                                src={star}
-                                alt="star"
-                            />
-                            <span>40</span>
-                        </div>
-                        <button className={styles.giftButton}>Button</button></div>
-                </div>
-                )
-            })}
-
+export function GiftCard({ gift, avatar }) {
+  return (
+    <li className={styles.giftCard}>
+      <div className={styles.moreBtnFolder}>
+        <MoreButton type={'gift'} data={gift} />
+      </div>
+      <div className={styles.giftAvatarContainer}>
+        <img className={styles.giftAvatar} src={avatar} alt="avatar" />
+      </div>
+      <div className={styles.giftImageThumb}>
+        <img className={styles.giftImage} src={gift.imageUrl} alt={gift.name} />
+      </div>
+      <h2 className={styles.giftName}>{gift.name}</h2>
+      <div className={styles.buttonPricePosition}>
+        <div className={styles.starPrice}>
+          <img
+            // className={styles.}
+            src={star}
+            alt="star"
+          />
+          <span>40</span>
         </div>
-    )
+        <button className={styles.giftButton}>Придбати</button>
+      </div>
+    </li>
+  );
 }
-
