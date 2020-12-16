@@ -27,7 +27,18 @@ export const signUp = userData => dispatch => {
   axios.post('/api/auth/signUp', userData).catch(error => console.log(error));
 };
 
-export const signOut = () => dispatch => {
-  clearToken();
-  dispatch(authAction.signOutSuccess());
+// export const signOut = () => dispatch => {
+//   clearToken();
+//   dispatch(authAction.signOutSuccess());
+// };
+
+export const logout = token => dispatch => {
+  dispatch(authAction.signoutRequest());
+  axios
+    .delete('/api/auth/signOut', token)
+    .then(() => {
+      dispatch(authAction.signoutSuccess());
+    })
+    .catch(err => dispatch(authAction.signoutError(err)))
+    .finally(clearToken());
 };
