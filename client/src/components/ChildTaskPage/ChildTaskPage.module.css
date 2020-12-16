@@ -19,7 +19,9 @@
 .HabitItem:not(:last-child) {
   margin-bottom: 10px;
 }
-
+.leftSideBarAvatar {
+  width: 100%;
+}
 .gifsTitleContainer {
   display: flex;
   align-items: center;
