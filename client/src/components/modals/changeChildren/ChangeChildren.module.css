@@ -20,7 +20,7 @@
   flex-wrap: wrap;
 }
 .inputBlock {
-  margin: 0 auto;
+  text-align: left;
 }
 .label {
   margin-bottom: 10px;

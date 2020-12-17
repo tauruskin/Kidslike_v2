@@ -38,7 +38,7 @@
 .input {
   padding-left: 20px;
   font-size: 16px;
-  width: 280px;
+  width: 95%;
   height: 44px;
   border: 1px solid #bdbdbd;
   box-sizing: border-box;
@@ -53,7 +53,7 @@
   cursor: pointer;
   padding-left: 20px;
   font-size: 16px;
-  width: 280px;
+  width: 95%;
   height: 44px;
   border: 1px solid #bdbdbd;
   box-sizing: border-box;
@@ -67,7 +67,7 @@
   border: 1px solid #ffbe9d;
 }
 .inputBlock {
-  margin: 0 auto;
+  text-align: left;
 }
 .inputMark {
   padding-left: 40px;
@@ -135,7 +135,6 @@
 .btnDelete {
   display: flex;
   padding: 0;
-  margin: 0 auto;
   margin-bottom: 10px;
   margin-top: 20px;
   font-family: 'Rubik', sans-serif;

@@ -33,13 +33,17 @@ export default function ChildTaskPage() {
     dispatch(operations.getAllTasks());
   }, []);
 
-  useEffect(() => {
-    const filterd = tasks
-      .filter(el => el.childId === childId)
-      .sort(sortFunc('updatedAt'))
-      .slice(0, 4);
-    settasksDrow(filterd);
-  }, [childId]);
+  useEffect(
+    () => {
+      const filterd = tasks
+        .filter(el => el.childId === childId)
+        .sort(sortFunc('updatedAt'))
+        .slice(0, 4);
+      settasksDrow(filterd);
+    },
+    [childId],
+    [tasks],
+  );
 
   {
     return (
@@ -74,7 +78,7 @@ export default function ChildTaskPage() {
                               : { border: '1px solid rgb(235, 162, 185)' }
                           }
                         >
-                          <MoreButton type={'task'} />
+                          {/* <MoreButton type={'task'} /> */}
                           <TaskItem {...element} repeat={true} />
                         </li>
                       ),
