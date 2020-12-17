@@ -10,7 +10,7 @@
 .HabitItem {
   position: relative;
   box-sizing: border-box;
-  width: 690px;
+  min-width: 690px;
   padding: 15px;
   border-radius: 20px;
   background-color: #fff;
@@ -43,7 +43,7 @@
   letter-spacing: 0em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .HabitList {
     max-width: 280px;
   }

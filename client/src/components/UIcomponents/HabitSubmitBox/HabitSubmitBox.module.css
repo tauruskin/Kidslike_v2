@@ -14,7 +14,7 @@
   color: #828282;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .submitBox {
     margin-left: 0;
   }
