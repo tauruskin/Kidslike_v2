@@ -1,5 +1,6 @@
 import axios from 'axios';
 import actions from './giftActions';
+import authErrorActions from '../auth/authActions';
 
 // const domain = process.env.DOMAIN_ADDRESS;
 //todo token
@@ -15,6 +16,9 @@ const getAllGifts = () => async dispatch => {
     dispatch(actions.getAllGiftsSuccess(response.data));
   } catch (error) {
     dispatch(actions.getAllGiftsError(error));
+    if(error.response.status === 401) {
+      dispatch(authErrorActions.signinError())
+    }
   }
 };
 

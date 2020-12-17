@@ -18,6 +18,12 @@ const userGifts = createReducer(userGiftsInitialState, {
   [actions.deleteGiftSuccess]: (state, { payload }) =>
   {const gifts = state.filter(el => el._id !== payload)
   return [...gifts]
-  }
+  },
+  [actions.updateGiftError]: (state, _) => state,
+  [actions.createGiftError]: (state, _) => state,
+  [actions.getAllGiftsError]: (state, _) => state,
+  [actions.deleteGiftError]: (state, { payload }) => {const gifts = state.filter(el => el._id !== payload)
+    return [...gifts]
+    },
 });
 export { userGifts };
