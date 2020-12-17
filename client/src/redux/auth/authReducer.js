@@ -7,6 +7,8 @@ const tokenReducer = createReducer(null, {
     return actions.payload.token;
   },
   [actions.signoutSuccess]: (_, __) => null,
+  [actions.signoutError]: (_, __) => null,
+  [actions.signinError]: (_, __) => null,
 });
 
 export default combineReducers({

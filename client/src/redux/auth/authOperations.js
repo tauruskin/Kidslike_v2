@@ -12,7 +12,6 @@ export const signIn = userData => dispatch => {
   status = axios
     .post('/api/auth/signIn', userData)
     .then(response => {
-      console.log(response.status);
       setToken(response.data.token);
       dispatch(authAction.signinSuccess(response.data));
     })
@@ -46,3 +45,17 @@ export const logout = token => dispatch => {
     .catch(err => dispatch(authAction.signoutError(err)))
     .finally(clearToken());
 };
+
+export const googleAuth = data => dispatch => {
+  dispatch(authAction.signinRequest());
+  axios 
+  .post('api/auth/google',data)
+  .then(response => {
+    setToken(response.data.token);
+    dispatch(authAction.signinSuccess(response.data));
+  })
+  .catch(error => {
+    return status = error.message
+    // dispatch(authAction.signInError(error.message));
+  });
+}
