@@ -21,3 +21,13 @@ export const getAllChildrenRequest = createAction(
 );
 export const getAllChildrenSuccess = createAction('children/getAllChildren');
 export const getAllChildrenError = createAction('children/getAllChildrenError');
+
+export const deleteChildrenRequest = createAction(
+  'children/deleteChildrenRequest',
+);
+export const deleteChildrenSuccess = createAction(
+  'children/deleteChildrenSuccess',
+);
+export const deleteChildrenError = createAction(
+  'children/deleteChildrenError',
+);
