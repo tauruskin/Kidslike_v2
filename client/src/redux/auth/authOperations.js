@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authAction from './authActions';
-
+let status;
 export const setToken = token =>
   (axios.defaults.headers.common['Authorization'] = token);
 
@@ -9,22 +9,25 @@ export const clearToken = () =>
 
 export const signIn = userData => dispatch => {
   dispatch(authAction.signinRequest());
-  axios
+  status = axios
     .post('/api/auth/signIn', userData)
     .then(response => {
       setToken(response.data.token);
-      // localStorage.setItem('token', response.data.token)
       dispatch(authAction.signinSuccess(response.data));
     })
     .catch(error => {
-      console.log(error);
+      return status = error.message
       // dispatch(authAction.signInError(error.message));
     });
+    return status;
 };
 
 export const signUp = userData => dispatch => {
   dispatch(authAction.signupRequest());
-  axios.post('/api/auth/signUp', userData).catch(error => console.log(error));
+  const statusCode = axios.post('/api/auth/signUp', userData)
+  .then(data=>{return data.status})
+  .catch(error => console.log(error));
+  return statusCode
 };
 
 // export const signOut = () => dispatch => {
@@ -42,3 +45,17 @@ export const logout = token => dispatch => {
     .catch(err => dispatch(authAction.signoutError(err)))
     .finally(clearToken());
 };
+
+export const googleAuth = data => dispatch => {
+  dispatch(authAction.signinRequest());
+  axios 
+  .post('api/auth/google',data)
+  .then(response => {
+    setToken(response.data.token);
+    dispatch(authAction.signinSuccess(response.data));
+  })
+  .catch(error => {
+    return status = error.message
+    // dispatch(authAction.signInError(error.message));
+  });
+}
