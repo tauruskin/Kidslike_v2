@@ -19,6 +19,7 @@ const habitSchema = new Schema(
       type: Array, default: daysToCompleteExample(10)
     },
     childId: { type: mongoose.ObjectId, required: true },
+    isCompleted: { type: Boolean, default: null },
   },
   {
     timestamps: true,

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import BubbleComponent from '../BubbleComponent/BubbleComponent';
+import Backdrop from '../Backdrop/Backdrop';
+import BubbleComponent from '../BubbleComponent/BubbleComponent';
 
 import styles from './MoreButton.module.css';
 
@@ -17,14 +19,17 @@ function MoreButton({ type, data }) {
         onClick={() => close()}
       ></button>
       {showDropDown && (
-        <BubbleComponent
-          modalType={type}
-          handleClick={() => close()}
-          taskData={data}
-          habitData={data}
-          giftData={data}
-          childtData={data}
-        />
+        <>
+          <Backdrop handleClick={() => close()} />
+          <BubbleComponent
+            modalType={type}
+            handleClick={() => close()}
+            taskData={data}
+            habitData={data}
+            giftData={data}
+            childtData={data}
+          />
+        </>
       )}
     </div>
   );

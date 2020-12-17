@@ -11,8 +11,9 @@ import childrenOperations from '../../redux/children/childrenOperations';
 import { useSelector, useDispatch } from 'react-redux';
 import boy from '../../img/avatars/boy.png';
 import girl from '../../img/avatars/girl.png';
+import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 
-export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
+export default function LeftSideBar({ logo = defaultLogo, family: Family, familyRenderAnotherLinks }) {
   const dispatch = useDispatch();
   const [showAddChildren, setShowAddChildren] = useState(false);
   const children = useSelector(state => state.children);
@@ -45,24 +46,26 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
             {children.map((el, i) => {
               return (
                 <li key={el._id} className={styles.leftSideBarCard}>
-                  <div className={styles.moreButton_wraper} >
+                  <div className={styles.moreButton_wraper}>
                     {<MoreButton type={'child'} />}
                   </div>
                   <div className={styles.childTitle}>
                     <img
                       className={styles.leftSideBarAvatar}
-                      src={el.gender ? (el.gender === 'male' ? boy : girl) : boy}
-                    alt="avatar"
+                      src={
+                        el.gender ? (el.gender === 'male' ? boy : girl) : boy
+                      }
+                      alt="avatar"
                     />
                     <h2 className={styles.childName}>{el.name}</h2>
                     <img className={styles.star} src={star} alt="star" />
                     <span>{el.points}</span>
                   </div>
 
-
                   <div className={styles.task}>
                     <ul>
-                      {tasks.map(element =>
+                      {tasks.map(
+                        element =>
                           element.childId === el._id &&
                           element.isCompleted === null && (
                             <li key={element._id} className={styles.habitsList}>
@@ -77,7 +80,7 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
                       )}
                     </ul>
                   </div>
-                  <NavLink
+                  <NavLink onClick={familyRenderAnotherLinks}
                     to={`/home/child/${el._id}`}
                     className={styles.arrowText}
                   >

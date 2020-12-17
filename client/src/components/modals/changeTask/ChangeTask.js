@@ -36,7 +36,7 @@ const ChangeTask = ({ close, data }) => {
     <>
       <div className={styles.modalBody}>
         <h2 className={styles.title}>Редагування задачі</h2>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={styles.form} >
           <div className={styles.inputBlock}>
             <label className={styles.label}>
               <p className={styles.inputName}>Назва</p>

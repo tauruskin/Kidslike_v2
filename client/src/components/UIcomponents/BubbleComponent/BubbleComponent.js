@@ -9,6 +9,7 @@ import childrenOperations from '../../../redux/children/childrenOperations';
 
 import styles from './BubbleComponent.module.css';
 import { deleteGift } from '../../../redux/gifts/giftOperations';
+import ChangePresent from '../../modals/changePreset/ChangePresent';
 
 export default function BubbleComponent({
   modalType,
@@ -20,7 +21,7 @@ export default function BubbleComponent({
   taskData,
   habitData,
   giftData,
-  childData
+  childData,
 }) {
   const [showModal, setShowModal] = useState(false);
   const close = () => {
@@ -41,6 +42,7 @@ export default function BubbleComponent({
   const deleteChildren = id => {
     dispatch(childrenOperations.deleteChildren(id));
   };
+
   return msg ? (
     <div
       style={{ width: width, height: height, top: top }}
@@ -89,8 +91,8 @@ export default function BubbleComponent({
               >
                 Видалити
               </button>
-              )}
-              {modalType === 'child' && (
+            )}
+            {modalType === 'child' && (
               <button
                 className={styles.optionButton}
                 onClick={() => {
@@ -121,17 +123,22 @@ export default function BubbleComponent({
             handleClick();
           }}
         />
-        )}
-        {modalType === 'child' && showModal &&
-          (<ChangeChildren
-            data={childData}
-            close={() => {
-              close();
-              handleClick();
-            }}
-          />)
-        }
-      {/* {modalType === 'gift' && showModal && <ChangeGift close={close} />} */}
+      )}
+      {modalType === 'child' && showModal && (
+        <ChangeChildren
+          data={childData}
+          close={() => {
+            close();
+            handleClick();
+          }}
+        />
+      )}
+      {modalType === 'gift' && showModal && (
+        <ChangePresent close={() => {
+          close();
+          handleClick();
+        }} data={giftData} />
+      )}
     </>
   );
 }

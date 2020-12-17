@@ -12,7 +12,7 @@ class HomeView extends Component {
     const { match } = this.props;
     return (
       <>
-        <LeftSideBar family={this.props.family} />
+        <LeftSideBar familyRenderAnotherLinks={this.props.familyRenderAnotherLinks} family={this.props.family} />
         <Container>
           <Route path={`${match.path}`} exact>
             <HabitsList />

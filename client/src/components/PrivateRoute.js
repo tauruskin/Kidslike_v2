@@ -5,6 +5,7 @@ import authSelectors from '../redux/auth/authSelectors';
 
 const PrivateRoute = ({
   family,
+  familyRenderAnotherLinks,
   component: Component,
   isAuthenticated,
   ...routeProps
@@ -14,7 +15,7 @@ const PrivateRoute = ({
       {...routeProps}
       render={props =>
         isAuthenticated ? (
-          <Component {...props} family={family} />
+          <Component {...props} family={family} familyRenderAnotherLinks={familyRenderAnotherLinks} />
         ) : (
           <Redirect to="/" />
         )

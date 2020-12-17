@@ -11,7 +11,7 @@
   position: relative;
   box-sizing: border-box;
   width: 690px;
-  height: 142px;
+  min-height: 142px;
   padding: 15px;
   border-radius: 20px;
   background-color: #fff;
@@ -50,7 +50,7 @@
 
   .HabitItem {
     width: 280px;
-    height: 197px;
+    min-height: 197px;
   }
 
   .giftIcon {
