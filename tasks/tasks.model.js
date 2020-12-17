@@ -6,7 +6,7 @@ const taskSchema = new Schema(
   {
     name: { type: String, required: true },
     points: { type: Number, required: true },
-    isCompleted: { type: Boolean, required: false, default: null },
+    isCompleted: { type: String, required: false, default: "inProgress" },
     daysToComplete: { type: Number, required: false ,default:10 },
     childId: { type: ObjectID, required: false },
   },
