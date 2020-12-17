@@ -17,7 +17,7 @@ function HabitsList() {
   };
   const habits = useSelector(state => state.habbits);
   const filteredhabits = habits.filter(habit => habit.daysToComplete.some(day => day.done === null));
-  
+  console.log(filteredhabits)
   const dispatch = useDispatch();
 
   useEffect(() => {
