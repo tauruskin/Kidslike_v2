@@ -19,12 +19,6 @@ export default function UserInfo() {
   useEffect(() => {
     dispatch(userOperation.getUserInfo());
   }, []);
-  // http://kidslike-v2.top/images/defAvatars.svg
-  // if (user.avatarURL) {
-  // console.log(user.avatarURL.slice(1,1));
-    
-  // }
-  // console.log(user?.avatarURL.slice());
   return (
     <div className={style.userInfoContainer}>
       <img 
