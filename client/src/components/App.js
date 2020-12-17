@@ -66,6 +66,7 @@ class App extends Component {
                     key={route.label}
                     {...route}
                     family={this.state.family}
+                    familyRenderAnotherLinks={this.familyRenderAnotherLinks}
                   />
                 ) : (
                   <PublicRoute key={route.label} {...route} />
