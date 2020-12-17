@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import BubbleComponent from '../BubbleComponent/BubbleComponent';
 import Backdrop from '../Backdrop/Backdrop';
-import BubbleComponent from '../BubbleComponent/BubbleComponent';
 
 import styles from './MoreButton.module.css';
 

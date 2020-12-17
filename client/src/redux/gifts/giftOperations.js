@@ -16,9 +16,9 @@ const getAllGifts = () => async dispatch => {
     dispatch(actions.getAllGiftsSuccess(response.data));
   } catch (error) {
     dispatch(actions.getAllGiftsError(error));
-    if(error.response.status === 401) {
-      dispatch(authErrorActions.signinError())
-    }
+    // if (error.response.status === 401) {
+    //   dispatch(authErrorActions.signinError());
+    // }
   }
 };
 

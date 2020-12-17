@@ -16,7 +16,7 @@ import habbitReducer from './habbit/habbitReducer';
 import taskReducer from './tasks/taskReducer';
 
 import storage from 'redux-persist/lib/storage';
-import { userGifts } from './gifts/giftReducer';
+import userGifts from './gifts/giftReducer';
 
 const authPersistConfig = {
   key: 'auth',
