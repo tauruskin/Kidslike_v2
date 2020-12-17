@@ -26,7 +26,6 @@ exports.updateTask = async (req, res, next) => {
   const updatedTask = await TaskModel.findByIdAndUpdate(_id, req.body, {
     new: true,
   });
-  console.log(updatedTask)
   const dayCreatedAt = moment(createdAt).format("X");
   const daysForTask = updatedTask.daysToComplete * 86400000;
   const today = Date.now();
@@ -40,8 +39,7 @@ exports.updateTask = async (req, res, next) => {
     );
   }
 
-  console.log(daysForTask + dayCreatedAt)
-  console.log(today)
+ 
   if ((daysForTask + dayCreatedAt) < today) {
     await TaskModel.findByIdAndUpdate(
       updatedTask._id,

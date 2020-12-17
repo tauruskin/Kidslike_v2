@@ -1,6 +1,6 @@
-import { current } from '@reduxjs/toolkit';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import operations from '../../redux/tasks/taskOperations'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import boy from '../../img/avatars/boy_in_frame.png';
 import girl from '../../img/avatars/girl_in_frame.png';
 import TaskSubmitBox from '../UIcomponents/TaskSubmitBox/TaskSubmitBox';
@@ -10,6 +10,10 @@ import styles from './TaskItem.module.css';
 export default function TaskItem({ name, points, daysToComplete, childId ,_id, isCompleted ,createdAt}) {
   const children = useSelector(state => state.children);
   const currentChild = children.find(el => el._id === childId);
+   const dispatch = useDispatch()
+   useEffect(() => {
+     dispatch(operations.getAllTasks());
+   }, []);
   return (
     <div className={styles.habitItemFolder}>
       <img
