@@ -66,7 +66,8 @@ const AddHabbit = ({ close }) => {
             </label>
           </div>
           <div className={styles.buttonsBlock}>
-            <button className={styles.buttonSave} onClick={handleSubmit}>Зберегти</button>
+            <button disabled={!habbitName || !mark || habbitTarget}
+              className={styles.buttonSave} onClick={handleSubmit}>Зберегти</button>
 
             <button className={styles.buttonCancle} onClick={() => close()}>
               Відміна

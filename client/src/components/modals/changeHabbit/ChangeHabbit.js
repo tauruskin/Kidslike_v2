@@ -74,7 +74,8 @@ const ChangeHabbit = ({ close, data }) => {
             </button>
           </div>
           <div className={styles.buttonsBlock}>
-            <button className={styles.buttonSave} type='submit'>Зберегти</button>
+            <button disabled={!habbitName || !mark || habbitTarget}
+              className={styles.buttonSave} type='submit'>Зберегти</button>
 
             <button className={styles.buttonCancle} onClick={() => close()}>
               Відміна
