@@ -34,7 +34,7 @@ export default function TaskItem({ name, points, daysToComplete, childId ,_id, i
             <p className={styles.days}>{daysToComplete} день</p>
           </div>
         )}
-        <TaskSubmitBox status={isCompleted} id={_id} />
+        <TaskSubmitBox status={isCompleted} id={_id} points={points} childId={childId} isCompleted={isCompleted} name={name}/>
       </div>
     </div>
   );
