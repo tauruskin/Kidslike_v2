@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './ModalBackDrop.module.css';
+import { createPortal } from 'react-dom';
+const modalRoot = document.querySelector('#modal-root');
 
 const modalBackDrop = WrappedComponent => {
   return class ModalBackDrop extends React.Component {
@@ -36,11 +38,13 @@ const modalBackDrop = WrappedComponent => {
       }
     };
     render() {
-      return (
-        <div data-type="modal" className={styles.modal}>
+      return createPortal(
+     <div data-type="modal" className={styles.modal}>
           <WrappedComponent {...this.props} onClick={this.closeModal} />
-        </div>
-      );
+        </div>,
+      modalRoot
+    );
+
     }
   };
 };

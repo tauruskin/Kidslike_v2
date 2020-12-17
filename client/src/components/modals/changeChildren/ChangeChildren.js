@@ -1,19 +1,31 @@
 import React, { useState } from 'react';
-
+import { useDispatch } from 'react-redux';
 import styles from './ChangeChildren.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
+import childOperations from '../../../redux/children/childrenOperations'
 
-const ChangeChildren = ({ close }) => {
+const ChangeChildren = ({ close, data }) => {
+  const dispatch = useDispatch();
+
   const [childName, setChildName] = useState('');
   const [childGender, setChildGender] = useState('');
 
   const handleSubmit = evt => {
-    console.log('name:', childName, 'Gender:', childGender);
+    dispatch(
+      childOperations.updateChildren(
+        {
+          name: childName,
+          gender: childGender,
+        },
+        data._id,
+      ),
+    );
     evt.preventDefault();
     close();
   };
 
   const handleDelete = () => {
+    dispatch(childOperations.deleteChildren(data._id));
     close();
   };
 
@@ -26,9 +38,9 @@ const ChangeChildren = ({ close }) => {
             <label className={styles.label}>
               <p className={styles.inputName}>Ім’я дитини</p>
               <input
+                // defaultValue={data.name}
                 className={styles.input}
                 placeholder="Ім’я"
-                value={childName}
                 onChange={({ target: { value } }) => setChildName(value)}
               ></input>
             </label>
@@ -37,7 +49,7 @@ const ChangeChildren = ({ close }) => {
               <input
                 name="gender"
                 type="radio"
-                onChange={() => setChildGender('girl')}
+                onChange={() => setChildGender('female')}
               />
               <span className={styles.radiobox}></span>
             </label>
@@ -46,7 +58,7 @@ const ChangeChildren = ({ close }) => {
               <input
                 name="gender"
                 type="radio"
-                onChange={() => setChildGender('boy')}
+                onChange={() => setChildGender('male')}
               />
               <span className={styles.radiobox}></span>
             </label>

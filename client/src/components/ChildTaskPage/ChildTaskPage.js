@@ -12,19 +12,38 @@ export default function ChildTaskPage() {
   const [tasksDrow, settasksDrow] = useState([]);
   const tasks = useSelector(state => state.tasks);
   const children = useSelector(state => state.children);
+  // let filteredData = tasksDrow.sort(sortFunc('updatedAt'));
 
   const dispatch = useDispatch();
   const childId = window.location.href.slice(
     window.location.href.lastIndexOf('/') + 1,
   );
 
+  const sortFunc = field => {
+    return (a, b) => (a[field] < b[field] ? 1 : -1);
+  };
+
+  const showMore = () => {
+    settasksDrow(
+      tasks.filter(el => el.childId === childId).sort(sortFunc('updatedAt')),
+    );
+  };
+
   useEffect(() => {
     dispatch(operations.getAllTasks());
   }, []);
 
-  useEffect(() => {
-    settasksDrow(tasks.slice(0, 4));
-  }, [tasks]);
+  useEffect(
+    () => {
+      const filterd = tasks
+        .filter(el => el.childId === childId)
+        .sort(sortFunc('updatedAt'))
+        .slice(0, 4);
+      settasksDrow(filterd);
+    },
+    [childId],
+    [tasks],
+  );
 
   {
     return (
@@ -49,7 +68,7 @@ export default function ChildTaskPage() {
                   {tasksDrow.map(
                     element =>
                       element.childId === el._id &&
-                      element.isCompleted !== null && (
+                      element.isCompleted === "true" && (
                         <li
                           key={element._id}
                           className={styles.HabitItem}
@@ -59,7 +78,7 @@ export default function ChildTaskPage() {
                               : { border: '1px solid rgb(235, 162, 185)' }
                           }
                         >
-                          <MoreButton type={'task'} />
+                          {/* <MoreButton type={'task'} /> */}
                           <TaskItem {...element} repeat={true} />
                         </li>
                       ),
@@ -72,9 +91,7 @@ export default function ChildTaskPage() {
           label={'Дивитися ще'}
           type={'button'}
           white={true}
-          handleClick={() => {
-            settasksDrow(tasks);
-          }}
+          handleClick={showMore}
         />
       </div>
     );

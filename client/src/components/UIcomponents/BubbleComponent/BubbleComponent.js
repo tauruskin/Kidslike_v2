@@ -5,9 +5,11 @@ import ChangeTask from '../../modals/changeTask/ChangeTask';
 import habitOperations from '../../../redux/habbit/habbitOperations';
 import operations from '../../../redux/tasks/taskOperations';
 import ChangeChildren from '../../modals/changeChildren/ChangeChildren';
+import childrenOperations from '../../../redux/children/childrenOperations';
 
 import styles from './BubbleComponent.module.css';
 import { deleteGift } from '../../../redux/gifts/giftOperations';
+import ChangePresent from '../../modals/changePreset/ChangePresent';
 
 export default function BubbleComponent({
   modalType,
@@ -20,7 +22,7 @@ export default function BubbleComponent({
   taskData,
   habitData,
   giftData,
-  childData
+  childData,
 }) {
   const [showModal, setShowModal] = useState(false);
   const close = () => {
@@ -28,6 +30,7 @@ export default function BubbleComponent({
   };
 
   const dispatch = useDispatch();
+  
   const deleteHabit = id => {
     dispatch(habitOperations.deleteHabit(id));
   };
@@ -37,9 +40,10 @@ export default function BubbleComponent({
   const deletePresent = id => {
     dispatch(deleteGift(id));
   };
-  const deleteChild = id => {
-    dispatch(deleteChild(id));
+  const deleteChildren = id => {
+    dispatch(childrenOperations.deleteChildren(id));
   };
+
   return msg ? (
     <div
       style={{ width: width, height: height, top: top, right: right}}
@@ -88,12 +92,12 @@ export default function BubbleComponent({
               >
                 Видалити
               </button>
-              )}
-              {modalType === 'child' && (
+            )}
+            {modalType === 'child' && (
               <button
                 className={styles.optionButton}
                 onClick={() => {
-                  deletePresent(childData._id);
+                  deleteChildren(childData._id);
                   handleClick();
                 }}
               >
@@ -120,17 +124,22 @@ export default function BubbleComponent({
             handleClick();
           }}
         />
-        )}
-        {modalType === 'child' && showModal &&
-          (<ChangeChildren
-            data={childData}
-            close={() => {
-              close();
-              handleClick();
-            }}
-          />)
-        }
-      {/* {modalType === 'gift' && showModal && <ChangeGift close={close} />} */}
+      )}
+      {modalType === 'child' && showModal && (
+        <ChangeChildren
+          data={childData}
+          close={() => {
+            close();
+            handleClick();
+          }}
+        />
+      )}
+      {modalType === 'gift' && showModal && (
+        <ChangePresent close={() => {
+          close();
+          handleClick();
+        }} data={giftData} />
+      )}
     </>
   );
 }
