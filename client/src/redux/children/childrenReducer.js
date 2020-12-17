@@ -3,6 +3,7 @@ import {
   createChildrenSuccess,
   changeChildrenMarkSuccess,
   getAllChildrenSuccess,
+  deleteChildrenSuccess,
 } from './childrenActions';
 
 const children = createReducer([], {
@@ -18,5 +19,8 @@ const children = createReducer([], {
   ],
   [changeChildrenMarkSuccess]: (state, { payload }) =>
     state.map(el => (el._id === payload._id ? (el = payload) : el)),
+  
+  [deleteChildrenSuccess]: (state, { payload }) =>
+    state.filter(el => el._id !== payload),  
 });
 export default children;
