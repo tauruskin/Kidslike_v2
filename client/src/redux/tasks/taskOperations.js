@@ -1,5 +1,6 @@
 import axios from 'axios';
 import actions from './taskActions';
+import childOperations from '../children/childrenOperations'
 
 // const domain = process.env.DOMAIN_ADDRESS;
 //todo token
@@ -54,7 +55,8 @@ const changeTasksStatus = (data, id) => async dispatch => {
   try {
     await axios.patch(`/api/tasks/${id}`, data).then(res => {
       dispatch(actions.changeTasksStatusSuccess(res.data));
-      dispatch(getAllTasks());
+      dispatch(childOperations.getAllChildren());
+       dispatch(getAllTasks());
     });
   } catch (error) {
     dispatch(actions.createTaskError(error.message));

@@ -4,11 +4,13 @@ import operations from '../../../redux/tasks/taskOperations';
 
 import styles from './HabitSubmitBox.module.css';
 
-function TaskSubmitBox({ status ,id}) {
+function TaskSubmitBox({ status ,id, childId , name , }) {
     const dispatch = useDispatch();
     const handleCompleteAction = () => {
         dispatch(operations.updateTask({
-            isCompleted: true
+          isCompleted: true,
+          childId: childId,
+      
         },id)
         )
     }

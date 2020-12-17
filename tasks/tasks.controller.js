@@ -21,33 +21,36 @@ exports.getTaskById = async (req, res, next) => {
 };
 
 exports.updateTask = async (req, res, next) => {
-  const { _id , createdAt } = req.task;
+  const { _id, createdAt , childId , points } = req.task;
+console.log(_id)
 
   const updatedTask = await TaskModel.findByIdAndUpdate(_id, req.body, {
     new: true,
   });
-  const dayCreatedAt = moment(createdAt).format('X');
+  const dayCreatedAt = moment(createdAt).format("X");
   const daysForTask = updatedTask.daysToComplete * 86400000;
   const today = Date.now();
-  if ((daysForTask + dayCreatedAt) > today )
-  {
-    const updatedStatus = await TaskModel.findByIdAndUpdate(updatedTask._id, {
-isCompleted: false
-    },
-      { new: true })
-  };
-  if (updatedTask.isCompleted) {
-    const UpdatedChild = ChildModel.findByIdAndUpdate(
-      updatedTask.childId,
+  if (updatedTask.isCompleted === true && req.task.isCompleted === null) {
+    await ChildModel.findByIdAndUpdate(
+     childId,
       {
-        $inc: { points: updatedTask.points },
+        $inc: { points: points },
       },
       { new: true }
     );
   }
-  
+  if (daysForTask + dayCreatedAt > today) {
+    await TaskModel.findByIdAndUpdate(
+      updatedTask._id,
+      {
+       $set: {isCompleted: false},
+      },
+      { new: true }
+    );
+  }
+
   return res.status(200).send(updatedTask);
-};
+};;
 
 exports.deleteTask = async (req, res, next) => {
   const { _id } = req.task;
