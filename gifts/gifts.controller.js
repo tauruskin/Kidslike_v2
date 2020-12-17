@@ -31,10 +31,7 @@ exports.updateGift = async (req, res, next) => {
   return res.status(200).send(updatedGift);
 };
 exports.purchaseGift = async (req, res, next) => {
-
   const { childId, price } = req.body
-  
-
   const child = await ChildModel.findById(childId)
   if (child.points >= price) {
     const newTotal = child.points - price
@@ -49,8 +46,6 @@ exports.purchaseGift = async (req, res, next) => {
   else {
  res.status(404).send("You dont have enough points");
   }
-
-
 }
 
 exports.deleteGift = async (req, res, next) => {
