@@ -20,7 +20,7 @@ function TaskSubmitBox({ status ,id, childId , name , isCompleted }) {
         },id)
         )
     }
-console.log(isCompleted)
+//console.log(isCompleted)
     return (
       <div className={styles.submitBox}>
         {isCompleted ? (

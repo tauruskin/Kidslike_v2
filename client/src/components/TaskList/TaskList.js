@@ -14,7 +14,7 @@ export default function TaskList() {
   };
   const tasks = useSelector(state => state.tasks);
   const filteredTasks = tasks.filter(el => el.isCompleted === null);
-  console.log(filteredTasks)
+  //console.log(filteredTasks)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(operations.getAllTasks());
