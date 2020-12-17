@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Button.module.css';
+import useSpinner from '../Spinner/useSpinner';
 
 export default function Button({
   handleClick,
@@ -14,11 +15,18 @@ export default function Button({
   bordered,
   disabled
 }) {
+  const [spinner, showSpinner, hideSpinner] = useSpinner();
+
+  const loader = () => {
+    showSpinner();
+    setTimeout(() => hideSpinner(), 500);
+  }
   return (
     <button
       disabled={disabled}
       type={type}
       onClick={handleClick}
+      onClick={loader}
       className={
         orange
           ? styles.ButtonOrange
@@ -32,7 +40,9 @@ export default function Button({
       }
     >
       {label}
+      {spinner}
     </button>
+    
   );
 }
 
