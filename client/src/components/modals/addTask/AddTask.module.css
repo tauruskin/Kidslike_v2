@@ -20,9 +20,7 @@
 .form {
   flex-wrap: wrap;
 }
-.inputBlock {
-  margin: 0 auto;
-}
+
 .label {
   margin-bottom: 10px;
   font-family: 'Rubik', sans-serif;
@@ -33,7 +31,9 @@
   line-height: 14px;
   color: #828282;
 }
-
+.inputBlock {
+  text-align: left;
+}
 .inputName {
   margin-bottom: 10px;
   margin-top: 10px;
@@ -41,7 +41,7 @@
 
 .input {
   padding-left: 20px;
-  width: 280px;
+  width: 95%;
   height: 44px;
   border: 1px solid #bdbdbd;
   box-sizing: border-box;
@@ -56,7 +56,7 @@
   cursor: pointer;
   padding-left: 20px;
   font-size: 16px;
-  width: 280px;
+  width: 95%;
   height: 44px;
   border: 1px solid #bdbdbd;
   box-sizing: border-box;

@@ -11,4 +11,21 @@
     width: 280px;
     margin: 0 auto;
   }
+  .notification{
+    width: 280px;
+  }
+}
+
+.notification{
+  position: absolute;
+  left: -112px;
+  top: -108px;
+  color: red;
+  border: 1px solid red;
+  border-radius: 20px;
+  padding: 0px;
+  width: 565px;
+  text-align: center;
+  margin: 0 auto 15px;
+  font-size: 12px;
 }

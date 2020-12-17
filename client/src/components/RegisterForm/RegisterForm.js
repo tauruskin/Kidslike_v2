@@ -4,8 +4,9 @@ import { BasicInput } from '../UIcomponents/Input/BasicInput';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import BubbleComponent from '../UIcomponents/BubbleComponent/BubbleComponent';
+import Roll from 'react-reveal/Roll';
 import styles from '../LoginForm/LoginForm.module.css';
+import BubbleComponent from '../UIcomponents/BubbleComponent/BubbleComponent';
 import { signUp } from '../../redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 
@@ -37,9 +38,11 @@ const schema = yup.object().shape({
 });
 
 export const RegisterForm = () => {
-  const [, setEmail] = useState('');
-  const [, setPassword] = useState('');
-  const [, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [notification, setNotification] = useState(false);
+  const [msg, setMsg] = useState('');
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
@@ -47,11 +50,38 @@ export const RegisterForm = () => {
   });
 
   const dispatch = useDispatch();
-  const onSubmit = data => dispatch(signUp(data));
+
+  const onSubmit = async data => {
+    const statusCode = await dispatch(signUp(data));
+    switch (statusCode) {
+      case 201:
+        setEmail('');
+        setPassword('');
+        setUsername('');
+        addValues('Лист з підтвердженням реєстрації вислано на пошту')
+        break;
+      default:
+        addValues('Користувач вже існує. Підтвердіть свій email в листі яке надіслано на пошту.')
+        break;
+    }
+  };
+
+  const addValues = (msg) => {
+    setMsg(msg)
+    setNotification(true);
+    setTimeout(() => {setNotification(false)}, 5000);
+  }
+
 
   return (
     <>
       <form className={styles.relative} onSubmit={handleSubmit(onSubmit)}>
+      {notification && 
+          <Roll left>
+          <div className={styles.notification}>
+            <p>{msg}</p>
+          </div>
+        </Roll>}
         <BasicInput
           handleChange={({ target: { value } }) => {
             setEmail(value);
@@ -66,6 +96,7 @@ export const RegisterForm = () => {
           labelWidth="147"
           inputWidth="340"
           type="email"
+          value={email}
         />
 
         <BasicInput
@@ -82,6 +113,7 @@ export const RegisterForm = () => {
           labelWidth="147"
           inputWidth="340"
           type="password"
+          value={password}
         />
 
         <BasicInput
@@ -99,6 +131,7 @@ export const RegisterForm = () => {
           labelWidth="147"
           inputWidth="340"
           type="text"
+          value={username}
         />
 
         <div className={styles.btn_centred}>
@@ -109,6 +142,7 @@ export const RegisterForm = () => {
             width="230px"
             height="45px"
             top="82px"
+            right='0'
             msg={errors.email.message}
           />
         )}
@@ -117,6 +151,7 @@ export const RegisterForm = () => {
             width="300px"
             height="46px"
             top="174px"
+            right='0'
             msg={errors.password.message}
           />
         )}
@@ -125,6 +160,7 @@ export const RegisterForm = () => {
             width="300px"
             height="46px"
             top="266px"
+            right='0'
             msg={errors.username.message}
           />
         )}

@@ -7,7 +7,7 @@ import TaskSubmitBox from '../UIcomponents/TaskSubmitBox/TaskSubmitBox';
 
 import styles from './TaskItem.module.css';
 
-export default function TaskItem({ name, points, daysToComplete, childId ,_id, isCompleted}) {
+export default function TaskItem({ name, points, daysToComplete, childId ,_id, isCompleted ,createdAt}) {
   const children = useSelector(state => state.children);
   const currentChild = children.find(el => el._id === childId);
   return (
@@ -34,7 +34,7 @@ export default function TaskItem({ name, points, daysToComplete, childId ,_id, i
             <p className={styles.days}>{daysToComplete} день</p>
           </div>
         )}
-        <TaskSubmitBox status={isCompleted} id={_id} points={points} childId={childId} isCompleted={isCompleted} name={name}/>
+        <TaskSubmitBox  id={_id} points={points} childId={childId} isCompleted={isCompleted} createdAt={createdAt}/>
       </div>
     </div>
   );

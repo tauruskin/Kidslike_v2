@@ -13,7 +13,7 @@ export default function ChildTaskPage() {
   const tasks = useSelector(state => state.tasks);
   const children = useSelector(state => state.children);
   // let filteredData = tasksDrow.sort(sortFunc('updatedAt'));
-
+console.log(tasksDrow)
   const dispatch = useDispatch();
   const childId = window.location.href.slice(
     window.location.href.lastIndexOf('/') + 1,
@@ -33,13 +33,17 @@ export default function ChildTaskPage() {
     dispatch(operations.getAllTasks());
   }, []);
 
-  useEffect(() => {
-    const filterd = tasks
-      .filter(el => el.childId === childId)
-      .sort(sortFunc('updatedAt'))
-      .slice(0, 4);
-    settasksDrow(filterd);
-  }, [childId]);
+  useEffect(
+    () => {
+      const filterd = tasks
+        .filter(el => el.childId === childId)
+        .sort(sortFunc('updatedAt'))
+        .slice(0, 4);
+      settasksDrow(filterd);
+    },
+    [childId],
+    [tasks],
+  );
 
   {
     return (
@@ -63,19 +67,20 @@ export default function ChildTaskPage() {
                 <ul className={styles.HabitList}>
                   {tasksDrow.map(
                     element =>
+                      
                       element.childId === el._id &&
-                      element.isCompleted !== null && (
+                      element.isCompleted === "true" && (
                         <li
                           key={element._id}
                           className={styles.HabitItem}
                           style={
-                            element.isCompleted
+                            element.isCompleted === "true"
                               ? { border: '1px solid rgb(126, 242, 157)' }
                               : { border: '1px solid rgb(235, 162, 185)' }
                           }
                         >
-                          <MoreButton type={'task'} />
-                          <TaskItem {...element} repeat={true} />
+                          {/* <MoreButton type={'task'} /> */}
+                          <TaskItem {...element} />
                         </li>
                       ),
                   )}
@@ -93,3 +98,4 @@ export default function ChildTaskPage() {
     );
   }
 }
+

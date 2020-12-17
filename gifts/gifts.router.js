@@ -7,6 +7,7 @@ const {
   getGiftById,
   updateGift,
   deleteGift,
+  purchaseGift
 } = require("./gifts.controller");
 const { validate } = require("../helpers/validate");
 const { createGiftSchema, updateGiftSchema } = require("./gifts.schemes");
@@ -50,6 +51,12 @@ router.patch(
   authorize,
   imageUpload,
   asyncWrapper(updateGift)
+);
+router.patch(
+  "/purchase/:giftId",
+  authorize,
+  validate(updateGiftSchema),
+  asyncWrapper(purchaseGift)
 );
 
 // 4. D - Delete

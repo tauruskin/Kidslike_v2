@@ -13,8 +13,9 @@ export default function TaskList() {
     setShowAddTaskModal(false);
   };
   const tasks = useSelector(state => state.tasks);
-  const filteredTasks = tasks.filter(el => el.isCompleted === null);
-  //console.log(filteredTasks)
+  console.log(tasks)
+  const filteredTasks = tasks.filter(el => el.isCompleted === "inProgress");
+  console.log(filteredTasks)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(operations.getAllTasks());
