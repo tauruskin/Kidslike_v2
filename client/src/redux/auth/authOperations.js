@@ -16,6 +16,7 @@ export const signIn = userData => dispatch => {
       dispatch(authAction.signinSuccess(response.data));
     })
     .catch(error => {
+      //console.log(error);
       return status = error.message
       // dispatch(authAction.signInError(error.message));
     });

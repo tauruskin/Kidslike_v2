@@ -22,22 +22,36 @@ const getAllGifts = () => async dispatch => {
   }
 };
 
-const addGift = gift => async dispatch => {
+const addGift = giftData => async dispatch => {
   dispatch(actions.createGiftRequest());
   try {
-    const response = await axios.post(`/api/gifts/`, { ...gift });
+    const response = await axios({
+      method: 'post',
+      url: `/api/gifts/`,
+      data: giftData,
+      headers: {'Content-Type': 'multipart/form-data' }
+      })
     dispatch(actions.createGiftSuccess(response.data));
   } catch (error) {
     dispatch(actions.createGiftError(error.message));
   }
 };
 
-const updateGift = (data, id) => async dispatch => {
+const updateGift = (giftData, id) => async dispatch => {
   dispatch(actions.updateGiftRequest());
   try {
-    await axios.patch(`/api/gifts/${id}`, data).then(res => {
-      dispatch(actions.updateGiftSuccess(res.data));
-    });
+
+    const response = await axios({
+      method: 'patch',
+      url: `/api/gifts/${id}`,
+      data: giftData,
+      headers: {'Content-Type': 'multipart/form-data' }
+      })
+
+      dispatch(actions.updateGiftSuccess(response.data));
+    // await axios.patch(`/api/gifts/${id}`, data).then(res => {
+    //   dispatch(actions.updateGiftSuccess(res.data));
+    // });
   } catch (error) {
     dispatch(actions.updateGiftError(error.message));
   }

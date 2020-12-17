@@ -13,6 +13,7 @@ const { validate } = require("../helpers/validate");
 const { createGiftSchema, updateGiftSchema } = require("./gifts.schemes");
 const mongoose = require("mongoose");
 const { GiftModel } = require("./gifts.model");
+const { imageUpload } = require("../helpers/image.upload");
 
 const router = Router();
 
@@ -35,6 +36,7 @@ router.param("giftId", async (req, res, next, giftId) => {
 router.post(
   "/",
   authorize,
+  imageUpload,
   validate(createGiftSchema),
   asyncWrapper(createGift)
 );
@@ -47,7 +49,7 @@ router.get("/:giftId", authorize, asyncWrapper(getGiftById));
 router.patch(
   "/:giftId",
   authorize,
-  validate(updateGiftSchema),
+  imageUpload,
   asyncWrapper(updateGift)
 );
 router.patch(

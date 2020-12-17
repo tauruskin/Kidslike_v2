@@ -43,8 +43,8 @@ function AddPresent({ close }) {
       setFileError('');
       setFileName(imgFile.name);
       reader.readAsDataURL(imgFile);
-      reader.onloadend = function () {
-        setFile(reader.result);
+      reader.onloadend = () => {
+        setFile(imgFile);
       };
     }
   };
@@ -61,8 +61,15 @@ function AddPresent({ close }) {
     event.preventDefault();
     //console.log('file', file);
     // отправка пока идет без файла
-    const newPresent = {name: presentTitle, price, childId }
-    dispatch(addGift(newPresent))
+    const formData = new FormData();
+    formData.append('name', presentTitle);
+    formData.append('price', price);
+    formData.append('childId', childId);
+    if(file) {
+      formData.append('image', file, fileName);
+    }
+    // const newPresent = {name: presentTitle, price, childId }
+    dispatch(addGift(formData))
     resetState();
     close();
   };

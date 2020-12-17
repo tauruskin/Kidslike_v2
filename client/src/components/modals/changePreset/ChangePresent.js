@@ -9,7 +9,7 @@ import { MarkInput } from '../../UIcomponents/MarkInput/MarkInput';
 import { updateGift, deleteGift } from '../../../redux/gifts/giftOperations';
 
 function ChangePresent({ close, data }) {
-  const { _id } = data;
+  const { _id, imageUrl } = data;
   const dispatch = useDispatch();
   const children = useSelector(state => state.children);
   const [presentTitle, setPresentTitle] = useState(data.name);
@@ -44,8 +44,8 @@ function ChangePresent({ close, data }) {
       setFileName(imgFile.name);
       reader.readAsDataURL(imgFile);
       reader.onloadend = function () {
-        setFile(reader.result);
-      };
+        setFile(imgFile);
+       };
     }
   };
 
@@ -59,10 +59,15 @@ function ChangePresent({ close, data }) {
   const handleSubmit = event => {
 
     event.preventDefault();
-    //console.log('file', file);
-    // отправка пока идет без файла
-    const newPresent = {name: presentTitle, price, childId }
-    dispatch(updateGift(newPresent, _id))
+    const formData = new FormData();
+    formData.append('name', presentTitle);
+    formData.append('price', price);
+    formData.append('childId', childId);
+    formData.append("imageURL", imageUrl);
+    if(file) {
+      formData.append('image', file, fileName);
+    }
+    dispatch(updateGift(formData, _id))
     resetState();
     close();
   };
