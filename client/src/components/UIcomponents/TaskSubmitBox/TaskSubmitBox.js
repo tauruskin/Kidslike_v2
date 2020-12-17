@@ -37,30 +37,30 @@ function TaskSubmitBox({id, childId , name , disabled, repeat , isCompleted }) {
 
     return (
       <div className={styles.submitBox}>
-        {isCompleted === "true" ? (
+        {isCompleted === 'true' ? (
           <>
             <p className={styles.submitBoxTitle}>Повторити</p>
             <TaskSubmitButton
               isRepeatMark={isCompleted}
+            
               handelClick={handleRepeatAction}
               label={'Підтвердити виконання'}
             />
           </>
         ) : (
-          <>
+          <div>
             <p className={styles.submitBoxTitle}>Підтвердження</p>
             <TaskSubmitButton
-              isCheckMark={true}
+              isCheckMark={isCompleted}
               handelClick={handleCompleteAction}
               label={'Підтвердити виконання'}
-              isDisabled={disabled}
             />
             <TaskSubmitButton
+            
               handelClick={handleFailAction}
               label={'Підтвердити не виконання'}
-              isDisabled={disabled}
             />
-          </>
+          </div>
         )}
       </div>
     );

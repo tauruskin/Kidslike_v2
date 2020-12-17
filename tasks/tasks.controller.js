@@ -4,6 +4,7 @@ const moment = require("moment");
 
 exports.createTask = async (req, res, next) => {
   const newTask = await TaskModel.create(req.body);
+  console.log(newTask)
   return res.status(201).send(newTask);
 };
 
@@ -25,6 +26,7 @@ exports.updateTask = async (req, res, next) => {
   const updatedTask = await TaskModel.findByIdAndUpdate(_id, req.body, {
     new: true,
   });
+  console.log(updatedTask)
   const dayCreatedAt = moment(createdAt).format("X");
   const daysForTask = updatedTask.daysToComplete * 86400000;
   const today = Date.now();
@@ -41,7 +43,7 @@ exports.updateTask = async (req, res, next) => {
     await TaskModel.findByIdAndUpdate(
       updatedTask._id,
       {
-       $set: {isCompleted: false},
+       $set: {isCompleted: "false"},
       },
       { new: true }
     );

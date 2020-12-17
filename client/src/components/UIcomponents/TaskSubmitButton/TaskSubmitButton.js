@@ -14,11 +14,12 @@ export default function TaskSubmitButton({
       onClick={handelClick}
       type="button"
       className={
-        isCheckMark
+        isCheckMark === "inProgress"
           ? styles.checkBtn
-          : isRepeatMark
-          ? styles.repeatBtn
-          : styles.crossBtn
+          : isRepeatMark === "true"
+                  ? styles.repeatBtn
+                  : 
+                  styles.crossBtn
       }
       aria-label={label}
     ></button>
