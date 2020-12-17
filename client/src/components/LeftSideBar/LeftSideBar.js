@@ -13,7 +13,7 @@ import boy from '../../img/avatars/boy.png';
 import girl from '../../img/avatars/girl.png';
 import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 
-export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
+export default function LeftSideBar({ logo = defaultLogo, family: Family, familyRenderAnotherLinks }) {
   const dispatch = useDispatch();
   const [showAddChildren, setShowAddChildren] = useState(false);
   const children = useSelector(state => state.children);
@@ -80,7 +80,7 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
                       )}
                     </ul>
                   </div>
-                  <NavLink
+                  <NavLink onClick={familyRenderAnotherLinks}
                     to={`/home/child/${el._id}`}
                     className={styles.arrowText}
                   >
