@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const GIFT_PATH = `${process.env.DOMAIN_ADDRESS}/images/defGif.png`;
+const GIFT_PATH = `${process.env.DOMAIN_ADDRESS}/images/defGift.svg`;
 
 const giftSchema = new Schema(
   {

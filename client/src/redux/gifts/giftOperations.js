@@ -47,8 +47,7 @@ const updateGift = (giftData, id) => async dispatch => {
       data: giftData,
       headers: {'Content-Type': 'multipart/form-data' }
       })
-      console.log('response', response)
-      console.log('response.data', response.data)
+
       dispatch(actions.updateGiftSuccess(response.data));
     // await axios.patch(`/api/gifts/${id}`, data).then(res => {
     //   dispatch(actions.updateGiftSuccess(res.data));

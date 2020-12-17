@@ -49,7 +49,6 @@ router.patch(
   "/:giftId",
   authorize,
   imageUpload,
-  validate(updateGiftSchema),
   asyncWrapper(updateGift)
 );
 
