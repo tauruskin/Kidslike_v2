@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TaskItem from '../TaskItem/TaskItem';
 import { useSelector, useDispatch } from 'react-redux';
-import operations from '../../redux/tasks/taskOperations';
+import operations from '../../redux/children/childrenOperations';
 import styles from './ChildTaskPage.module.css';
 import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 import Button from '../UIcomponents/Button/Button';
@@ -30,7 +30,7 @@ console.log(tasksDrow)
   };
 
   useEffect(() => {
-    dispatch(operations.getAllTasks());
+    dispatch(operations.getAllChildren());
   }, []);
 
   useEffect(

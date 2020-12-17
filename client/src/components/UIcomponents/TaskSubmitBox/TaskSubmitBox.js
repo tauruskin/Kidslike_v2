@@ -8,7 +8,7 @@ import styles from './HabitSubmitBox.module.css';
 function TaskSubmitBox({id, childId , createdAt , isCompleted }) {
   const today = Date.now()
   const parsedDate = new Date(today).toISOString();
-
+console.log(createdAt)
     const dispatch = useDispatch();
     const handleCompleteAction = () => {
         dispatch(operations.updateTask({
