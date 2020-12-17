@@ -5,8 +5,10 @@ import operations from '../../../redux/tasks/taskOperations';
 
 import styles from './HabitSubmitBox.module.css';
 
-function TaskSubmitBox({id, childId , name , disabled, repeat , isCompleted }) {
-  console.log(isCompleted)
+function TaskSubmitBox({id, childId , createdAt , isCompleted }) {
+  const today = Date.now()
+  const parsedDate = new Date(today).toISOString();
+
     const dispatch = useDispatch();
     const handleCompleteAction = () => {
         dispatch(operations.updateTask({
@@ -28,6 +30,7 @@ function TaskSubmitBox({id, childId , name , disabled, repeat , isCompleted }) {
          {
            isCompleted: "inProgress",
            childId: childId,
+           createdAt: parsedDate
          },
          id,
        ),
