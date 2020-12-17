@@ -6,11 +6,13 @@ import { BasicInput } from '../../UIcomponents/Input/BasicInput';
 import { CustomSelect } from '../../UIcomponents/CustomSelect/CustomSelect';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
 import { MarkInput } from '../../UIcomponents/MarkInput/MarkInput';
-import { addGift} from '../../../redux/gifts/giftOperations';
+import { addGift } from '../../../redux/gifts/giftOperations';
 
 function AddPresent({ close }) {
   const dispatch = useDispatch();
-  const children = useSelector(state => state.children)
+  const children = useSelector(state => state.children);
+  const loaderGift = useSelector(state => state.gifts.loaderGift);
+  const errorGift = useSelector(state => state.gifts.errorGift);
 
   const [presentTitle, setPresentTitle] = useState('');
   const [price, setPrice] = useState('');
@@ -56,15 +58,16 @@ function AddPresent({ close }) {
     setFile('');
   };
 
-  const handleSubmit = event => {
-
+  const handleSubmit = async event => {
     event.preventDefault();
     //console.log('file', file);
     // отправка пока идет без файла
-    const newPresent = {name: presentTitle, price, childId }
-    dispatch(addGift(newPresent))
-    resetState();
-    close();
+    const newPresent = { name: presentTitle, price, childId };
+    const result = await dispatch(addGift(newPresent));
+    if (result) {
+      resetState();
+      close();
+    }
   };
 
   return (
@@ -123,8 +126,10 @@ function AddPresent({ close }) {
               label={'Зберегти'}
               orange={true}
               disabled={!presentTitle || childId === 'Оберіть дитину'}
+              loading={loaderGift}
             />
           </div>
+          {errorGift && <span>Ops ... err={errorGift}</span>}
         </form>
         <button
           onClick={() => close()}

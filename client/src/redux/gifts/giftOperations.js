@@ -27,8 +27,10 @@ const addGift = gift => async dispatch => {
   try {
     const response = await axios.post(`/api/gifts/`, { ...gift });
     dispatch(actions.createGiftSuccess(response.data));
+    return true;
   } catch (error) {
     dispatch(actions.createGiftError(error.message));
+    return false;
   }
 };
 
@@ -38,8 +40,10 @@ const updateGift = (data, id) => async dispatch => {
     await axios.patch(`/api/gifts/${id}`, data).then(res => {
       dispatch(actions.updateGiftSuccess(res.data));
     });
+    return true;
   } catch (error) {
     dispatch(actions.updateGiftError(error.message));
+    return false;
   }
 };
 

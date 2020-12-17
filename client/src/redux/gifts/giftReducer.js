@@ -27,7 +27,13 @@ const userGifts = createReducer(userGiftsInitialState, {
   // },
 });
 
-const loaderGifts = createReducer(false, {
+const loaderGiftsList = createReducer(false, {
+  [actions.getAllGiftsRequest]: () => true,
+  [actions.getAllGiftsSuccess]: () => false,
+  [actions.getAllGiftsError]: () => false,
+});
+
+const loaderGift = createReducer(false, {
   [actions.createGiftRequest]: () => true,
   [actions.createGiftSuccess]: () => false,
   [actions.createGiftError]: () => false,
@@ -37,24 +43,30 @@ const loaderGifts = createReducer(false, {
   [actions.deleteGiftRequest]: () => true,
   [actions.deleteGiftsSuccess]: () => false,
   [actions.deleteGiftsError]: () => false,
-  [actions.getAllGiftsRequest]: () => true,
-  [actions.getAllGiftsSuccess]: () => false,
-  [actions.getAllGiftsError]: () => false,
 });
 
-const errorGifts = createReducer(false, {
+const errorGiftsList = createReducer(false, {
+  [actions.getAllGiftsRequest]: () => false,
+  [actions.getAllGiftsSuccess]: () => false,
+  [actions.getAllGiftsError]: (_, { payload }) => payload,
+});
+
+const errorGift = createReducer(false, {
   [actions.createGiftRequest]: () => false,
   [actions.createGiftSuccess]: () => false,
   [actions.createGiftError]: (_, { payload }) => payload,
   [actions.updateGiftRequest]: () => false,
   [actions.updateGiftSuccess]: () => false,
   [actions.updateGiftError]: (_, { payload }) => payload,
-  [actions.deleteGiftRequest]: () => false,
-  [actions.deleteGiftsSuccess]: () => false,
-  [actions.deleteGiftsError]: (_, { payload }) => payload,
-  [actions.getAllGiftsRequest]: () => false,
-  [actions.getAllGiftsSuccess]: () => false,
-  [actions.getAllGiftsError]: (_, { payload }) => payload,
+  // [actions.deleteGiftRequest]: () => false,
+  // [actions.deleteGiftsSuccess]: () => false,
+  // [actions.deleteGiftsError]: (_, { payload }) => payload,
 });
 
-export default combineReducers({ userGifts, loaderGifts, errorGifts });
+export default combineReducers({
+  userGifts,
+  loaderGiftsList,
+  loaderGift,
+  errorGiftsList,
+  errorGift,
+});

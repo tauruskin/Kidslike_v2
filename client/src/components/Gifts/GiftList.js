@@ -9,8 +9,8 @@ import { getAllGifts } from '../../redux/gifts/giftOperations';
 export function GiftList() {
   const dispatch = useDispatch();
   const gifts = useSelector(state => state.gifts.userGifts);
-  const loaderGifts = useSelector(state => state.gifts.loaderGifts);
-  const errorGifts = useSelector(state => state.gifts.errorGifts);
+  const loaderGifts = useSelector(state => state.gifts.loaderGiftsList);
+  const errorGifts = useSelector(state => state.gifts.errorGiftsLisr);
   const children = useSelector(state => state.children);
   useEffect(() => {
     dispatch(getAllGifts());
