@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from '../../../redux/tasks/taskOperations';
-import TaskSubmitButton from '../TaskSubmitButton/TaskSubmitButton';
+
 
 import styles from './HabitSubmitBox.module.css';
 
 function TaskSubmitBox({id, childId , name , disabled, repeat , isCompleted }) {
-  console.log(id,childId)
+  console.log(isCompleted)
     const dispatch = useDispatch();
     const handleCompleteAction = () => {
         dispatch(operations.updateTask({
@@ -33,31 +33,30 @@ function TaskSubmitBox({id, childId , name , disabled, repeat , isCompleted }) {
        ),
      );
   }
-  console.log(handleRepeatAction)
+
 
     return (
       <div className={styles.submitBox}>
         {isCompleted === 'true' ? (
-          <>
+          <div>
             <p className={styles.submitBoxTitle}>Повторити</p>
-            <TaskSubmitButton
-              isRepeatMark={isCompleted}
-            
-              handelClick={handleRepeatAction}
+            <button
+              className={styles.repeatBtn}
+              onClick={handleRepeatAction}
               label={'Підтвердити виконання'}
             />
-          </>
+          </div>
         ) : (
           <div>
             <p className={styles.submitBoxTitle}>Підтвердження</p>
-            <TaskSubmitButton
-              isCheckMark={isCompleted}
-              handelClick={handleCompleteAction}
+            <button
+              className={styles.checkBtn}
+              onClick={handleCompleteAction}
               label={'Підтвердити виконання'}
-            />
-            <TaskSubmitButton
-            
-              handelClick={handleFailAction}
+            ></button>
+            <button
+              className={styles.crossBtn}
+              onClick={handleFailAction}
               label={'Підтвердити не виконання'}
             />
           </div>
