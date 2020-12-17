@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from '../../../redux/tasks/taskOperations';
+import TaskSubmitButton from '../TaskSubmitButton/TaskSubmitButton';
 
 import styles from './HabitSubmitBox.module.css';
 
-function TaskSubmitBox({ status ,id, childId , name , isCompleted }) {
+function TaskSubmitBox({id, childId , name , disabled, repeat , isCompleted }) {
+  console.log(repeat)
     const dispatch = useDispatch();
     const handleCompleteAction = () => {
         dispatch(operations.updateTask({
@@ -19,35 +21,40 @@ function TaskSubmitBox({ status ,id, childId , name , isCompleted }) {
             isCompleted: false
         },id)
         )
-    }
-console.log(isCompleted)
+      }
+  
+  const handleRepeatAction = () => {
+     dispatch(operations.changeTasksStatus({
+            isCompleted: null
+        },id)
+        )
+  }
+
     return (
       <div className={styles.submitBox}>
-        {isCompleted ? (
+        {isCompleted === true ? (
           <>
             <p className={styles.submitBoxTitle}>Повторити</p>
-            <button
-              onClick={handleCompleteAction}
-              label="Повторити виконання"
-              type="button"
-              className={styles.repeatBtn}
-            ></button>
+            <TaskSubmitButton
+              isRepeatMark={isCompleted}
+              handelClick={handleRepeatAction}
+              label={'Підтвердити виконання'}
+            />
           </>
         ) : (
           <>
             <p className={styles.submitBoxTitle}>Підтвердження</p>
-            <button
-              onClick={handleCompleteAction}
-              label="Підтвердити виконання"
-              type="button"
-              className={styles.checkBtn}
-            ></button>
-            <button
-              onClick={handleFailAction}
-              label="Підтвердити не виконання"
-              type="button"
-              className={styles.crossBtn}
-            ></button>
+            <TaskSubmitButton
+              isCheckMark={true}
+              handelClick={handleCompleteAction}
+              label={'Підтвердити виконання'}
+              isDisabled={disabled}
+            />
+            <TaskSubmitButton
+              handelClick={handleFailAction}
+              label={'Підтвердити не виконання'}
+              isDisabled={disabled}
+            />
           </>
         )}
       </div>
