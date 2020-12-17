@@ -23,7 +23,7 @@ export function GiftCard({ gift, avatar }) {
             src={star}
             alt="star"
           />
-          <span>40</span>
+          <span>{gift.price}</span>
         </div>
         <button className={styles.giftButton}>Придбати</button>
       </div>

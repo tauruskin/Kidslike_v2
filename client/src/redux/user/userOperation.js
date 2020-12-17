@@ -4,9 +4,8 @@ import actions from './userActions';
 const getUserInfo = () => async dispatch => {
   dispatch(actions.getUserInfoRequest());
   try {
-    console.log('try');
-    // const response = await axios.get('/users/current');
-    // dispatch(actions.getUserInfoSuccess(response.data));
+    const response = await axios.get('/api/user/current/');
+    dispatch(actions.getUserInfoSuccess(response.data));
   } catch (error) {
     dispatch(actions.getUserInfoError(error.message));
   }

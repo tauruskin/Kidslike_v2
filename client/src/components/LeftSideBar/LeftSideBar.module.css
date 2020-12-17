@@ -15,6 +15,12 @@
   padding: 30px 20px;
 }
 
+.moreButton_wraper {
+  margin-top: -26px;
+  margin-right: -5px;
+  padding-bottom: 6px;
+}
+
 .leftSideBarAvatar {
   width: 40px;
   height: 40px;

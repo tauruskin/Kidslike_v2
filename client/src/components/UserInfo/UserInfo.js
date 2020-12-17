@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import defaultLogo from '../../img/header/userInfo.svg';
 import logout from '../../img/header/logout.svg';
 import style from './UserInfo.module.css';
 import Logout from '../Logout/Logout';
+import EditChild from '../UIcomponents/EditChild/EditChild';
+import userOperation from '../../redux/user/userOperation';
+import userSelector from '../../redux/user/userSelector';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function UserInfo() {
   const [showModal, setShowModal] = useState(false);
@@ -23,9 +27,9 @@ export default function UserInfo() {
   // console.log(user?.avatarURL.slice());
   return (
     <div className={style.userInfoContainer}>
-      <img width="40" height='40'
+      <img 
         className={style.userAvatar}
-        src={ "http://kidslike-v2.top/images/defAvatars.svg" || srcLogo}
+        src={ user.avatarURL || srcLogo}
         alt="default logo"
       />
       <div className={style.bubbleWrap}>

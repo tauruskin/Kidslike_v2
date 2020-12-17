@@ -3,20 +3,19 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import boy from '../../img/avatars/boy_in_frame.png';
 import girl from '../../img/avatars/girl_in_frame.png';
-import HabitSubmitBox from '../UIcomponents/HabitSubmitBox/HabitSubmitBox';
+import TaskSubmitBox from '../UIcomponents/TaskSubmitBox/TaskSubmitBox';
 
 import styles from './TaskItem.module.css';
 
-export default function TaskItem({ name, points, daysToComplete, childId }) {
+export default function TaskItem({ name, points, daysToComplete, childId ,_id, isCompleted}) {
   const children = useSelector(state => state.children);
   const currentChild = children.find(el => el._id === childId);
-
   return (
     <div className={styles.habitItemFolder}>
       <img
         className={styles.avatar}
         src={
-          currentChild.gender
+          currentChild
             ? currentChild.gender === 'male'
               ? boy
               : girl
@@ -35,7 +34,7 @@ export default function TaskItem({ name, points, daysToComplete, childId }) {
             <p className={styles.days}>{daysToComplete} день</p>
           </div>
         )}
-        <HabitSubmitBox repeat={false} />
+        <TaskSubmitBox status={isCompleted} id={_id} points={points} childId={childId} isCompleted={isCompleted} name={name}/>
       </div>
     </div>
   );

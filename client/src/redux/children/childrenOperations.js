@@ -9,6 +9,10 @@ import {
   getAllChildrenRequest,
   getAllChildrenSuccess,
   getAllChildrenError,
+  // deleteChildrenRequest,
+  // deleteChildrenSuccess,
+  // deleteChildrenError
+
 } from './childrenActions';
 
 // import { baseURL } from '../config';
@@ -52,8 +56,20 @@ const updateChildren = (data, id) => async dispatch => {
   }
 };
 
+// const deleteChildren = id => async dispatch => {
+//   dispatch(actions.deleteChildrenRequest());
+//   try {
+//     await axios.delete(`/api/childs/${id}`).then(() => {
+//       dispatch(actions.deleteChildrenSuccess(id));
+//     });
+//   } catch (error) {
+//     dispatch(actions.deleteChildrenError(error.message));
+//   }
+// };
+
 export default {
   getAllChildren,
   addChildren,
   updateChildren,
+  // deleteChildren
 };
