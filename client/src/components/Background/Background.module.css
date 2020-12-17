@@ -1,0 +1,10 @@
+.background {
+  background-color: #fff;
+  height: 100vh;
+}
+
+@media screen and (min-width: 768px) {
+  .background {
+    background-color: #ff8626;
+  }
+}
