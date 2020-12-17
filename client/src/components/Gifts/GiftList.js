@@ -23,14 +23,6 @@ export function GiftList() {
   }
 
 
-  //удалить подарок - поместить айдишник подарка,
-  //чтоб при клике на кнопку он отправлялся в запрос
-  //например
-  // const handleDelete = () => {
-  // взять giftId
-  //   dispatch(deleteGift(giftId))
-  // }
-
   return (
       <div className={styles.GiftContainer}>
     <ul className={styles.GiftList}>
