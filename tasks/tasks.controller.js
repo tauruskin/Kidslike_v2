@@ -28,7 +28,7 @@ exports.updateTask = async (req, res, next) => {
   const dayCreatedAt = moment(createdAt).format("X");
   const daysForTask = updatedTask.daysToComplete * 86400000;
   const today = Date.now();
-  if (updatedTask.isCompleted === true && req.task.isCompleted === null) {
+  if (updatedTask.isCompleted === "true" && req.task.isCompleted === "inProgress") {
     await ChildModel.findByIdAndUpdate(
      childId,
       {

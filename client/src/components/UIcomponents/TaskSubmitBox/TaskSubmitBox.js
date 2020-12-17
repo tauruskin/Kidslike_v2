@@ -6,33 +6,38 @@ import TaskSubmitButton from '../TaskSubmitButton/TaskSubmitButton';
 import styles from './HabitSubmitBox.module.css';
 
 function TaskSubmitBox({id, childId , name , disabled, repeat , isCompleted }) {
-  console.log(repeat)
+  console.log(id,childId)
     const dispatch = useDispatch();
     const handleCompleteAction = () => {
         dispatch(operations.updateTask({
-          isCompleted: true,
+          isCompleted: "true",
           childId: childId,
-      
         },id)
         )
     }
       const handleFailAction = () => {
         dispatch(operations.changeTasksStatus({
-            isCompleted: false
+            isCompleted: "false"
         },id)
         )
       }
   
   const handleRepeatAction = () => {
-     dispatch(operations.changeTasksStatus({
-            isCompleted: null
-        },id)
-        )
+     dispatch(
+       operations.changeTasksStatus(
+         {
+           isCompleted: "inProgress",
+           childId: childId,
+         },
+         id,
+       ),
+     );
   }
+  console.log(handleRepeatAction)
 
     return (
       <div className={styles.submitBox}>
-        {isCompleted === true ? (
+        {isCompleted === "true" ? (
           <>
             <p className={styles.submitBoxTitle}>Повторити</p>
             <TaskSubmitButton

@@ -4,7 +4,7 @@ Joi.objectId = require("joi-objectid")(Joi);
 exports.createTaskSchema = Joi.object({
   name: Joi.string().required(),
   points: Joi.number().required(),
-  isCompleted: Joi.boolean(),
+  isCompleted: Joi.string(),
   daysToComplete: Joi.number(),
   childId: Joi.objectId().required(),
 });
@@ -12,7 +12,7 @@ exports.createTaskSchema = Joi.object({
 exports.updateTaskSchema = Joi.object({
   name: Joi.string(),
   points: Joi.number(),
-  isCompleted: Joi.boolean(),
+  isCompleted: Joi.string(),
   daysToComplete: Joi.number(),
   childId: Joi.objectId(),
 }).min(1);
