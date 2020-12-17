@@ -18,7 +18,11 @@ function MoreButton({type, data}) {
             {showDropDown &&
                 <>
                 <Backdrop handleClick={() => close()}/>
-                <BubbleComponent modalType={type} handleClick={() => closeBubble()} taskData={data} habitData={data} giftData={data} />
+                <BubbleComponent modalType={type}
+                    handleClick={() => closeBubble()}
+                    taskData={data}
+                    habitData={data} 
+                    giftData={data} />
                 </>
             }
         </div>
