@@ -111,7 +111,7 @@
     /* opacity: 0; */
     margin: 0 auto;
     position: absolute;
-    transform: translateX(-150%);
+    transform: translateX(-250%);
     transition: transform 500ms ease-in-out;
     z-index: 1;
     background-color: #e5e5e5;
@@ -120,8 +120,10 @@
   .renderClass {
     /* display: block; */
     background-color: #e5e5e5;
-    height: 170%;
+    /* height: 170%; */
+    height: 100vh;
     z-index: 99;
+    width: 100%;
     position: absolute;
     overflow: hidden;
     transform: translateX(0%);

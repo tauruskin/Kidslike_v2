@@ -10,12 +10,28 @@ export default function UserInfo() {
     setShowModal(false);
   };
   const srcLogo = defaultLogo;
-  //  useSelector(state => state.user.avatarURL);
-
+  const dispatch = useDispatch();
+  const user = useSelector(userSelector.getUser);
+  useEffect(() => {
+    dispatch(userOperation.getUserInfo());
+  }, []);
+  // http://kidslike-v2.top/images/defAvatars.svg
+  // if (user.avatarURL) {
+  // console.log(user.avatarURL.slice(1,1));
+    
+  // }
+  // console.log(user?.avatarURL.slice());
   return (
     <div className={style.userInfoContainer}>
-      <img className={style.userAvatar} src={srcLogo} alt="default logo" />
-      <span className={style.userName}>Name</span>
+      <img width="40" height='40'
+        className={style.userAvatar}
+        src={ "http://kidslike-v2.top/images/defAvatars.svg" || srcLogo}
+        alt="default logo"
+      />
+      <div className={style.bubbleWrap}>
+        <EditChild />
+      </div>
+      <span className={style.userName}>{user.username}</span>
 
       <img
         src={logout}
