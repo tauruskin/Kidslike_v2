@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from './Input'
 import Select from './Select'
-import PointsInput from './PointsInput'
+import { PointsInput, DaysInput} from './PointsInput'
 
 export default function FormikControl(props) {
     const { control, ...rest } = props
@@ -12,6 +12,8 @@ export default function FormikControl(props) {
             return <Select {...rest} />
         case 'pointsInput':
             return <PointsInput {...rest} />
+        case 'daysInput':
+            return <DaysInput {...rest} />
         default:
             return null
     }
