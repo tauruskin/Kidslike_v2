@@ -87,7 +87,7 @@
   margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .habitItemFolder {
     flex-wrap: wrap;
     align-items: center;
