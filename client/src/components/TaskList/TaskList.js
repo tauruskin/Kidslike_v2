@@ -31,7 +31,7 @@ export default function TaskList() {
       </div>
       {/* {errorTasks && <div>Error! {errorTasks.message}</div>} */}
       {loaderTasks && <BoxLoader />}
-      {!loaderTasks && filteredTasks.length === 0 && <p> у вас нет задач</p>}
+      {!loaderTasks && filteredTasks.length === 0 && <p> Додайте задачі для своїх дітей</p>}
       {tasks.length > 0 && (
         <ul className={styles.HabitList}>
           {filteredTasks.map(el => (
