@@ -7,7 +7,7 @@ import { LoaderSmall } from '../../UIcomponents/LoaderSmall/LoaderSmall';
 
 const AddTask = ({ close }) => {
   const dispatch = useDispatch();
-  const children = useSelector(state => state.children);
+  const children = useSelector(state => state.children.userChildrens);
   const loaderTask = useSelector(state => state.tasks.loaderTask);
   const errorTask = useSelector(state => state.tasks.errorTask);
 

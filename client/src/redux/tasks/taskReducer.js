@@ -15,7 +15,7 @@ const userTasks = createReducer([], {
     state.map(el => (el._id === payload._id ? (el = payload) : el)),
 });
 
-const loaderTasksList = createReducer(false, {
+const loaderTasksList = createReducer(true, {
   [actions.getAllTasksRequest]: () => true,
   [actions.getAllTasksSuccess]: () => false,
   [actions.getAllTasksError]: () => false,

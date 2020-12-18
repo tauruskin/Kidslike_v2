@@ -5,13 +5,14 @@ import boy from '../../img/avatars/boy.png';
 import styles from './Gifts.module.css';
 import { GiftCard } from './GiftCard';
 import { getAllGifts } from '../../redux/gifts/giftOperations';
+import { BoxLoader } from '../UIcomponents/BoxLoader/BoxLoader';
 
 export function GiftList() {
   const dispatch = useDispatch();
   const gifts = useSelector(state => state.gifts.userGifts);
   const loaderGifts = useSelector(state => state.gifts.loaderGiftsList);
   const errorGifts = useSelector(state => state.gifts.errorGiftsLisr);
-  const children = useSelector(state => state.children);
+  const children = useSelector(state => state.children.userChildrens);
   useEffect(() => {
     dispatch(getAllGifts());
   }, [dispatch]);
@@ -30,7 +31,7 @@ export function GiftList() {
   //   return <div>Error! {errorGifts.message}</div>;
   // }
   if (loaderGifts) {
-    return <div>Loading...</div>;
+    return <BoxLoader />;
   }
 
   return (

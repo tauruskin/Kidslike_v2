@@ -46,38 +46,38 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Background>
-        <Header privatePage={isAuthenticated}>
-          <Logo privatePage={isAuthenticated} />
-          {isAuthenticated && (
-            <Navigation
-              familyRender={this.familyRender}
-              familyRenderAnotherLinks={this.familyRenderAnotherLinks}
-              family={this.state.family}
-            />
-          )}
-          {isAuthenticated && <UserInfo />}
-        </Header>
-        <Layout>
-          <Suspense fallback={<CustomLoader />}>
-            <Switch>
-              {routes.map(route =>
-                route.private ? (
-                  <PrivateRoute
-                    key={route.label}
-                    {...route}
-                    family={this.state.family}
-                    familyRenderAnotherLinks={this.familyRenderAnotherLinks}
-                  />
-                ) : (
-                  <PublicRoute key={route.label} {...route} />
-                ),
-              )}
-              {/* <Route component={NotFound} /> */}
-              <Redirect to="/home" />
-            </Switch>
-          </Suspense>
+          <Header privatePage={isAuthenticated}>
+            <Logo privatePage={isAuthenticated} />
+            {isAuthenticated && (
+              <Navigation
+                familyRender={this.familyRender}
+                familyRenderAnotherLinks={this.familyRenderAnotherLinks}
+                family={this.state.family}
+              />
+            )}
+            {isAuthenticated && <UserInfo />}
+          </Header>
+          <Layout>
+            <Suspense fallback={<CustomLoader />}>
+              <Switch>
+                {routes.map(route =>
+                  route.private ? (
+                    <PrivateRoute
+                      key={route.label}
+                      {...route}
+                      family={this.state.family}
+                      familyRenderAnotherLinks={this.familyRenderAnotherLinks}
+                    />
+                  ) : (
+                    <PublicRoute key={route.label} {...route} />
+                  ),
+                )}
+                {/* <Route component={NotFound} /> */}
+                <Redirect to="/home" />
+              </Switch>
+            </Suspense>
           </Layout>
-                  </Background>
+        </Background>
       </BrowserRouter>
     );
   }

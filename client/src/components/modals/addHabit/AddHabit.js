@@ -8,7 +8,7 @@ import { LoaderSmall } from '../../UIcomponents/LoaderSmall/LoaderSmall';
 
 const AddHabit = ({ close }) => {
   const dispatch = useDispatch();
-  const children = useSelector(state => state.children);
+  const children = useSelector(state => state.children.userChildrens);
   const loaderHabit = useSelector(state => state.habits.loaderHabit);
   const errorHabit = useSelector(state => state.habits.errorHabit);
 

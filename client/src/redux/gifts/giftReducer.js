@@ -27,7 +27,7 @@ const userGifts = createReducer(userGiftsInitialState, {
   // },
 });
 
-const loaderGiftsList = createReducer(false, {
+const loaderGiftsList = createReducer(true, {
   [actions.getAllGiftsRequest]: () => true,
   [actions.getAllGiftsSuccess]: () => false,
   [actions.getAllGiftsError]: () => false,

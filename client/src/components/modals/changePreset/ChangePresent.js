@@ -11,7 +11,7 @@ import { updateGift, deleteGift } from '../../../redux/gifts/giftOperations';
 function ChangePresent({ close, data }) {
   const { _id } = data;
   const dispatch = useDispatch();
-  const children = useSelector(state => state.children);
+  const children = useSelector(state => state.children.userChildrens);
   const loaderGift = useSelector(state => state.gifts.loaderGift);
   const errorGift = useSelector(state => state.gifts.errorGift);
   const [presentTitle, setPresentTitle] = useState(data.name);

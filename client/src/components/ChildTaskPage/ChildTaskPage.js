@@ -11,7 +11,7 @@ import girl from '../../img/avatars/girl.png';
 export default function ChildTaskPage() {
   const [tasksDrow, settasksDrow] = useState([]);
   const tasks = useSelector(state => state.tasks.userTasks);
-  const children = useSelector(state => state.children);
+  const children = useSelector(state => state.children.userChildrens);
   // let filteredData = tasksDrow.sort(sortFunc('updatedAt'));
 
   const dispatch = useDispatch();

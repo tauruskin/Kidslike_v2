@@ -27,7 +27,7 @@ const loaderHabitsList = createReducer(true, {
   [actions.getAllHabitsError]: () => false,
 });
 
-const loaderHabit = createReducer(true, {
+const loaderHabit = createReducer(false, {
   [actions.createHabitRequest]: () => true,
   [actions.createHabitSuccess]: () => false,
   [actions.createHabitError]: () => false,

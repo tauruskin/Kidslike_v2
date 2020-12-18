@@ -7,20 +7,21 @@ import TaskSubmitBox from '../UIcomponents/TaskSubmitBox/TaskSubmitBox';
 
 import styles from './TaskItem.module.css';
 
-export default function TaskItem({ name, points, daysToComplete, childId ,_id, isCompleted}) {
-  const children = useSelector(state => state.children);
+export default function TaskItem({
+  name,
+  points,
+  daysToComplete,
+  childId,
+  _id,
+  isCompleted,
+}) {
+  const children = useSelector(state => state.children.userChildrens);
   const currentChild = children.find(el => el._id === childId);
   return (
     <div className={styles.habitItemFolder}>
       <img
         className={styles.avatar}
-        src={
-          currentChild
-            ? currentChild.gender === 'male'
-              ? boy
-              : girl
-            : boy
-        }
+        src={currentChild ? (currentChild.gender === 'male' ? boy : girl) : boy}
         alt="avatar"
       />
       <div className={styles.taskContentWrapper}>
@@ -34,7 +35,14 @@ export default function TaskItem({ name, points, daysToComplete, childId ,_id, i
             <p className={styles.days}>{daysToComplete} день</p>
           </div>
         )}
-        <TaskSubmitBox status={isCompleted} id={_id} points={points} childId={childId} isCompleted={isCompleted} name={name}/>
+        <TaskSubmitBox
+          status={isCompleted}
+          id={_id}
+          points={points}
+          childId={childId}
+          isCompleted={isCompleted}
+          name={name}
+        />
       </div>
     </div>
   );

@@ -1,19 +1,5 @@
 import axios from 'axios';
-import {
-  createChildrenRequest,
-  createChildrenSuccess,
-  createChildrenError,
-  changeChildrenMarkRequest,
-  changeChildrenMarkSuccess,
-  changeChildrenMarkError,
-  getAllChildrenRequest,
-  getAllChildrenSuccess,
-  getAllChildrenError,
-  deleteChildrenRequest,
-  deleteChildrenSuccess,
-  deleteChildrenError
-
-} from './childrenActions';
+import actions from './childrenActions';
 
 // import { baseURL } from '../config';
 // axios.defaults.baseURL = baseURL;
@@ -27,44 +13,48 @@ import {
 // import { setToken } from '../auth/authOperations';
 
 const getAllChildren = () => async dispatch => {
-  dispatch(getAllChildrenRequest());
+  dispatch(actions.getAllChildrensRequest());
   try {
     const response = await axios.get(`/api/childs/`);
-    dispatch(getAllChildrenSuccess(response.data));
+    dispatch(actions.getAllChildrensSuccess(response.data));
   } catch (error) {
-    dispatch(getAllChildrenError(error));
+    dispatch(actions.getAllChildrensError(error));
   }
 };
 
 const addChildren = children => async dispatch => {
-  dispatch(createChildrenRequest());
+  dispatch(actions.createChildrenRequest());
   try {
     const response = await axios.post(`/api/childs/`, { ...children });
-    dispatch(createChildrenSuccess(response.data));
+    dispatch(actions.createChildrenSuccess(response.data));
+    return true;
   } catch (error) {
-    dispatch(createChildrenError(error.message));
+    dispatch(actions.createChildrenError(error.message));
+    return false;
   }
 };
 
 const updateChildren = (data, id) => async dispatch => {
-  dispatch(changeChildrenMarkRequest());
+  dispatch(actions.updateChildrenRequest());
   try {
     await axios.patch(`/api/childs/${id}`, data).then(res => {
-      dispatch(changeChildrenMarkSuccess(res.data));
+      dispatch(actions.updateChildrenSuccess(res.data));
     });
+    return true;
   } catch (error) {
-    dispatch(changeChildrenMarkError(error.message));
+    dispatch(actions.updateChildrenError(error.message));
+    return false;
   }
 };
 
 const deleteChildren = id => async dispatch => {
-  dispatch(deleteChildrenRequest());
+  dispatch(actions.deleteChildrenRequest());
   try {
     await axios.delete(`/api/childs/${id}`).then(() => {
-      dispatch(deleteChildrenSuccess(id));
+      dispatch(actions.deleteChildrenSuccess(id));
     });
   } catch (error) {
-    dispatch(deleteChildrenError(error.message));
+    dispatch(actions.deleteChildrenError(error.message));
   }
 };
 
@@ -72,5 +62,5 @@ export default {
   getAllChildren,
   addChildren,
   updateChildren,
-  deleteChildren
+  deleteChildren,
 };

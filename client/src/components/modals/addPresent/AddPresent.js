@@ -10,7 +10,7 @@ import { addGift } from '../../../redux/gifts/giftOperations';
 
 function AddPresent({ close }) {
   const dispatch = useDispatch();
-  const children = useSelector(state => state.children);
+  const children = useSelector(state => state.children.userChildrens);
   const loaderGift = useSelector(state => state.gifts.loaderGift);
   const errorGift = useSelector(state => state.gifts.errorGift);
 

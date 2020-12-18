@@ -7,6 +7,7 @@ import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 import Button from '../UIcomponents/Button/Button';
 import AddHabit from '../modals/addHabit/AddHabit';
 import habitOperations from '../../redux/habit/habitOperations';
+import { BoxLoader } from '../UIcomponents/BoxLoader/BoxLoader';
 
 function HabitsList() {
   const [showAddHabitModal, setShowAddHabitModal] = useState(false);
@@ -32,7 +33,7 @@ function HabitsList() {
         <h1 className={styles.giftTitle}>Звички</h1>
       </div>
       {/* {errorHabits && <div>Error! {errorHabits.message}</div>} */}
-      {loaderHabits && <div>Loading...</div>}
+      {loaderHabits && <BoxLoader />}
       {!loaderHabits && habits.length === 0 && <p> у вас нет habits</p>}
       {habits.length > 0 && (
         <ul className={styles.HabitList}>
