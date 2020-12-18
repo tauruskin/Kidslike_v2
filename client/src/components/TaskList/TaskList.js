@@ -16,8 +16,8 @@ export default function TaskList() {
   const tasks = useSelector(state => state.tasks.userTasks);
   const loaderTasks = useSelector(state => state.tasks.loaderTasksList);
   const errorTasks = useSelector(state => state.tasks.errorTasksLisr);
-  const filteredTasks = tasks.filter(el => el.isCompleted === null);
 
+  const filteredTasks = tasks.filter(el => el.isCompleted === 'inProgress');
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(operations.getAllTasks());

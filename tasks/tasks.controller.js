@@ -4,6 +4,7 @@ const moment = require("moment");
 
 exports.createTask = async (req, res, next) => {
   const newTask = await TaskModel.create(req.body);
+  console.log(newTask)
   return res.status(201).send(newTask);
 };
 
@@ -28,7 +29,7 @@ exports.updateTask = async (req, res, next) => {
   const dayCreatedAt = moment(createdAt).format("X");
   const daysForTask = updatedTask.daysToComplete * 86400000;
   const today = Date.now();
-  if (updatedTask.isCompleted === true && req.task.isCompleted === null) {
+  if (updatedTask.isCompleted === "true" && req.task.isCompleted === "inProgress") {
     await ChildModel.findByIdAndUpdate(
      childId,
       {
@@ -37,11 +38,13 @@ exports.updateTask = async (req, res, next) => {
       { new: true }
     );
   }
-  if (daysForTask + dayCreatedAt > today) {
+
+ 
+  if ((daysForTask + dayCreatedAt) < today) {
     await TaskModel.findByIdAndUpdate(
       updatedTask._id,
       {
-       $set: {isCompleted: false},
+       $set: {isCompleted: "false"},
       },
       { new: true }
     );

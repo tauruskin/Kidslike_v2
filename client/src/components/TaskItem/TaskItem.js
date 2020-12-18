@@ -1,6 +1,6 @@
-import { current } from '@reduxjs/toolkit';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import operations from '../../redux/tasks/taskOperations';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import boy from '../../img/avatars/boy_in_frame.png';
 import girl from '../../img/avatars/girl_in_frame.png';
 import TaskSubmitBox from '../UIcomponents/TaskSubmitBox/TaskSubmitBox';
@@ -14,9 +14,14 @@ export default function TaskItem({
   childId,
   _id,
   isCompleted,
+  createdAt,
 }) {
   const children = useSelector(state => state.children.userChildrens);
   const currentChild = children.find(el => el._id === childId);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(operations.getAllTasks());
+  }, []);
   return (
     <div className={styles.habitItemFolder}>
       <img
@@ -36,12 +41,11 @@ export default function TaskItem({
           </div>
         )}
         <TaskSubmitBox
-          status={isCompleted}
           id={_id}
           points={points}
           childId={childId}
           isCompleted={isCompleted}
-          name={name}
+          createdAt={createdAt}
         />
       </div>
     </div>
