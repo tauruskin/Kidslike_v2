@@ -1,7 +1,7 @@
 const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, ".env") });
 const swaggerUi = require("swagger-ui-express"),
-swaggerDocument = require("./swagger.json");
+  swaggerDocument = require("./swagger.json");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
@@ -84,6 +84,16 @@ exports.CrudServer = class {
         "/",
         express.static(path.join(__dirname, "client", "build"))
       );
+
+      this.server.get("/.well-known/pki-validation", (req, res) => {
+        res.sendFile(
+          path.resolve(
+            __dirname,
+            "../.well-known/pki-validation",
+            "9A04033A3AC8C782139F756FC0511707.txt"
+          )
+        );
+      });
 
       this.server.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
