@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
-import styles from './ChangeHabbit.module.css';
+import s from './ChangeHabbit.module.css';
+import styles from '../addHabbit/AddHabbit.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
 import habitOperations from '../../../redux/habbit/habbitOperations';
 import { useDispatch, useSelector } from 'react-redux';
@@ -69,13 +69,12 @@ const ChangeHabbit = ({ close, data }) => {
               ></input>
             </label>
 
-            <button type='button' className={styles.btnDelete} onClick={() => handleDelete()}>
-              <span className={styles.btnDeleteIcon}></span> Видалити задачу
+            <button type='button' className={s.btnDelete} onClick={() => handleDelete()}>
+              <span className={s.btnDeleteIcon}></span> Видалити задачу
             </button>
           </div>
           <div className={styles.buttonsBlock}>
-            <button disabled={!habbitName || !mark || habbitTarget}
-              className={styles.buttonSave} type='submit'>Зберегти</button>
+            <button className={styles.buttonSave} type='submit'>Зберегти</button>
 
             <button className={styles.buttonCancle} onClick={() => close()}>
               Відміна
