@@ -1,6 +1,7 @@
 import axios from 'axios';
 import actions from './giftActions';
-import authErrorActions from '../auth/authActions';
+//import authErrorActions from '../auth/authActions';
+import childrenActions from '../children/childrenActions';
 
 // const domain = process.env.DOMAIN_ADDRESS;
 //todo token
@@ -16,7 +17,7 @@ const getAllGifts = () => async dispatch => {
     dispatch(actions.getAllGiftsSuccess(response.data));
   } catch (error) {
     dispatch(actions.getAllGiftsError(error));
-    // if (error.response.status === 401) {
+    // if (error.response && error.response.status === 401) {
     //   dispatch(authErrorActions.signinError());
     // }
   }
@@ -51,11 +52,26 @@ const updateGift = (giftData, id) => async dispatch => {
 
     dispatch(actions.updateGiftSuccess(response.data));
     return true;
-    // await axios.patch(`/api/gifts/${id}`, data).then(res => {
-    //   dispatch(actions.updateGiftSuccess(res.data));
-    // });
   } catch (error) {
     dispatch(actions.updateGiftError(error.message));
+    return false;
+  }
+};
+
+const buyGift = purchaseData => async dispatch => {
+  const { id, price, childId } = purchaseData;
+  dispatch(childrenActions.updateChildrenRequest());
+  try {
+    const response = await axios({
+      method: 'patch',
+      url: `/api/gifts/purchase/${id}`,
+      data: { price, childId },
+      headers: { 'Content-Type': 'application/json' },
+    });
+    dispatch(childrenActions.updateChildrenSuccess(response.data));
+    return true;
+  } catch (error) {
+    dispatch(childrenActions.updateChildrenError(error.message));
     return false;
   }
 };
@@ -71,4 +87,4 @@ const deleteGift = id => async dispatch => {
   }
 };
 
-export { getAllGifts, addGift, updateGift, deleteGift };
+export { getAllGifts, addGift, updateGift, deleteGift, buyGift };
