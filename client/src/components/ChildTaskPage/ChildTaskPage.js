@@ -68,7 +68,7 @@ export default function ChildTaskPage() {
                   {tasksDrow.map(
                     element =>
                       element.childId === el._id &&
-                      element.isCompleted !== 'inProgress' && (
+                      element.isCompleted === 'true' && (
                         <li
                           key={element._id}
                           className={styles.HabitItem}
