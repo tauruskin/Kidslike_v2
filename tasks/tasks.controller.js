@@ -3,8 +3,9 @@ const { TaskModel } = require("./tasks.model");
 const moment = require("moment");
 
 exports.createTask = async (req, res, next) => {
+  console.log(req.body)
   const newTask = await TaskModel.create(req.body);
-  // console.log(newTask)
+  console.log(newTask)
   return res.status(201).send(newTask);
 };
 
