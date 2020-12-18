@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
-
-import styles from './ChangeHabit.module.css';
+import React from 'react';
+import { Formik, Form } from 'formik'
+import * as Yup from 'yup'
+import FormikControl from '../formik/FormikControl'
+import s from './ChangeHabit.module.css';
+import styles from '../addHabit/AddHabit.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
 import habitOperations from '../../../redux/habit/habitOperations';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,22 +15,42 @@ const ChangeHabit = ({ close, data }) => {
   const loaderHabit = useSelector(state => state.habits.loaderHabit);
   const errorHabit = useSelector(state => state.habits.errorHabit);
 
-  const [habitName, setHabitName] = useState(data.name);
-  const [mark, setMark] = useState(data.points);
-  const [habitTarget, setHabitTarget] = useState(data.childId);
 
-  const handleSubmit = async evt => {
-    evt.preventDefault();
+  const initialOptions = [{ key: 'Виберіть дитину', value: '' }]
+
+  const dropdownOptions = children.length > 0 &&
+    initialOptions.concat(children.map(child => {
+      let name = child.name;
+      let dbId = child._id;
+      return { key: name, value: dbId }
+    }))
+
+
+  const initialValues = {
+    name: data.name,
+    childId: data.childId,
+    points: data.points
+  };
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Обов'язкове поле").min(6, "Мінімальна довжина: 6 символів"),
+    childId: Yup.string().required('Оберіть один з варіантів'),
+    points: Yup.string()
+      .required("Обов'язкове поле")
+      .matches(/[0-9]$/i, 'Введіть  число',),
+  });
+
+
+  const onSubmit = async values => {
+    console.log('Request data', values)
+    console.log(data._id);
     const result = await dispatch(
-      habitOperations.updateHabit(
-        { name: habitName, childId: habitTarget, points: mark },
-        data._id,
-      ),
+      habitOperations.updateHabit(values, data._id)
     );
     if (result) {
       close();
     }
-  };
+  }
 
   const handleDelete = () => {
     dispatch(habitOperations.deleteHabit(data._id));
@@ -37,70 +60,65 @@ const ChangeHabit = ({ close, data }) => {
   return (
     <div className={styles.modalBody}>
       <h2 className={styles.title}>Редагування звички</h2>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.form}>
         <div className={styles.inputBlock}>
-          <label className={styles.label}>
-            <p className={styles.inputName}>Назва</p>
-            <input
-              defaultValue={data.name}
-              className={styles.input}
-              onChange={({ target: { value } }) => setHabitName(value)}
-              placeholder="Введіть назву"
-            ></input>
-          </label>
-          <label className={styles.label}>
-            <p className={styles.inputName}>Призначення звички</p>
-            <select
-              value={children.childId}
-              className={styles.select}
-              onChange={({ target: { value } }) => setHabitTarget(value)}
-              placeholder="Оберіть дитину"
-            >
-              <option key={children.id} disabled>
-                Оберіть дитину
-              </option>
-              {children &&
-                children.map(child => (
-                  <option key={child._id} value={child._id}>
-                    {child.name}
-                  </option>
-                ))}
-            </select>
-          </label>
-          <label className={styles.label}>
-            <p className={styles.inputName}>Бал</p>
 
-            <input
-              defaultValue={data.points}
-              className={styles.inputMark}
-              onChange={({ target: { value } }) => setMark(value)}
-              placeholder="__"
-            ></input>
-          </label>
-
-          <button
-            type="button"
-            className={styles.btnDelete}
-            onClick={() => handleDelete()}
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
           >
-            <span className={styles.btnDeleteIcon}></span> Видалити задачу
-          </button>
-        </div>
-        <div className={styles.buttonsBlock}>
-          <button className={styles.buttonSave} type="submit">
-            {!loaderHabit && <span>Зберегти</span>}
-            {loaderHabit && <LoaderSmall />}
-          </button>
+            {formik => (
+              <Form>
+                <FormikControl
+                  control='input'
+                  type='string'
+                  label='Назва'
+                  name='name'
+                />
+                <FormikControl
+                  control='select'
+                  label='Призначення звички'
+                  name='childId'
+                  options={dropdownOptions}
+                />
+                <FormikControl
+                  control='pointsInput'
+                  type='string'
+                  label='Бал'
+                  name='points'
+                />
 
-          <button className={styles.buttonCancle} onClick={() => close()}>
-            Відміна
-          </button>
+                <button
+                  type="button"
+                  className={s.btnDelete}
+                  onClick={() => handleDelete()}
+                >
+                  <span className={s.btnDeleteIcon}></span> Видалити задачу
+                </button>
+
+                <div className={styles.buttonsBlock}>
+                  <button className={styles.buttonSave} type='submit'>
+                    {!loaderHabit && <span>Зберегти</span>}
+                    {loaderHabit && <LoaderSmall />}
+                  </button>
+
+                  <button className={styles.buttonCancle} onClick={() => close()}>
+                    Відміна
+                   </button>
+                </div>
+                {errorHabit && <span>Ops ... err={errorHabit}</span>}
+              </Form>
+            )}
+          </Formik>
         </div>
-        {errorHabit && <span>Ops ... err={errorHabit}</span>}
-      </form>
-      <button onClick={() => close()} className={styles.modalCloseBtn}></button>
+      </div>
+      <button
+        onClick={() => close()}
+        className={styles.modalCloseBtn}
+      ></button>
     </div>
-  );
+  )
 };
 
 export default modalBackDrop(ChangeHabit);

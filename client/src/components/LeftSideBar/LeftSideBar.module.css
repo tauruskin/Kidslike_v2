@@ -58,7 +58,7 @@
   .container {
     /* margin-left: auto; */
     min-width: 345px;
-    margin: 30px 40px;
+    margin: 0 40px;
     text-align: center;
   }
 }
