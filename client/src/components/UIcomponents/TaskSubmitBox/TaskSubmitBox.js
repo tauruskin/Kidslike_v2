@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from '../../../redux/tasks/taskOperations';
 
 import styles from './HabitSubmitBox.module.css';
-
 function TaskSubmitBox({ id, childId, createdAt, isCompleted }) {
   const today = Date.now();
   const parsedDate = new Date(today).toISOString();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(operations.getAllTasks());
+  }, []);
   const handleCompleteAction = () => {
     dispatch(
       operations.updateTask(
@@ -21,7 +25,7 @@ function TaskSubmitBox({ id, childId, createdAt, isCompleted }) {
   };
   const handleFailAction = () => {
     dispatch(
-      operations.changeTasksStatus(
+      operations.updateTask(
         {
           isCompleted: 'false',
         },
@@ -32,7 +36,7 @@ function TaskSubmitBox({ id, childId, createdAt, isCompleted }) {
 
   const handleRepeatAction = () => {
     dispatch(
-      operations.changeTasksStatus(
+      operations.updateTask(
         {
           isCompleted: 'inProgress',
           childId: childId,

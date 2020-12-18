@@ -36,6 +36,9 @@ const updateTask = (data, id) => async dispatch => {
     await axios.patch(`/api/tasks/${id}`, data).then(res => {
       dispatch(actions.updateTaskSuccess(res.data));
     });
+
+    dispatch(childOperations.getAllChildren());
+    dispatch(getAllTasks());
     return true;
   } catch (error) {
     dispatch(actions.updateTaskError(error.message));
@@ -58,9 +61,11 @@ const changeTasksStatus = (data, id) => async dispatch => {
   try {
     await axios.patch(`/api/tasks/${id}`, data).then(res => {
       dispatch(actions.changeTasksStatusSuccess(res.data));
-      dispatch(childOperations.getAllChildren());
-      dispatch(getAllTasks());
+      
     });
+
+    dispatch(childOperations.getAllChildren());
+    dispatch(getAllTasks());
   } catch (error) {
     dispatch(actions.createTaskError(error.message));
   }

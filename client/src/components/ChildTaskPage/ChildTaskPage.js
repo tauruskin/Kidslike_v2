@@ -9,7 +9,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import boy from '../../img/avatars/boy.png';
 import girl from '../../img/avatars/girl.png';
 import tasksOperations from '../../redux/tasks/taskOperations'
-import taskOperations from '../../redux/tasks/taskOperations';
+
 export default function ChildTaskPage() {
   const [tasksDrow, settasksDrow] = useState([]);
   const tasks = useSelector(state => state.tasks.userTasks);
@@ -20,7 +20,6 @@ export default function ChildTaskPage() {
   const childId = window.location.href.slice(
     window.location.href.lastIndexOf('/') + 1,
   );
-
   const sortFunc = field => {
     return (a, b) => (a[field] < b[field] ? 1 : -1);
   };
@@ -31,10 +30,10 @@ export default function ChildTaskPage() {
     );
   };
 
+
   useEffect(() => {
-    dispatch(operations.getAllChildren());
+    dispatch(tasksOperations.getAllTasks());
   }, []);
- 
   useEffect(
     () => {
       const filterd = tasks
@@ -72,8 +71,9 @@ export default function ChildTaskPage() {
                       element.childId === el._id &&
                       element.isCompleted === 'true' && (
                         <CSSTransition
+                          in={element.isCompleted === "true"}
                           key={element._id}
-                          timeout={250}
+                          timeout={150}
                           classNames={transitionStyles}
                           unmountOnExit
                         >
@@ -87,6 +87,7 @@ export default function ChildTaskPage() {
                             }
                           >
                             {/* <MoreButton type={'task'} /> */}
+                            
                             <TaskItem {...element} />
                           </li>
                         </CSSTransition>
