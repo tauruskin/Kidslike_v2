@@ -10,7 +10,7 @@ function TaskSubmitBox({ id, childId, createdAt, isCompleted }) {
   const dispatch = useDispatch();
   const handleCompleteAction = () => {
     dispatch(
-      operations.updateTask(
+      operations.changeTasksStatus(
         {
           isCompleted: 'true',
           childId: childId,

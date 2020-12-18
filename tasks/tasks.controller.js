@@ -42,7 +42,7 @@ exports.updateTask = async (req, res, next) => {
     );
   }
 
-  if (daysForTask + dayCreatedAt < today) {
+  if (daysForTask + dayCreatedAt < today && updatedTask.daysToComplete !== 0) {
     await TaskModel.findByIdAndUpdate(
       updatedTask._id,
       {
