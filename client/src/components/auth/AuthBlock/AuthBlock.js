@@ -12,7 +12,6 @@ import {
 } from '../../../helpers/googleLogin';
 import BubbleComponent from '../../UIcomponents/BubbleComponent/BubbleComponent';
 import { googleAuth } from '../../../redux/auth/authOperations';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import {
   facebookLoginUrl,
@@ -29,6 +28,7 @@ export const AuthBlock = ({ flag, name }) => {
     // setOpenBubbleGoogle(!openBubbleGoogle)
     // setTimeout(() => setOpenBubbleGoogle(false), 3000);
   };
+
   const loginWithFacebook = () => {
     setOpenBubbleFacebook(!openBubbleFacebook);
     setTimeout(() => setOpenBubbleFacebook(false), 3000);
@@ -47,7 +47,6 @@ export const AuthBlock = ({ flag, name }) => {
   if (urlParams.error) {
     console.log(`An error occurred: ${urlParams.error}`);
   } else if (urlParams.code) {
-    // console.log(urlParams.code);
     // getAccessTokenFacebook(urlParams.code)
     // getFacebookUserData(urlParams.code)
     const dataUser = getAllDataFromGoogle(urlParams.code);
@@ -69,13 +68,24 @@ export const AuthBlock = ({ flag, name }) => {
         />
       </a>
       {/* <a href={facebookLoginUrl}> <SocialAuthBtn name='Увійти за допомогою Facebook' facebook handleClick={loginWithFacebook}/></a> */}
-
       {/* <SocialAuthBtn name='Увійти за допомогою Google' google handleClick={loginWithGoogle}/> */}
+      <div className={styles.socialBlockBtn}>
       <SocialAuthBtn
         name="Увійти за допомогою Facebook"
         facebook
         handleClick={loginWithFacebook}
+        
       />
+      {openBubbleFacebook && (
+        <BubbleComponent
+          msg="Ми працюємо над цим =)"
+          width="150px"
+          height="35px"
+          top="38px"
+          right="125px"
+        />
+      )}
+      </div>
       {openBubbleGoogle && (
         <BubbleComponent
           msg="Ми працюємо над цим =)"
@@ -85,16 +95,6 @@ export const AuthBlock = ({ flag, name }) => {
           right="180px"
         />
       )}
-      {openBubbleFacebook && (
-        <BubbleComponent
-          msg="Ми працюємо над цим =)"
-          width="150px"
-          height="35px"
-          top="459px"
-          right="180px"
-        />
-      )}
-
       {flag === 'login' ? (
         <p className={styles.authText}>
           {' '}
