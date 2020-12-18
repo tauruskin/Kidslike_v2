@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import ChangeHabbit from '../../modals/changeHabbit/ChangeHabbit';
+import ChangeHabit from '../../modals/changeHabit/ChangeHabit';
 import ChangeTask from '../../modals/changeTask/ChangeTask';
-import habitOperations from '../../../redux/habbit/habbitOperations';
+import habitOperations from '../../../redux/habit/habitOperations';
 import operations from '../../../redux/tasks/taskOperations';
 import ChangeChildren from '../../modals/changeChildren/ChangeChildren';
+import childrenOperations from '../../../redux/children/childrenOperations';
 
 import styles from './BubbleComponent.module.css';
 import { deleteGift } from '../../../redux/gifts/giftOperations';
@@ -16,6 +17,7 @@ export default function BubbleComponent({
   msg,
   width,
   height,
+  right,
   top,
   taskData,
   habitData,
@@ -28,6 +30,7 @@ export default function BubbleComponent({
   };
 
   const dispatch = useDispatch();
+
   const deleteHabit = id => {
     dispatch(habitOperations.deleteHabit(id));
   };
@@ -37,13 +40,13 @@ export default function BubbleComponent({
   const deletePresent = id => {
     dispatch(deleteGift(id));
   };
-  const deleteChild = id => {
-    dispatch(deleteChild(id));
+  const deleteChildren = id => {
+    dispatch(childrenOperations.deleteChildren(id));
   };
 
   return msg ? (
     <div
-      style={{ width: width, height: height, top: top }}
+      style={{ width: width, height: height, top: top, right: right}}
       className={styles.arrowBox}
     >
       <p className={styles.authText}>{msg}</p>
@@ -94,7 +97,7 @@ export default function BubbleComponent({
               <button
                 className={styles.optionButton}
                 onClick={() => {
-                  deletePresent(childData._id);
+                  deleteChildren(childData._id);
                   handleClick();
                 }}
               >
@@ -105,7 +108,7 @@ export default function BubbleComponent({
         </div>
       </div>
       {modalType === 'habit' && showModal && (
-        <ChangeHabbit
+        <ChangeHabit
           data={habitData}
           close={() => {
             close();
@@ -132,10 +135,13 @@ export default function BubbleComponent({
         />
       )}
       {modalType === 'gift' && showModal && (
-        <ChangePresent close={() => {
-          close();
-          handleClick();
-        }} data={giftData} />
+        <ChangePresent
+          close={() => {
+            close();
+            handleClick();
+          }}
+          data={giftData}
+        />
       )}
     </>
   );

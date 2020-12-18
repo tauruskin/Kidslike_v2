@@ -21,7 +21,7 @@
   flex-wrap: wrap;
 }
 .inputBlock {
-  margin: 0 auto;
+  text-align: left;
 }
 .label {
   margin-bottom: 10px;
@@ -42,7 +42,7 @@
 .label > input {
   padding-left: 20px;
   font-size: 16px;
-  width: 280px;
+  width: 95%;
   height: 44px;
   border: 1px solid #bdbdbd;
   box-sizing: border-box;
@@ -58,7 +58,7 @@
   cursor: pointer;
   padding-left: 20px;
   font-size: 16px;
-  width: 280px;
+  width: 95%;
   height: 44px;
   border: 1px solid #bdbdbd;
   box-sizing: border-box;
@@ -120,7 +120,6 @@
   box-sizing: border-box;
   border-radius: 20px;
   font-family: 'Rubik', sans-serif;
-
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -177,7 +176,6 @@
 
   .buttonsBlock button {
     display: table-cell;
-    /* margin: 0; */
   }
 
   .form {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import BubbleComponent from '../BubbleComponent/BubbleComponent';
 import Backdrop from '../Backdrop/Backdrop';
-import BubbleComponent from '../BubbleComponent/BubbleComponent'
 
-import styles from './MoreButton.module.css'
+import styles from './MoreButton.module.css';
 
 function MoreButton({type, data}) {
     const [showDropDown, setShowDropDown] = useState(false);
@@ -14,15 +14,19 @@ function MoreButton({type, data}) {
 
     return (
         <div className={styles.drop_down_folder}>
-            <button className={styles.btn} type='button' onClick={() => openBubble()}></button>
+        <button
+          className={styles.btn}
+          type='button'
+          onClick={() => openBubble()}></button>
             {showDropDown &&
                 <>
                 <Backdrop handleClick={() => close()}/>
-                <BubbleComponent modalType={type}
-                    handleClick={() => closeBubble()}
-                    taskData={data}
-                    habitData={data} 
-                    giftData={data} />
+                <BubbleComponent
+                  modalType={type}
+                  handleClick={() => closeBubble()}
+                  taskData={data}
+                  habitData={data} 
+                  giftData={data} />
                 </>
             }
         </div>

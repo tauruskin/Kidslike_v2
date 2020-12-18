@@ -21,9 +21,9 @@ export default function UserInfo() {
   }, []);
   return (
     <div className={style.userInfoContainer}>
-      <img
+      <img 
         className={style.userAvatar}
-        src={user.avatarURL || srcLogo}
+        src={ user.avatarURL || srcLogo}
         alt="default logo"
       />
       <div className={style.bubbleWrap}>

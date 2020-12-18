@@ -5,23 +5,26 @@ import HabitItem from '../HabitItem/HabitItem';
 import styles from './HabitsList.module.css';
 import MoreButton from '../UIcomponents/MoreButton/MoreButton';
 import Button from '../UIcomponents/Button/Button';
-import AddHabbit from '../modals/addHabbit/AddHabbit';
-import habbitOperations from '../../redux/habbit/habbitOperations';
+import AddHabit from '../modals/addHabit/AddHabit';
+import habitOperations from '../../redux/habit/habitOperations';
+import { BoxLoader } from '../UIcomponents/BoxLoader/BoxLoader';
 import transitionStyles from './transitionStyles.module.css';
-
 
 function HabitsList() {
   const [showAddHabitModal, setShowAddHabitModal] = useState(false);
   const close = () => {
     setShowAddHabitModal(false);
   };
-  const habits = useSelector(state => state.habbits);
-  const filteredhabits = habits.filter(habit => habit.daysToComplete.some(day => day.done === null));
-  console.log(filteredhabits)
+  const habits = useSelector(state => state.habits.userHabits);
+  const loaderHabits = useSelector(state => state.habits.loaderHabitsList);
+  const errorHabits = useSelector(state => state.habits.errorHabitsLisr);
+  const filteredhabits = habits.filter(habit =>
+    habit.daysToComplete.some(day => day.done === null),
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(habbitOperations.getAllHabits());
+    dispatch(habitOperations.getAllHabits());
   }, []);
 
   return (
@@ -30,7 +33,9 @@ function HabitsList() {
         <div className={styles.giftIcon}></div>
         <h1 className={styles.giftTitle}>Звички</h1>
       </div>
-      {habits.length === 0 && <p> у вас нет habits</p>}
+      {/* {errorHabits && <div>Error! {errorHabits.message}</div>} */}
+      {loaderHabits && <BoxLoader />}
+      {!loaderHabits && habits.length === 0 && <p> у вас нет habits</p>}
       {habits.length > 0 && (
         <TransitionGroup component="ul" className={styles.HabitList}>
           {filteredhabits.map((el, i) => (
@@ -55,7 +60,7 @@ function HabitsList() {
         type={'button'}
         orange={true}
       />
-      {showAddHabitModal && <AddHabbit close={() => close()} />}
+      {showAddHabitModal && <AddHabit close={() => close()} />}
     </div>
   );
 }

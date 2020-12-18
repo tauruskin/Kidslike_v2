@@ -12,12 +12,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import boy from '../../img/avatars/boy.png';
 import girl from '../../img/avatars/girl.png';
 import MoreButton from '../UIcomponents/MoreButton/MoreButton';
+import { BoxLoader } from '../UIcomponents/BoxLoader/BoxLoader';
 
-export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
+export default function LeftSideBar({
+  logo = defaultLogo,
+  family: Family,
+  familyRenderAnotherLinks,
+}) {
   const dispatch = useDispatch();
   const [showAddChildren, setShowAddChildren] = useState(false);
-  const children = useSelector(state => state.children);
-  const tasks = useSelector(state => state.tasks);
+  const children = useSelector(state => state.children.userChildrens);
+  const loaderChildren = useSelector(
+    state => state.children.loaderChildrensList,
+  );
+  const errorChildren = useSelector(state => state.children.errorChildrensLisr);
+  const tasks = useSelector(state => state.tasks.userTasks);
   const close = () => {
     setShowAddChildren(false);
   };
@@ -40,7 +49,9 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
           <h1 className={styles.title}>Сім’я</h1>
         </div>
 
-        {children.length === 0 && <p> у вас нет детей</p>}
+        {/* {errorChildren && <div>Error! {errorChildren.message}</div>} */}
+        {loaderChildren && <BoxLoader />}
+        {!loaderChildren && children.length === 0 && <p> у вас нет детей</p>}
         {children.length > 0 && (
           <ul className={styles.cardsContainer}>
             {children.map((el, i) => {
@@ -67,8 +78,11 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
                       {tasks.map(
                         element =>
                           element.childId === el._id &&
-                          element.isCompleted === null && (
-                            <li key={element._id} className={styles.habitsList}>
+                          element.isCompleted === 'inProgress' && (
+                            <li
+                              key={element._id}
+                              className={styles.ChildrenList}
+                            >
                               <span className={styles.spanText}>
                                 {element.name}
                               </span>
@@ -81,6 +95,7 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
                     </ul>
                   </div>
                   <NavLink
+                    onClick={familyRenderAnotherLinks}
                     to={`/home/child/${el._id}`}
                     className={styles.arrowText}
                   >

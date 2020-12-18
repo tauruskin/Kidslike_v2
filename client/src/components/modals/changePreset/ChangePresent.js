@@ -9,9 +9,11 @@ import { MarkInput } from '../../UIcomponents/MarkInput/MarkInput';
 import { updateGift, deleteGift } from '../../../redux/gifts/giftOperations';
 
 function ChangePresent({ close, data }) {
-  const { _id } = data;
+  const { _id, imageUrl } = data;
   const dispatch = useDispatch();
-  const children = useSelector(state => state.children);
+  const children = useSelector(state => state.children.userChildrens);
+  const loaderGift = useSelector(state => state.gifts.loaderGift);
+  const errorGift = useSelector(state => state.gifts.errorGift);
   const [presentTitle, setPresentTitle] = useState(data.name);
   const [price, setPrice] = useState(data.price);
   const [childId, setChildId] = useState(data.childId);
@@ -44,7 +46,7 @@ function ChangePresent({ close, data }) {
       setFileName(imgFile.name);
       reader.readAsDataURL(imgFile);
       reader.onloadend = function () {
-        setFile(reader.result);
+        setFile(imgFile);
       };
     }
   };
@@ -56,21 +58,27 @@ function ChangePresent({ close, data }) {
     setFile('');
   };
 
-  const handleSubmit = event => {
-
+  const handleSubmit = async event => {
     event.preventDefault();
-    //console.log('file', file);
-    // отправка пока идет без файла
-    const newPresent = {name: presentTitle, price, childId }
-    dispatch(updateGift(newPresent, _id))
-    resetState();
-    close();
+    const formData = new FormData();
+    formData.append('name', presentTitle);
+    formData.append('price', price);
+    formData.append('childId', childId);
+    formData.append('imageURL', imageUrl);
+    if (file) {
+      formData.append('image', file, fileName);
+    }
+    const result = await dispatch(updateGift(formData, _id));
+    if (result) {
+      resetState();
+      close();
+    }
   };
 
   const handleDelete = () => {
-      dispatch(deleteGift(_id));
-      close()
-  }
+    dispatch(deleteGift(_id));
+    close();
+  };
 
   return (
     <div className={styles.ModalBody}>
@@ -115,7 +123,11 @@ function ChangePresent({ close, data }) {
                 />
               </label>
             </div>
-            <button type='button' className={styles.btnDelete} onClick={handleDelete}>
+            <button
+              type="button"
+              className={styles.btnDelete}
+              onClick={handleDelete}
+            >
               <span className={styles.btnDeleteIcon}></span> Видалити подарунок
             </button>
           </div>
@@ -131,13 +143,12 @@ function ChangePresent({ close, data }) {
               label={'Зберегти'}
               orange={true}
               disabled={!presentTitle || childId === 'Оберіть дитину'}
+              loading={loaderGift}
             />
           </div>
+          {errorGift && <span>Ops ... err={errorGift}</span>}
         </form>
-        <button
-          onClick={close}
-          className={styles.ModalCloseBtn}
-        ></button>
+        <button onClick={close} className={styles.ModalCloseBtn}></button>
       </div>
     </div>
   );

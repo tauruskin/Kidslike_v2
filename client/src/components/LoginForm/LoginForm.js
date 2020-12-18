@@ -3,6 +3,7 @@ import Button from '../UIcomponents/Button/Button';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import Roll from 'react-reveal/Roll';
 import { BasicInput } from '../UIcomponents/Input/BasicInput';
 import styles from './LoginForm.module.css';
 import BubbleComponent from '../UIcomponents/BubbleComponent/BubbleComponent';
@@ -30,8 +31,10 @@ const schema = yup.object().shape({
 });
 
 export const LoginForm = () => {
-  const [, setEmail] = useState('');
-  const [, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [notification, setNotification] = useState(false);
+  const [msg, setMsg] = useState('');
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
@@ -39,11 +42,39 @@ export const LoginForm = () => {
   });
   const dispatch = useDispatch();
 
-  const onSubmit = data => dispatch(signIn(data));
+  const onSubmit = async data => {
+    const statusCode = await dispatch(signIn(data))
+    // console.log(statusCode);
+    switch (statusCode) {
+      case 'Request failed with status code 404':
+        addValues('Користувача з такою поштою, не знайдено')
+        break;
+      case 'Request failed with status code 403':
+        addValues('Будь ласка підтвердіть свою реєстрацію в повідомленні на пошті')
+        break;
+      case 'Request failed with status code 401':
+        addValues('Невірний пароль або логін')
+        break;
+      default:
+        break;
+    }
+};
+
+const addValues = (msg) => {
+  setMsg(msg)
+  setNotification(true);
+  setTimeout(() => {setNotification(false)}, 5000);
+}
 
   return (
     <>
       <form className={styles.relative} onSubmit={handleSubmit(onSubmit)}>
+      {notification && 
+          <Roll left>
+          <div className={styles.notification}>
+            <p>{msg}</p>
+          </div>
+        </Roll>}
         <BasicInput
           handleChange={({ target: { value } }) => {
             setEmail(value);
@@ -58,6 +89,7 @@ export const LoginForm = () => {
           labelWidth="147"
           inputWidth="340"
           type="email"
+          value={email}
         />
 
         <BasicInput
@@ -75,6 +107,7 @@ export const LoginForm = () => {
           labelWidth="147"
           inputWidth="340"
           type="password"
+          value={password}
         />
 
         <div className={styles.btn_centred}>
@@ -86,6 +119,7 @@ export const LoginForm = () => {
             width="230px"
             height="45px"
             top="82px"
+            right='0'
             msg={errors.email.message}
           />
         )}
@@ -94,6 +128,7 @@ export const LoginForm = () => {
             width="300px"
             height="46px"
             top="174px"
+            right='0'
             msg={errors.password.message}
           />
         )}

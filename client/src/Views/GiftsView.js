@@ -12,11 +12,11 @@ export default function GiftsView() {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    dispatch(userOperation.getUserInfo());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(userOperation.getUserInfo());
+  // }, []);
 
-  const close = () =>  setShowModal(false);
+  const close = () => setShowModal(false);
   const open = () => setShowModal(true);
 
   return (

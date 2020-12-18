@@ -6,13 +6,13 @@ const taskSchema = new Schema(
   {
     name: { type: String, required: true },
     points: { type: Number, required: true },
-    isCompleted: { type: Boolean, required: false, default: null },
-    daysToComplete: { type: Number, required: false ,default:10 },
+    isCompleted: { type: String, required: false, default: "inProgress" },
+    daysToComplete: { type: Number, required: false, default: 10 },
     childId: { type: ObjectID, required: false },
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
   },
-  {
-    timestamps: true,
-  }
+  {}
 );
 
 exports.TaskModel = mongoose.model("Task", taskSchema);

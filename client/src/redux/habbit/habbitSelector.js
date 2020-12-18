@@ -1,1 +1,0 @@
-export const getAllHabits = state => state.habbits;
