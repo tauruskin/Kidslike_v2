@@ -16,6 +16,7 @@ import { setToken } from '../redux/auth/authOperations';
 
 import axios from 'axios';
 import { baseURL } from '../config';
+import Background from './Background/Background';
 axios.defaults.baseURL = baseURL;
 
 class App extends Component {
@@ -44,36 +45,39 @@ class App extends Component {
     const { isAuthenticated } = this.props;
     return (
       <BrowserRouter>
-        <Header privatePage={isAuthenticated}>
-          <Logo privatePage={isAuthenticated} />
-          {isAuthenticated && (
-            <Navigation
-              familyRender={this.familyRender}
-              familyRenderAnotherLinks={this.familyRenderAnotherLinks}
-              family={this.state.family}
-            />
-          )}
-          {isAuthenticated && <UserInfo />}
-        </Header>
-        <Layout>
-          <Suspense fallback={<CustomLoader />}>
-            <Switch>
-              {routes.map(route =>
-                route.private ? (
-                  <PrivateRoute
-                    key={route.label}
-                    {...route}
-                    family={this.state.family}
-                  />
-                ) : (
-                  <PublicRoute key={route.label} {...route} />
-                ),
-              )}
-              {/* <Route component={NotFound} /> */}
-              <Redirect to="/home" />
-            </Switch>
-          </Suspense>
-        </Layout>
+        <Background>
+          <Header privatePage={isAuthenticated}>
+            <Logo privatePage={isAuthenticated} />
+            {isAuthenticated && (
+              <Navigation
+                familyRender={this.familyRender}
+                familyRenderAnotherLinks={this.familyRenderAnotherLinks}
+                family={this.state.family}
+              />
+            )}
+            {isAuthenticated && <UserInfo />}
+          </Header>
+          <Layout>
+            <Suspense fallback={<CustomLoader />}>
+              <Switch>
+                {routes.map(route =>
+                  route.private ? (
+                    <PrivateRoute
+                      key={route.label}
+                      {...route}
+                      family={this.state.family}
+                      familyRenderAnotherLinks={this.familyRenderAnotherLinks}
+                    />
+                  ) : (
+                    <PublicRoute key={route.label} {...route} />
+                  ),
+                )}
+                {/* <Route component={NotFound} /> */}
+                <Redirect to="/home" />
+              </Switch>
+            </Suspense>
+          </Layout>
+        </Background>
       </BrowserRouter>
     );
   }

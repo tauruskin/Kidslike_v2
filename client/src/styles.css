@@ -7,6 +7,34 @@ body {
 a {
   text-decoration: none;
 }
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400; /* IE9 Compat Modes */
+  src:/* IE6-IE8 */ url('./fonts/rubik-v10-latin_cyrillic-regular.woff2')
+      format('woff2'),
+    /* Super Modern Browsers */
+      url('./fonts/rubik-v10-latin_cyrillic-regular.woff') format('woff');
+  /* Modern Browsers */
+}
+/* rubik-500 - latin_cyrillic */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500; /* IE9 Compat Modes */
+  src: /* IE6-IE8 */ url('./fonts/rubik-v10-latin_cyrillic-500.woff2')
+      format('woff2'),
+    /* Super Modern Browsers */ url('./fonts/rubik-v10-latin_cyrillic-500.woff')
+      format('woff');
+}
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 900; /* IE9 Compat Modes */
+  src: /* IE6-IE8 */ url('./fonts/rubik-v11-latin-900.woff2') format('woff2'),
+    /* Super Modern Browsers */ url('./fonts/rubik-v11-latin-900.woff')
+      format('woff');
+}
 /* 
 /* a {
   text-decoration: none;
@@ -30,9 +58,9 @@ h1 {
   font-size: 26px;
 }
 
-img{
+img {
   display: block;
 }
-ul{
+ul {
   padding: 0;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import boy from '../../img/avatars/boy_in_frame.png';
@@ -7,15 +7,14 @@ import HabitSubmitBox from '../UIcomponents/HabitSubmitBox/HabitSubmitBox';
 
 import styles from './HabitItem.module.css';
 
-function HabitItem({ gender, name, points, childId, daysToComplete, _id }) {
+function HabitItem({ name, points, childId, daysToComplete, _id }) {
   const todaysDate = new Date().toISOString().slice(0, 10);
-  const children = useSelector(state => state.children);
+  const children = useSelector(state => state.children.userChildrens);
   const currentChild = children.find(el => el._id === childId);
-
+  const checkIsDoneToday = daysToComplete.find(el => el.date === todaysDate)
+    .done;
   const [selectedDate, setSelectedDate] = useState(todaysDate);
-  const [isDone, setIsDone] = useState(null);
-
-  useEffect(() => {});
+  const [isDone, setIsDone] = useState(checkIsDoneToday);
 
   const hahdleClick = (date, value) => {
     setSelectedDate(date);
@@ -26,13 +25,7 @@ function HabitItem({ gender, name, points, childId, daysToComplete, _id }) {
     <div className={styles.habitItemFolder}>
       <img
         className={styles.avatar}
-        src={
-          currentChild.gender !== null
-            ? currentChild.gender === 'male'
-              ? boy
-              : girl
-            : boy
-        }
+        src={currentChild ? (currentChild.gender === 'male' ? boy : girl) : boy}
         alt="avatar"
       ></img>
       <div className={styles.habitContentWrapper}>

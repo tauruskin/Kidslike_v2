@@ -1,27 +1,32 @@
-import { current } from '@reduxjs/toolkit';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import operations from '../../redux/tasks/taskOperations';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import boy from '../../img/avatars/boy_in_frame.png';
 import girl from '../../img/avatars/girl_in_frame.png';
-import HabitSubmitBox from '../UIcomponents/HabitSubmitBox/HabitSubmitBox';
+import TaskSubmitBox from '../UIcomponents/TaskSubmitBox/TaskSubmitBox';
 
 import styles from './TaskItem.module.css';
 
-export default function TaskItem({ name, points, daysToComplete, childId }) {
-  const children = useSelector(state => state.children);
+export default function TaskItem({
+  name,
+  points,
+  daysToComplete,
+  childId,
+  _id,
+  isCompleted,
+  createdAt,
+}) {
+  const children = useSelector(state => state.children.userChildrens);
   const currentChild = children.find(el => el._id === childId);
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(operations.getAllTasks());
+  }, []);
   return (
     <div className={styles.habitItemFolder}>
       <img
         className={styles.avatar}
-        src={
-          currentChild.gender
-            ? currentChild.gender === 'male'
-              ? boy
-              : girl
-            : boy
-        }
+        src={currentChild ? (currentChild.gender === 'male' ? boy : girl) : boy}
         alt="avatar"
       />
       <div className={styles.taskContentWrapper}>
@@ -35,7 +40,13 @@ export default function TaskItem({ name, points, daysToComplete, childId }) {
             <p className={styles.days}>{daysToComplete} день</p>
           </div>
         )}
-        <HabitSubmitBox repeat={false} />
+        <TaskSubmitBox
+          id={_id}
+          points={points}
+          childId={childId}
+          isCompleted={isCompleted}
+          createdAt={createdAt}
+        />
       </div>
     </div>
   );

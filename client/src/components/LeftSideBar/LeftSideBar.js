@@ -9,12 +9,24 @@ import styles from './LeftSideBar.module.css';
 import AddChildren from '../modals/addChildren/AddChildren';
 import childrenOperations from '../../redux/children/childrenOperations';
 import { useSelector, useDispatch } from 'react-redux';
+import boy from '../../img/avatars/boy.png';
+import girl from '../../img/avatars/girl.png';
+import MoreButton from '../UIcomponents/MoreButton/MoreButton';
+import { BoxLoader } from '../UIcomponents/BoxLoader/BoxLoader';
 
-export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
+export default function LeftSideBar({
+  logo = defaultLogo,
+  family: Family,
+  familyRenderAnotherLinks,
+}) {
   const dispatch = useDispatch();
   const [showAddChildren, setShowAddChildren] = useState(false);
-  const children = useSelector(state => state.children);
-  const tasks = useSelector(state => state.tasks);
+  const children = useSelector(state => state.children.userChildrens);
+  const loaderChildren = useSelector(
+    state => state.children.loaderChildrensList,
+  );
+  const errorChildren = useSelector(state => state.children.errorChildrensLisr);
+  const tasks = useSelector(state => state.tasks.userTasks);
   const close = () => {
     setShowAddChildren(false);
   };
@@ -36,17 +48,25 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
           <img src={family} alt="family" className={styles.iconFamily} />
           <h1 className={styles.title}>Сім’я</h1>
         </div>
-        {children.length === 0 && <p> у вас нет детей</p>}
+
+        {/* {errorChildren && <div>Error! {errorChildren.message}</div>} */}
+        {loaderChildren && <BoxLoader />}
+        {!loaderChildren && children.length === 0 && <p> у вас нет детей</p>}
         {children.length > 0 && (
           <ul className={styles.cardsContainer}>
             {children.map((el, i) => {
               return (
                 <li key={el._id} className={styles.leftSideBarCard}>
+                  <div className={styles.moreButton_wraper}>
+                    {<MoreButton type={'child'} />}
+                  </div>
                   <div className={styles.childTitle}>
                     <img
                       className={styles.leftSideBarAvatar}
-                      src={logo}
-                      alt="default logo"
+                      src={
+                        el.gender ? (el.gender === 'male' ? boy : girl) : boy
+                      }
+                      alt="avatar"
                     />
                     <h2 className={styles.childName}>{el.name}</h2>
                     <img className={styles.star} src={star} alt="star" />
@@ -55,10 +75,14 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
 
                   <div className={styles.task}>
                     <ul>
-                      {tasks.map(element =>
+                      {tasks.map(
+                        element =>
                           element.childId === el._id &&
                           element.isCompleted === null && (
-                            <li key={element._id} className={styles.habitsList}>
+                            <li
+                              key={element._id}
+                              className={styles.ChildrenList}
+                            >
                               <span className={styles.spanText}>
                                 {element.name}
                               </span>
@@ -71,6 +95,7 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
                     </ul>
                   </div>
                   <NavLink
+                    onClick={familyRenderAnotherLinks}
                     to={`/home/child/${el._id}`}
                     className={styles.arrowText}
                   >

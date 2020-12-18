@@ -6,11 +6,13 @@ import { BasicInput } from '../../UIcomponents/Input/BasicInput';
 import { CustomSelect } from '../../UIcomponents/CustomSelect/CustomSelect';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
 import { MarkInput } from '../../UIcomponents/MarkInput/MarkInput';
-import { addGift} from '../../../redux/gifts/giftOperations';
+import { addGift } from '../../../redux/gifts/giftOperations';
 
 function AddPresent({ close }) {
   const dispatch = useDispatch();
-  const children = useSelector(state => state.children)
+  const children = useSelector(state => state.children.userChildrens);
+  const loaderGift = useSelector(state => state.gifts.loaderGift);
+  const errorGift = useSelector(state => state.gifts.errorGift);
 
   const [presentTitle, setPresentTitle] = useState('');
   const [price, setPrice] = useState('');
@@ -43,8 +45,8 @@ function AddPresent({ close }) {
       setFileError('');
       setFileName(imgFile.name);
       reader.readAsDataURL(imgFile);
-      reader.onloadend = function () {
-        setFile(reader.result);
+      reader.onloadend = () => {
+        setFile(imgFile);
       };
     }
   };
@@ -56,15 +58,24 @@ function AddPresent({ close }) {
     setFile('');
   };
 
-  const handleSubmit = event => {
-
+  const handleSubmit = async event => {
     event.preventDefault();
     //console.log('file', file);
     // отправка пока идет без файла
-    const newPresent = {name: presentTitle, price, childId }
-    dispatch(addGift(newPresent))
-    resetState();
-    close();
+    const formData = new FormData();
+    formData.append('name', presentTitle);
+    formData.append('price', price);
+    formData.append('childId', childId);
+    if (file) {
+      formData.append('image', file, fileName);
+    }
+    // const newPresent = {name: presentTitle, price, childId }
+
+    const result = await dispatch(addGift(formData));
+    if (result) {
+      resetState();
+      close();
+    }
   };
 
   return (
@@ -123,8 +134,10 @@ function AddPresent({ close }) {
               label={'Зберегти'}
               orange={true}
               disabled={!presentTitle || childId === 'Оберіть дитину'}
+              loading={loaderGift}
             />
           </div>
+          {errorGift && <span>Ops ... err={errorGift}</span>}
         </form>
         <button
           onClick={() => close()}

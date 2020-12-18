@@ -16,6 +16,10 @@ const getAllTasksRequest = createAction('task/getAllTasksRequest');
 const getAllTasksSuccess = createAction('task/getAllTasksSuccess');
 const getAllTasksError = createAction('task/getAllTasksError');
 
+const changeTasksStatusRequest = createAction('task/changeTasksStatusRequest');
+const changeTasksStatusSuccess = createAction('task/changeTasksStatusSuccess');
+const changeTasksStatusError = createAction('task/changeTasksStatusError');
+
 export default {
   createTaskRequest,
   createTaskSuccess,
@@ -29,4 +33,7 @@ export default {
   getAllTasksRequest,
   getAllTasksSuccess,
   getAllTasksError,
+  changeTasksStatusRequest,
+  changeTasksStatusSuccess,
+  changeTasksStatusError
 };

@@ -3,19 +3,22 @@ import styles from './AddTask.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
 import operations from '../../../redux/tasks/taskOperations';
 import { useDispatch, useSelector } from 'react-redux';
+import { LoaderSmall } from '../../UIcomponents/LoaderSmall/LoaderSmall';
 
 const AddTask = ({ close }) => {
   const dispatch = useDispatch();
-  const children = useSelector(state => state.children)
-
+  const children = useSelector(state => state.children.userChildrens);
+  const loaderTask = useSelector(state => state.tasks.loaderTask);
+  const errorTask = useSelector(state => state.tasks.errorTask);
 
   const [taskName, setTaskName] = useState('');
   const [mark, setMark] = useState('');
   const [taskTarget, setTaskTarget] = useState('');
-  const [taskDays, setTaskDays] = useState("10");
+  const [taskDays, setTaskDays] = useState('10');
 
-  const handleSubmit = evt => {
-    dispatch(
+  const handleSubmit = async evt => {
+    evt.preventDefault();
+    const result = await dispatch(
       operations.addTask({
         name: taskName,
         childId: taskTarget,
@@ -23,8 +26,9 @@ const AddTask = ({ close }) => {
         daysToComplete: taskDays,
       }),
     );
-    evt.preventDefault();
-    close();
+    if (result) {
+      close();
+    }
   };
 
   return (
@@ -81,13 +85,15 @@ const AddTask = ({ close }) => {
           </div>
           <div className={styles.buttonsBlock}>
             <button className={styles.buttonSave} onClick={handleSubmit}>
-              Зберегти
+              {!loaderTask && <span>Зберегти</span>}
+              {loaderTask && <LoaderSmall />}
             </button>
 
             <button className={styles.buttonCancle} onClick={() => close()}>
               Відміна
             </button>
           </div>
+          {errorTask && <span>Ops ... err={errorTask}</span>}
         </form>
         <button
           onClick={() => close()}
