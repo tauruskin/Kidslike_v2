@@ -14,8 +14,7 @@ const AddTask = ({ close }) => {
   const [taskName, setTaskName] = useState('');
   const [mark, setMark] = useState('');
   const [taskTarget, setTaskTarget] = useState('');
-  const [taskDays, setTaskDays] = useState('10');
-
+  const [taskDays, setTaskDays] = useState('0');
   const handleSubmit = async evt => {
     evt.preventDefault();
     const result = await dispatch(

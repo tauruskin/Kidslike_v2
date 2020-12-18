@@ -22,6 +22,14 @@ export default function TaskItem({
   useEffect(() => {
     dispatch(operations.getAllTasks());
   }, []);
+function enumerate(num, dec) {
+  if (num > 100) num = num % 100;
+  if (num <= 20 && num >= 10) return dec[2];
+  if (num > 20) num = num % 10;
+  return num === 1 ? dec[0] : num > 1 && num < 5 ? dec[1] : dec[2];
+}
+
+
   return (
     <div className={styles.habitItemFolder}>
       <img
@@ -34,11 +42,15 @@ export default function TaskItem({
           <p className={styles.habitTitle}>{name}</p>
           <p className={styles.habitPoints}>{points}</p>
         </div>
-        {daysToComplete && (
+        {daysToComplete !== 0 ? (
           <div className={styles.taskTime}>
             <p className={styles.text}>Час на виконання:</p>
-            <p className={styles.days}>{daysToComplete} день</p>
+            <p className={styles.days}>{daysToComplete}      
+              {enumerate(daysToComplete, [' день', ' дня', ' дней'])}
+            </p>
           </div>
+        ) : (
+          <div className={styles.taskTime}> </div>
         )}
         <TaskSubmitBox
           id={_id}
