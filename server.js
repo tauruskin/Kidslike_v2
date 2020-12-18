@@ -81,6 +81,11 @@ exports.CrudServer = class {
 
     if (process.env.LOCATION === "production") {
       this.server.use(
+        "/.well-known/pki-validation",
+        express.static(path.join(__dirname, "../.well-known/pki-validation"))
+      );
+
+      this.server.use(
         "/",
         express.static(path.join(__dirname, "client", "build"))
       );
