@@ -26,9 +26,9 @@ export function GiftList() {
     return boy;
   };
 
-  if (errorGifts) {
-    return <div>Error! {errorGifts.message}</div>;
-  }
+  // if (errorGifts) {
+  //   return <div>Error! {errorGifts.message}</div>;
+  // }
   if (loaderGifts) {
     return <div>Loading...</div>;
   }

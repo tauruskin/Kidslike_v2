@@ -1,5 +1,5 @@
 import axios from 'axios';
-import actions from './habbitActions';
+import actions from './habitActions';
 import childOperations from '../children/childrenOperations';
 
 // const domain = process.env.DOMAIN_ADDRESS;
@@ -20,47 +20,51 @@ const getAllHabits = () => async dispatch => {
 };
 
 const addHabit = habit => async dispatch => {
-  dispatch(actions.createHabbitRequest());
+  dispatch(actions.createHabitRequest());
   try {
     const response = await axios.post(`/api/habits/`, { ...habit });
-    dispatch(actions.createHabbitSuccess(response.data));
+    dispatch(actions.createHabitSuccess(response.data));
+    return true;
   } catch (error) {
-    dispatch(actions.createHabbitError(error.message));
+    dispatch(actions.createHabitError(error.message));
+    return false;
   }
 };
 
 const updateHabit = (data, id) => async dispatch => {
-  dispatch(actions.updateHabbitRequest());
+  dispatch(actions.updateHabitRequest());
   try {
     await axios.patch(`/api/habits/${id}`, data).then(res => {
-      dispatch(actions.updateHabbitSuccess(res.data));
+      dispatch(actions.updateHabitSuccess(res.data));
     });
+    return true;
   } catch (error) {
-    dispatch(actions.updateHabbitError(error.message));
+    dispatch(actions.updateHabitError(error.message));
+    return false;
   }
 };
 
 const checkHabitDone = (id, data) => async dispatch => {
-  dispatch(actions.checkHabbitRequest());
+  dispatch(actions.checkHabitRequest());
   try {
     await axios.patch(`/api/habits/${id}/check`, data).then(res => {
-      dispatch(actions.checkHabbitSuccess(res.data));
+      dispatch(actions.checkHabitSuccess(res.data));
     });
     dispatch(childOperations.getAllChildren());
     dispatch(getAllHabits());
   } catch (error) {
-    dispatch(actions.checkHabbitError(error.message));
+    dispatch(actions.checkHabitError(error.message));
   }
 };
 
 const deleteHabit = id => async dispatch => {
-  dispatch(actions.deleteHabbitRequest());
+  dispatch(actions.deleteHabitRequest());
   try {
     await axios.delete(`/api/habits/${id}`).then(() => {
-      dispatch(actions.deleteHabbitSuccess(id));
+      dispatch(actions.deleteHabitSuccess(id));
     });
   } catch (error) {
-    dispatch(actions.deleteHabbitError(error.message));
+    dispatch(actions.deleteHabitError(error.message));
   }
 };
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import ChangeHabbit from '../../modals/changeHabbit/ChangeHabbit';
+import ChangeHabit from '../../modals/changeHabit/ChangeHabit';
 import ChangeTask from '../../modals/changeTask/ChangeTask';
-import habitOperations from '../../../redux/habbit/habbitOperations';
+import habitOperations from '../../../redux/habit/habitOperations';
 import operations from '../../../redux/tasks/taskOperations';
 import ChangeChildren from '../../modals/changeChildren/ChangeChildren';
 import childrenOperations from '../../../redux/children/childrenOperations';
@@ -29,7 +29,7 @@ export default function BubbleComponent({
   };
 
   const dispatch = useDispatch();
-  
+
   const deleteHabit = id => {
     dispatch(habitOperations.deleteHabit(id));
   };
@@ -107,7 +107,7 @@ export default function BubbleComponent({
         </div>
       </div>
       {modalType === 'habit' && showModal && (
-        <ChangeHabbit
+        <ChangeHabit
           data={habitData}
           close={() => {
             close();
@@ -134,10 +134,13 @@ export default function BubbleComponent({
         />
       )}
       {modalType === 'gift' && showModal && (
-        <ChangePresent close={() => {
-          close();
-          handleClick();
-        }} data={giftData} />
+        <ChangePresent
+          close={() => {
+            close();
+            handleClick();
+          }}
+          data={giftData}
+        />
       )}
     </>
   );

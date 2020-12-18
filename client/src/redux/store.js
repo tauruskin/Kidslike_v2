@@ -12,7 +12,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import authReducer from './auth/authReducer';
 import userReducer from './user/userReducer';
 import childrenReducer from './children/childrenReducer';
-import habbitReducer from './habbit/habbitReducer';
+import habitReducer from './habit/habitReducer';
 import taskReducer from './tasks/taskReducer';
 
 import storage from 'redux-persist/lib/storage';
@@ -34,7 +34,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     user: userReducer,
     children: childrenReducer,
-    habbits: habbitReducer,
+    habits: habitReducer,
     tasks: taskReducer,
     gifts: userGifts,
   },
