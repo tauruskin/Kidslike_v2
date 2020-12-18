@@ -43,7 +43,6 @@ exports.updateGift = async (req, res, next) => {
   const { _id } = req.gift;
 
   if (req.file) {
-
     const imageUrl = req.body.imageURL;
     const baseimageURL = `${process.env.DOMAIN_ADDRESS}/images/`;
     const { filename } = req.file;
@@ -67,30 +66,28 @@ exports.updateGift = async (req, res, next) => {
   }
 };
 exports.purchaseGift = async (req, res, next) => {
-  const { childId, price } = req.body
-  const child = await ChildModel.findById(childId)
+  const { childId, price } = req.body;
+  const child = await ChildModel.findById(childId);
   if (child.points >= price) {
-    const newTotal = child.points - price
-    console.log(newTotal)
+    const newTotal = child.points - price;
+    // console.log(newTotal)
     await ChildModel.findByIdAndUpdate(childId, {
       $set: { points: newTotal },
-      new: true
-
-    })
-         return res.status(200).send( "you bought new gift" );
-}
-  else {
- res.status(404).send("You dont have enough points");
+      new: true,
+    });
+    return res.status(200).send("you bought new gift");
+  } else {
+    res.status(404).send("You dont have enough points");
   }
-}
+};
 
 exports.deleteGift = async (req, res, next) => {
   const { _id, imageUrl } = req.gift;
-const baseimageURL = `${process.env.DOMAIN_ADDRESS}/images/`;
-    const imageName = imageUrl.replace(baseimageURL, "");
-    if (imageName !== "defGif.png" && imageName !== "defGift.svg") {
-      await deleteOldImage(imageName);
-    }
+  const baseimageURL = `${process.env.DOMAIN_ADDRESS}/images/`;
+  const imageName = imageUrl.replace(baseimageURL, "");
+  if (imageName !== "defGif.png" && imageName !== "defGift.svg") {
+    await deleteOldImage(imageName);
+  }
   await GiftModel.findByIdAndDelete(_id);
   return res.status(204).send();
 };

@@ -1,5 +1,5 @@
 import * as queryString from 'query-string';
-import axios from 'axios'
+import axios from 'axios';
 
 export async function getAccessTokenFacebook(code) {
   const { data } = await axios({
@@ -12,9 +12,9 @@ export async function getAccessTokenFacebook(code) {
       code,
     },
   });
-  console.log(data); // { access_token, token_type, expires_in }
+  // console.log(data); // { access_token, token_type, expires_in }
   return data.access_token;
-};
+}
 
 export async function getFacebookUserData(accesstoken) {
   const { data } = await axios({
@@ -25,9 +25,9 @@ export async function getFacebookUserData(accesstoken) {
       access_token: accesstoken,
     },
   });
-  console.log(data); // { id, email, first_name, last_name }
+  // console.log(data); // { id, email, first_name, last_name }
   return data;
-};
+}
 
 const stringifiedParams = queryString.stringify({
   client_id: process.env.REACT_APP_FACEBOOK_ID,

@@ -4,14 +4,13 @@ const moment = require("moment");
 
 exports.createTask = async (req, res, next) => {
   const newTask = await TaskModel.create(req.body);
-  console.log(newTask)
+  // console.log(newTask)
   return res.status(201).send(newTask);
 };
 
 exports.getTasks = async (req, res, next) => {
   const { childId } = req.user;
   const usersTasks = await TaskModel.find({
-    
     childId: childId.map((el) => el),
   });
   return res.status(200).send(usersTasks);
@@ -22,16 +21,19 @@ exports.getTaskById = async (req, res, next) => {
 };
 
 exports.updateTask = async (req, res, next) => {
-  const { _id, createdAt , childId , points } = req.task;
+  const { _id, createdAt, childId, points } = req.task;
   const updatedTask = await TaskModel.findByIdAndUpdate(_id, req.body, {
     new: true,
   });
   const dayCreatedAt = moment(createdAt).format("X");
   const daysForTask = updatedTask.daysToComplete * 86400000;
   const today = Date.now();
-  if (updatedTask.isCompleted === "true" && req.task.isCompleted === "inProgress") {
+  if (
+    updatedTask.isCompleted === "true" &&
+    req.task.isCompleted === "inProgress"
+  ) {
     await ChildModel.findByIdAndUpdate(
-     childId,
+      childId,
       {
         $inc: { points: points },
       },
@@ -39,19 +41,18 @@ exports.updateTask = async (req, res, next) => {
     );
   }
 
- 
-  if ((daysForTask + dayCreatedAt) < today) {
+  if (daysForTask + dayCreatedAt < today) {
     await TaskModel.findByIdAndUpdate(
       updatedTask._id,
       {
-       $set: {isCompleted: "false"},
+        $set: { isCompleted: "false" },
       },
       { new: true }
     );
   }
 
   return res.status(200).send(updatedTask);
-};;
+};
 
 exports.deleteTask = async (req, res, next) => {
   const { _id } = req.task;
