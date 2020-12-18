@@ -83,7 +83,7 @@ const ChangeTask = ({ close, data }) => {
   return (
     <>
       <div className={styles.modalBody}>
-        <h2 className={styles.title}>Додавання задачі</h2>
+        <h2 className={styles.title}>Редагування задачі</h2>
         <div className={styles.form} onSubmit={onSubmit}>
           <div className={styles.inputBlock}>
 
