@@ -6,6 +6,7 @@ import girl from '../../img/avatars/girl_in_frame.png';
 import TaskSubmitBox from '../UIcomponents/TaskSubmitBox/TaskSubmitBox';
 
 import styles from './TaskItem.module.css';
+import taskOperations from '../../redux/tasks/taskOperations';
 
 export default function TaskItem({
   name,
@@ -19,8 +20,9 @@ export default function TaskItem({
   const children = useSelector(state => state.children.userChildrens);
   const currentChild = children.find(el => el._id === childId);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(operations.getAllTasks());
+    dispatch(taskOperations.getAllTasks());
   }, []);
 function enumerate(num, dec) {
   if (num > 100) num = num % 100;

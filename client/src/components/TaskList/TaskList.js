@@ -21,9 +21,9 @@ export default function TaskList() {
 
   const filteredTasks = tasks.filter(el => el.isCompleted === 'inProgress');
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(operations.getAllTasks());
-  // }, []);
+  useEffect(() => {
+    dispatch(operations.getAllTasks());
+  }, []);
 
   return (
     <div className={styles.listHolder}>
