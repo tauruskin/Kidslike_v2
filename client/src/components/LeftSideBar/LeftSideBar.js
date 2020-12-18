@@ -78,11 +78,8 @@ export default function LeftSideBar({
                       {tasks.map(
                         element =>
                           element.childId === el._id &&
-                          element.isCompleted === 'inProgress' && (
-                            <li
-                              key={element._id}
-                              className={styles.ChildrenList}
-                            >
+                          element.isCompleted === null && (
+                            <li key={element._id} className={styles.habitsList}>
                               <span className={styles.spanText}>
                                 {element.name}
                               </span>
@@ -95,7 +92,6 @@ export default function LeftSideBar({
                     </ul>
                   </div>
                   <NavLink
-                    onClick={familyRenderAnotherLinks}
                     to={`/home/child/${el._id}`}
                     className={styles.arrowText}
                   >
