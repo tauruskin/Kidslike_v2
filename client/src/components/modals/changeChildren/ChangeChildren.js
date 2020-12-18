@@ -7,9 +7,9 @@ import childOperations from '../../../redux/children/childrenOperations'
 const ChangeChildren = ({ close, data }) => {
   const dispatch = useDispatch();
 
-  const [childName, setChildName] = useState('');
-  const [childGender, setChildGender] = useState('');
-
+  const [childName, setChildName] = useState(data.name);
+  const [childGender, setChildGender] = useState(data.gender);
+  
   const handleSubmit = evt => {
     dispatch(
       childOperations.updateChildren(
@@ -38,7 +38,7 @@ const ChangeChildren = ({ close, data }) => {
             <label className={styles.label}>
               <p className={styles.inputName}>Ім’я дитини</p>
               <input
-                // defaultValue={data.name}
+                defaultValue={data.name}
                 className={styles.input}
                 placeholder="Ім’я"
                 onChange={({ target: { value } }) => setChildName(value)}
@@ -47,6 +47,7 @@ const ChangeChildren = ({ close, data }) => {
             <p className={styles.childrenTitle}>Оберіть стать дитини</p>
             <label className={styles.customLabel}>
               <input
+                checked={childGender === 'female'}
                 name="gender"
                 type="radio"
                 onChange={() => setChildGender('female')}
@@ -56,6 +57,7 @@ const ChangeChildren = ({ close, data }) => {
             <p className={styles.customName}>дівчинка</p>
             <label className={styles.customLabel}>
               <input
+                checked={childGender === 'male'}
                 name="gender"
                 type="radio"
                 onChange={() => setChildGender('male')}

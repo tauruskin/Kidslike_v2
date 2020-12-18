@@ -51,7 +51,7 @@ export default function ChildTaskPage() {
         {children.map(
           el =>
             el._id === childId && (
-              <div>
+              <div key={el._id}>
                 <div className={styles.gifsTitleContainer}>
                   <div className={styles.giftIcon}>
                     <img
