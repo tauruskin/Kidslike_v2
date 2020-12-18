@@ -44,7 +44,7 @@ export const LoginForm = () => {
 
   const onSubmit = async data => {
     const statusCode = await dispatch(signIn(data))
-    console.log(statusCode);
+    // console.log(statusCode);
     switch (statusCode) {
       case 'Request failed with status code 404':
         addValues('Користувача з такою поштою, не знайдено')

@@ -13,7 +13,7 @@ export default function ChildTaskPage() {
   const tasks = useSelector(state => state.tasks.userTasks);
   const children = useSelector(state => state.children.userChildrens);
   // let filteredData = tasksDrow.sort(sortFunc('updatedAt'));
-  console.log(tasksDrow);
+  // console.log(tasksDrow);
   const dispatch = useDispatch();
   const childId = window.location.href.slice(
     window.location.href.lastIndexOf('/') + 1,
