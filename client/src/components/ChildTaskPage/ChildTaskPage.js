@@ -13,7 +13,7 @@ export default function ChildTaskPage() {
   const tasks = useSelector(state => state.tasks.userTasks);
   const children = useSelector(state => state.children.userChildrens);
   // let filteredData = tasksDrow.sort(sortFunc('updatedAt'));
-console.log(tasksDrow)
+  console.log(tasksDrow);
   const dispatch = useDispatch();
   const childId = window.location.href.slice(
     window.location.href.lastIndexOf('/') + 1,
@@ -67,14 +67,13 @@ console.log(tasksDrow)
                 <ul className={styles.HabitList}>
                   {tasksDrow.map(
                     element =>
-                      
                       element.childId === el._id &&
-                      element.isCompleted === "true" && (
+                      element.isCompleted !== 'inProgress' && (
                         <li
                           key={element._id}
                           className={styles.HabitItem}
                           style={
-                            element.isCompleted === "true"
+                            element.isCompleted === 'true'
                               ? { border: '1px solid rgb(126, 242, 157)' }
                               : { border: '1px solid rgb(235, 162, 185)' }
                           }
@@ -98,4 +97,3 @@ console.log(tasksDrow)
     );
   }
 }
-
