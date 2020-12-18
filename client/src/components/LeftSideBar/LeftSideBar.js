@@ -78,7 +78,7 @@ export default function LeftSideBar({
                       {tasks.map(
                         element =>
                           element.childId === el._id &&
-                          element.isCompleted === null && (
+                          element.isCompleted === 'inProgress' && (
                             <li
                               key={element._id}
                               className={styles.ChildrenList}
