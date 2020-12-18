@@ -4,7 +4,7 @@ import actions from './habitActions';
 
 const userHabitsInitialState = [];
 
-const userHabits = createReducer(userHabitsInitialState, {
+const userHabits = createReducer([], {
   [actions.getAllHabitsSuccess]: (_, { payload }) => {
     return payload;
   },
@@ -21,13 +21,13 @@ const userHabits = createReducer(userHabitsInitialState, {
     state.filter(el => el._id !== payload),
 });
 
-const loaderHabitsList = createReducer(false, {
+const loaderHabitsList = createReducer(true, {
   [actions.getAllHabitsRequest]: () => true,
   [actions.getAllHabitsSuccess]: () => false,
   [actions.getAllHabitsError]: () => false,
 });
 
-const loaderHabit = createReducer(false, {
+const loaderHabit = createReducer(true, {
   [actions.createHabitRequest]: () => true,
   [actions.createHabitSuccess]: () => false,
   [actions.createHabitError]: () => false,

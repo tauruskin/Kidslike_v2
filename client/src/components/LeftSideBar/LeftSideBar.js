@@ -17,7 +17,7 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family, family
   const dispatch = useDispatch();
   const [showAddChildren, setShowAddChildren] = useState(false);
   const children = useSelector(state => state.children);
-  const tasks = useSelector(state => state.tasks);
+  const tasks = useSelector(state => state.tasks.userTasks);
   const close = () => {
     setShowAddChildren(false);
   };

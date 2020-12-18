@@ -12,9 +12,11 @@ export default function TaskList() {
   const close = () => {
     setShowAddTaskModal(false);
   };
-  const tasks = useSelector(state => state.tasks);
+  const tasks = useSelector(state => state.tasks.userTasks);
+  const loaderTasks = useSelector(state => state.tasks.loaderTasksList);
+  const errorTasks = useSelector(state => state.tasks.errorTasksLisr);
   const filteredTasks = tasks.filter(el => el.isCompleted === null);
-  console.log(filteredTasks)
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(operations.getAllTasks());
@@ -26,11 +28,13 @@ export default function TaskList() {
         <div className={styles.giftIcon}></div>
         <h1 className={styles.giftTitle}>Задачі</h1>
       </div>
-      {filteredTasks.length === 0 && <p> у вас нет tasks</p>}
-      {tasks.length > 0 && (
-        <ul className={styles.HabitList}>
+      {/* {errorTasks && <div>Error! {errorTasks.message}</div>} */}
+      {loaderTasks && <div>Loading...</div>}
+      {!loaderTasks && filteredTasks.length === 0 && <p> у вас нет tasks</p>}
+      {filteredTasks.length > 0 && (
+        <ul className={styles.TaskList}>
           {filteredTasks.map(el => (
-            <li key={el._id} className={styles.HabitItem}>
+            <li key={el._id} className={styles.TaskItem}>
               <MoreButton type={'task'} data={el} />
               <TaskItem {...el} />
             </li>
