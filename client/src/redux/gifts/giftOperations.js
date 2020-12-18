@@ -16,9 +16,9 @@ const getAllGifts = () => async dispatch => {
     dispatch(actions.getAllGiftsSuccess(response.data));
   } catch (error) {
     dispatch(actions.getAllGiftsError(error));
-    if(error.response.status === 401) {
-      dispatch(authErrorActions.signinError())
-    }
+    // if (error.response.status === 401) {
+    //   dispatch(authErrorActions.signinError());
+    // }
   }
 };
 
@@ -29,31 +29,34 @@ const addGift = giftData => async dispatch => {
       method: 'post',
       url: `/api/gifts/`,
       data: giftData,
-      headers: {'Content-Type': 'multipart/form-data' }
-      })
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
     dispatch(actions.createGiftSuccess(response.data));
+    return true;
   } catch (error) {
     dispatch(actions.createGiftError(error.message));
+    return false;
   }
 };
 
 const updateGift = (giftData, id) => async dispatch => {
   dispatch(actions.updateGiftRequest());
   try {
-
     const response = await axios({
       method: 'patch',
       url: `/api/gifts/${id}`,
       data: giftData,
-      headers: {'Content-Type': 'multipart/form-data' }
-      })
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
 
-      dispatch(actions.updateGiftSuccess(response.data));
+    dispatch(actions.updateGiftSuccess(response.data));
+    return true;
     // await axios.patch(`/api/gifts/${id}`, data).then(res => {
     //   dispatch(actions.updateGiftSuccess(res.data));
     // });
   } catch (error) {
     dispatch(actions.updateGiftError(error.message));
+    return false;
   }
 };
 

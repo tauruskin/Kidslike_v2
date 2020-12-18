@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Button.module.css';
+import { LoaderSmall } from '../LoaderSmall/LoaderSmall';
 
 export default function Button({
   handleClick,
@@ -10,9 +11,10 @@ export default function Button({
   type,
   orange,
   transparent,
-  white, 
+  white,
   bordered,
-  disabled
+  disabled,
+  loading,
 }) {
   return (
     <button
@@ -25,13 +27,13 @@ export default function Button({
           : transparent
           ? styles.ButtonTransparent
           : white
-          ? styles.ButtonWhite :
-          bordered 
-          ?  styles.ButtonBordered
+          ? styles.ButtonWhite
+          : bordered
+          ? styles.ButtonBordered
           : styles.ButtonGrey
       }
     >
-      {label}
+      {loading ? <LoaderSmall /> : <span>{label}</span>}
     </button>
   );
 }

@@ -4,16 +4,22 @@ import styles from './ChangeTask.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
 import operations from '../../../redux/tasks/taskOperations';
 import { useDispatch, useSelector } from 'react-redux';
+import { LoaderSmall } from '../../UIcomponents/LoaderSmall/LoaderSmall';
+
 const ChangeTask = ({ close, data }) => {
-  const children = useSelector(state => state.children);
+  const children = useSelector(state => state.children.userChildrens);
+  const loaderTask = useSelector(state => state.tasks.loaderTask);
+  const errorTask = useSelector(state => state.tasks.errorTask);
+
   const dispatch = useDispatch();
   const [taskName, setTaskName] = useState(data.name);
   const [mark, setMark] = useState(data.points);
   const [taskTarget, setTaskTarget] = useState(data.childId);
   const [taskDays, setTaskDays] = useState(data.daysToComplete);
 
-  const handleSubmit = evt => {
-    dispatch(
+  const handleSubmit = async evt => {
+    evt.preventDefault();
+    const result = await dispatch(
       operations.updateTask(
         {
           name: taskName,
@@ -24,8 +30,9 @@ const ChangeTask = ({ close, data }) => {
         data._id,
       ),
     );
-    evt.preventDefault();
-    close();
+    if (result) {
+      close();
+    }
   };
   const handleDelete = () => {
     dispatch(operations.deleteTask(data._id));
@@ -36,7 +43,7 @@ const ChangeTask = ({ close, data }) => {
     <>
       <div className={styles.modalBody}>
         <h2 className={styles.title}>Редагування задачі</h2>
-        <form className={styles.form} >
+        <form className={styles.form}>
           <div className={styles.inputBlock}>
             <label className={styles.label}>
               <p className={styles.inputName}>Назва</p>
@@ -93,13 +100,15 @@ const ChangeTask = ({ close, data }) => {
           </div>
           <div className={styles.buttonsBlock}>
             <button onClick={handleSubmit} className={styles.buttonSave}>
-              Зберегти
+              {!loaderTask && <span>Зберегти</span>}
+              {loaderTask && <LoaderSmall />}
             </button>
 
             <button className={styles.buttonCancle} onClick={() => close()}>
               Відміна
             </button>
           </div>
+          {errorTask && <span>Ops ... err={errorTask}</span>}
         </form>
         <button
           onClick={() => close()}

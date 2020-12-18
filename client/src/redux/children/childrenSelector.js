@@ -1,1 +1,1 @@
-export const getAllChildren = state => state.children;
+export const getAllChildren = state => state.children.userChildrens;

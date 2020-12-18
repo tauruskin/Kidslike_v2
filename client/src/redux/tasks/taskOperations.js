@@ -1,6 +1,6 @@
 import axios from 'axios';
 import actions from './taskActions';
-import childOperations from '../children/childrenOperations'
+import childOperations from '../children/childrenOperations';
 
 // const domain = process.env.DOMAIN_ADDRESS;
 //todo token
@@ -23,8 +23,10 @@ const addTask = Task => async dispatch => {
   try {
     const response = await axios.post(`/api/tasks/`, { ...Task });
     dispatch(actions.createTaskSuccess(response.data));
+    return true;
   } catch (error) {
     dispatch(actions.createTaskError(error.message));
+    return false;
   }
 };
 
@@ -34,11 +36,12 @@ const updateTask = (data, id) => async dispatch => {
     await axios.patch(`/api/tasks/${id}`, data).then(res => {
       dispatch(actions.updateTaskSuccess(res.data));
     });
+    return true;
   } catch (error) {
     dispatch(actions.updateTaskError(error.message));
+    return false;
   }
 };
-
 
 const deleteTask = id => async dispatch => {
   dispatch(actions.deleteTaskRequest());
@@ -56,7 +59,7 @@ const changeTasksStatus = (data, id) => async dispatch => {
     await axios.patch(`/api/tasks/${id}`, data).then(res => {
       dispatch(actions.changeTasksStatusSuccess(res.data));
       dispatch(childOperations.getAllChildren());
-       dispatch(getAllTasks());
+      dispatch(getAllTasks());
     });
   } catch (error) {
     dispatch(actions.createTaskError(error.message));
@@ -68,5 +71,5 @@ export default {
   addTask,
   updateTask,
   deleteTask,
-  changeTasksStatus
+  changeTasksStatus,
 };

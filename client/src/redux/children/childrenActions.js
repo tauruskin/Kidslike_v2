@@ -1,33 +1,32 @@
 import { createAction } from '@reduxjs/toolkit';
 
-export const createChildrenRequest = createAction(
-  'children/createChildrenRequest',
-);
-export const createChildrenSuccess = createAction('children/createChildren');
-export const createChildrenError = createAction('children/createChildrenError');
+const createChildrenRequest = createAction('children/createChildrenRequest');
+const createChildrenSuccess = createAction('children/createChildrenSuccess');
+const createChildrenError = createAction('children/createChildrenError');
 
-export const changeChildrenMarkRequest = createAction(
-  'children/changeChildrenMarkRequest',
-);
-export const changeChildrenMarkSuccess = createAction(
-  'children/changeChildrenMark',
-);
-export const changeChildrenMarkError = createAction(
-  'children/changeChildrenMarkError',
-);
+const updateChildrenRequest = createAction('children/updateChildrenRequest');
+const updateChildrenSuccess = createAction('children/updateChildrenSuccess');
+const updateChildrenError = createAction('children/updateChildrenError');
 
-export const getAllChildrenRequest = createAction(
-  'children/getAllChildrenRequest',
-);
-export const getAllChildrenSuccess = createAction('children/getAllChildren');
-export const getAllChildrenError = createAction('children/getAllChildrenError');
+const getAllChildrensRequest = createAction('children/getAllChildrensRequest');
+const getAllChildrensSuccess = createAction('children/getAllChildrensSuccess');
+const getAllChildrensError = createAction('children/getAllChildrensError');
 
-export const deleteChildrenRequest = createAction(
-  'children/deleteChildrenRequest',
-);
-export const deleteChildrenSuccess = createAction(
-  'children/deleteChildrenSuccess',
-);
-export const deleteChildrenError = createAction(
-  'children/deleteChildrenError',
-);
+const deleteChildrenRequest = createAction('children/deleteChildrenRequest');
+const deleteChildrenSuccess = createAction('children/deleteChildrenSuccess');
+const deleteChildrenError = createAction('children/deleteChildrenError');
+
+export default {
+  createChildrenRequest,
+  createChildrenSuccess,
+  createChildrenError,
+  updateChildrenRequest,
+  updateChildrenSuccess,
+  updateChildrenError,
+  deleteChildrenRequest,
+  deleteChildrenSuccess,
+  deleteChildrenError,
+  getAllChildrensRequest,
+  getAllChildrensSuccess,
+  getAllChildrensError,
+};

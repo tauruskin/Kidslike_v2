@@ -37,28 +37,36 @@ exports.checkHabitDone = async (req, res, next) => {
       new: true,
     }
   );
-  const allUpdatedHabitDays = await HabitModel.findOne({ _id }).select('daysToComplete -_id');
-  const doneDays = await allUpdatedHabitDays.daysToComplete.map(el => el.done);
-  const successPointsToAdd = (points * 10 / 2 + points);
-  if (doneDays.every(el => el === 'yes')) {
+  const allUpdatedHabitDays = await HabitModel.findOne({ _id }).select(
+    "daysToComplete -_id"
+  );
+  const doneDays = await allUpdatedHabitDays.daysToComplete.map(
+    (el) => el.done
+  );
+  const successPointsToAdd = (points * 10) / 2 + points;
+  if (doneDays.every((el) => el === "yes")) {
     await ChildModel.findByIdAndUpdate(
       { _id: childId },
       { $inc: { points: successPointsToAdd } }
-    ); 
-    await HabitModel.findByIdAndUpdate({_id}, {$set: {isCompleted: true}})
-  }
-  else if (!doneDays.some(el => el === null)) {
+    );
+    await HabitModel.findByIdAndUpdate(
+      { _id },
+      { $set: { isCompleted: true } }
+    );
+  } else if (!doneDays.some((el) => el === null)) {
     await ChildModel.findByIdAndUpdate(
       { _id: childId },
       { $inc: { points: pointsToAdd } }
-    )
-    await HabitModel.findByIdAndUpdate({ _id }, { $set: { isCompleted: true } })
-  }
-  else {
+    );
+    await HabitModel.findByIdAndUpdate(
+      { _id },
+      { $set: { isCompleted: true } }
+    );
+  } else {
     await ChildModel.findByIdAndUpdate(
       { _id: childId },
       { $inc: { points: pointsToAdd } }
-    )
+    );
   }
 
   return res.status(200).send(habitToCheck);

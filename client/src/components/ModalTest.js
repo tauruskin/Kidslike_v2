@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import AddChildren from './modals/addChildren/AddChildren';
-import AddHabbit from './modals/addHabbit/AddHabbit';
+import AddHabit from './modals/addHabit/AddHabit';
 import AddPresent from './modals/addPresent/AddPresent';
 import AddTask from './modals/addTask/AddTask';
-import ChangeHabbit from './modals/changeHabbit/ChangeHabbit';
+import ChangeHabit from './modals/changeHabit/ChangeHabit';
 import ChangeTask from './modals/changeTask/ChangeTask';
 
 export const ModalTest = () => {
