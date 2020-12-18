@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, ErrorMessage } from 'formik'
 import {TextErrorSmall} from './TextError'
-import styles from '../addHabbit/AddHabbit.module.css'
+import styles from '../addHabit/AddHabit.module.css'
 
 export default function PointsInput(props) {
     const { label, name, ...rest } = props
