@@ -14,10 +14,10 @@
 
 .giftImage {
   width: 100%;
-  /*object-fit: cover; */
-  /* object-position: center; */
-  /* overflow: hidden; */
-  /* height: 100%;*/
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+  height: 100%;
 }
 
 .giftIcon {
@@ -46,7 +46,7 @@
 .gifsTitleContainer {
   display: flex;
   align-items: center;
-  margin-bottom: 53px;
+  margin-bottom: 40px;
 }
 
 .giftAvatar {
@@ -65,7 +65,7 @@
 .giftName {
   font-size: 22px;
   font-weight: 900;
-  margin-bottom: -3px;
+  margin: 0 0 10px;
 }
 
 .GiftContainer {
@@ -82,7 +82,6 @@
 .giftCard {
   position: relative;
   width: 280px;
-  height: 290px;
   border-radius: 20px;
   overflow: hidden;
   background-color: white;
@@ -101,30 +100,35 @@
   margin-bottom: 7px;
 }
 
-.starPrice {
-  display: flex;
-  align-items: center;
-}
-
-.starPrice > img {
+.star {
+  display: inline-block;
   width: 20px;
   height: 20px;
   margin-right: 3px;
 }
 
-.starPrice > span {
+.star > svg {
+  vertical-align: middle;
+}
+
+.price {
   font-size: 22px;
+  text-align: right;
+  vertical-align: middle;
+  text-transform: capitalize;
 }
 
 .giftButton {
   width: 120px;
   height: 38px;
   background-color: transparent;
+  outline: 0;
+  cursor: pointer;
   color: #ff8626;
   border: 1px solid #ff8626;
   border-radius: 15px;
   margin-left: auto;
-  margin-bottom: 11px;
+  flex: 0 0 auto;
 }
 
 .giftButton:hover,
@@ -134,20 +138,56 @@
   background-color: #e5e5e5;
 }
 
-.buttonPricePosition {
+.giftStatus {
+  vertical-align: middle;
+  text-align: center;
+  width: 120px;
+  height: 38px;
+  padding: 11px 5px;
+  outline: 0;
+  font-size: 16px;
+  line-height: 1;
+  color: #828282;
+  margin: 0 0 0 auto;
+}
+
+.infoBlock {
   display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  margin-top: 20px;
+  padding: 0 10px 20px;
 }
 
 @media screen and (max-width: 767px) {
+  .infoBlock {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .giftInfo {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .giftButton {
+    margin-bottom: 0;
+    margin-right: auto;
+  }
+
+  .giftStatus {
+    margin: 0 auto 0 auto;
+  }
   .giftImageThumb {
-    width: 260px;
-    height: 147px;
+    width: 100%;
+    height: auto;
   }
 
   .giftCard {
-    width: 280px;
-    height: 290px;
+    width: 100%;
   }
+
   .giftIcon {
     width: 30px;
     height: 30px;
@@ -166,14 +206,12 @@
 
   .giftCard {
     width: 337px;
-    height: 296px;
     margin: 7px;
   }
 }
-/* 
-@media screen and (min-width: 1200px) {
+
+@media screen and (max-width: 767px) {
   .container {
-    /* margin-left: auto;
-    width: 60%; */
-/*  }
-} */
+    margin-top: 0;
+  }
+}

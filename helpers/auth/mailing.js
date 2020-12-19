@@ -13,7 +13,7 @@ class SendMail {
   }
 
   async sendEmailForVarification(user) {
-    const linkForVarification = `${process.env.DOMAIN_ADDRESS}/api/auth/verify/${user.verificationToken}`;
+    const linkForVarification = `${process.env.DOMAIN_ADDRESS}/auth/verify/${user.verificationToken}`;
 
     return this.transport.sendMail({
       from: "newEmail",

@@ -33,7 +33,7 @@ function HabitItem({ name, points, childId, daysToComplete, _id }) {
         <ul className={styles.daysList}>
           {daysToComplete.length > 0 &&
             daysToComplete.map(el => (
-              <li
+              <li key={el.date}
                 className={[
                   el.done === 'yes'
                     ? styles.daysItem_done

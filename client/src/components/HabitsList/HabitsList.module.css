@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   padding: 0;
   list-style: none;
-  max-width: 690px;
+  /* max-width: 690px; */
   margin-bottom: 30px;
 }
 
@@ -43,13 +43,13 @@
   letter-spacing: 0em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .HabitList {
     max-width: 280px;
   }
 
   .HabitItem {
-    width: 280px;
+    max-width: 280px;
     min-height: 197px;
   }
 

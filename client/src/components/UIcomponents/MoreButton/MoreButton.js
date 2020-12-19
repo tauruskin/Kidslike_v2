@@ -9,24 +9,30 @@ function MoreButton({ type, data }) {
   const close = () => {
     setShowDropDown(!showDropDown);
   };
+  const openBubble = () => {
+    setShowDropDown(true);
+  };
+  const closeBubble = () => {
+    setShowDropDown(false);
+  };
 
   return (
     <div className={styles.drop_down_folder}>
       <button
         className={styles.btn}
         type="button"
-        onClick={() => close()}
+        onClick={() => openBubble()}
       ></button>
       {showDropDown && (
         <>
           <Backdrop handleClick={() => close()} />
           <BubbleComponent
             modalType={type}
-            handleClick={() => close()}
+            handleClick={() => closeBubble()}
             taskData={data}
             habitData={data}
             giftData={data}
-            childtData={data}
+            childData={data}
           />
         </>
       )}

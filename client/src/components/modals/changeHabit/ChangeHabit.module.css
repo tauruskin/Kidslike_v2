@@ -48,7 +48,8 @@
 }
 
 .input:focus {
-  border: 1px solid #ffbe9d;
+  border: 2px solid #ffbe9d;
+  outline: transparent;
 }
 
 .select {
@@ -66,7 +67,8 @@
 }
 
 .select:focus {
-  border: 1px solid #ffbe9d;
+  border: 2px solid #ffbe9d;
+  outline: transparent;
 }
 
 .inputMark {
@@ -76,12 +78,14 @@
   border: 1px solid #bdbdbd;
   box-sizing: border-box;
   border-radius: 15px;
+  font-size: 16px;
   background: url(../../../img/svg/star_small.svg) 12% / 15% no-repeat;
   background-size: 17px;
 }
 
 .inputMark:focus {
-  border: 1px solid #ffbe9d;
+  border: 2px solid #ffbe9d;
+  outline: transparent;
 }
 
 .buttonSave {

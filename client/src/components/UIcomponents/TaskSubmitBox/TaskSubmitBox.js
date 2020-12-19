@@ -7,11 +7,10 @@ import styles from './HabitSubmitBox.module.css';
 function TaskSubmitBox({ id, childId, createdAt, isCompleted }) {
   const today = Date.now();
   const parsedDate = new Date(today).toISOString();
-  // console.log(createdAt)
   const dispatch = useDispatch();
   const handleCompleteAction = () => {
     dispatch(
-      operations.updateTask(
+      operations.changeTasksStatus(
         {
           isCompleted: 'true',
           childId: childId,
@@ -46,13 +45,13 @@ function TaskSubmitBox({ id, childId, createdAt, isCompleted }) {
 
   return (
     <div className={styles.submitBox}>
-      {isCompleted === 'true' ? (
+      {isCompleted !== 'inProgress' ? (
         <div>
           <p className={styles.submitBoxTitle}>Повторити</p>
           <button
             className={styles.repeatBtn}
             onClick={handleRepeatAction}
-            label={'Підтвердити виконання'}
+            label={'Повторить'}
           />
         </div>
       ) : (

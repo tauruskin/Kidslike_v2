@@ -7,6 +7,7 @@
   background-color: #ffffff;
   background-repeat: no-repeat;
   background-position: center;
+  outline: transparent;
 }
 
 .button:last-child {
@@ -16,6 +17,7 @@
 .button:hover,
 .button:focus {
   background-color: #ffdfcf;
+  outline: transparent;
 }
 
 .checkBtn {
