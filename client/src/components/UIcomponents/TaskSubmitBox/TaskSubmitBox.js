@@ -45,13 +45,13 @@ function TaskSubmitBox({ id, childId, createdAt, isCompleted }) {
 
   return (
     <div className={styles.submitBox}>
-      {isCompleted === 'true' ? (
+      {isCompleted !== 'inProgress' ? (
         <div>
           <p className={styles.submitBoxTitle}>Повторити</p>
           <button
             className={styles.repeatBtn}
             onClick={handleRepeatAction}
-            label={'Підтвердити виконання'}
+            label={'Повторить'}
           />
         </div>
       ) : (

@@ -7,7 +7,7 @@ export async function getAccessTokenFacebook(code) {
     method: 'get',
     params: {
       client_id: process.env.REACT_APP_FACEBOOK_ID,
-      redirect_uri: 'http://localhost:3000/login',
+      redirect_uri: `${process.env.REACT_APP_ALLOWED_ORIGIN}/login`,
       client_secret: process.env.REACT_APP_FACEBOOK_SECRET_CODE,
       code,
     },
@@ -31,7 +31,7 @@ export async function getFacebookUserData(accesstoken) {
 
 const stringifiedParams = queryString.stringify({
   client_id: process.env.REACT_APP_FACEBOOK_ID,
-  redirect_uri: 'http://localhost:3000/login',
+  redirect_uri: `${process.env.REACT_APP_ALLOWED_ORIGIN}/login`,
   scope: ['email', 'user_friends'].join(','), // comma seperated string
   response_type: 'code',
   auth_type: 'rerequest',
