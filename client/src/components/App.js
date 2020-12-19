@@ -16,7 +16,7 @@ import { setToken } from '../redux/auth/authOperations';
 
 import axios from 'axios';
 import Background from './Background/Background';
-axios.defaults.baseURL = process.env.REACT_APP_DOMAIN_ADDRESS;
+axios.defaults.baseURL = `http://kidslike-v2.top/`;
 
 class App extends Component {
   /*
