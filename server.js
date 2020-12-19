@@ -81,24 +81,9 @@ exports.CrudServer = class {
 
     if (process.env.LOCATION === "production") {
       this.server.use(
-        "/.well-known/pki-validation",
-        express.static(path.join(__dirname, "../.well-known/pki-validation"))
-      );
-
-      this.server.use(
         "/",
         express.static(path.join(__dirname, "client", "build"))
       );
-
-      this.server.get("/.well-known/pki-validation", (req, res) => {
-        res.sendFile(
-          path.resolve(
-            __dirname,
-            "../.well-known/pki-validation",
-            "9A04033A3AC8C782139F756FC0511707.txt"
-          )
-        );
-      });
 
       this.server.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
