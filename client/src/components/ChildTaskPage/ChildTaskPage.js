@@ -3,9 +3,9 @@ import TaskItem from '../TaskItem/TaskItem';
 import { useSelector, useDispatch } from 'react-redux';
 import operations from '../../redux/children/childrenOperations';
 import styles from './ChildTaskPage.module.css';
-import MoreButton from '../UIcomponents/MoreButton/MoreButton';
+import transitionStyles from '../HabitsList/transitionStyles.module.css';
 import Button from '../UIcomponents/Button/Button';
-import defaultLogo from '../../img/header/userInfo.svg';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import boy from '../../img/avatars/boy.png';
 import girl from '../../img/avatars/girl.png';
 export default function ChildTaskPage() {
@@ -64,26 +64,37 @@ export default function ChildTaskPage() {
                   </div>
                   <h1 className={styles.giftTitle}>{el.name}</h1>
                 </div>
-                <ul className={styles.HabitList}>
+                <TransitionGroup component="ul" className={styles.HabitList}>
                   {tasksDrow.map(
                     element =>
                       element.childId === el._id &&
                       element.isCompleted === 'true' && (
-                        <li
-                          key={element._id}
-                          className={styles.HabitItem}
-                          style={
+                        <CSSTransition
+                          in={
+                            element.childId === el._id &&
                             element.isCompleted === 'true'
-                              ? { border: '1px solid rgb(126, 242, 157)' }
-                              : { border: '1px solid rgb(235, 162, 185)' }
                           }
+                          key={el._id}
+                          timeout={250}
+                          classNames={transitionStyles}
+                          unmountOnExit
                         >
-                          {/* <MoreButton type={'task'} /> */}
-                          <TaskItem {...element} />
-                        </li>
+                          <li
+                            key={element._id}
+                            className={styles.HabitItem}
+                            style={
+                              element.isCompleted === 'true'
+                                ? { border: '1px solid rgb(126, 242, 157)' }
+                                : { border: '1px solid rgb(235, 162, 185)' }
+                            }
+                          >
+                            {/* <MoreButton type={'task'} /> */}
+                            <TaskItem {...element} />
+                          </li>
+                        </CSSTransition>
                       ),
                   )}
-                </ul>
+                </TransitionGroup>
               </div>
             ),
         )}
