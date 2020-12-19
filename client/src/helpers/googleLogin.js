@@ -8,7 +8,7 @@ export async function getAccessTokenFromCode(code) {
     data: {
       client_id: process.env.REACT_APP_CLIENT_ID,
       client_secret: process.env.REACT_APP_SECRET_CLIENT_CODE,
-      redirect_uri: `${process.env.REACT_APP_ALLOWED_ORIGIN}/login`,
+      redirect_uri: `http://kidslike-v2.top/login`,
       grant_type: 'authorization_code',
       code,
     },
@@ -29,7 +29,7 @@ export async function getGoogleUserInfo(access_token) {
 
 const stringifiedParams = queryString.stringify({
   client_id: process.env.REACT_APP_CLIENT_ID,
-  redirect_uri: `${process.env.REACT_APP_ALLOWED_ORIGIN}/login`,
+  redirect_uri: `http://kidslike-v2.top/login`,
   scope: [
     'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/userinfo.profile',
