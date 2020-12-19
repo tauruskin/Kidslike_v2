@@ -9,7 +9,6 @@ const ChangeChildren = ({ close, data }) => {
 
   const [childName, setChildName] = useState(data.name);
   const [childGender, setChildGender] = useState(data.gender);
-
   const handleSubmit = evt => {
     dispatch(
       childOperations.updateChildren(
@@ -30,7 +29,6 @@ const ChangeChildren = ({ close, data }) => {
   };
 
   const defGender = data.gender === 'male' ? true : false;
-  console.log(defGender);
 
   return (
     <>
