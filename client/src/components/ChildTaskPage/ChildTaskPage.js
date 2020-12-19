@@ -52,8 +52,6 @@ export default function ChildTaskPage() {
   //   [tasks],
   // );
 
-  console.log(tasks);
-
   return (
     <div className={styles.listHolder}>
       {children.map(
