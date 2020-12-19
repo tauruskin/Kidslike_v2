@@ -154,7 +154,7 @@
     margin-bottom: 30px;
   }
   .titleName {
-    margin-top: 30px;
+    margin-top: 0;
   }
 }
 @media screen and (max-width: 767px) {
