@@ -58,7 +58,7 @@ export default function LeftSideBar({
               return (
                 <li key={el._id} className={styles.leftSideBarCard}>
                   <div className={styles.moreButton_wraper}>
-                    {<MoreButton type={'child'} />}
+                    <MoreButton type={'child'} data={el} />
                   </div>
                   <div className={styles.childTitle}>
                     <img
