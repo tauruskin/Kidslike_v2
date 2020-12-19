@@ -32,11 +32,11 @@ export default function TaskList() {
         <h1 className={styles.giftTitle}>Задачі</h1>
       </div>
       {/* {errorTasks && <div>Error! {errorTasks.message}</div>} */}
-      {loaderTasks && <BoxLoader />}
+      {loaderTasks && filteredTasks.length === 0 && <BoxLoader />}
       {!loaderTasks && filteredTasks.length === 0 && (
         <p> Додайте задачі для своїх дітей</p>
       )}
-      {tasks.length > 0 && (
+      {filteredTasks.length > 0 && (
         <TransitionGroup component="ul" className={styles.HabitList}>
           {filteredTasks.map(el => (
             <CSSTransition

@@ -50,7 +50,7 @@ export default function LeftSideBar({
         </div>
 
         {/* {errorChildren && <div>Error! {errorChildren.message}</div>} */}
-        {loaderChildren && <BoxLoader />}
+        {loaderChildren && children.length === 0 && <BoxLoader />}
         {!loaderChildren && children.length === 0 && <p> у вас нет детей</p>}
         {children.length > 0 && (
           <ul className={styles.cardsContainer}>
@@ -78,7 +78,7 @@ export default function LeftSideBar({
                       {tasks.map(
                         element =>
                           element.childId === el._id &&
-                          element.isCompleted === null && (
+                          element.isCompleted === 'inProgress' && (
                             <li key={element._id} className={styles.habitsList}>
                               <span className={styles.spanText}>
                                 {element.name}
@@ -94,6 +94,7 @@ export default function LeftSideBar({
                   <NavLink
                     to={`/home/child/${el._id}`}
                     className={styles.arrowText}
+                    onClick={familyRenderAnotherLinks}
                   >
                     До виконаних задач
                     <img src={arrow} alt="arrow" className={styles.arrow} />

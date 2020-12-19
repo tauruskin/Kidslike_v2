@@ -34,7 +34,7 @@ function HabitsList() {
         <h1 className={styles.giftTitle}>Звички</h1>
       </div>
       {/* {errorHabits && <div>Error! {errorHabits.message}</div>} */}
-      {loaderHabits && <BoxLoader />}
+      {loaderHabits && habits.length === 0 && <BoxLoader />}
       {!loaderHabits && habits.length === 0 && <p> у вас нет habits</p>}
       {habits.length > 0 && (
         <TransitionGroup component="ul" className={styles.HabitList}>
@@ -44,12 +44,12 @@ function HabitsList() {
               key={el._id}
               timeout={250}
               classNames={transitionStyles}
-              unmountOnExit>
-         
-            <li key={el._id} className={styles.HabitItem}>
-              <MoreButton type={'habit'} data={el} />
-              <HabitItem {...el} />
-            </li>
+              unmountOnExit
+            >
+              <li key={el._id} className={styles.HabitItem}>
+                <MoreButton type={'habit'} data={el} />
+                <HabitItem {...el} />
+              </li>
             </CSSTransition>
           ))}
         </TransitionGroup>
