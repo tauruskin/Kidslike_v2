@@ -23,6 +23,7 @@ export default function BubbleComponent({
   habitData,
   giftData,
   childData,
+  faceBtn
 }) {
   const [showModal, setShowModal] = useState(false);
   const close = () => {

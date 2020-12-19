@@ -38,26 +38,24 @@ const schema = yup.object().shape({
 });
 
 export const RegisterForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
+  const [, setEmail] = useState('');
+  const [, setPassword] = useState('');
+  const [, setUsername] = useState('');
   const [notification, setNotification] = useState(false);
   const [msg, setMsg] = useState('');
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
   });
 
   const dispatch = useDispatch();
 
-  const onSubmit = async data => {
+  const onSubmit = async(data, e) => {
     const statusCode = await dispatch(signUp(data));
     switch (statusCode) {
       case 201:
-        setEmail('');
-        setPassword('');
-        setUsername('');
+        e.target.reset()
         addValues('Лист з підтвердженням реєстрації вислано на пошту')
         break;
       default:
@@ -96,7 +94,6 @@ export const RegisterForm = () => {
           labelWidth="147"
           inputWidth="340"
           type="email"
-          value={email}
         />
 
         <BasicInput
@@ -113,7 +110,6 @@ export const RegisterForm = () => {
           labelWidth="147"
           inputWidth="340"
           type="password"
-          value={password}
         />
 
         <BasicInput
@@ -131,7 +127,6 @@ export const RegisterForm = () => {
           labelWidth="147"
           inputWidth="340"
           type="text"
-          value={username}
         />
 
         <div className={styles.btn_centred}>
