@@ -22,11 +22,12 @@ function MoreButton({type, data}) {
                 <>
                 <Backdrop handleClick={() => close()}/>
                 <BubbleComponent
-                  modalType={type}
-                  handleClick={() => closeBubble()}
-                  taskData={data}
-                  habitData={data} 
-                  giftData={data} />
+                    modalType={type}
+                    handleClick={() => closeBubble()}
+                    taskData={data}
+                    habitData={data}
+                    giftData={data}
+                    childData={data}/>
                 </>
             }
         </div>

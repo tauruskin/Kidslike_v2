@@ -209,10 +209,9 @@
     margin: 7px;
   }
 }
-/* 
-@media screen and (min-width: 1200px) {
+
+@media screen and (max-width: 767px) {
   .container {
-    /* margin-left: auto;
-    width: 60%; */
-/*  }
-} */
+    margin-top: 0;
+  }
+}
