@@ -25,7 +25,7 @@ export default [
   {
     path: '/verification',
     label: 'Verify',
-    exact: true,
+    exact: false,
     component: lazy(() => import('./Views/TokenVerifyView')),
     private: false,
   },
