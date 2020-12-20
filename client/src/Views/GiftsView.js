@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import gift from '../img/header/gift.svg';
 import styles from '../components/Gifts/Gifts.module.css';
@@ -11,7 +11,7 @@ import userOperation from '../redux/user/userOperation';
 export default function GiftsView() {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-
+  const children = useSelector(state => state.children.userChildrens)
   // useEffect(() => {
   //   dispatch(userOperation.getUserInfo());
   // }, []);
@@ -33,6 +33,7 @@ export default function GiftsView() {
             orange={true}
             type="button"
             label="Додати подарунок  +"
+            disabled={!children || children.length === 0}
           />
         </div>
         {showModal && <AddPresent close={close} />}

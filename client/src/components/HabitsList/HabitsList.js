@@ -15,6 +15,7 @@ function HabitsList() {
   const close = () => {
     setShowAddHabitModal(false);
   };
+  const children = useSelector(state => state.children.userChildrens)
   const habits = useSelector(state => state.habits.userHabits);
   const loaderHabits = useSelector(state => state.habits.loaderHabitsList);
   const errorHabits = useSelector(state => state.habits.errorHabitsLisr);
@@ -35,7 +36,7 @@ function HabitsList() {
       </div>
       {/* {errorHabits && <div>Error! {errorHabits.message}</div>} */}
       {loaderHabits && habits.length === 0 && <BoxLoader />}
-      {!loaderHabits && habits.length === 0 && <p> у вас нет habits</p>}
+      {!loaderHabits && habits.length === 0 && <p>{!children || children.length === 0 ? "Спершу додайте дитину до списку" : "Додайте звички для своїх дітей"}</p>}
       {habits.length > 0 && (
         <TransitionGroup component="ul" className={styles.HabitList}>
           {filteredhabits.map((el, i) => (
@@ -59,6 +60,7 @@ function HabitsList() {
         handleClick={() => setShowAddHabitModal(true)}
         type={'button'}
         orange={true}
+        disabled={!children || children.length === 0}
       />
       {showAddHabitModal && <AddHabit close={() => close()} />}
     </div>

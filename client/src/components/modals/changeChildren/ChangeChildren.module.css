@@ -49,6 +49,7 @@
 
 .input:focus {
   border: 1px solid #ffbe9d;
+  outline: transparent;
 }
 
 .inputMark {

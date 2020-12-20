@@ -1,8 +1,19 @@
 const { HabitModel } = require("./habits.model");
 const { ChildModel } = require("../childs/childs.model");
+const moment = require('moment');
+
+function daysToCompleteExample(length) {
+  let array = [];
+  for (let i = 0; i < length; i++) {
+    let day = { date: moment().add(i, 'days').toISOString().slice(0, 10), done: null }
+    array.push(day);
+  }
+  return array;
+}
 
 exports.createHabit = async (req, res, next) => {
-  const newHabit = await HabitModel.create(req.body);
+  const days = daysToCompleteExample(10);
+  const newHabit = await HabitModel.create({ daysToComplete: days, ...req.body, });
   return res.status(201).send(newHabit);
 };
 
