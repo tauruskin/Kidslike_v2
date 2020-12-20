@@ -6,6 +6,7 @@ exports.createHabitSchema = Joi.object({
   childId: Joi.objectId().required(),
   points: Joi.number().required(),
   isCompleted: Joi.boolean(),
+  daysToComplete: Joi.array().length(10)
 });
 
 exports.updateHabitSchema = Joi.object({
