@@ -95,7 +95,7 @@ export default function LeftSideBar({
                     to={`/home/child/${el._id}`}
                     className={styles.arrowText}
                   >
-                    До виконаних задач
+                    До завершених задач
                     <img src={arrow} alt="arrow" className={styles.arrow} />
                   </NavLink>
                 </li>
