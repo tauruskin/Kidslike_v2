@@ -31,8 +31,8 @@ class TokenVerifyView extends Component {
         <div className={styles.container}>
           {!this.state.res && (
             <>
-              <p>Упс...</p>
-              <Link to={'/registration'}>
+              <p>Пошта вже підтверджена. Виконайте вхід в додаток.</p>
+              <Link to={'/login'}>
                 <Button orange label="до діЇ" type="button"></Button>
               </Link>
             </>
