@@ -1,7 +1,7 @@
 const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, ".env") });
 const swaggerUi = require("swagger-ui-express"),
-swaggerDocument = require("./swagger.json");
+  swaggerDocument = require("./swagger.json");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");

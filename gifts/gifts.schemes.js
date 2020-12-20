@@ -8,9 +8,7 @@ exports.createGiftSchema = Joi.object({
   childId: Joi.objectId().required(),
 });
 
-exports.updateGiftSchema = Joi.object({
-  name: Joi.string(),
-  price: Joi.number(),
-  imageUrl: Joi.string(),
-  childId: Joi.objectId(),
-}).min(1)
+exports.purchaseGiftSchema = Joi.object({
+  price: Joi.number().required(),
+  childId: Joi.objectId().required(),
+})

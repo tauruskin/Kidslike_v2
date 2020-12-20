@@ -15,9 +15,8 @@ import userOperation from '../redux/user/userOperation';
 import { setToken } from '../redux/auth/authOperations';
 
 import axios from 'axios';
-import { baseURL } from '../config';
 import Background from './Background/Background';
-axios.defaults.baseURL = baseURL;
+axios.defaults.baseURL = `http://kidslike-v2.top/`;
 
 class App extends Component {
   /*

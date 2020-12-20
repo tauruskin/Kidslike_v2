@@ -44,6 +44,11 @@
   }
 }
 
+.socialBlockBtn{
+  position: relative;
+  width: 267px;
+  margin: 0 auto;
+}
 
 @media screen and (max-width: 1199px) {
 

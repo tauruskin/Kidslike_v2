@@ -35,7 +35,7 @@ const ChangeTask = ({ close, data }) => {
   };
 
   const validationSchema = Yup.object({
-    name: Yup.string().required("Обов'язкове поле").min(6, "Мінімальна довжина: 6 символів"),
+    name: Yup.string().required("Обов'язкове поле").min(4, "Мінімальна довжина: 4 символи"),
     childId: Yup.string().required('Оберіть один з варіантів'),
     points: Yup.string()
       .required("Обов'язкове поле")

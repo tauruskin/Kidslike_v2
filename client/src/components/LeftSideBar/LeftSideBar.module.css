@@ -59,7 +59,7 @@
     /* margin-left: auto; */
     min-width: 345px;
     margin: 0 40px;
-    text-align: center;
+    text-align: left;
   }
 }
 
@@ -71,7 +71,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 30px;
-  /* margin-bottom: 53px; */
+  margin-top: 50px;
 }
 
 .iconFamily {
@@ -154,7 +154,7 @@
     margin-bottom: 30px;
   }
   .titleName {
-    margin-top: 30px;
+    margin-top: 0;
   }
 }
 @media screen and (max-width: 767px) {

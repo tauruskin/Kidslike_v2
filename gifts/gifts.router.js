@@ -10,7 +10,7 @@ const {
   purchaseGift
 } = require("./gifts.controller");
 const { validate } = require("../helpers/validate");
-const { createGiftSchema, updateGiftSchema } = require("./gifts.schemes");
+const { createGiftSchema, purchaseGiftSchema } = require("./gifts.schemes");
 const mongoose = require("mongoose");
 const { GiftModel } = require("./gifts.model");
 const { imageUpload } = require("../helpers/image.upload");
@@ -52,10 +52,11 @@ router.patch(
   imageUpload,
   asyncWrapper(updateGift)
 );
+
 router.patch(
   "/purchase/:giftId",
   authorize,
-  validate(updateGiftSchema),
+  validate(purchaseGiftSchema),
   asyncWrapper(purchaseGift)
 );
 

@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './ChangeChildren.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
-import childOperations from '../../../redux/children/childrenOperations'
+import childOperations from '../../../redux/children/childrenOperations';
 
 const ChangeChildren = ({ close, data }) => {
   const dispatch = useDispatch();
 
-  const [childName, setChildName] = useState('');
-  const [childGender, setChildGender] = useState('');
-
+  const [childName, setChildName] = useState(data.name);
+  const [childGender, setChildGender] = useState(data.gender);
   const handleSubmit = evt => {
     dispatch(
       childOperations.updateChildren(
@@ -29,6 +28,8 @@ const ChangeChildren = ({ close, data }) => {
     close();
   };
 
+  const defGender = data.gender === 'male' ? true : false;
+
   return (
     <>
       <div className={styles.modalBody}>
@@ -38,7 +39,7 @@ const ChangeChildren = ({ close, data }) => {
             <label className={styles.label}>
               <p className={styles.inputName}>Ім’я дитини</p>
               <input
-                // defaultValue={data.name}
+                defaultValue={data.name}
                 className={styles.input}
                 placeholder="Ім’я"
                 onChange={({ target: { value } }) => setChildName(value)}
@@ -47,6 +48,8 @@ const ChangeChildren = ({ close, data }) => {
             <p className={styles.childrenTitle}>Оберіть стать дитини</p>
             <label className={styles.customLabel}>
               <input
+                // defaultValue={defGender}
+                defaultChecked={!defGender}
                 name="gender"
                 type="radio"
                 onChange={() => setChildGender('female')}
@@ -56,6 +59,7 @@ const ChangeChildren = ({ close, data }) => {
             <p className={styles.customName}>дівчинка</p>
             <label className={styles.customLabel}>
               <input
+                defaultChecked={defGender}
                 name="gender"
                 type="radio"
                 onChange={() => setChildGender('male')}
@@ -63,12 +67,12 @@ const ChangeChildren = ({ close, data }) => {
               <span className={styles.radiobox}></span>
             </label>
             <p className={styles.customName}>хлопчик</p>
-            
+
             <button className={styles.btnDelete} onClick={() => handleDelete()}>
               <span className={styles.btnDeleteIcon}></span> Видалити дитину
             </button>
           </div>
-          
+
           <div className={styles.buttonsBlock}>
             <button className={styles.buttonSave}>Зберегти</button>
 

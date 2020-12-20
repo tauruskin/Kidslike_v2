@@ -31,8 +31,8 @@ const schema = yup.object().shape({
 });
 
 export const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [, setEmail] = useState('');
+  const [, setPassword] = useState('');
   const [notification, setNotification] = useState(false);
   const [msg, setMsg] = useState('');
 
@@ -44,7 +44,6 @@ export const LoginForm = () => {
 
   const onSubmit = async data => {
     const statusCode = await dispatch(signIn(data))
-    // console.log(statusCode);
     switch (statusCode) {
       case 'Request failed with status code 404':
         addValues('Користувача з такою поштою, не знайдено')
@@ -89,7 +88,6 @@ const addValues = (msg) => {
           labelWidth="147"
           inputWidth="340"
           type="email"
-          value={email}
         />
 
         <BasicInput
@@ -107,7 +105,6 @@ const addValues = (msg) => {
           labelWidth="147"
           inputWidth="340"
           type="password"
-          value={password}
         />
 
         <div className={styles.btn_centred}>

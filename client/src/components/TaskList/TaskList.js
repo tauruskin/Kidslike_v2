@@ -15,6 +15,7 @@ export default function TaskList() {
   const close = () => {
     setShowAddTaskModal(false);
   };
+  const children = useSelector(state => state.children.userChildrens)
   const tasks = useSelector(state => state.tasks.userTasks);
   const loaderTasks = useSelector(state => state.tasks.loaderTasksList);
   const errorTasks = useSelector(state => state.tasks.errorTasksLisr);
@@ -32,11 +33,11 @@ export default function TaskList() {
         <h1 className={styles.giftTitle}>Задачі</h1>
       </div>
       {/* {errorTasks && <div>Error! {errorTasks.message}</div>} */}
-      {loaderTasks && <BoxLoader />}
+      {loaderTasks && filteredTasks.length === 0 && <BoxLoader />}
       {!loaderTasks && filteredTasks.length === 0 && (
-        <p> Додайте задачі для своїх дітей</p>
+        <p> {!children || children.length === 0 ? "Спершу додайте дитину до списку" :  "Додайте задачі для своїх дітей"}</p>
       )}
-      {tasks.length > 0 && (
+      {filteredTasks.length > 0 && (
         <TransitionGroup component="ul" className={styles.HabitList}>
           {filteredTasks.map(el => (
             <CSSTransition
@@ -59,6 +60,7 @@ export default function TaskList() {
         handleClick={() => setShowAddTaskModal(true)}
         type={'button'}
         orange={true}
+        disabled={!children || children.length === 0}
       />
       {showAddTaskModal && <AddTask close={() => close()} />}
     </div>

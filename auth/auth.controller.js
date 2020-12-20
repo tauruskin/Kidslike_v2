@@ -4,7 +4,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const uuid = require("uuid");
-const axios = require ('axios')
+const axios = require("axios");
 const queryString = require("query-string");
 const {
   Conflict,
@@ -12,9 +12,10 @@ const {
   Unauthorized,
   Unverify,
 } = require("../helpers/errors/auth.errors");
-const { UserModel,UserModelGoogle } = require("../users/users.model");
+const { UserModel, UserModelGoogle } = require("../users/users.model");
 const { mailing } = require("../helpers/auth/mailing");
 const { serializeUser } = require("../users/users.serializer");
+const { sendVerificationEmail2 } = require("../helpers/auth/mailing2");
 
 exports.signUp = async (req, res, next) => {
   const { email, password, username } = req.body;
@@ -32,8 +33,9 @@ exports.signUp = async (req, res, next) => {
     // avatarURL:`${process.env.DOMAIN_ADDRESS}/images/${avatar}`,
     verificationToken: uuid.v4(),
   });
+  await sendVerificationEmail2(user);
   const some = mailing.sendEmailForVarification(user);
-  if(some) return res.status(201).send(serializeUser(user));
+  if (some) return res.status(201).send(serializeUser(user));
 };
 
 exports.signIn = async (req, res, next) => {
@@ -80,12 +82,12 @@ exports.verifyEmail = async (req, res, next) => {
     throw new NotFound("User not found or email is already varifed");
   }
   await UserModel.updateOne({ _id: user._id }, { verificationToken: null });
-  // res.status(200).send("Varification was successful");
-  return res.redirect(`${process.env.CLIENT_URL}/verification`);
+  return res.status(200).send("Varification was successful");
+  // return res.redirect(`${process.env.CLIENT_URL}/verification`);
 };
 
 exports.googleAuth = async (req, res, next) => {
-  const {email,name,picture,id} = req.body;
+  const { email, name, picture, id } = req.body;
   let existing = await UserModel.findOne({ email });
   const passwordHash = await bcrypt.hash(id, +process.env.SALT_ROUNDS);
   let user;
@@ -93,11 +95,11 @@ exports.googleAuth = async (req, res, next) => {
     user = await UserModel.create({
       email,
       passwordHash,
-      username:`${name}`,
-      avatarURL:`${picture}`,
+      username: `${name}`,
+      avatarURL: `${picture}`,
       verificationToken: null,
     });
-  }else{
+  } else {
     const validPassword = await bcrypt.compare(id, existing.passwordHash);
     if (!validPassword) {
       throw new Unauthorized("You must register");
@@ -116,6 +118,4 @@ exports.googleAuth = async (req, res, next) => {
   });
 };
 
-exports.googleRedirect = async (req, res) => {
-
-};
+exports.googleRedirect = async (req, res) => {};
