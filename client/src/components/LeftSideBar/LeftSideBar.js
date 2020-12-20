@@ -51,7 +51,7 @@ export default function LeftSideBar({
 
         {/* {errorChildren && <div>Error! {errorChildren.message}</div>} */}
         {loaderChildren && children.length === 0 && <BoxLoader />}
-        {!loaderChildren && children.length === 0 && <p> у вас нет детей</p>}
+        {!loaderChildren && children.length === 0 && <p> Спершу додайте дитину до списку</p>}
         {children.length > 0 && (
           <ul className={styles.cardsContainer}>
             {children.map((el, i) => {
