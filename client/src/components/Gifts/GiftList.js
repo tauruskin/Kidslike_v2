@@ -36,7 +36,6 @@ export function GiftList() {
 
   return (
     <div className={styles.GiftContainer}>
-    {<p>{!children || children.length === 0 ? "Спершу додайте дитину до списку" : "Додайте звички для своїх дітей"}</p>}
       <ul className={styles.GiftList}>
         {gifts.map(gift => (
           <GiftCard
